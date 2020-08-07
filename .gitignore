@@ -12,6 +12,7 @@
 /build
 
 # misc
+.allotment-notes.docx
 .DS_Store
 .env.local
 .env.development.local
