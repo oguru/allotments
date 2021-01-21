@@ -1,0 +1,16 @@
+.navMain {
+    background-color: #002d00;
+}
+
+.navHover {
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .navbarLink {
+        min-width: 80px;
+        text-align: center;
+    }
+}

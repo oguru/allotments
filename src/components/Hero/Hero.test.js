@@ -1,7 +1,7 @@
 import React from "react";
-import Dashboard from "./Dashboard";
+import Hero from "./Hero";
 
-describe("Dashboard tests", () => {
+describe("Hero tests", () => {
   let component;
 
   beforeEach(() => {
