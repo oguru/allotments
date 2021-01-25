@@ -1,32 +1,45 @@
 import React from "react";
 import styles from "./Hero.module.scss";
 
-const Hero = (image) => {
+const Hero = (props) => {
 
   const {
-    heroSubtitle,
-    heroTitle,
-    homepageText,
-    image
+    // heroSubtitle,
+    // heroTitle,
+    // homepageText,
+    content: {
+      heroSubtitle,
+      heroTitle,
+      homepageText,
+      image
+    },
+    // image,
+    isActive
   } = props;
   
-  // Model.Name == "Home" ? "flex-grow-1" : null
+
+  const heroSize = isActive ? "flex-grow-1" : "";
+
   return (
     <>
-      <div 
-        className="
+      <div
+        className={`
+          ${heroSize}
+          ${styles.hero}
           hero-img
           jumbotron
           jumbotron-fluid
-          my-2"
-        style={`background-image:url(${image})`}
+          overflow-hidden
+          my-2`}
+        style={{backgroundImage:`url(${image})`}}
       >
         <div class="container">
             <h1>{heroTitle}</h1>
             <h4>{heroSubtitle}</h4>
             <p class="mt-5">{homepageText || ""}</p>
         </div>
-    </div>
+        {/* <p style={{border: "red solid 10px", color: "white"}}>{heroSize}</p> */}
+      </div>
     </>
   );
 };

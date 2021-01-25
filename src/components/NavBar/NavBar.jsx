@@ -25,7 +25,7 @@ const NavBar = () => {
             id="navbarNav"
           >
             <Nav>
-              <NavLink 
+              <NavLink
                 link="/" 
                 linkText="Home" 
               />
@@ -48,7 +48,7 @@ function NavLink(props) {
   const {linkText, link} = props;
 
   return (
-    <Nav.Item className={`p-1 rounded ${styles.navbarLink} ${styles.navHover}`}>
+    <Nav.Item className={`p-1 ml-2 rounded ${styles.navbarLink} ${styles.navHover}`}>
       <Link
         className="nav-link"
         to={link}
