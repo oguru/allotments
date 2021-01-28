@@ -1,11 +1,29 @@
-.hero {
-    background: no-repeat center center;
-    background-attachment: scroll;
+.heroCont {
     position: relative;
-    background-size: cover;
     color: white;
+
+    .heroBg {
+        background: no-repeat center center;
+        background-size: cover;
+        background-attachment: scroll;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .heroText {
+        padding: 4rem 0;
+        position:relative;
+        z-index: 2;
+    }
 }
 
+.homeHero {
+    // transform:scale(1.2);
+    // overflow: hidden;
+}
 // .hero > .overlay {
 //     position: absolute;
 //     top: 0;

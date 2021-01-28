@@ -6,7 +6,9 @@ import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 
-const NavBar = () => {
+const NavBar = (props) => {
+  const {checkActive} = props;
+
   return (
     <Navbar
       id="#navbarNav" 
@@ -26,15 +28,18 @@ const NavBar = () => {
           >
             <Nav>
               <NavLink
-                link="/" 
+                checkActive={checkActive("/")}
+                path="/" 
                 linkText="Home" 
               />
               <NavLink
-                link="/about"
+                checkActive={checkActive("/about")}
+                path="/about"
                 linkText="About"
               />
               <NavLink
-                link="/articles"
+                checkActive={checkActive("/articles")}
+                path="/articles"
                 linkText="Articles"
               />
           </Nav>
@@ -45,16 +50,24 @@ const NavBar = () => {
 };
 
 function NavLink(props) {
-  const {linkText, link} = props;
+  const {checkActive, linkText, path} = props;
 
   return (
     <Nav.Item className={`p-1 ml-2 rounded ${styles.navbarLink} ${styles.navHover}`}>
-      <Link
+      <Nav.Link
+        active={checkActive}
+        as={Link}
+        // className="nav-link"
+        to={path}
+      >
+        {linkText}
+      </Nav.Link>
+      {/* <Link
         className="nav-link"
         to={link}
       >
         {linkText}
-      </Link>
+      </Link> */}
     </Nav.Item>
   );
 };

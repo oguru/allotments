@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div className="d-flex flex-column h-100">
-      <NavBar />
+      <NavBar checkActive={checkActive}/>
       <section className="d-flex flex-column flex-grow-1">
         <Switch>
             <Route path="/about">

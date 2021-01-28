@@ -25,15 +25,25 @@ const Hero = (props) => {
       <div
         className={`
           ${heroSize}
-          ${styles.hero}
-          hero-img
-          jumbotron
-          jumbotron-fluid
-          overflow-hidden
-          my-2`}
-        style={{backgroundImage:`url(${image})`}}
+          ${styles.heroCont}
+
+          my-2
+          `}
+        // style={{backgroundImage:`linear-gradient(
+        //   rgba(0, 0, 0, 0.2),
+        //   rgba(0, 0, 0, 0.2)
+        // ), url(${image}) `}}
       >
-        <div class="container">
+        <div 
+          className={`
+            ${styles.homeHero}
+            ${styles.heroBg}
+          `}
+          style={{backgroundImage:`linear-gradient(
+           rgba(0, 0, 0, 0.2),
+           rgba(0, 0, 0, 0.2)
+         ), url(${image}) `}}></div>
+        <div className={`${styles.heroText} container`}>
             <h1>{heroTitle}</h1>
             <h4>{heroSubtitle}</h4>
             <p class="mt-5">{homepageText || ""}</p>
