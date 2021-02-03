@@ -4,16 +4,12 @@ import styles from "./Hero.module.scss";
 const Hero = (props) => {
 
   const {
-    // heroSubtitle,
-    // heroTitle,
-    // homepageText,
     content: {
       heroSubtitle,
       heroTitle,
       homepageText,
       image
     },
-    // image,
     isActive
   } = props;
   
@@ -26,7 +22,7 @@ const Hero = (props) => {
         className={`
           ${heroSize}
           ${styles.heroCont}
-
+          
           my-2
           `}
         // style={{backgroundImage:`linear-gradient(
@@ -36,7 +32,6 @@ const Hero = (props) => {
       >
         <div 
           className={`
-            ${styles.homeHero}
             ${styles.heroBg}
           `}
           style={{backgroundImage:`linear-gradient(

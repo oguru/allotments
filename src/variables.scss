@@ -1,1 +1,28 @@
-$primary-color: #002d00;
+$primary-color: #0A2004;
+// #033304;
+// #002d00
+$primary-light: #396F04;
+$secondary-color: #E28803;
+// #C8963E;
+// #257e26;
+//  #529b52
+$tertiary-color: #F5F3F5;
+// d7ece0 
+// #d0e6d9 
+// #EEE5E9
+$light-border-color: #e6e6e6;
+// #ccd9c6
+$base-spacing: 8px;
+/*
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+)*/
+
+@mixin transition-t {
+    transition-duration: 0.3s;
+}

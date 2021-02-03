@@ -1,4 +1,3 @@
-import Container from 'react-bootstrap/Container'
 import Hero from "../../components/Hero"
 import homeImg from "../../images/randy-fath-ey6g0z_fs0-unsplash.jpg"
 import React from "react";

@@ -3,22 +3,25 @@ import About from "./pages/About";
 import Articles from "./pages/Articles";
 import Home from "./pages/Home";
 import {Route, Switch, useLocation} from "react-router-dom";
-import Hero from "./components/Hero"
 import NavBar from "./components/NavBar"
 import styles from "./App.module.scss";
 
-import {BrowserRouter as Router} from "react-router-dom";
-
-
 function App() {
-
   let [pathName, setPathName] = useState("");  
+
 
   let location = useLocation();
   
   useEffect(() => {
     setPathName(location.pathname)
   }, [location]);
+
+//   useEffect(() => {
+//     const getWidth = () => setWindowWidth(window.innerWidth);
+
+//     window.addEventListener("resize", getWidth);
+//     getWidth();
+//  }, []);
 
   const checkActive = (route) => {
     if (route === pathName) {

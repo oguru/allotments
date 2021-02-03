@@ -15,6 +15,10 @@ h1 {
     font-size: 1.8rem;
 }
 
+.container-small { 
+  width: 300px;
+}
+
 .footerStyles {
     background-color:$primary-color;
 
@@ -25,7 +29,11 @@ h1 {
 }
 
 @include media-breakpoint-up(sm) {
-    h1 {
+  .container-small { 
+    width: unset;
+  }
+  
+  h1 {
       font-size: 2rem;
     }
   }

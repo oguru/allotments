@@ -1,3 +1,5 @@
+@import "../../variables.scss";
+
 .heroCont {
     position: relative;
     color: white;
@@ -14,7 +16,7 @@
     }
 
     .heroText {
-        padding: 4rem 0;
+        padding-top: 4rem;
         position:relative;
         z-index: 2;
     }

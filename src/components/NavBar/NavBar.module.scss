@@ -1,16 +1,206 @@
-.navMain {
-    background-color: #002d00;
-}
+@import "../../variables.scss";
+@import "../../../node_modules/bootstrap/scss/mixins/breakpoints";
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
 
-.navHover {
-    &:hover {
-        background-color: rgba(255, 255, 255, 0.1);
+.navMain {
+    @include transition-t;
+    background-color: $primary-color;
+    border-bottom: 2px solid rgba(255, 255, 255, 0);
+    height: 64px;
+    position: relative;
+    z-index: 1000;
+
+    a {
+        color: white;
+    }
+
+    .burgerIcon {
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 15px;
+        position: relative;
+        width: 20px;
+        
+        span {
+            background-color: white;
+            border-radius: $base-spacing;
+            display: block;
+            height: 2px;
+            position: absolute;
+            top: 0;
+            transform: rotate(0deg) translate(0px);
+            transition: 0.4s ease-in-out;
+            width: 20px;
+        }
+
+        span:nth-child(2) {
+            top: 7.5px;
+        }
+
+        span:nth-child(3) {
+            top: 15px;
+        }
+
+        span.navCross:nth-child(1) {
+            height: 3px;
+            top: 7.5px;
+            transform: rotate(135deg);
+        }
+
+        span.navCross:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-100%);
+        }
+
+        span.navCross:nth-child(3) {
+            height: 3px;
+            top: 7.5px;
+            transform: rotate(-135deg);
+        }
+    }
+
+    .enter {
+        // opacity: 0;
+        // overflow: hidden;
+        transform: translateY(-100%);
+    }
+    
+    .enterActive {
+        opacity: 1;
+        // overflow: hidden;
+        transform: translateY(0);
+        transition-duration: 0.5s;
+    }
+
+    // .enterDone {
+    // }
+    
+    .exit {
+        opacity: 1;
+        // overflow: hidden;
+        transform: translateY(0);
+        transition-duration: 0.5s;
+    }
+    
+    .exitActive {
+        // opacity: 0;
+        // overflow: hidden;
+        transform: translateY(-150%);
+    }
+
+    // .exitDone {
+    //     // opacity: 0;
+    //     // overflow: hidden;
+    //     // height: 0;
+    //     transform: translateY(-150%);
+    // }
+
+    .navOverlay {
+        background-color: $tertiary-color;
+        left: 0;
+        overflow: hidden;
+        position: absolute;
+        top: $base-spacing * 8;
+        transition-duration: 0.5s;
+        width: 100vw;
+    }
+
+
+    .navBarLinkGroup {
+        // display: none;
+        // background-color: $primary-color;
+        // border-bottom: solid 2px white;
+        // border-top: solid 2px white;
+        // border-color: white;
+        // border-style: solid;
+        // border-left: 1px;
+        // border-right: 1px;
+        // left: 0;
+        // overflow: hidden;
+        position: relative;
+        // top: $base-spacing * 8;
+        // width: 100vw;
+        // z-index: 999;
+
+        // &:before {
+        //     border-bottom: solid 1px white;
+        //     border-top: solid 1px white;
+        //     content: "";
+        //     display: block;
+        //     height: 100%;
+        //     width: 40%;
+        //     margin: 0 auto;
+        //     top: 0;
+        //     left: 0;
+        //     right: 0;
+        //     bottom: 0;
+        //     position: absolute;
+        //     // top: -0.5rem;
+        // }
+        
+        // transform: translateY(-20px);
+        .navbarLink {
+            @include transition-t;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: $light-border-color 1.5px solid;
+            margin: 0.5rem;
+            
+            // &::before {
+            //     // border-top: white 1px solid;
+            //     border-radius: 0;
+            //     content: "";
+            //     display: block;
+            //     height: 1px;
+            //     width: 80%;
+            //     margin: 0 auto;
+            //     position: relative;
+            //     top: -0.5rem;
+            // }
+
+            &:hover {
+                background-color: $secondary-color;
+            }
+            
+            a {
+                color: rgb(94, 94, 94);
+                // text-align: center;
+
+                &:hover {
+                    color: white;
+                }
+            }
+
+            .activeLink {
+                color:black;
+            }
+        }
     }
 }
 
-@media only screen and (min-width: 768px) {
-    .navbarLink {
-        min-width: 80px;
-        text-align: center;
+// .navMainOpen {
+//     border-bottom: solid 2px white;
+// }
+
+
+@include media-breakpoint-up(md) {
+    .navMain {
+        border: unset;
+
+        .burgerIcon {
+            display: none;
+        }
+        .navBarLinkGroup {
+            display: flex;
+            justify-content: end;
+            position: unset;
+
+            .navbarLink {
+                min-width: 80px;
+                text-align: center;
+            }
+        }
     }
 }
