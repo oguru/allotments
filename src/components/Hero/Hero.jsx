@@ -37,11 +37,12 @@ const Hero = (props) => {
           style={{backgroundImage:`linear-gradient(
            rgba(0, 0, 0, 0.2),
            rgba(0, 0, 0, 0.2)
-         ), url(${image}) `}}></div>
+          ), url(${image}) `}}>
+        </div>
         <div className={`${styles.heroText} container`}>
             <h1>{heroTitle}</h1>
             <h4>{heroSubtitle}</h4>
-            <p class="mt-5">{homepageText || ""}</p>
+            <p className="mt-5">{homepageText || ""}</p>
         </div>
         {/* <p style={{border: "red solid 10px", color: "white"}}>{heroSize}</p> */}
       </div>

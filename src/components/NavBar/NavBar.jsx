@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import styles from "./NavBar.module.scss";
-import Link from "react-router-dom/Link";
+import {Link} from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
+import burgerTexture from "../../images/burger-texture-01.png";
 
 const NavBar = (props) => {
   const {checkActive} = props;
@@ -32,29 +33,30 @@ const NavBar = (props) => {
   //   calcHeight();
   // }, [isNavOpen]);
 
-  const calcHeight = (el) => {
-    const height = el.offsetHeight;
+  const calcHeight = () => {
+    const height = navLinkGroup.current.offsetHeight;
     setMenuHeight(height);
   }
 
-  const mobNavHeight = isNavOpen ? `${menuHeight+16}px` : 0;
-
-  const navIconAnim = isNavOpen ? "navCross" : "";
-  const mainMobile = isNavOpen ? "navMainOpen" : "";
-
-  const closeNav = () => {
-    setIsNavOpen(false);
-  }
+  const mobNavHeight = 
+    isLargeScreen ? "unset" 
+    : isNavOpen ? `${menuHeight+16}px` 
+    : 0;
+    
+    const closeNav = () => {
+      setIsNavOpen(false);
+    }
+    
+    const navIconAnim = isNavOpen ? "navCross" : "";
+    const mainMobile = isNavOpen ? "navMainOpen" : "";
+    const navLinkGroup = useRef(null);
 
   return (
     <nav
       className={`${styles.navMain} ${styles[mainMobile]} d-flex align-items-center`}
-      collapseOnSelect
-      expand="md"
-      variant="dark"
     >
         <div className="d-flex justify-content-between align-items-center container">
-          <a className={"navbar-brand"} href="/">
+          <a className={`${styles.navBrandText} navbar-brand`} href="/">
             Stechford Allotments
           </a>
           {/* {navToggle} */}
@@ -64,34 +66,29 @@ const NavBar = (props) => {
               () => setIsNavOpen(!isNavOpen)
             } 
           >
-            <span className={styles[navIconAnim]}></span>
-            <span className={styles[navIconAnim]}></span>
-            <span className={styles[navIconAnim]}></span>
+            <span style={{backgroundImage: `url(${burgerTexture})`}} className={styles[navIconAnim]}></span>
+            <span style={{backgroundImage: `url(${burgerTexture})`}} className={styles[navIconAnim]}></span>
+            <span style={{backgroundImage: `url(${burgerTexture})`}} className={styles[navIconAnim]}></span>
           </div>
           <div className={styles.navOverlay} 
           style={{height: `${mobNavHeight}`}}
           >
           <CSSTransition
             classNames={{...styles}}
-            in={isNavOpen || isLargeScreen}
+            in={isNavOpen}
+            nodeRef={navLinkGroup}
             onEnter={calcHeight}
             timeout={500}
-            // classNames={{
-            //   enter: "navEnter",
-            //   enterActive: "navEnterActive",
-            //   exit: "navExit",
-            //   exitActive: "navExitActive",
-            //   exitDone: "nav-exit-done"
-            // }}
           >
             <div 
               className={`${styles.navBarLinkGroup}`}
+              ref={navLinkGroup}
             >
               <NavLink
                 closeNav={() => closeNav()}
                 checkActive={checkActive("/")}
                 path="/" 
-                linkText="Home" 
+                linkText="Home"
               />
               <NavLink
                 closeNav={() => closeNav()}
@@ -118,9 +115,10 @@ function NavLink(props) {
   const activeStyle = checkActive ? "activeLink" : "";
 
   return (
-    <div className={`p-1 ml-2 rounded ${styles.navbarLink}`}>
+    <div className={`${styles.navbarLink}`}>
       <Link
-        className={`${styles[activeStyle]} nav-link`}
+        className={`${styles[activeStyle]} nav-link
+        rounded`}
         onClick={closeNav}
         to={path}
       >
