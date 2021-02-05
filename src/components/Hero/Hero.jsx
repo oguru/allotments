@@ -16,19 +16,24 @@ const Hero = (props) => {
 
   const heroSize = isActive ? "flex-grow-1" : "";
 
+  // values to keep track of the number of letters typed, which quote to use. etc. Don't change these values.
+let i = 0;
+let a = 0;
+let isBackspacing = false;
+let isParagraph = false;
+
+const textArray = [
+
+]
+
   return (
     <>
       <div
         className={`
           ${heroSize}
           ${styles.heroCont}
-          
-          my-2
-          `}
-        // style={{backgroundImage:`linear-gradient(
-        //   rgba(0, 0, 0, 0.2),
-        //   rgba(0, 0, 0, 0.2)
-        // ), url(${image}) `}}
+          my-2`
+      }
       >
         <div 
           className={`
@@ -40,11 +45,10 @@ const Hero = (props) => {
           ), url(${image}) `}}>
         </div>
         <div className={`${styles.heroText} container`}>
-            <h1>{heroTitle}</h1>
+            <h1 className={styles.cursor}>{heroTitle}</h1>
             <h4>{heroSubtitle}</h4>
             <p className="mt-5">{homepageText || ""}</p>
         </div>
-        {/* <p style={{border: "red solid 10px", color: "white"}}>{heroSize}</p> */}
       </div>
     </>
   );

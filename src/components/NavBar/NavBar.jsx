@@ -1,8 +1,10 @@
-import React, {useEffect, useRef, useState} from "react";
-import styles from "./NavBar.module.scss";
+import {CSSTransition} from "react-transition-group";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { faInfoCircle, faHome, faNewspaper } from '@fortawesome/free-solid-svg-icons'
 import {Link} from "react-router-dom";
-import { CSSTransition } from "react-transition-group";
+import React, {useEffect, useRef, useState} from "react";
 import burgerTexture from "../../images/burger-texture-01.png";
+import styles from "./NavBar.module.scss";
 
 const NavBar = (props) => {
   const {checkActive} = props;
@@ -87,18 +89,21 @@ const NavBar = (props) => {
               <NavLink
                 closeNav={() => closeNav()}
                 checkActive={checkActive("/")}
-                path="/" 
+                icon={faHome}
+                path="/"
                 linkText="Home"
               />
               <NavLink
                 closeNav={() => closeNav()}
                 checkActive={checkActive("/about")}
+                icon={faInfoCircle}
                 path="/about"
                 linkText="About"
               />
               <NavLink
                 closeNav={() => closeNav()}
                 checkActive={checkActive("/articles")}
+                icon={faNewspaper}
                 path="/articles"
                 linkText="Articles"
               />
@@ -110,7 +115,7 @@ const NavBar = (props) => {
 };
 
 function NavLink(props) {
-  const {checkActive, closeNav, linkText, path} = props;
+  const {checkActive, closeNav, icon, linkText, path} = props;
 
   const activeStyle = checkActive ? "activeLink" : "";
 
@@ -121,8 +126,8 @@ function NavLink(props) {
         rounded`}
         onClick={closeNav}
         to={path}
-      >
-        {linkText}
+        >
+          {linkText}
       </Link>
     </div>
   );
