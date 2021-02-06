@@ -1,7 +1,7 @@
+import Link from "react-router-dom/Link";
 import React, {useEffect, useState} from "react";
 import styles from "./NavBar.module.scss";
-import Link from "react-router-dom/Link";
-import { CSSTransition } from "react-transition-group";
+import {CSSTransition} from "react-transition-group";
 
 const NavBar = (props) => {
   const {checkActive} = props;
@@ -10,8 +10,12 @@ const NavBar = (props) => {
   const [isLargeScreen, setIsLargeScreen] = useState(true)
   const [menuHeight, setMenuHeight] = useState("")
 
+  const menuPadding = 16;
+
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    const mediaQuery = window.matchMedia
+      ("(min-width: 768px)");
+
     handleMediaQueryChange(mediaQuery);
     mediaQuery.addEventListener("change", (mQuery) => handleMediaQueryChange(mQuery));
 
@@ -28,16 +32,16 @@ const NavBar = (props) => {
     }
   };
 
-  // useEffect(() => {
-  //   calcHeight();
-  // }, [isNavOpen]);
-
   const calcHeight = (el) => {
     const height = el.offsetHeight;
     setMenuHeight(height);
-  }
+  };
 
-  const mobNavHeight = isNavOpen ? `${menuHeight+16}px` : 0;
+  const mobNavHeight = 
+    isNavOpen 
+      ? `${menuHeight+menuPadding}px` 
+      : 0
+  ;
 
   const navIconAnim = isNavOpen ? "navCross" : "";
   const mainMobile = isNavOpen ? "navMainOpen" : "";
@@ -48,21 +52,27 @@ const NavBar = (props) => {
 
   return (
     <nav
-      className={`${styles.navMain} ${styles[mainMobile]} d-flex align-items-center`}
+      className={`
+        ${styles.navMain} ${styles[mainMobile]} d-flex align-items-center`}
       collapseOnSelect
       expand="md"
       variant="dark"
     >
-        <div className="d-flex justify-content-between align-items-center container">
-          <a className={"navbar-brand"} href="/">
-            Stechford Allotments
+        <div className="
+          d-flex 
+          justify-content-between 
+          align-items-center 
+          container"
+        >
+          <a 
+            className={"navbar-brand"} 
+            href="/"
+          >
+              Stechford Allotments
           </a>
-          {/* {navToggle} */}
           <div 
             className={`${styles.burgerIcon}`}
-            onClick={
-              () => setIsNavOpen(!isNavOpen)
-            } 
+            onClick={() => setIsNavOpen(!isNavOpen)} 
           >
             <span className={styles[navIconAnim]}></span>
             <span className={styles[navIconAnim]}></span>
@@ -76,13 +86,6 @@ const NavBar = (props) => {
             in={isNavOpen || isLargeScreen}
             onEnter={calcHeight}
             timeout={500}
-            // classNames={{
-            //   enter: "navEnter",
-            //   enterActive: "navEnterActive",
-            //   exit: "navExit",
-            //   exitActive: "navExitActive",
-            //   exitDone: "nav-exit-done"
-            // }}
           >
             <div 
               className={`${styles.navBarLinkGroup}`}
@@ -113,14 +116,26 @@ const NavBar = (props) => {
 };
 
 function NavLink(props) {
-  const {checkActive, closeNav, linkText, path} = props;
+  const {
+    checkActive, 
+    closeNav, 
+    linkText, path
+  } = props;
 
   const activeStyle = checkActive ? "activeLink" : "";
 
   return (
-    <div className={`p-1 ml-2 rounded ${styles.navbarLink}`}>
+    <div className={`
+      p-1 
+      ml-2 
+      rounded 
+      ${styles.navbarLink}`
+    }>
       <Link
-        className={`${styles[activeStyle]} nav-link`}
+        className={`
+          ${styles[activeStyle]} 
+          nav-link`
+        }
         onClick={closeNav}
         to={path}
       >
