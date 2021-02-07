@@ -1,8 +1,10 @@
 import {CSSTransition} from "react-transition-group";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faInfoCircle, faHome, faNewspaper } from '@fortawesome/free-solid-svg-icons'
 import {Link} from "react-router-dom";
-import React, {useEffect, useRef, useState} from "react";
+import React, {
+  useEffect, 
+  useRef, 
+  useState
+} from "react";
 import burgerTexture from "../../images/burger-texture-01.png";
 import styles from "./NavBar.module.scss";
 
@@ -14,9 +16,12 @@ const NavBar = (props) => {
   const [menuHeight, setMenuHeight] = useState("")
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    const mediaQuery = window.matchMedia
+      ("(min-width: 768px)");
+
     handleMediaQueryChange(mediaQuery);
-    mediaQuery.addEventListener("change", (mQuery) => handleMediaQueryChange(mQuery));
+    mediaQuery.addEventListener(
+      "change", (mQuery) => handleMediaQueryChange(mQuery));
 
     return () => {
       mediaQuery.removeEventListener(handleMediaQueryChange)
@@ -31,14 +36,10 @@ const NavBar = (props) => {
     }
   };
 
-  // useEffect(() => {
-  //   calcHeight();
-  // }, [isNavOpen]);
-
   const calcHeight = () => {
     const height = navLinkGroup.current.offsetHeight;
     setMenuHeight(height);
-  }
+  };
 
   const mobNavHeight = 
     isLargeScreen ? "unset" 
@@ -55,18 +56,20 @@ const NavBar = (props) => {
 
   return (
     <nav
-      className={`${styles.navMain} ${styles[mainMobile]} d-flex align-items-center`}
+      className={`
+      ${styles.navMain}
+      ${styles[mainMobile]}
+      d-flex
+      align-items-center`
+    }
     >
         <div className="d-flex justify-content-between align-items-center container">
           <a className={`${styles.navBrandText} navbar-brand`} href="/">
             Stechford Allotments
           </a>
-          {/* {navToggle} */}
           <div 
             className={`${styles.burgerIcon}`}
-            onClick={
-              () => setIsNavOpen(!isNavOpen)
-            } 
+            onClick={() => setIsNavOpen(!isNavOpen)} 
           >
             <span style={{backgroundImage: `url(${burgerTexture})`}} className={styles[navIconAnim]}></span>
             <span style={{backgroundImage: `url(${burgerTexture})`}} className={styles[navIconAnim]}></span>
@@ -89,21 +92,18 @@ const NavBar = (props) => {
               <NavLink
                 closeNav={() => closeNav()}
                 checkActive={checkActive("/")}
-                icon={faHome}
                 path="/"
                 linkText="Home"
               />
               <NavLink
                 closeNav={() => closeNav()}
                 checkActive={checkActive("/about")}
-                icon={faInfoCircle}
                 path="/about"
                 linkText="About"
               />
               <NavLink
                 closeNav={() => closeNav()}
                 checkActive={checkActive("/articles")}
-                icon={faNewspaper}
                 path="/articles"
                 linkText="Articles"
               />
@@ -115,7 +115,7 @@ const NavBar = (props) => {
 };
 
 function NavLink(props) {
-  const {checkActive, closeNav, icon, linkText, path} = props;
+  const {checkActive, closeNav, linkText, path} = props;
 
   const activeStyle = checkActive ? "activeLink" : "";
 

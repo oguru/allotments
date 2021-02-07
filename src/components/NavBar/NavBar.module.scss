@@ -21,7 +21,6 @@
         width: 25px;
         
         span {
-            // background-color: white;
             background-size: 60px 3px;
             border-radius: $base-spacing;
             display: block;
@@ -144,10 +143,6 @@
         }
     }
 }
-
-// .navMainOpen {
-//     border-bottom: solid 2px white;
-// }
 
 @include media-breakpoint-up(sm) {
     .navMain {
