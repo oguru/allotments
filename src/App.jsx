@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import About from "./pages/About";
 import Articles from "./pages/Articles";
 import Home from "./pages/Home";
+import Info from "./pages/Info";
 import {Route, Switch, useLocation} from "react-router-dom";
 import NavBar from "./components/NavBar"
 import styles from "./App.module.scss";
@@ -23,7 +24,7 @@ function App() {
 //     getWidth();
 //  }, []);
 
-  const checkActive = (route) => {
+  const isActive = (route) => {
     if (route === pathName) {
       return true;
     }
@@ -32,22 +33,26 @@ function App() {
 
   return (
     <div className="d-flex flex-column h-100">
-      <NavBar checkActive={checkActive}/>
+      <NavBar isActive={isActive}/>
       <section className="d-flex flex-column flex-grow-1">
         <Switch>
             <Route path="/about">
                 <About
-                  // isActive={checkActive("/about")} 
+                  // isActive={isActive("/about")} 
                 />
             </Route>
             <Route path="/articles">
                 <Articles 
-                  // isActive={checkActive("/articles")}
+                  // isActive={isActive("/articles")}
+                />
+            </Route>
+            <Route path="/info">
+                <Info 
                 />
             </Route>
             <Route path="/">
-                <Home isActive={checkActive("/")}>
-                  {/* <Hero isActive={checkActive("/")}/> */}
+                <Home isActive={isActive("/")}>
+                  {/* <Hero isActive={isActive("/")}/> */}
                 </Home>
             </Route>
           </Switch>

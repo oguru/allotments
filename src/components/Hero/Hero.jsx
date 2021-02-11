@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import styles from "./Hero.module.scss";
 
@@ -12,6 +13,13 @@ const Hero = (props) => {
       },
       isActive
    } = props;
+
+   Hero.propTypes = {
+      heroSubtitle: PropTypes.string,
+      heroTitle: PropTypes.string,
+      homepageText: PropTypes.string,
+      image: PropTypes.string
+   }
 
    const heroSize = isActive ? "flex-grow-1" : "";
 

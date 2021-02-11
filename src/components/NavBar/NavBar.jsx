@@ -1,5 +1,6 @@
 import {CSSTransition} from "react-transition-group";
 import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
 import React, {
   useEffect, 
   useRef, 
@@ -9,7 +10,11 @@ import burgerTexture from "../../images/burger-texture-01.png";
 import styles from "./NavBar.module.scss";
 
 const NavBar = (props) => {
-  const {checkActive} = props;
+  const {isActive} = props;
+
+  NavBar.propTypes = {
+    isActive: PropTypes.func
+ };
 
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(true)
@@ -36,7 +41,7 @@ const NavBar = (props) => {
     }
   };
 
-  const calcHeight = () => {
+  const calcOpenNavHeight = () => {
     const height = navLinkGroup.current.offsetHeight;
     setMenuHeight(height);
   };
@@ -69,6 +74,7 @@ const NavBar = (props) => {
           </a>
           <div 
             className={`${styles.burgerIcon}`}
+            data-test="burgerIcon"
             onClick={() => setIsNavOpen(!isNavOpen)} 
           >
             <span style={{backgroundImage: `url(${burgerTexture})`}} className={styles[navIconAnim]}></span>
@@ -82,7 +88,7 @@ const NavBar = (props) => {
             classNames={{...styles}}
             in={isNavOpen}
             nodeRef={navLinkGroup}
-            onEnter={calcHeight}
+            onEnter={calcOpenNavHeight}
             timeout={500}
           >
             <div 
@@ -91,21 +97,27 @@ const NavBar = (props) => {
             >
               <NavLink
                 closeNav={() => closeNav()}
-                checkActive={checkActive("/")}
+                isActive={isActive("/")}
                 path="/"
                 linkText="Home"
               />
               <NavLink
                 closeNav={() => closeNav()}
-                checkActive={checkActive("/about")}
+                isActive={isActive("/about")}
                 path="/about"
                 linkText="About"
               />
               <NavLink
                 closeNav={() => closeNav()}
-                checkActive={checkActive("/articles")}
+                isActive={isActive("/articles")}
                 path="/articles"
                 linkText="Articles"
+              />
+              <NavLink
+                closeNav={() => closeNav()}
+                isActive={isActive("/info")}
+                path="/info"
+                linkText="Info"
               />
           </div>
         </CSSTransition></div>
@@ -115,13 +127,21 @@ const NavBar = (props) => {
 };
 
 function NavLink(props) {
-  const {checkActive, closeNav, linkText, path} = props;
+  const {closeNav, isActive, linkText, path} = props;
 
-  const activeStyle = checkActive ? "activeLink" : "";
+  NavLink.propTypes = {
+    closeNav: PropTypes.func,
+    isActive: PropTypes.bool,
+    linkText: PropTypes.string,
+    path: PropTypes.string
+ };
+
+  const activeStyle = isActive ? "activeLink" : "";
 
   return (
     <div className={`${styles.navbarLink}`}>
       <Link
+        data-test="navLink"
         className={`${styles[activeStyle]} nav-link
         rounded`}
         onClick={closeNav}
