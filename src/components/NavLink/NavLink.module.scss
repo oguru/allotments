@@ -1,0 +1,79 @@
+@import "../../variables.scss";
+@import "../../../node_modules/bootstrap/scss/mixins/breakpoints";
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+
+.navbarLink {
+    @include transition-t;
+    margin: 0.5rem;
+   
+    a {
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: $light-border-color 1.5px solid;
+        color: rgb(0, 0, 0);
+        display: flex;
+        font-family: 'Fredericka the Great', cursive;
+        font-size: 1.5rem;
+        height: 100%;
+        justify-content: flex-start;
+        padding: 0.75rem 1rem;
+        text-shadow: 0px 0px 0px rgb(110, 110, 110);
+        transition-duration: 0.3s;
+    
+        &:hover,
+        &:focus {
+            background-color: $secondary-color;
+            border: $light-border-color 1.5px solid;
+            color: white;
+            text-shadow: 0px 0px 0px rgb(180, 180, 180);
+        }
+
+        p {
+            .faIcon {
+                left: -30px;
+                top: 0.25em;
+            }
+        }
+    }
+
+    .activeLink {
+        border: rgb(197, 197, 197) 1.5px solid;
+        border-radius: 0.25rem;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .navbarLink {
+        text-align: center;
+        margin: 0.375rem;
+        min-width: 80px;
+        
+        a {
+            border: none;
+            color:rgb(214, 214, 214);
+            font-size: 1.375rem;
+            justify-content: center;
+            padding: 0.325rem;
+            text-shadow: 0px 0px 0px #b4b4b4;
+            
+            &:hover {
+                border: none;
+                color: white;
+                text-shadow: 0px 0px 0px #ffffff;
+            }
+        }
+        
+        .activeLink {
+            border: none;
+            color: white;
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .navbarLink {
+        margin: 0.5rem;
+        min-width: 90px;
+    }
+}

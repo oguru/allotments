@@ -1,7 +1,7 @@
 {
     "plugins": [
-        "react",
-        "jest"
+        "react"
+        // "jest"
     ],
     "settings": {
         "react": {
@@ -22,8 +22,8 @@
         "browser": true,
         "node": true,
         "commonjs": true,
-        "es6": true,
-        "jest/globals": true
+        "es6": true
+        // "jest/globals": true
     },
     "rules": {
         "array-bracket-spacing": 2,

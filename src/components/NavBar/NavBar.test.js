@@ -1,9 +1,9 @@
 import "../../../mocks/matchMedia";
-import { MemoryRouter } from "react-router-dom";
+import "jest-styled-components"
+import {MemoryRouter} from "react-router-dom";
 import {checkProps, findByTestAttr} from "../../../utils/utils";
 import {mount, shallow} from "enzyme";
-import {render, cleanup} from "@testing-library/react";
-import PropTypes from "prop-types";
+import {cleanup, render} from "@testing-library/react";
 import React from "react";
 import NavBar from "./NavBar";
 
@@ -21,7 +21,7 @@ describe("NavBar tests", () => {
 
    afterEach(cleanup);
 
-   it("should render", () => {
+   it("should render without errors", () => {
       expect(render(component)).toBeTruthy();
    });
 
@@ -51,29 +51,3 @@ describe("NavBar tests", () => {
    //    expect(component.find(".navLinkBar").length).toBe(1);
    // });
 });
-
-describe("NavLink Tests", () => {
-   let component;
-
-   beforeEach(() => {
-      component = shallow(
-         <MemoryRouter>
-            <NavLink isActive={isActive} />
-         </MemoryRouter>
-      );
-   });
-
-   describe("Checking NavLink PropTypes", () => {
-
-      it("should not throw a warning", () => {
-         const expectedProps = {
-            closeNav: jest.fn(), 
-            isActive: true,
-            linkText: "test text", 
-            path: "/testpath"
-         }
-         const propsErr = checkProps(NavBar, expectedProps)
-         expect(propsErr).toBeUndefined();
-      })
-   })
-})

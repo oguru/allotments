@@ -1,5 +1,5 @@
 import {CSSTransition} from "react-transition-group";
-import {Link} from "react-router-dom";
+import NavLink from "../NavLink";
 import PropTypes from "prop-types";
 import React, {
   useEffect, 
@@ -77,79 +77,63 @@ const NavBar = (props) => {
             data-test="burgerIcon"
             onClick={() => setIsNavOpen(!isNavOpen)} 
           >
-            <span style={{backgroundImage: `url(${burgerTexture})`}} className={styles[navIconAnim]}></span>
-            <span style={{backgroundImage: `url(${burgerTexture})`}} className={styles[navIconAnim]}></span>
-            <span style={{backgroundImage: `url(${burgerTexture})`}} className={styles[navIconAnim]}></span>
+            <span 
+              style={{backgroundImage: `url(${burgerTexture})`}}
+              className={styles[navIconAnim]}>              
+            </span>
+            <span 
+              style={{backgroundImage: `url(${burgerTexture})`}} 
+              className={styles[navIconAnim]}>                
+            </span>
+            <span 
+              style={{backgroundImage: `url(${burgerTexture})`}}
+              className={styles[navIconAnim]}>                
+            </span>
           </div>
-          <div className={styles.navOverlay} 
-          style={{height: `${mobNavHeight}`}}
+          <div 
+            className={styles.navOverlay} 
+            style={{height: `${mobNavHeight}`}}
           >
-          <CSSTransition
-            classNames={{...styles}}
-            in={isNavOpen}
-            nodeRef={navLinkGroup}
-            onEnter={calcOpenNavHeight}
-            timeout={500}
-          >
-            <div 
-              className={`${styles.navBarLinkGroup}`}
-              ref={navLinkGroup}
+            <CSSTransition
+              classNames={{...styles}}
+              in={isNavOpen}
+              nodeRef={navLinkGroup}
+              onEnter={calcOpenNavHeight}
+              timeout={500}
             >
-              <NavLink
-                closeNav={() => closeNav()}
-                isActive={isActive("/")}
-                path="/"
-                linkText="Home"
-              />
-              <NavLink
-                closeNav={() => closeNav()}
-                isActive={isActive("/about")}
-                path="/about"
-                linkText="About"
-              />
-              <NavLink
-                closeNav={() => closeNav()}
-                isActive={isActive("/articles")}
-                path="/articles"
-                linkText="Articles"
-              />
-              <NavLink
-                closeNav={() => closeNav()}
-                isActive={isActive("/info")}
-                path="/info"
-                linkText="Info"
-              />
-          </div>
-        </CSSTransition></div>
+              <div 
+                className={`${styles.navBarLinkGroup}`}
+                ref={navLinkGroup}
+              >
+                <NavLink
+                  closeNav={() => closeNav()}
+                  isActive={isActive("/")}
+                  path="/"
+                  linkText="Home"
+                />
+                <NavLink
+                  closeNav={() => closeNav()}
+                  isActive={isActive("/about")}
+                  path="/about"
+                  linkText="About"
+                />
+                <NavLink
+                  closeNav={() => closeNav()}
+                  isActive={isActive("/articles")}
+                  path="/articles"
+                  linkText="Articles"
+                />
+                <NavLink
+                  closeNav={() => closeNav()}
+                  isActive={isActive("/info")}
+                  path="/info"
+                  linkText="Info"
+                />
+            </div>
+          </CSSTransition>
+        </div>
       </div>
     </nav>
-  );
-};
-
-function NavLink(props) {
-  const {closeNav, isActive, linkText, path} = props;
-
-  NavLink.propTypes = {
-    closeNav: PropTypes.func,
-    isActive: PropTypes.bool,
-    linkText: PropTypes.string,
-    path: PropTypes.string
- };
-
-  const activeStyle = isActive ? "activeLink" : "";
-
-  return (
-    <div className={`${styles.navbarLink}`}>
-      <Link
-        data-test="navLink"
-        className={`${styles[activeStyle]} nav-link
-        rounded`}
-        onClick={closeNav}
-        to={path}
-        >
-          {linkText}
-      </Link>
-    </div>
   );
 };
 
