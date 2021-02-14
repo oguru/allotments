@@ -58,26 +58,6 @@
         }
     }
 
-    .enter {
-        transform: translateY(-100%);
-    }
-    
-    .enterActive {
-        opacity: 1;
-        transform: translateY(0);
-        transition-duration: 0.5s;
-    }
-    
-    .exit {
-        opacity: 1;
-        transform: translateY(0);
-        transition-duration: 0.5s;
-    }
-    
-    .exitActive {
-        transform: translateY(-150%);
-    }
-
     .navBrandText {
         color: white;
         font-family: 'Fredericka the Great', cursive;
@@ -97,7 +77,40 @@
     }
 
     .navBarLinkGroup {
+        display: none;
         position: relative;
+    }
+
+    
+    .enter {        
+        display: block;
+        transform: translateY(-100%);
+    }
+    
+    .enterActive {
+        opacity: 1;
+        transform: translateY(0);
+        transition-duration: 0.5s;
+    }
+    
+    .enterDone {
+        display: block;
+    }
+    
+    .exit {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+        transition-duration: 0.5s;
+    }
+    
+    .exitActive {
+        display: block;
+        transform: translateY(-100%);
+    }
+
+    .exitDone {
+        display: none;
     }
 }
 

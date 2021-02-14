@@ -1,7 +1,6 @@
 {
     "plugins": [
         "react"
-        // "jest"
     ],
     "settings": {
         "react": {
@@ -16,15 +15,36 @@
         }
     },
     "extends": [
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "react-app"
     ],
     "env": {
         "browser": true,
         "node": true,
         "commonjs": true,
-        "es6": true
-        // "jest/globals": true
+        "es6": true,
+        "jest": true
     },
+    // "overrides": [
+    //     {
+    //       "files": [
+    //         "**/*.test.js"
+    //       ],
+    //       "env": {
+    //         "jest": true // now **/*.test.js files' env has both es6 *and* jest
+    //       },
+    //       // Can't extend in overrides: https://github.com/eslint/eslint/issues/8813
+    //       // "extends": ["plugin:jest/recommended"]
+    //       "plugins": ["jest"],
+    //       "rules": {
+    //         "jest/no-disabled-tests": "warn",
+    //         "jest/no-focused-tests": "error",
+    //         "jest/no-identical-title": "error",
+    //         "jest/prefer-to-have-length": "warn",
+    //         "jest/valid-expect": "error"
+    //       }
+    //     }
+    //   ],
     "rules": {
         "array-bracket-spacing": 2,
         "arrow-spacing": 2,
@@ -50,7 +70,7 @@
         "keyword-spacing": 2,
         "lines-between-class-members": 2,
         "max-len": [2, {"ignoreUrls": true, "ignoreStrings": true, "ignoreComments": true, "ignoreTemplateLiterals": true, "ignoreRegExpLiterals": true}],
-        "multiline-comment-style": 2,
+        "multiline-comment-style": [2, "separate-lines"],
         "new-cap": 2,
         // "newline-after-var": 0,
         "newline-before-return": 0,
@@ -65,7 +85,7 @@
         "no-magic-numbers": 0,
         "func-call-spacing": 2,
         "func-style": 2,
-        "function-paren-newline":  [2, { "minItems": 4 }],
+        "function-paren-newline":  [2, { "minItems": 2 }],
         "generator-star-spacing": 2,
         "grouped-accessor-pairs": 2,
         "line-comment-position": 2,
@@ -188,6 +208,8 @@
         "prefer-rest-params": 2,
         "prefer-spread": 2,
         "quotes": ["error", "double", { "avoidEscape": true, "allowTemplateLiterals": true }],
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn", 
         "require-atomic-updates": 2,
         "require-await": 2,
         "require-unicode-regexp": 2,
