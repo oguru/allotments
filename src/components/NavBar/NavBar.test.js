@@ -31,127 +31,189 @@ describe(
          matchMedia.clear();
       });
 
-      // it(
-      //    "should render without errors", () => {
-      //       expect(render(component)).toBeTruthy();
-      //    }
-      // );
-
-      // it(
-      //    "should match the snapshot", () => {
-      //       expect(component).toMatchSnapshot();
-      //    }
-      // );
-
-      // it(
-      //    "should contain 4 nav links", () => {
-      //       expect(findByTestAttr(
-      //          component, "navLink"
-      //       ).length).toBe(4);
-      //    }
-      // );
-
-      // it(
-      //    "should have a burger menu icon", () => {
-      //       expect(findByTestAttr(
-      //          component, "burgerIcon"
-      //       ).length).toBe(1);
-      //    }
-      // );
-
-      // test(
-      //    "NavBar PropTypes check should not throw a warning", () => {
-      //       const expectedProps = {
-      //          isActive: jest.fn()
-      //       };
-      //       const propsErr = checkProps(
-      //          NavBar, expectedProps
-      //       );
-      //       expect(propsErr).toBeUndefined();
-      //    }
-      // );
-
-      test(
-         "temp test", () => {
-            console.error(
-               "pre-test text: ", findByTestAttr(
-                  component, "tempTest"
-               ).text()
-            );
-
-            fireResize(200);
-            component.setProps({});
-
-            const mediaQuery = "(min-width: 768px)";
-            const listener = jest.fn();
-            const mql = window.matchMedia(mediaQuery);
-
-            mql.addEventListener(
-               "change", ev => {
-                  console.error(
-                     "event: ", ev
-                  );
-                  // ev.matches && listener()
-               }
-            );
-
-            act(() => {
-               matchMedia.useMediaQuery(mediaQuery);
-            });
-
-            console.error(findByTestAttr(
-               component, "tempTest"
-            ).text());
-
-            // console.error(
-            //    mql.matches, mql.media
-            // );
-
-            // fireResize(100);
-            // component.setProps({});
-
-            // console.error(findByTestAttr(
-            //    component, "tempTest"
-            // ).text());
-
-            // console.error(window.innerWidth);
-
+      it(
+         "should render without errors", () => {
+            expect(render(component)).toBeTruthy();
          }
       );
 
       it(
-         "should open the mobile navbar when burger menu is clicked", () => {
-            // fireResize(700);
+         "should match the snapshot", () => {
+            expect(component).toMatchSnapshot();
+         }
+      );
 
-            // const closedHeight = findByTestAttr(
-            //    component, "navOverlay"
-            // ).instance().style.height;
+      it(
+         "should have a nav brand/title with the correct title", () => {
+            expect(findByTestAttr(
+               component, "navBrand"
+            ).text()).toBe("Stechford Allotments");
+         }
+      );
 
-            // console.error(closedHeight);
+      test(
+         "nav brand/title should have the correct re-direct path to home", () => {
+            expect(findByTestAttr(
+               component, "navBrand"
+            ).filter("[href='/']").length).toBe(1);
+         }
+      );
 
-            // findByTestAttr(
-            //    component, "burgerIcon"
-            // ).simulate("click");
+      it(
+         "should contain 4 nav links", () => {
+            expect(findByTestAttr(
+               component, "navLink"
+            ).length).toBe(4);
+         }
+      );
 
-            // jest.useFakeTimers();
+      it(
+         "should have the correct re-direct path on each nav link", () => {
+            const navLinks = findByTestAttr(
+               component, "navLink"
+            );
 
-            // setTimeout(
-            //    () => {
-            //       console.error(findByTestAttr(
-            //          component, "navOverlay"
-            //       ).instance().style.height);
-            //    }, 1500
-            // );
+            expect(navLinks.find("[href='/about']").text()).toBe("About");
 
-            // jest.runAllTimers();
+            expect(navLinks.find("[href='/']").text()).toBe("Home");
 
-            // console.error(findByTestAttr(
-            //    component, "navOverlay"
-            // ).instance().style.height);
+            expect(navLinks.find("[href='/info']").text()).toBe("Info");
 
-            // expect(findByTestAttr(
-            //    component, "navOverlay"
-            // ).instance().style.height).not.toEqual(closedHeight);
+            expect(navLinks.find("[href='/articles']").text()).toBe("Articles");
+         }
+      );
+
+      it(
+         "should have a burger menu icon", () => {
+            expect(findByTestAttr(
+               component, "burgerIcon"
+            ).length).toBe(1);
+         }
+      );
+
+      test(
+         "burger menu icon elements should gain, then lose css class on click", () => {
+            const burgerIcon = findByTestAttr(
+               component, "burgerIcon"
+            );
+
+            expect(burgerIcon.children(".navCross").length).toBe(0);
+
+            burgerIcon.simulate("click");
+
+            expect(findByTestAttr(
+               component, "burgerIcon"
+            ).children(".navCross").length).toBe(3);
+
+            burgerIcon.simulate("click");
+
+            expect(findByTestAttr(
+               component, "burgerIcon"
+            ).children(".navCross").length).toBe(0);
+         }
+      );
+
+      test(
+         "NavBar PropTypes check should not throw a warning", () => {
+            const expectedProps = {
+               isActive: jest.fn()
+            };
+            const propsErr = checkProps(
+               NavBar, expectedProps
+            );
+            expect(propsErr).toBeUndefined();
+         }
+      );
+
+      // unworking test for media query
+      // test(
+      //    "temp test", () => {
+      //       console.error(
+      //          "pre-test text: ", findByTestAttr(
+      //             component, "tempTest"
+      //          ).text()
+      //       );
+
+      //       fireResize(200);
+      //       component.setProps({});
+
+      //       const mediaQuery = "(min-width: 768px)";
+      //       const listener = jest.fn();
+      //       const mql = window.matchMedia(mediaQuery);
+
+      //       mql.addEventListener(
+      //          "change", ev => {
+      //             console.error(
+      //                "event: ", ev
+      //             );
+      //             // ev.matches && listener()
+      //          }
+      //       );
+
+      //       act(() => {
+      //          matchMedia.useMediaQuery(mediaQuery);
+      //       });
+
+      //       console.error(findByTestAttr(
+      //          component, "tempTest"
+      //       ).text());
+
+      //       // console.error(
+      //       //    mql.matches, mql.media
+      //       // );
+
+      //       // fireResize(100);
+      //       // component.setProps({});
+
+      //       // console.error(findByTestAttr(
+      //       //    component, "tempTest"
+      //       // ).text());
+
+      //       // console.error(window.innerWidth);
+
+      //    }
+      // );
+
+      it(
+         "should open, then close the mobile navbar when burger menu is clicked twice", () => {
+            const navOverlay = findByTestAttr(
+               component, "navOverlay"
+            );
+
+            const burgerIcon = findByTestAttr(
+               component, "burgerIcon"
+            );
+
+            const closedHeight = navOverlay.instance().style.height;
+
+            burgerIcon.simulate("click");
+
+            expect(navOverlay.instance().style.height).not.toEqual(closedHeight);
+
+            burgerIcon.simulate("click");
+
+            expect(navOverlay.instance().style.height).toEqual(closedHeight);
+         }
+      );
+
+      it(
+         "should close the mobile navbar when a link is clicked", () => {
+            const navOverlay = findByTestAttr(
+               component, "navOverlay"
+            );
+
+            findByTestAttr(
+               component, "burgerIcon"
+            ).simulate("click");
+
+            const openHeight = navOverlay.instance().style.height;
+
+            findByTestAttr(
+               component, "navLink"
+            ).find("[href='/about']").simulate("click");
+
+            expect(navOverlay.instance().style.height).not.toEqual(openHeight);
+
          }
       );
 

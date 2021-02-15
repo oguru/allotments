@@ -4,7 +4,6 @@ import React, {useEffect,
 import {CSSTransition} from "react-transition-group";
 import NavLink from "../NavLink";
 import PropTypes from "prop-types";
-import burgerTexture from "../../images/burger-texture-01.png";
 import styles from "./NavBar.module.scss";
 
 const NavBar = (props) => {
@@ -46,13 +45,6 @@ const NavBar = (props) => {
       setMenuHeight(height);
    };
 
-   // const mobNavHeight = isLargeScreen ? "200px" : "0";
-
-   // const mobNavHeight =
-   //  isLargeScreen ? "large" :
-   //     isNavOpen ? `small nav open` :
-   //        "nav closed";
-
    const mobNavHeight =
     isLargeScreen ? "unset" :
        isNavOpen ? `${menuHeight + 16}px` :
@@ -63,19 +55,23 @@ const NavBar = (props) => {
    };
 
    const navIconAnim = isNavOpen ? "navCross" : "";
-   const mainMobile = isNavOpen ? "navMainOpen" : "";
    const navLinkGroup = useRef(null);
 
    return (
       <nav
          className={`
-      ${styles.navMain}
-      ${styles[mainMobile]}
-      d-flex
-      align-items-center`
+            ${styles.navMain}
+            d-flex
+            align-items-center`
          }
       >
-         <p style={{display: "none"}} data-test="tempTest">{mobNavHeight}</p>
+         {/* temp variable for temp test */}
+         {/* <p
+            style={{display: "none"}}
+            data-test="tempTest"
+         >
+            {mobNavHeight}
+         </p> */}
          <div className="
             d-flex
             justify-content-between
@@ -87,24 +83,23 @@ const NavBar = (props) => {
                   ${styles.navBrandText} 
                   navbar-brand
                `}
-               href="/">
-            Stechford Allotments
+               data-test="navBrand"
+               href="/"
+            >
+               Stechford Allotments
             </a>
-            <div id="testID"
+            <div
                className={styles.burgerIcon}
                data-test="burgerIcon"
                onClick={() => setIsNavOpen(!isNavOpen)}
             >
                <span
-                  style={{backgroundImage: `url(${burgerTexture})`}}
                   className={styles[navIconAnim]}>
                </span>
                <span
-                  style={{backgroundImage: `url(${burgerTexture})`}}
                   className={styles[navIconAnim]}>
                </span>
                <span
-                  style={{backgroundImage: `url(${burgerTexture})`}}
                   className={styles[navIconAnim]}>
                </span>
             </div>
@@ -122,6 +117,7 @@ const NavBar = (props) => {
                >
                   <div
                      className={`${styles.navBarLinkGroup}`}
+                     data-test="navBarLinkGroup"
                      ref={navLinkGroup}
                   >
                      <NavLink

@@ -3,6 +3,7 @@
 @import "../../../node_modules/bootstrap/scss/functions";
 @import "../../../node_modules/bootstrap/scss/variables";
 
+
 .navMain {
     @include transition-t;
     background-color: $primary-color;
@@ -19,6 +20,7 @@
         width: 25px;
         
         span {
+            background-image: url(../../images/burger-texture-01.png);
             background-size: 60px 3px;
             border-radius: $base-spacing;
             display: block;
