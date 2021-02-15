@@ -1,6 +1,8 @@
-import React, {useEffect,
+import React, {
+   useEffect,
    useRef,
-   useState} from "react";
+   useState
+} from "react";
 import {CSSTransition} from "react-transition-group";
 import NavLink from "../NavLink";
 import PropTypes from "prop-types";
@@ -17,20 +19,16 @@ const NavBar = (props) => {
    const [isLargeScreen, setIsLargeScreen] = useState(true);
    const [menuHeight, setMenuHeight] = useState("");
 
-   useEffect(
-      () => {
-         const mediaQuery = window.matchMedia("(min-width: 768px)");
+   useEffect(() => {
+      const mediaQuery = window.matchMedia("(min-width: 768px)");
 
-         handleMediaQueryChange(mediaQuery);
-         mediaQuery.addEventListener(
-            "change", (mQuery) => handleMediaQueryChange(mQuery)
-         );
+      handleMediaQueryChange(mediaQuery);
+      mediaQuery.addEventListener("change", (mQuery) => handleMediaQueryChange(mQuery));
 
-         return () => {
-            mediaQuery.removeEventListener(handleMediaQueryChange);
-         };
-      }, []
-   );
+      return () => {
+         mediaQuery.removeEventListener(handleMediaQueryChange);
+      };
+   }, []);
 
    const handleMediaQueryChange = mQuery => {
       if (mQuery.matches) {
@@ -46,9 +44,9 @@ const NavBar = (props) => {
    };
 
    const mobNavHeight =
-    isLargeScreen ? "unset" :
-       isNavOpen ? `${menuHeight + 16}px` :
-          0;
+    isLargeScreen ?
+       "unset" : isNavOpen ?
+          `${menuHeight + 16}px` : 0;
 
    const closeNav = () => {
       setIsNavOpen(false);
@@ -65,13 +63,6 @@ const NavBar = (props) => {
             align-items-center`
          }
       >
-         {/* temp variable for temp test */}
-         {/* <p
-            style={{display: "none"}}
-            data-test="tempTest"
-         >
-            {mobNavHeight}
-         </p> */}
          <div className="
             d-flex
             justify-content-between

@@ -5,6 +5,6 @@ describe("Info tests", () => {
   let component;
 
   beforeEach(() => {
-    component =
+    component = 
   })
 });

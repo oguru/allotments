@@ -1,10 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
+import React from "react";
 import styles from "./NavLink.module.scss";
 
 const NavLink = (props) => {
-   const {closeNav, isActive, linkText, path} = props;
+   const {
+      closeNav,
+      isActive,
+      linkText,
+      path
+   } = props;
 
    NavLink.propTypes = {
       closeNav: PropTypes.func,
