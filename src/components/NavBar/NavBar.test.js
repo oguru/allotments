@@ -1,21 +1,34 @@
+/* eslint-disable function-paren-newline */
 import {checkProps, findByTestAttr} from "../../../utils/utils";
 import MatchMediaMock from "jest-matchmedia-mock";
-import MemoryRouter from "react-router-dom/MemoryRouter";
+import {MemoryRouter} from "react-router-dom";
 import NavBar from "./NavBar";
 import React from "react";
 import mount from "enzyme/mount";
-import render from "@testing-library/react/render";
+import {render} from "@testing-library/react";
 
 describe("NavBar tests", () => {
    let component;
    let matchMedia;
-   const isActive = jest.fn();
+   const testRoutes = [
+      {
+         path: "/",
+         name: "Home"
+      },
+      {
+         path: "/about",
+         name: "About"
+      }
+   ];
 
    beforeEach(() => {
       matchMedia = new MatchMediaMock();
-      component = mount(<MemoryRouter>
-         <NavBar isActive={isActive} />
-      </MemoryRouter>);
+      component = mount(
+         <MemoryRouter>
+            <NavBar
+               routes={testRoutes}
+            />
+         </MemoryRouter>);
    });
 
    afterEach(() => {
@@ -45,13 +58,13 @@ describe("NavBar tests", () => {
          .toBe(1);
    });
 
-   it("should contain 4 nav links", () => {
+   it("should render 2 nav links from the testRoutes prop", () => {
       expect(findByTestAttr(component, "navLink")
          .length)
-         .toBe(4);
+         .toBe(2);
    });
 
-   it("should have the correct re-direct path on each nav link", () => {
+   it("should put the correct re-direct path on each nav link", () => {
       const navLinks = findByTestAttr(component, "navLink");
 
       expect(navLinks
@@ -63,16 +76,20 @@ describe("NavBar tests", () => {
          .find("[href='/']")
          .text())
          .toBe("Home");
+   });
 
-      expect(navLinks
-         .find("[href='/info']")
-         .text())
-         .toBe("Info");
+   it("should send 'activeLink' or an empty string prop to each NavLink based on the current path", () => {
+      const navLink = findByTestAttr(component, "navLink");
 
-      expect(navLinks
-         .find("[href='/articles']")
-         .text())
-         .toBe("Articles");
+      expect(navLink
+         .filter("[href='/about']")
+         .hasClass("activeLink"))
+         .toBe(false);
+
+      expect(navLink
+         .filter("[href='/']")
+         .hasClass("activeLink"))
+         .toBe(true);
    });
 
    it("should have a burger menu icon", () => {
@@ -103,7 +120,7 @@ describe("NavBar tests", () => {
 
    test("NavBar PropTypes check should not throw a warning", () => {
       const expectedProps = {
-         isActive: jest.fn()
+         routes: testRoutes
       };
       const propsErr = checkProps(NavBar, expectedProps);
 

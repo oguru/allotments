@@ -1,0 +1,29 @@
+[debug] [2021-02-16T12:06:27.188Z] ----------------------------------------------------------------------
+[debug] [2021-02-16T12:06:27.190Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Peter\AppData\Local\Yarn\Data\global\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2021-02-16T12:06:27.190Z] CLI Version:   7.15.1
+[debug] [2021-02-16T12:06:27.190Z] Platform:      win32
+[debug] [2021-02-16T12:06:27.190Z] Node Version:  v12.20.1
+[debug] [2021-02-16T12:06:27.190Z] Time:          Tue Feb 16 2021 12:06:27 GMT+0000 (Greenwich Mean Time)
+[debug] [2021-02-16T12:06:27.190Z] ----------------------------------------------------------------------
+[debug] [2021-02-16T12:06:27.191Z] 
+[debug] [2021-02-16T12:06:27.199Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-02-16T12:06:27.199Z] > authorizing via signed-in user
+[debug] [2021-02-16T12:06:27.199Z] [iam] checking project allotments-31a31 for permissions ["firebase.projects.get"]
+[debug] [2021-02-16T12:06:27.201Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-02-16T12:06:27.201Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-02-16T12:06:27.320Z] <<< HTTP RESPONSE 200
+[debug] [2021-02-16T12:06:27.325Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/allotments-31a31:testIamPermissions  
+
+[debug] [2021-02-16T12:06:27.937Z] <<< HTTP RESPONSE 200
+[debug] [2021-02-16T12:06:27.938Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/allotments-31a31  
+ 
+[debug] [2021-02-16T12:06:28.126Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'D:\Users\Peter\code\allotments'...
+[info] 
+[debug] [2021-02-16T12:06:28.128Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/allotments-31a31/webApps/-/config  
+ 
+[debug] [2021-02-16T12:06:28.858Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: build
+[info] +  hosting: Local server: http://localhost:5000
