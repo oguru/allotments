@@ -1,10 +1,10 @@
 import {checkProps, findByTestAttr} from "../../../utils/utils";
 import MatchMediaMock from "jest-matchmedia-mock";
-import {MemoryRouter} from "react-router-dom";
+import MemoryRouter from "react-router-dom/MemoryRouter";
 import NavBar from "./NavBar";
 import React from "react";
-import {mount} from "enzyme";
-import {render} from "@testing-library/react";
+import mount from "enzyme/mount";
+import render from "@testing-library/react/render";
 
 describe("NavBar tests", () => {
    let component;

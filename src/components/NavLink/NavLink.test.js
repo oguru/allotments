@@ -1,9 +1,9 @@
 import {checkProps, findByTestAttr} from "../../../utils/utils";
 import {cleanup, render} from "@testing-library/react";
-import {MemoryRouter} from "react-router-dom";
+import MemoryRouter from "react-router-dom/MemoryRouter";
 import NavLink from "./NavLink";
 import React from "react";
-import {mount} from "enzyme";
+import mount from "enzyme/mount";
 
 describe("NavLink tests", () => {
    let component;

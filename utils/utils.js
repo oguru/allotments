@@ -1,3 +1,4 @@
+/* eslint-disable */
 import checkPropTypes from "check-prop-types";
 
 export const findByTestAttr = (component, attr) => {
