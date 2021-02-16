@@ -7,17 +7,24 @@ import CSSTransition from "react-transition-group/CSSTransition";
 import NavLink from "../NavLink";
 import PropTypes from "prop-types";
 import styles from "./NavBar.module.scss";
+import {useLocation} from "react-router-dom";
 
-const NavBar = (props) => {
-   const {isActive} = props;
+const NavBar = ({routes}) => {
 
    NavBar.propTypes = {
-      isActive: PropTypes.func
+      routes: PropTypes.array.isRequired
    };
 
    const [isNavOpen, setIsNavOpen] = useState(false);
    const [isLargeScreen, setIsLargeScreen] = useState(true);
    const [menuHeight, setMenuHeight] = useState("");
+   const [pathName, setPathName] = useState("");
+
+   const location = useLocation();
+
+   useEffect(() => {
+      setPathName(location.pathname);
+   }, [location]);
 
    useEffect(() => {
       const mediaQuery = window.matchMedia("(min-width: 768px)");
@@ -26,7 +33,7 @@ const NavBar = (props) => {
       mediaQuery.addEventListener("change", (mQuery) => handleMediaQueryChange(mQuery));
 
       return () => {
-         mediaQuery.removeEventListener(handleMediaQueryChange);
+         mediaQuery.removeEventListener("change", handleMediaQueryChange);
       };
    }, []);
 
@@ -43,13 +50,16 @@ const NavBar = (props) => {
       setMenuHeight(height);
    };
 
-   const mobNavHeight =
-    isLargeScreen ?
-       "unset" : isNavOpen ?
-          `${menuHeight + 16}px` : 0;
+   const mobNavHeight = isLargeScreen ?
+      "unset" : isNavOpen ?
+         `${menuHeight + 16}px` : 0;
 
    const closeNav = () => {
       setIsNavOpen(false);
+   };
+
+   const checkIsActive = (route) => {
+      return route === pathName ? "activeLink" : "";
    };
 
    const navIconAnim = isNavOpen ? "navCross" : "";
@@ -111,30 +121,15 @@ const NavBar = (props) => {
                      data-test="navBarLinkGroup"
                      ref={navLinkGroup}
                   >
-                     <NavLink
-                        closeNav={() => closeNav()}
-                        isActive={isActive("/")}
-                        path="/"
-                        linkText="Home"
-                     />
-                     <NavLink
-                        closeNav={() => closeNav()}
-                        isActive={isActive("/about")}
-                        path="/about"
-                        linkText="About"
-                     />
-                     <NavLink
-                        closeNav={() => closeNav()}
-                        isActive={isActive("/articles")}
-                        path="/articles"
-                        linkText="Articles"
-                     />
-                     <NavLink
-                        closeNav={() => closeNav()}
-                        isActive={isActive("/info")}
-                        path="/info"
-                        linkText="Info"
-                     />
+                     {routes.map((route) => (
+                        <NavLink
+                           closeNav={() => closeNav()}
+                           linkType={checkIsActive(route.path)}
+                           key={route.name}
+                           path={route.path}
+                           linkText={route.name}
+                        />
+                     ))}
                   </div>
                </CSSTransition>
             </div>

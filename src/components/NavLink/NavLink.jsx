@@ -6,25 +6,23 @@ import styles from "./NavLink.module.scss";
 const NavLink = (props) => {
    const {
       closeNav,
-      isActive,
+      linkType,
       linkText,
       path
    } = props;
 
    NavLink.propTypes = {
-      closeNav: PropTypes.func,
-      isActive: PropTypes.bool,
-      linkText: PropTypes.string,
-      path: PropTypes.string
+      closeNav: PropTypes.func.isRequired,
+      linkType: PropTypes.string,
+      linkText: PropTypes.string.isRequired,
+      path: PropTypes.string.isRequired
    };
-
-   const activeStyle = isActive ? "activeLink" : "";
 
    return (
       <div className={`${styles.navbarLink}`}>
          <Link
             className={`
-              ${styles[activeStyle]}
+              ${styles[linkType]}
               nav-link
               rounded`
             }

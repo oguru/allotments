@@ -12,7 +12,35 @@
 h1 {
     font-size: 1.8rem;
 }
+section {
+  overflow: hidden;
+  .exit {
+    opacity: 1;
+    transform: translateX(0);
+  }
 
+  .exit.exitActive {
+    opacity: 0;
+    transition: 200ms linear;
+    transform: translateX(-1%);
+  }
+
+  .exitDone {
+    opacity: 0;
+  }
+
+  .enter {
+    opacity: 0;
+    transform: translateX(1%);
+  }
+  
+  .enter.enterActive {
+    opacity: 1;
+    transition: 300ms linear;
+    transition-delay: 100ms;
+    transform: translateX(0);
+  }
+}
 .footerStyles {
     background-color:$primary-color;
 

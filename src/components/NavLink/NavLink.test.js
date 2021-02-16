@@ -1,3 +1,4 @@
+/* eslint-disable function-paren-newline */
 import {checkProps, findByTestAttr} from "../../../utils/utils";
 import {cleanup, render} from "@testing-library/react";
 import MemoryRouter from "react-router-dom/MemoryRouter";
@@ -9,20 +10,21 @@ describe("NavLink tests", () => {
    let component;
    const testProps = {
       closeNav: jest.fn(),
-      isActive: false,
+      linkType: "",
       linkText: "test text",
       path: "/testpath"
    };
 
    beforeEach(() => {
-      component = mount(<MemoryRouter>
-         <NavLink
-            closeNav={testProps.closeNav}
-            isActive={testProps.isActive}
-            linkText={testProps.linkText}
-            path={testProps.path}
-         />
-      </MemoryRouter>);
+      component = mount(
+         <MemoryRouter>
+            <NavLink
+               closeNav={testProps.closeNav}
+               linkType={testProps.linkType}
+               linkText={testProps.linkText}
+               path={testProps.path}
+            />
+         </MemoryRouter>);
    });
 
    afterEach(cleanup);
@@ -43,7 +45,7 @@ describe("NavLink tests", () => {
       expect(propsErr).toBeUndefined();
    });
 
-   it("should gain the correct CSS style if isActive === true", () => {
+   it("should gain the correct CSS style if linkType === 'activeLink'", () => {
       expect(findByTestAttr(component, "navLink")
          .hasClass("activeLink"))
          .toBe(false);
@@ -54,7 +56,7 @@ describe("NavLink tests", () => {
                component
                   .props()
                   .children
-               , {isActive: true}
+               , {linkType: "activeLink"}
             )
       });
 

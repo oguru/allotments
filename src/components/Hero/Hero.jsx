@@ -11,17 +11,19 @@ const Hero = (props) => {
          homepageText,
          image
       },
-      isActive
+      homeHero
    } = props;
 
    Hero.propTypes = {
+      content: PropTypes.object,
       heroSubtitle: PropTypes.string,
       heroTitle: PropTypes.string,
       homepageText: PropTypes.string,
-      image: PropTypes.string
-   }
+      image: PropTypes.string,
+      homeHero: PropTypes.bool
+   };
 
-   const heroSize = isActive ? "flex-grow-1" : "";
+   const heroSize = homeHero ? "flex-grow-1" : "";
 
    /*
     * values to keep track of the number of letters typed, which quote to use. etc. Don't change these values.
