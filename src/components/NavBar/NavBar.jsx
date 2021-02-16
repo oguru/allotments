@@ -1,148 +1,146 @@
-import Link from "react-router-dom/Link";
-import React, {useEffect, useState} from "react";
+import React, {
+   useEffect,
+   useRef,
+   useState
+} from "react";
+import CSSTransition from "react-transition-group/CSSTransition";
+import NavLink from "../NavLink";
+import PropTypes from "prop-types";
 import styles from "./NavBar.module.scss";
-import {CSSTransition} from "react-transition-group";
 
 const NavBar = (props) => {
-  const {checkActive} = props;
+   const {isActive} = props;
 
-  const [isNavOpen, setIsNavOpen] = useState(false);
-  const [isLargeScreen, setIsLargeScreen] = useState(true)
-  const [menuHeight, setMenuHeight] = useState("")
+   NavBar.propTypes = {
+      isActive: PropTypes.func
+   };
 
-  const menuPadding = 16;
+   const [isNavOpen, setIsNavOpen] = useState(false);
+   const [isLargeScreen, setIsLargeScreen] = useState(true);
+   const [menuHeight, setMenuHeight] = useState("");
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia
-      ("(min-width: 768px)");
+   useEffect(() => {
+      const mediaQuery = window.matchMedia("(min-width: 768px)");
 
-    handleMediaQueryChange(mediaQuery);
-    mediaQuery.addEventListener("change", (mQuery) => handleMediaQueryChange(mQuery));
+      handleMediaQueryChange(mediaQuery);
+      mediaQuery.addEventListener("change", (mQuery) => handleMediaQueryChange(mQuery));
 
-    return () => {
-      mediaQuery.removeEventListener(handleMediaQueryChange)
-    }
-  }, []);
+      return () => {
+         mediaQuery.removeEventListener(handleMediaQueryChange);
+      };
+   }, []);
 
-  const handleMediaQueryChange = mQuery => {
-    if (mQuery.matches) {
-      setIsLargeScreen(true)
-    } else {
-      setIsLargeScreen(false);
-    }
-  };
+   const handleMediaQueryChange = mQuery => {
+      if (mQuery.matches) {
+         setIsLargeScreen(true);
+      } else {
+         setIsLargeScreen(false);
+      }
+   };
 
-  const calcHeight = (el) => {
-    const height = el.offsetHeight;
-    setMenuHeight(height);
-  };
+   const calcOpenNavHeight = () => {
+      const height = navLinkGroup.current.offsetHeight;
+      setMenuHeight(height);
+   };
 
-  const mobNavHeight = 
-    isNavOpen 
-      ? `${menuHeight+menuPadding}px` 
-      : 0
-  ;
+   const mobNavHeight =
+    isLargeScreen ?
+       "unset" : isNavOpen ?
+          `${menuHeight + 16}px` : 0;
 
-  const navIconAnim = isNavOpen ? "navCross" : "";
-  const mainMobile = isNavOpen ? "navMainOpen" : "";
+   const closeNav = () => {
+      setIsNavOpen(false);
+   };
 
-  const closeNav = () => {
-    setIsNavOpen(false);
-  }
+   const navIconAnim = isNavOpen ? "navCross" : "";
+   const navLinkGroup = useRef(null);
 
-  return (
-    <nav
-      className={`
-        ${styles.navMain} ${styles[mainMobile]} d-flex align-items-center`}
-      collapseOnSelect
-      expand="md"
-      variant="dark"
-    >
-        <div className="
-          d-flex 
-          justify-content-between 
-          align-items-center 
-          container"
-        >
-          <a 
-            className={"navbar-brand"} 
-            href="/"
-          >
-              Stechford Allotments
-          </a>
-          <div 
-            className={`${styles.burgerIcon}`}
-            onClick={() => setIsNavOpen(!isNavOpen)} 
-          >
-            <span className={styles[navIconAnim]}></span>
-            <span className={styles[navIconAnim]}></span>
-            <span className={styles[navIconAnim]}></span>
-          </div>
-          <div className={styles.navOverlay} 
-          style={{height: `${mobNavHeight}`}}
-          >
-          <CSSTransition
-            classNames={{...styles}}
-            in={isNavOpen || isLargeScreen}
-            onEnter={calcHeight}
-            timeout={500}
-          >
-            <div 
-              className={`${styles.navBarLinkGroup}`}
-            >
-              <NavLink
-                closeNav={() => closeNav()}
-                checkActive={checkActive("/")}
-                path="/" 
-                linkText="Home" 
-              />
-              <NavLink
-                closeNav={() => closeNav()}
-                checkActive={checkActive("/about")}
-                path="/about"
-                linkText="About"
-              />
-              <NavLink
-                closeNav={() => closeNav()}
-                checkActive={checkActive("/articles")}
-                path="/articles"
-                linkText="Articles"
-              />
-          </div>
-        </CSSTransition></div>
-      </div>
-    </nav>
-  );
-};
-
-function NavLink(props) {
-  const {
-    checkActive, 
-    closeNav, 
-    linkText, path
-  } = props;
-
-  const activeStyle = checkActive ? "activeLink" : "";
-
-  return (
-    <div className={`
-      p-1 
-      ml-2 
-      rounded 
-      ${styles.navbarLink}`
-    }>
-      <Link
-        className={`
-          ${styles[activeStyle]} 
-          nav-link`
-        }
-        onClick={closeNav}
-        to={path}
+   return (
+      <nav
+         className={`
+            ${styles.navMain}
+            d-flex
+            align-items-center`
+         }
       >
-        {linkText}
-      </Link>
-    </div>
-  );
+         <div className="
+            d-flex
+            justify-content-between
+            align-items-center
+            container"
+         >
+            <a
+               className={`
+                  ${styles.navBrandText} 
+                  navbar-brand
+               `}
+               data-test="navBrand"
+               href="/"
+            >
+               Stechford Allotments
+            </a>
+            <div
+               className={styles.burgerIcon}
+               data-test="burgerIcon"
+               onClick={() => setIsNavOpen(!isNavOpen)}
+            >
+               <span
+                  className={styles[navIconAnim]}>
+               </span>
+               <span
+                  className={styles[navIconAnim]}>
+               </span>
+               <span
+                  className={styles[navIconAnim]}>
+               </span>
+            </div>
+            <div
+               className={styles.navOverlay}
+               data-test="navOverlay"
+               style={{height: `${mobNavHeight}`}}
+            >
+               <CSSTransition
+                  classNames={{...styles}}
+                  in={isNavOpen}
+                  nodeRef={navLinkGroup}
+                  onEnter={calcOpenNavHeight}
+                  timeout={500}
+               >
+                  <div
+                     className={`${styles.navBarLinkGroup}`}
+                     data-test="navBarLinkGroup"
+                     ref={navLinkGroup}
+                  >
+                     <NavLink
+                        closeNav={() => closeNav()}
+                        isActive={isActive("/")}
+                        path="/"
+                        linkText="Home"
+                     />
+                     <NavLink
+                        closeNav={() => closeNav()}
+                        isActive={isActive("/about")}
+                        path="/about"
+                        linkText="About"
+                     />
+                     <NavLink
+                        closeNav={() => closeNav()}
+                        isActive={isActive("/articles")}
+                        path="/articles"
+                        linkText="Articles"
+                     />
+                     <NavLink
+                        closeNav={() => closeNav()}
+                        isActive={isActive("/info")}
+                        path="/info"
+                        linkText="Info"
+                     />
+                  </div>
+               </CSSTransition>
+            </div>
+         </div>
+      </nav>
+   );
 };
 
 export default NavBar;

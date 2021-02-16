@@ -5,18 +5,12 @@
 
 * {
     box-sizing: border-box;
-    // font-size: 0.9rem;
     padding: none;
     margin: none;
-
 }
 
 h1 {
     font-size: 1.8rem;
-}
-
-.container-small { 
-  width: 300px;
 }
 
 .footerStyles {
@@ -25,21 +19,22 @@ h1 {
     div {
         color: white;
 
+        a {
+          color: white;
+          text-decoration: none;
+        }
     }
 }
 
 @include media-breakpoint-up(sm) {
-  .container-small { 
-    width: unset;
-  }
   
   h1 {
       font-size: 2rem;
-    }
   }
+}
 
-  @include media-breakpoint-up(md) {
-    h1 {
-      font-size: 2.5rem;
-    }
+@include media-breakpoint-up(md) {
+  h1 {
+    font-size: 2.5rem;
   }
+}

@@ -19,13 +19,40 @@
         padding-top: 4rem;
         position:relative;
         z-index: 2;
+
+        // h1 {
+        // //    border-right: 3px solid white; 
+        //     position: relative;
+        // }
+
+        // h1::after {
+        //     content:'';
+        //     display:inline-block;
+        //     margin-left:3px;
+        //     background-color:white;
+        //     animation-name:blink;
+        //     animation-duration:0.5s;
+        //     animation-iteration-count: infinite;
+        //     height:28px;
+        //     width:4px;
+        // }
+
+        // h1.cursor {
+        //     height:28px;
+        //     width:4px;
+        // }
+
+        // h4.cursor::after {
+        //     height:28px;
+        //     width:4px;
+        // }
     }
 }
 
-.homeHero {
-    // transform:scale(1.2);
-    // overflow: hidden;
-}
+// .homeHero {
+//     transform:scale(1.2);
+//     overflow: hidden;
+// }
 // .hero > .overlay {
 //     position: absolute;
 //     top: 0;

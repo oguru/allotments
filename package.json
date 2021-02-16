@@ -3,14 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "bootstrap": "^4.6.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "firebase": "^8.2.4",
+    "firebase-tools": "^9.2.2",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "4.0.0",
     "react-transition-group": "^4.4.1"
   },
   "scripts": {
@@ -19,13 +24,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint:fix": "eslint src/**/*.js --fix"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "shared-config"
-    ]
   },
   "browserslist": {
     "production": [
@@ -40,10 +38,15 @@
     ]
   },
   "devDependencies": {
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
+    "check-prop-types": "^1.1.2",
     "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "eslint": "^7.20.0",
+    "jest-matchmedia-mock": "^1.1.0",
+    "jest-styled-components": "^7.0.3",
     "mkrc": "^1.2.22",
     "node-sass": "^4.14.0",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "purify-css": "^1.2.5"
   }
 }

@@ -11,37 +11,34 @@
     position: relative;
     z-index: 1000;
 
-    a {
-        color: white;
-    }
-
     .burgerIcon {
         cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 15px;
+        height: 22px;
         position: relative;
-        width: 20px;
+        top: 2px;
+        width: 25px;
         
         span {
-            background-color: white;
+            background-image: url(../../images/burger-texture-01.png);
+            background-size: 60px 3px;
             border-radius: $base-spacing;
             display: block;
-            height: 2px;
+            height: 3px;
             position: absolute;
             top: 0;
             transform: rotate(0deg) translate(0px);
             transition: 0.4s ease-in-out;
-            width: 20px;
+            width: 25px;
         }
 
         span:nth-child(2) {
-            top: 7.5px;
+            background-position-x: 33%;
+            top: 9px;
         }
 
         span:nth-child(3) {
-            top: 15px;
+            background-position-x: 66%;
+            top: 18px;
         }
 
         span.navCross:nth-child(1) {
@@ -62,128 +59,68 @@
         }
     }
 
-    .enter {
-        // opacity: 0;
-        // overflow: hidden;
-        transform: translateY(-100%);
+    .navBrandText {
+        color: white;
+        font-family: 'Fredericka the Great', cursive;
+        font-size: 1.5rem;
+        text-shadow: 0px 0px 0px rgb(180, 180, 180);
     }
-    
-    .enterActive {
-        opacity: 1;
-        // overflow: hidden;
-        transform: translateY(0);
-        transition-duration: 0.5s;
-    }
-
-    // .enterDone {
-    // }
-    
-    .exit {
-        opacity: 1;
-        // overflow: hidden;
-        transform: translateY(0);
-        transition-duration: 0.5s;
-    }
-    
-    .exitActive {
-        // opacity: 0;
-        // overflow: hidden;
-        transform: translateY(-150%);
-    }
-
-    // .exitDone {
-    //     // opacity: 0;
-    //     // overflow: hidden;
-    //     // height: 0;
-    //     transform: translateY(-150%);
-    // }
 
     .navOverlay {
-        background-color: $tertiary-color;
+        background-color: $bg-color;
         left: 0;
         overflow: hidden;
         position: absolute;
         top: $base-spacing * 8;
         transition-duration: 0.5s;
+        transition-property: height;
         width: 100vw;
     }
 
-
     .navBarLinkGroup {
-        // display: none;
-        // background-color: $primary-color;
-        // border-bottom: solid 2px white;
-        // border-top: solid 2px white;
-        // border-color: white;
-        // border-style: solid;
-        // border-left: 1px;
-        // border-right: 1px;
-        // left: 0;
-        // overflow: hidden;
+        display: none;
         position: relative;
-        // top: $base-spacing * 8;
-        // width: 100vw;
-        // z-index: 999;
+    }
 
-        // &:before {
-        //     border-bottom: solid 1px white;
-        //     border-top: solid 1px white;
-        //     content: "";
-        //     display: block;
-        //     height: 100%;
-        //     width: 40%;
-        //     margin: 0 auto;
-        //     top: 0;
-        //     left: 0;
-        //     right: 0;
-        //     bottom: 0;
-        //     position: absolute;
-        //     // top: -0.5rem;
-        // }
-        
-        // transform: translateY(-20px);
-        .navbarLink {
-            @include transition-t;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: $light-border-color 1.5px solid;
-            margin: 0.5rem;
-            
-            // &::before {
-            //     // border-top: white 1px solid;
-            //     border-radius: 0;
-            //     content: "";
-            //     display: block;
-            //     height: 1px;
-            //     width: 80%;
-            //     margin: 0 auto;
-            //     position: relative;
-            //     top: -0.5rem;
-            // }
+    .enter {        
+        display: block;
+        transform: translateY(-100%);
+    }
+    
+    .enterActive {
+        opacity: 1;
+        transform: translateY(0);
+        transition-duration: 0.5s;
+    }
+    
+    .enterDone {
+        display: block;
+    }
+    
+    .exit {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+        transition-duration: 0.5s;
+    }
+    
+    .exitActive {
+        display: block;
+        transform: translateY(-100%);
+    }
 
-            &:hover {
-                background-color: $secondary-color;
-            }
-            
-            a {
-                color: rgb(94, 94, 94);
-                // text-align: center;
-
-                &:hover {
-                    color: white;
-                }
-            }
-
-            .activeLink {
-                color:black;
-            }
-        }
+    .exitDone {
+        display: none;
     }
 }
 
-// .navMainOpen {
-//     border-bottom: solid 2px white;
-// }
-
+@include media-breakpoint-up(sm) {
+    .navMain {
+        .navBrandText {
+            font-size: 2rem;
+        }
+    }
+}
 
 @include media-breakpoint-up(md) {
     .navMain {
@@ -192,15 +129,33 @@
         .burgerIcon {
             display: none;
         }
+
+        .enter,
+        .exitActive {
+            transform: translate(0);
+        }
+        
         .navBarLinkGroup {
             display: flex;
             justify-content: flex-end;
-            position: unset;
+            position: unset;            
+        }
 
-            .navbarLink {
-                min-width: 80px;
-                text-align: center;
-            }
+        .navBrandText {
+            font-size: 1.875rem;
+        }
+        
+        .navOverlay {
+            background: none;
+            position: static;
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .navMain {
+        .navBrandText {
+            font-size: 2rem;
         }
     }
 }
