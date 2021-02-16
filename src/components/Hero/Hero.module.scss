@@ -1,4 +1,7 @@
 @import "../../variables.scss";
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "../../../node_modules/bootstrap/scss/mixins/breakpoints";
 
 .heroCont {
     position: relative;
@@ -18,34 +21,58 @@
     .heroText {
         padding-top: 4rem;
         position:relative;
+        transition: 0.3s;
         z-index: 2;
 
-        // h1 {
-        // //    border-right: 3px solid white; 
-        //     position: relative;
-        // }
+        .typistCont {
+            position: relative;
 
-        // h1::after {
-        //     content:'';
-        //     display:inline-block;
-        //     margin-left:3px;
-        //     background-color:white;
-        //     animation-name:blink;
-        //     animation-duration:0.5s;
-        //     animation-iteration-count: infinite;
-        //     height:28px;
-        //     width:4px;
-        // }
+            .hiddenText {
+                opacity: 0;
+            }
 
-        // h1.cursor {
-        //     height:28px;
-        //     width:4px;
-        // }
+            .typistEl {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+            }
+        }
 
-        // h4.cursor::after {
-        //     height:28px;
-        //     width:4px;
-        // }
+        h4, p {
+            opacity: 0;
+            transition: 1.5s;
+        }
+
+        .fadeIn {
+            opacity: 1;
+            transition-delay: 1s;
+        }
+
+        p.fadeIn {
+            transition-delay: 3s;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            transition: 0.2s;
+        }
+
+        h1 + span {
+            bottom: 2px;
+            font-size: 1.125rem;
+            padding-bottom: 4px;
+            // padding-left: 4px;
+            position: relative;
+        }
+
+        h4 {
+            font-size: 1.5rem;
+        }
+
+        h1 {
+            display: inline;
+        }
     }
 }
 
@@ -66,3 +93,37 @@
 //     position: relative;
 //     z-index: 2;
 // }
+
+
+@include media-breakpoint-up(sm) {
+    .heroCont {
+        .heroText {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h1 + span {
+                bottom: 3px;
+                font-size: 1.25rem;
+            }
+        }
+    }
+}
+  
+  @include media-breakpoint-up(md) {
+    .heroCont {
+        .heroText {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h1 + span {
+                font-size: 1.5rem;
+            }
+
+            h4 {
+                font-size: 1.75rem;
+            }
+        }
+    }
+  }

@@ -1,5 +1,7 @@
+import "./cursor.scss";
 import PropTypes from "prop-types";
-import React from "react";
+import React, {useState} from "react";
+import Typist from "react-typist";
 import styles from "./Hero.module.scss";
 
 const Hero = (props) => {
@@ -14,6 +16,8 @@ const Hero = (props) => {
       homeHero
    } = props;
 
+   const [typingDone, setTypingDone] = useState("");
+
    Hero.propTypes = {
       content: PropTypes.object,
       heroSubtitle: PropTypes.string,
@@ -24,18 +28,6 @@ const Hero = (props) => {
    };
 
    const heroSize = homeHero ? "flex-grow-1" : "";
-
-   /*
-    * values to keep track of the number of letters typed, which quote to use. etc. Don't change these values.
-    * let i = 0;
-    * let a = 0;
-    * let isBackspacing = false;
-    * let isParagraph = false;
-    */
-
-   // const textArray = [
-
-   // ]
 
    return (
       <>
@@ -56,9 +48,23 @@ const Hero = (props) => {
           ), url(${image}) `}}>
             </div>
             <div className={`${styles.heroText} container`}>
-               <h1 className={styles.cursor}>{heroTitle}</h1>
-               <h4>{heroSubtitle}</h4>
-               <p className="mt-5">{homepageText || ""}</p>
+               <div className={styles.typistCont}>
+                  <h1 className={styles.hiddenText}>{heroTitle}</h1>
+                  <Typist
+                     avgTypingDelay={70}
+                     className={styles.typistEl}
+                     cursor={{
+                        hideWhenDone: true,
+                        hideWhenDoneDelay: 1500
+                     }}
+                     onTypingDone={() => setTypingDone("fadeIn")}
+                     startDelay={0}
+                  >
+                     <h1>{heroTitle}</h1>
+                  </Typist>
+               </div>
+               <h4 className={styles[typingDone]}>{heroSubtitle}</h4>
+               <p className={`${styles[typingDone]} mt-5`}>{homepageText || ""}</p>
             </div>
          </div>
       </>
