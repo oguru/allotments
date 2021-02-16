@@ -12,14 +12,16 @@
 h1 {
     font-size: 1.8rem;
 }
+
 section {
   overflow: hidden;
+
   .exit {
     opacity: 1;
     transform: translateX(0);
   }
 
-  .exit.exitActive {
+  .exitActive {
     opacity: 0;
     transition: 200ms linear;
     transform: translateX(-1%);
@@ -34,13 +36,14 @@ section {
     transform: translateX(1%);
   }
   
-  .enter.enterActive {
+  .enterActive {
     opacity: 1;
     transition: 300ms linear;
     transition-delay: 100ms;
     transform: translateX(0);
   }
 }
+
 .footerStyles {
     background-color:$primary-color;
 
@@ -55,7 +58,6 @@ section {
 }
 
 @include media-breakpoint-up(sm) {
-  
   h1 {
       font-size: 2rem;
   }
