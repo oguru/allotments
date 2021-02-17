@@ -4,7 +4,6 @@
 @import "../../../node_modules/bootstrap/scss/variables";
 
 .navMain {
-    @include transition-t;
     background-color: $primary-color;
     border-bottom: 2px solid rgba(255, 255, 255, 0);
     height: 64px;
@@ -67,12 +66,12 @@
     }
 
     .navOverlay {
+        @include nav-t-duration;
         background-color: $bg-color;
         left: 0;
         overflow: hidden;
         position: absolute;
         top: $base-spacing * 8;
-        transition-duration: 0.5s;
         transition-property: height;
         width: 100vw;
     }
@@ -88,9 +87,9 @@
     }
     
     .enterActive {
+        @include nav-t-duration;
         opacity: 1;
         transform: translateY(0);
-        transition-duration: 0.5s;
     }
     
     .enterDone {
@@ -98,10 +97,10 @@
     }
     
     .exit {
+        @include nav-t-duration;
         display: block;
         opacity: 1;
         transform: translateY(0);
-        transition-duration: 0.5s;
     }
     
     .exitActive {

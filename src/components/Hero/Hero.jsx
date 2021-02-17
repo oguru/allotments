@@ -1,6 +1,6 @@
 import "./cursor.scss";
-import PropTypes from "prop-types";
 import React, {useState} from "react";
+import PropTypes from "prop-types";
 import Typist from "react-typist";
 import styles from "./Hero.module.scss";
 
@@ -11,7 +11,8 @@ const Hero = (props) => {
          heroSubtitle,
          heroTitle,
          homepageText,
-         image
+         image,
+         imageTint
       },
       homeHero
    } = props;
@@ -23,29 +24,27 @@ const Hero = (props) => {
       heroSubtitle: PropTypes.string,
       heroTitle: PropTypes.string,
       homepageText: PropTypes.string,
+      homeHero: PropTypes.bool,
       image: PropTypes.string,
-      homeHero: PropTypes.bool
+      imageTint: PropTypes.number
    };
 
-   const heroSize = homeHero ? "flex-grow-1" : "";
+   const homeStyles = homeHero ? "homeStyles" : "";
 
    return (
       <>
-         <div
-            className={`
-          ${heroSize}
-          ${styles.heroCont}
-          my-2`
-            }
+         <div className={`
+            ${styles.heroCont}
+            ${styles[homeStyles]}`}
          >
             <div
-               className={`
-            ${styles.heroBg}
-          `}
+               className={`${styles.heroBg}`}
                style={{backgroundImage: `linear-gradient(
-           rgba(0, 0, 0, 0.2),
-           rgba(0, 0, 0, 0.2)
-          ), url(${image}) `}}>
+                  rgba(0, 0, 0, ${imageTint || 0.3}),
+                  rgba(0, 0, 0, ${imageTint || 0.3})
+                  ), url(${image}) `}
+               }
+            >
             </div>
             <div className={`${styles.heroText} container`}>
                <div className={styles.typistCont}>
@@ -55,16 +54,16 @@ const Hero = (props) => {
                      className={styles.typistEl}
                      cursor={{
                         hideWhenDone: true,
-                        hideWhenDoneDelay: 1500
+                        hideWhenDoneDelay: 1400
                      }}
                      onTypingDone={() => setTypingDone("fadeIn")}
-                     startDelay={0}
+                     startDelay={500}
                   >
                      <h1>{heroTitle}</h1>
                   </Typist>
                </div>
                <h4 className={styles[typingDone]}>{heroSubtitle}</h4>
-               <p className={`${styles[typingDone]} mt-5`}>{homepageText || ""}</p>
+               <h5 className={`${styles[typingDone]}`}>{homepageText || ""}</h5>
             </div>
          </div>
       </>

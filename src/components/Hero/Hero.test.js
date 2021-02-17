@@ -1,20 +1,24 @@
+/* eslint-disable function-paren-newline */
 import {render, shallow} from "enzyme";
-import React from "react";
 import Hero from "./Hero";
+import React from "react";
 
 describe("Hero tests", () => {
    let component;
+   const mockContent = {
+      heroSubtitle: "heroSubtitle",
+      heroTitle: "heroTitle",
+      homepageText: "homepageText",
+      image: "/imagepath"
+   };
 
    beforeEach(() => {
-      component = shallow(<Hero
-         content={
-            "heroSubtitle",
-            "heroTitle",
-            "homepageText",
-            "image"
-         }
-         isActive={true}
-      />);
+      component = shallow(
+         <Hero
+            content={mockContent}
+            homeHero={true}
+         />
+      );
    });
 
    it("should render", () => {

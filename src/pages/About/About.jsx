@@ -1,14 +1,16 @@
 import Hero from "../../components/Hero";
 import React from "react";
-import aboutImg from "../../images/prince-abid-iy1k44aa4uq-unsplash.jpg";
+// import aboutImg from "../../images/prince-abid-iy1k44aa4uq-unsplash.jpg";
 import styles from "./About.module.scss";
 
-const About = () => {
+const About = ({aboutImg}) => {
 
    const heroContent = {
-      heroTitle: "About Stechford Allotments",
+      heroTitle: "About Us",
       heroSubtitle: "Where we started and how to get involved",
-      image: aboutImg
+      image: aboutImg,
+      imageTint: 0.5
+
    };
 
    return (

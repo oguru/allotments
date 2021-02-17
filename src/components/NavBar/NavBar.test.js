@@ -26,6 +26,7 @@ describe("NavBar tests", () => {
       component = mount(
          <MemoryRouter>
             <NavBar
+               isLargeScreen={false}
                routes={testRoutes}
             />
          </MemoryRouter>);
@@ -120,6 +121,7 @@ describe("NavBar tests", () => {
 
    test("NavBar PropTypes check should not throw a warning", () => {
       const expectedProps = {
+         isLargeScreen: true,
          routes: testRoutes
       };
       const propsErr = checkProps(NavBar, expectedProps);

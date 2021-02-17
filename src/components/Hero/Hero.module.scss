@@ -3,9 +3,16 @@
 @import "../../../node_modules/bootstrap/scss/variables";
 @import "../../../node_modules/bootstrap/scss/mixins/breakpoints";
 
+.heroCont.homeStyles {
+    flex-grow: 1;
+    padding: 3rem 0;
+}
+
 .heroCont {
-    position: relative;
     color: white;
+    margin: 0.5rem 0;
+    padding: 2rem 0;
+    position: relative;
 
     .heroBg {
         background: no-repeat center center;
@@ -17,14 +24,13 @@
         left: 0;
         width: 100%;
     }
-
+       
     .heroText {
-        padding-top: 4rem;
-        position:relative;
-        transition: 0.3s;
+        position: relative;
         z-index: 2;
 
         .typistCont {
+            // margin-bottom: 2rem;
             position: relative;
 
             .hiddenText {
@@ -39,39 +45,43 @@
             }
         }
 
-        h4, p {
+        h4, h5 {
+            margin-top: 1rem;
             opacity: 0;
-            transition: 1.5s;
+            transform: translateY(10%);
+            transition: transform 1.5s, opacity 1.5s;
         }
 
         .fadeIn {
             opacity: 1;
-            transition-delay: 1s;
+            transition-delay: 1.5s;
+            transform: translateY(0);
         }
 
-        p.fadeIn {
-            transition-delay: 3s;
+        h5.fadeIn {
+            transition-delay: 3.5s;
         }
 
         h1 {
-            font-size: 1.8rem;
-            transition: 0.2s;
+            font-size: 1.625rem;
+            display: inline;
+            // transition:  0.2s;
         }
 
         h1 + span {
             bottom: 2px;
-            font-size: 1.125rem;
+            font-size: 1rem;
             padding-bottom: 4px;
-            // padding-left: 4px;
+            padding-left: 2px;
             position: relative;
         }
 
         h4 {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
         }
 
-        h1 {
-            display: inline;
+        h5 {
+            font-size: 1.125rem;
         }
     }
 }
@@ -106,11 +116,19 @@
                 bottom: 3px;
                 font-size: 1.25rem;
             }
+
+            h4 {
+                font-size: 1.375rem;
+            }
         }
     }
 }
   
   @include media-breakpoint-up(md) {
+    .heroCont.homeStyles {
+        padding: 4rem 0;
+    }
+
     .heroCont {
         .heroText {
             h1 {
@@ -123,6 +141,10 @@
 
             h4 {
                 font-size: 1.75rem;
+            }
+
+            h5 {
+                font-size: 1.375rem;
             }
         }
     }

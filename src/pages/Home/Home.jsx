@@ -8,13 +8,14 @@ const Home = () => {
       heroTitle: "Welcome to Stechford Allotments",
       heroSubtitle: "Your gateway to healthier living",
       homepageText: "Click on a link in the navigation bar to learn more or to contact us",
-      image: homeImg
+      image: homeImg,
+      imageTint: 0.4
    };
 
    return (
       <Hero
          content={heroContent}
-         homeHero={true}
+         homeHero
       />
    );
 };

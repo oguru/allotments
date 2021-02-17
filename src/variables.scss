@@ -27,6 +27,10 @@ $grid-breakpoints: (
   xxl: 1400px
 )*/
 
-@mixin transition-t {
-    transition-duration: 0.3s;
+@mixin nav-t-duration {
+    transition-duration: 0.5s;
+}
+
+@mixin hero-transition {
+  
 }

@@ -4,7 +4,6 @@
 @import "../../../node_modules/bootstrap/scss/variables";
 
 .navbarLink {
-    @include transition-t;
     margin: 0.5rem;
    
     a {

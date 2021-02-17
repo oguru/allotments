@@ -11,44 +11,70 @@
 
 section {
   overflow: hidden;
-
+  
   .exit {
     opacity: 1;
     transform: translateX(0);
   }
-
+  
   .exitActive {
     opacity: 0;
-    transition: 200ms linear;
-    transform: translateX(-1%);
-  }
-
-  .exitDone {
-    opacity: 0;
+    transition: 350ms linear 150ms;
+    transform: translateX(-1.5%);
   }
 
   .enter {
     opacity: 0;
-    transform: translateX(1%);
+    transform: translateX(1.5%);
   }
   
   .enterActive {
     opacity: 1;
-    transition: 300ms linear;
-    transition-delay: 100ms;
+    transition: 300ms linear 500ms;
     transform: translateX(0);
   }
 }
 
 .footerStyles {
     background-color:$primary-color;
+    padding: 0.625rem;
 
-    div {
+    p {
         color: white;
+        font-size: 0.875rem;
+        margin: 0;
+        text-align: center;
 
         a {
           color: white;
           text-decoration: none;
         }
     }
+}
+
+@include media-breakpoint-up(sm) {
+  .footerStyles {
+    padding: 0.875rem 0.5rem;
+    p {
+      font-size: 1rem;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .footerStyles {
+    p {
+      font-size: 1.125rem;
+    }
+  }
+
+  section {
+    .exitActive {
+      transition: 200ms linear 0ms;
+    }
+ 
+    .enterActive {
+      transition: 300ms linear 100ms;
+    }
+  }
 }

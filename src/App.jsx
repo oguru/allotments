@@ -1,14 +1,38 @@
+import React, {useEffect, useState} from "react";
 import About from "./pages/About";
 import Articles from "./pages/Articles";
 import CSSTransition from "react-transition-group/CSSTransition";
 import Home from "./pages/Home";
 import Info from "./pages/Info";
 import NavBar from "./components/NavBar";
-import React from "react";
 import {Route} from "react-router-dom";
 import styles from "./App.module.scss";
+import homeImg from "./images/randy-fath-ey6g0z_fs0-unsplash.jpg";
+import articlesImg from "./images/thom-holmes-3w9aalszgo0-unsplash.jpg";
+import aboutImg from "./images/prince-abid-iy1k44aa4uq-unsplash.jpg";
 
 const App = () => {
+
+   const [isLargeScreen, setIsLargeScreen] = useState(true);
+
+   useEffect(() => {
+      const mediaQuery = window.matchMedia("(min-width: 768px)");
+
+      handleMediaQueryChange(mediaQuery);
+      mediaQuery.addEventListener("change", (mQuery) => handleMediaQueryChange(mQuery));
+
+      return () => {
+         mediaQuery.removeEventListener("change", handleMediaQueryChange);
+      };
+   }, []);
+
+   const handleMediaQueryChange = mQuery => {
+      if (mQuery.matches) {
+         setIsLargeScreen(true);
+      } else {
+         setIsLargeScreen(false);
+      }
+   };
 
    const routes = [
       {
@@ -30,11 +54,13 @@ const App = () => {
    ];
 
    const components = {
-      "About": <About />,
-      "Articles": <Articles />,
-      "Home": <Home />,
-      "Info": <Info />
+      "About": <About aboutImg={aboutImg} />,
+      "Articles": <Articles articlesImg={articlesImg}/>,
+      "Home": <Home homeImg={homeImg} />,
+      "Info": <Info infoImg={infoImg} />
    };
+
+   const transitionTime = isLargeScreen ? 400 : 800;
 
    return (
       <div className="
@@ -42,7 +68,10 @@ const App = () => {
          flex-column
          h-100"
       >
-         <NavBar routes={routes}/>
+         <NavBar
+            isLargeScreen={isLargeScreen}
+            routes={routes}
+         />
          <section className="
             d-flex
             flex-column
@@ -67,7 +96,7 @@ const App = () => {
                         <CSSTransition
                            classNames={{...styles}}
                            in={match != null}
-                           timeout={400}
+                           timeout={transitionTime}
                            unmountOnExit
                         >
                            {components[route.name]}
@@ -80,19 +109,14 @@ const App = () => {
          <footer
             className={`
                ${styles.footerStyles}
-               page-footer
-               font-small`
+               `
             }
             data-test="footer"
          >
-            <div className="
-               footer-copyright
-               text-center
-               py-3"
-            >
-               © 2020 Copyright:
+            <p>
+               © 2021 Copyright:
                <a href="/"> Stechford Allotments</a>
-            </div>
+            </p>
          </footer>
       </div>
    );
