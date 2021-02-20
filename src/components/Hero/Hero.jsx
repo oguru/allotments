@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import PropTypes from "prop-types";
 import Typist from "react-typist";
 import styles from "./Hero.module.scss";
+import HeroImage from "../HeroImage";
 
 const Hero = (props) => {
 
@@ -12,6 +13,7 @@ const Hero = (props) => {
          heroTitle,
          homepageText,
          image,
+         imageSm,
          imageTint
       },
       homeHero
@@ -26,6 +28,7 @@ const Hero = (props) => {
       homepageText: PropTypes.string,
       homeHero: PropTypes.bool,
       image: PropTypes.string,
+      imageSm: PropTypes.string,
       imageTint: PropTypes.number
    };
 
@@ -37,18 +40,30 @@ const Hero = (props) => {
             ${styles.heroCont}
             ${styles[homeStyles]}`}
          >
-            <div
+            {/* <div
                className={`${styles.heroBg}`}
-               style={{backgroundImage: `linear-gradient(
-                  rgba(0, 0, 0, ${imageTint || 0.3}),
-                  rgba(0, 0, 0, ${imageTint || 0.3})
+               style={{backgroundImage:
+                  `linear-gradient(
+                     rgba(0, 0, 0, ${imageTint || 0.3}),
+                     rgba(0, 0, 0, ${imageTint || 0.3})
                   ), url(${image}) `}
                }
             >
-            </div>
-            <div className={`${styles.heroText} container`}>
+            </div> */}
+            <HeroImage
+               src={image}
+               srcSm={imageSm}
+               imageTint={imageTint}
+               alt={heroTitle}
+            />
+            <div className={`
+               ${styles.heroText} 
+               container`}
+            >
                <div className={styles.typistCont}>
-                  <h1 className={styles.hiddenText}>{heroTitle}</h1>
+                  <h1 className={styles.hiddenText}>
+                     {heroTitle}
+                  </h1>
                   <Typist
                      avgTypingDelay={70}
                      className={styles.typistEl}
@@ -62,8 +77,12 @@ const Hero = (props) => {
                      <h1>{heroTitle}</h1>
                   </Typist>
                </div>
-               <h4 className={styles[typingDone]}>{heroSubtitle}</h4>
-               <h5 className={`${styles[typingDone]}`}>{homepageText || ""}</h5>
+               <h4 className={styles[typingDone]}>
+                  {heroSubtitle}
+               </h4>
+               <h5 className={`${styles[typingDone]}`}>
+                  {homepageText || ""}
+               </h5>
             </div>
          </div>
       </>
