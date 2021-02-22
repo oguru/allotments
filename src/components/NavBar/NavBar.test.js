@@ -5,7 +5,6 @@ import {MemoryRouter} from "react-router-dom";
 import NavBar from "./NavBar";
 import React from "react";
 import mount from "enzyme/mount";
-import {render} from "@testing-library/react";
 
 describe("NavBar tests", () => {
    let component;
@@ -21,13 +20,18 @@ describe("NavBar tests", () => {
       }
    ];
 
+   const testProps = {
+      isLargeScreen: false,
+      routes: testRoutes
+   };
+
    beforeEach(() => {
       matchMedia = new MatchMediaMock();
       component = mount(
          <MemoryRouter>
             <NavBar
-               isLargeScreen={false}
-               routes={testRoutes}
+               isLargeScreen={testProps.isLargeScreen}
+               routes={testProps.routes}
             />
          </MemoryRouter>);
    });
@@ -36,9 +40,8 @@ describe("NavBar tests", () => {
       matchMedia.clear();
    });
 
-   it("should render without errors", () => {
-      expect(render(component))
-         .toBeTruthy();
+   it("should render without error", () => {
+      expect(findByTestAttr(component, "navbar").length).toBe(1);
    });
 
    it("should match the snapshot", () => {
@@ -120,11 +123,7 @@ describe("NavBar tests", () => {
    });
 
    test("NavBar PropTypes check should not throw a warning", () => {
-      const expectedProps = {
-         isLargeScreen: true,
-         routes: testRoutes
-      };
-      const propsErr = checkProps(NavBar, expectedProps);
+      const propsErr = checkProps(NavBar, testProps);
 
       expect(propsErr).toBeUndefined();
    });

@@ -12,7 +12,7 @@ const HeroImage = (props) => {
    HeroImage.propTypes = {
       imageTint: PropTypes.number,
       src: PropTypes.string.isRequired,
-      srcSm: PropTypes.string.isRequired
+      srcSm: PropTypes.string
    };
 
    const [isLoaded, setIsLoaded] = useState(false);
@@ -39,23 +39,28 @@ const HeroImage = (props) => {
    return (
       <>
          <div
-            className={`${styles.heroBg} ${styles.initImg}`}
-            style={{backgroundImage:
-       `linear-gradient(
-          rgba(0, 0, 0, ${imageTint || 0.3}),
-          rgba(0, 0, 0, ${imageTint || 0.3})
-       ), url(${srcSm}) `,
-            opacity: `${initImgOpacity}`}
+            className={`
+               ${styles.heroBg} 
+               ${styles.initImg}`
+            }
+            data-test="heroImage"
+            style={
+               {backgroundImage: `linear-gradient(
+                  rgba(0, 0, 0, ${imageTint || 0.3}),
+                  rgba(0, 0, 0, ${imageTint || 0.3})
+               ), url(${srcSm})`,
+               opacity: `${initImgOpacity}`}
             }
          >
          </div>
          <div
             className={`${styles.heroBg}`}
-            style={{backgroundImage:
-          `linear-gradient(
-             rgba(0, 0, 0, ${imageTint || 0.3}),
-             rgba(0, 0, 0, ${imageTint || 0.3})
-          ), url(${src}) `}
+            data-test="heroImage"
+            style={
+               {backgroundImage: `linear-gradient(
+                  rgba(0, 0, 0, ${imageTint || 0.3}),
+                  rgba(0, 0, 0, ${imageTint || 0.3})
+               ), url(${src})`}
             }
          >
          </div>

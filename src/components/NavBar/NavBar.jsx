@@ -54,6 +54,7 @@ const NavBar = (props) => {
             d-flex
             align-items-center`
          }
+         data-test="navbar"
       >
          <div className="
             d-flex

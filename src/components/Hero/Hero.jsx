@@ -1,9 +1,9 @@
 import "./cursor.scss";
 import React, {useState} from "react";
+import HeroImage from "../HeroImage";
 import PropTypes from "prop-types";
 import Typist from "react-typist";
 import styles from "./Hero.module.scss";
-import HeroImage from "../HeroImage";
 
 const Hero = (props) => {
 
@@ -40,21 +40,10 @@ const Hero = (props) => {
             ${styles.heroCont}
             ${styles[homeStyles]}`}
          >
-            {/* <div
-               className={`${styles.heroBg}`}
-               style={{backgroundImage:
-                  `linear-gradient(
-                     rgba(0, 0, 0, ${imageTint || 0.3}),
-                     rgba(0, 0, 0, ${imageTint || 0.3})
-                  ), url(${image}) `}
-               }
-            >
-            </div> */}
             <HeroImage
+               imageTint={imageTint}
                src={image}
                srcSm={imageSm}
-               imageTint={imageTint}
-               alt={heroTitle}
             />
             <div className={`
                ${styles.heroText} 

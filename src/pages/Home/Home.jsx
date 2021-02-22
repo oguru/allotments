@@ -11,7 +11,7 @@ const Home = () => {
       // lgImage: lgHomeImg,
       // image: homeImg,
       image: homeImg,
-      imageTint: 0.4
+      imageTint: 0.1
    };
 
    return (
