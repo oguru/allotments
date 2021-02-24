@@ -19,7 +19,10 @@ const NavLink = (props) => {
    };
 
    return (
-      <div className={`${styles.navbarLink}`}>
+      <div
+         className={`${styles.navbarLink}`}
+         data-test="navLinkCont"
+      >
          <Link
             className={`
               ${styles[linkType]}

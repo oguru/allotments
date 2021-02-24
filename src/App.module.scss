@@ -9,62 +9,136 @@
     margin: none;
 }
 
-h1 {
-    font-size: 1.8rem;
-}
-
-section {
-  overflow: hidden;
-
-  .exit {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .exitActive {
-    opacity: 0;
-    transition: 200ms linear;
-    transform: translateX(-1%);
-  }
-
-  .exitDone {
-    opacity: 0;
-  }
-
-  .enter {
-    opacity: 0;
-    transform: translateX(1%);
-  }
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   
-  .enterActive {
-    opacity: 1;
-    transition: 300ms linear;
-    transition-delay: 100ms;
-    transform: translateX(0);
-  }
-}
-
-.footerStyles {
-    background-color:$primary-color;
-
-    div {
-        color: white;
-
-        a {
-          color: white;
-          text-decoration: none;
-        }
+  section {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    
+    .exit {
+      opacity: 1;
+      transform: translateX(0);
     }
+    
+    .exitActive {
+      opacity: 0;
+      transition: 350ms linear 150ms;
+      transform: translateX(-1.5%);
+    }
+
+    .enter {
+      opacity: 0;
+      transform: translateX(1.5%);
+    }
+    
+    .enterActive {
+      opacity: 1;
+      transition: 300ms linear 500ms;
+      transform: translateX(0);
+    }
+
+    .loaderCont {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+
+      .loader {
+        animation: rotate 2s infinite linear;
+        display: block;
+        height: $loader-h;
+        width: $loader-w;
+        position: relative;
+
+        span {
+          animation: bounce 2s linear 1s infinite;
+          background-color: $secondary-color;
+          border-radius: 100%;
+          bottom: auto;
+          height: 30px;
+          position: absolute;
+          top: 0;
+          width: 30px;
+
+          &:first-child {
+            animation-delay: 0s;
+            bottom: 0;
+            top: auto;
+          }
+        }
+
+        @keyframes rotate {
+          100% {transform: rotate(360deg)}
+        }
+
+        @keyframes bounce {
+          0%, 100% {transform: scale(0)}
+          50% {transform: scale(1.0)}
+        }
+      }
+    }
+
+    .mainBody {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      position: absolute;
+      width: 100%;
+    }
+
+    .preCacheHidden {
+      display: none;
+    }
+  }
+
+  .footerStyles {
+      background-color:$primary-color;
+      padding: 0.625rem;
+
+      p {
+          color: white;
+          font-size: 0.875rem;
+          margin: 0;
+          text-align: center;
+
+          a {
+            color: white;
+            text-decoration: none;
+          }
+      }
+  }
 }
 
 @include media-breakpoint-up(sm) {
-  h1 {
-      font-size: 2rem;
+  .footerStyles {
+    padding: 0.875rem 0.5rem;
+    p {
+      font-size: 1rem;
+    }
   }
 }
 
 @include media-breakpoint-up(md) {
-  h1 {
-    font-size: 2.5rem;
+  .footerStyles {
+    p {
+      font-size: 1.125rem;
+    }
+  }
+
+  section {
+    .exitActive {
+      transition: 200ms linear 0ms;
+    }
+ 
+    .enterActive {
+      transition: 300ms linear 100ms;
+    }
   }
 }

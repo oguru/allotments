@@ -17,6 +17,8 @@ $light-border-color: #e6e6e6;
 // #ccd9c6
 $dark-border-color: #616161;
 $base-spacing: 8px;
+$loader-h: 80px;
+$loader-w: 40px;
 /*
 $grid-breakpoints: (
   xs: 0,
@@ -27,6 +29,10 @@ $grid-breakpoints: (
   xxl: 1400px
 )*/
 
-@mixin transition-t {
-    transition-duration: 0.3s;
+@mixin nav-t-duration {
+    transition-duration: 0.5s;
+}
+
+@mixin hero-transition {
+  
 }
