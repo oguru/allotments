@@ -9,14 +9,15 @@ import PropTypes from "prop-types";
 import styles from "./NavBar.module.scss";
 import {useLocation} from "react-router-dom";
 
-const NavBar = ({routes}) => {
+const NavBar = (props) => {
+   const {isLargeScreen, routes} = props;
 
    NavBar.propTypes = {
+      isLargeScreen: PropTypes.bool,
       routes: PropTypes.array.isRequired
    };
 
    const [isNavOpen, setIsNavOpen] = useState(false);
-   const [isLargeScreen, setIsLargeScreen] = useState(true);
    const [menuHeight, setMenuHeight] = useState("");
    const [pathName, setPathName] = useState("");
 
@@ -25,25 +26,6 @@ const NavBar = ({routes}) => {
    useEffect(() => {
       setPathName(location.pathname);
    }, [location]);
-
-   useEffect(() => {
-      const mediaQuery = window.matchMedia("(min-width: 768px)");
-
-      handleMediaQueryChange(mediaQuery);
-      mediaQuery.addEventListener("change", (mQuery) => handleMediaQueryChange(mQuery));
-
-      return () => {
-         mediaQuery.removeEventListener("change", handleMediaQueryChange);
-      };
-   }, []);
-
-   const handleMediaQueryChange = mQuery => {
-      if (mQuery.matches) {
-         setIsLargeScreen(true);
-      } else {
-         setIsLargeScreen(false);
-      }
-   };
 
    const calcOpenNavHeight = () => {
       const height = navLinkGroup.current.offsetHeight;
@@ -72,6 +54,7 @@ const NavBar = ({routes}) => {
             d-flex
             align-items-center`
          }
+         data-test="navbar"
       >
          <div className="
             d-flex
@@ -121,11 +104,11 @@ const NavBar = ({routes}) => {
                      data-test="navBarLinkGroup"
                      ref={navLinkGroup}
                   >
-                     {routes.map((route) => (
+                     {routes.map((route, index) => (
                         <NavLink
                            closeNav={() => closeNav()}
                            linkType={checkIsActive(route.path)}
-                           key={route.name}
+                           key={`${index}_${route.name}`}
                            path={route.path}
                            linkText={route.name}
                         />

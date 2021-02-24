@@ -1,5 +1,8 @@
+import "./cursor.scss";
+import React, {useState} from "react";
+import HeroImage from "../HeroImage";
 import PropTypes from "prop-types";
-import React from "react";
+import Typist from "react-typist";
 import styles from "./Hero.module.scss";
 
 const Hero = (props) => {
@@ -9,56 +12,82 @@ const Hero = (props) => {
          heroSubtitle,
          heroTitle,
          homepageText,
-         image
+         image,
+         imageSm,
+         imageTint
       },
       homeHero
    } = props;
 
+   const [typingDone, setTypingDone] = useState("");
+
    Hero.propTypes = {
-      content: PropTypes.object,
-      heroSubtitle: PropTypes.string,
-      heroTitle: PropTypes.string,
-      homepageText: PropTypes.string,
-      image: PropTypes.string,
+      content: PropTypes.shape({
+         heroSubtitle: PropTypes.string,
+         heroTitle: PropTypes.string.isRequired,
+         homepageText: PropTypes.string,
+         image: PropTypes.string.isRequired,
+         imageSm: PropTypes.string,
+         imageTint: PropTypes.number
+      }),
       homeHero: PropTypes.bool
    };
 
-   const heroSize = homeHero ? "flex-grow-1" : "";
-
-   /*
-    * values to keep track of the number of letters typed, which quote to use. etc. Don't change these values.
-    * let i = 0;
-    * let a = 0;
-    * let isBackspacing = false;
-    * let isParagraph = false;
-    */
-
-   // const textArray = [
-
-   // ]
+   const homeStyles = homeHero ? "homeStyles" : "";
 
    return (
       <>
          <div
             className={`
-          ${heroSize}
-          ${styles.heroCont}
-          my-2`
-            }
+               ${styles.heroCont}
+               ${styles[homeStyles]}
+            `}
+            data-test="heroCont"
          >
-            <div
-               className={`
-            ${styles.heroBg}
-          `}
-               style={{backgroundImage: `linear-gradient(
-           rgba(0, 0, 0, 0.2),
-           rgba(0, 0, 0, 0.2)
-          ), url(${image}) `}}>
-            </div>
-            <div className={`${styles.heroText} container`}>
-               <h1 className={styles.cursor}>{heroTitle}</h1>
-               <h4>{heroSubtitle}</h4>
-               <p className="mt-5">{homepageText || ""}</p>
+            <HeroImage
+               homeStyle={homeHero ? "homeStyle" : ""}
+               imageTint={imageTint}
+               src={image}
+               srcSm={imageSm}
+            />
+            <div className={`
+               ${styles.heroText} 
+               container`}
+            >
+               <div className={styles.typistCont}>
+                  <h1
+                     className={styles.hiddenText}
+                     data-test="hiddenText"
+                  >
+                     {heroTitle}
+                  </h1>
+                  <Typist
+                     avgTypingDelay={70}
+                     className={styles.typistEl}
+                     cursor={{
+                        hideWhenDone: true,
+                        hideWhenDoneDelay: 1400
+                     }}
+                     onTypingDone={() => setTypingDone("fadeIn")}
+                     startDelay={500}
+                  >
+                     <h1 data-test="heroHeadText">
+                        {heroTitle}
+                     </h1>
+                  </Typist>
+               </div>
+               <h4
+                  className={styles[typingDone]}
+                  data-test="heroSubText"
+               >
+                  {heroSubtitle}
+               </h4>
+               <h5
+                  className={styles[typingDone]}
+                  data-test="heroHomeText"
+               >
+                  {homepageText}
+               </h5>
             </div>
          </div>
       </>

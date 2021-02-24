@@ -1,0 +1,30 @@
+.heroBg {
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s;
+    width: 100%;
+    z-index: -1;
+}
+
+.heroBg.homeStyle {
+    background-position: 25% top;
+    height: 110% ;
+}
+
+.initImg {
+    filter: blur(1.5px);
+    z-index: 0;
+}
+
+@media screen and (min-width: 768px) {
+    .heroBg.homeStyle {
+        background-position: center top;
+        height: 100%;
+    }
+}

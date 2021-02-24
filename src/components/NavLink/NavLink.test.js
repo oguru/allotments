@@ -1,7 +1,6 @@
 /* eslint-disable function-paren-newline */
 import {checkProps, findByTestAttr} from "../../../utils/utils";
-import {cleanup, render} from "@testing-library/react";
-import MemoryRouter from "react-router-dom/MemoryRouter";
+import {MemoryRouter} from "react-router-dom";
 import NavLink from "./NavLink";
 import React from "react";
 import mount from "enzyme/mount";
@@ -27,11 +26,8 @@ describe("NavLink tests", () => {
          </MemoryRouter>);
    });
 
-   afterEach(cleanup);
-
-   it("should render without errors", () => {
-      expect(render(component))
-         .toBeTruthy();
+   it("should render without error", () => {
+      expect(findByTestAttr(component, "navLinkCont").length).toBe(1);
    });
 
    it("should match the snapshot", () => {

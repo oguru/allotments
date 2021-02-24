@@ -1,7 +1,7 @@
 import React from "react";
-import Home from "./Home";
+import SuspenseImg from "./SuspenseImg";
 
-describe("Home tests", () => {
+describe("SuspenseImg tests", () => {
   let component;
 
   beforeEach(() => {
