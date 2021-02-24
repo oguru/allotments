@@ -11,7 +11,7 @@ const Info = () => {
       heroSubtitle: "Explore different plots to suit your needs and find updates and current news here",
       image: infoImg,
       imageSm: infoImgSm,
-      imageTint: 0.5
+      imageTint: 0.45
    };
 
    return (

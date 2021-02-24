@@ -4,12 +4,14 @@ import styles from "./HeroImage.module.scss";
 
 const HeroImage = (props) => {
    const {
+      homeStyle,
       imageTint,
       src,
       srcSm
    } = props;
 
    HeroImage.propTypes = {
+      homeStyle: PropTypes.string,
       imageTint: PropTypes.number,
       src: PropTypes.string.isRequired,
       srcSm: PropTypes.string
@@ -41,6 +43,7 @@ const HeroImage = (props) => {
          <div
             className={`
                ${styles.heroBg} 
+               ${styles[homeStyle]}
                ${styles.initImg}`
             }
             data-test="heroImage"
@@ -54,7 +57,10 @@ const HeroImage = (props) => {
          >
          </div>
          <div
-            className={`${styles.heroBg}`}
+            className={`
+               ${styles.heroBg}
+               ${styles[homeStyle]}`
+            }
             data-test="heroImage"
             style={
                {backgroundImage: `linear-gradient(

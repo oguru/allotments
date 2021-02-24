@@ -22,25 +22,30 @@ const Hero = (props) => {
    const [typingDone, setTypingDone] = useState("");
 
    Hero.propTypes = {
-      content: PropTypes.object,
-      heroSubtitle: PropTypes.string,
-      heroTitle: PropTypes.string,
-      homepageText: PropTypes.string,
-      homeHero: PropTypes.bool,
-      image: PropTypes.string,
-      imageSm: PropTypes.string,
-      imageTint: PropTypes.number
+      content: PropTypes.shape({
+         heroSubtitle: PropTypes.string,
+         heroTitle: PropTypes.string.isRequired,
+         homepageText: PropTypes.string,
+         image: PropTypes.string.isRequired,
+         imageSm: PropTypes.string,
+         imageTint: PropTypes.number
+      }),
+      homeHero: PropTypes.bool
    };
 
    const homeStyles = homeHero ? "homeStyles" : "";
 
    return (
       <>
-         <div className={`
-            ${styles.heroCont}
-            ${styles[homeStyles]}`}
+         <div
+            className={`
+               ${styles.heroCont}
+               ${styles[homeStyles]}
+            `}
+            data-test="heroCont"
          >
             <HeroImage
+               homeStyle={homeHero ? "homeStyle" : ""}
                imageTint={imageTint}
                src={image}
                srcSm={imageSm}
@@ -50,7 +55,10 @@ const Hero = (props) => {
                container`}
             >
                <div className={styles.typistCont}>
-                  <h1 className={styles.hiddenText}>
+                  <h1
+                     className={styles.hiddenText}
+                     data-test="hiddenText"
+                  >
                      {heroTitle}
                   </h1>
                   <Typist
@@ -63,14 +71,22 @@ const Hero = (props) => {
                      onTypingDone={() => setTypingDone("fadeIn")}
                      startDelay={500}
                   >
-                     <h1>{heroTitle}</h1>
+                     <h1 data-test="heroHeadText">
+                        {heroTitle}
+                     </h1>
                   </Typist>
                </div>
-               <h4 className={styles[typingDone]}>
+               <h4
+                  className={styles[typingDone]}
+                  data-test="heroSubText"
+               >
                   {heroSubtitle}
                </h4>
-               <h5 className={`${styles[typingDone]}`}>
-                  {homepageText || ""}
+               <h5
+                  className={styles[typingDone]}
+                  data-test="heroHomeText"
+               >
+                  {homepageText}
                </h5>
             </div>
          </div>

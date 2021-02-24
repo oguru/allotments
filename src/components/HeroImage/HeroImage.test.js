@@ -9,16 +9,19 @@ import srcSm from "../../images/dana-devolk-n_0wi_oruce-unsplash-sm.jpg";
 
 describe("HeroImage tests", () => {
    let component;
-   const testProps = {
-      imageTint: 0.5,
-      src,
-      srcSm
-   };
+   let testProps;
 
    beforeEach(() => {
-      global.loadImageWithPromise = () => Promise.resolve();
+      testProps = {
+         homeStyle: "homeStyle",
+         imageTint: 0.5,
+         src,
+         srcSm
+      };
+
       component = mount(
          <HeroImage
+            homeStyle={testProps.homeStyle}
             imageTint={testProps.imageTint}
             src={testProps.src}
             srcSm={testProps.srcSm}
@@ -27,13 +30,23 @@ describe("HeroImage tests", () => {
    });
 
    it("should render without error", () => {
-      expect(findByTestAttr(component, "heroImage").length).toBe(2);
+      expect(findByTestAttr(component, "heroImage")
+         .length)
+         .toBe(2);
    });
 
    test("HeroImage PropTypes check should not throw a warning", () => {
       const propsErr = checkProps(HeroImage, testProps);
 
       expect(propsErr).toBeUndefined();
+   });
+
+   it("should throw an error if src prop is missing", () => {
+      testProps.src = null;
+      const propsErr = checkProps(HeroImage, testProps);
+
+      expect(propsErr).toBeTruthy();
+
    });
 
    it("should match the snapshot", () => {
@@ -74,70 +87,6 @@ describe("HeroImage tests", () => {
       expect(lgBgStyle).toEqual(lgBgString);
    });
 
-   const tick = () => {
-      return new Promise(resolve => {
-         setTimeout(resolve, 0);
-      });
-   };
-
-   global.loadImageWithPromise = () => Promise.resolve();
-
-   it("should make the opacity of the small image 0 once the large image has loaded", async () => {
-      // global.Image = class {
-      //    constructor() {
-      //       setTimeout(() => {
-      //          this.onload();
-      //       }, 10);
-      //    }
-      // };
-
-      const opacityStyle = findByTestAttr(
-         component, "heroImage")
-         .at(0)
-         .props()
-         .style
-         .opacity;
-
-      const opacityTestStr = findByTestAttr(
-         component, "heroImage")
-         .at(0)
-         .props()
-         .style
-         .opacity
-         .replace(/ /gu, "");
-
-      const wrapper = findByTestAttr(
-         component, "heroImage")
-         .at(0)
-         .props();
-      // console.error(wrapper);
-
-      // await tick();
-      // component.update();
-      // component.setProps({});
-
-      // console.error("opacity: ", findByTestAttr(
-      //    component, "heroImage")
-      //    .at(0)
-      //    .props()
-      //    .style
-      //    .opacity
-      // );
-
-      // setImmediate(() => {
-      //    // within `setImmediate` all of the promises have been exhausted
-      //    expect(findByTestAttr(
-      //       component, "heroImage")
-      //       .at(0)
-      //       .props()
-      //       .style
-      //       .opacity).toBe("0");
-
-      //    // have to call `done` here to let Jest know the test is done
-      //    done();
-      // });
-   });
-
    it("should default to 0.3 opacity if no imageTint prop is provided", () => {
       component.setProps({imageTint: null});
 
@@ -171,5 +120,12 @@ describe("HeroImage tests", () => {
 
       expect(smBgStyle).toBe(smBgString);
       expect(lgBgStyle).toBe(lgBgString);
+   });
+
+   it("should have homeStyle class if homeStyle prop is provided", () => {
+      expect(findByTestAttr(component, "heroImage")
+         .at(0)
+         .hasClass("homeStyle"))
+         .toBe(true);
    });
 });

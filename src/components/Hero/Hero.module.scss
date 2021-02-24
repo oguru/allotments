@@ -11,6 +11,7 @@
 .heroCont {
     color: white;
     margin: 0.5rem 0;
+    overflow: hidden;
     padding: 2rem 0;
     position: relative;
        
@@ -19,7 +20,6 @@
         z-index: 2;
 
         .typistCont {
-            // margin-bottom: 2rem;
             position: relative;
 
             .hiddenText {
@@ -54,7 +54,6 @@
         h1 {
             font-size: 1.625rem;
             display: inline;
-            // transition:  0.2s;
         }
 
         h1 + span {
@@ -74,25 +73,6 @@
         }
     }
 }
-
-// .homeHero {
-//     transform:scale(1.2);
-//     overflow: hidden;
-// }
-// .hero > .overlay {
-//     position: absolute;
-//     top: 0;
-//     bottom: 0;
-//     left: 0;
-//     right: 0;
-//     z-index: 1;
-// }
-
-// .hero > .inner {
-//     position: relative;
-//     z-index: 2;
-// }
-
 
 @include media-breakpoint-up(sm) {
     .heroCont {

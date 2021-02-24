@@ -1,17 +1,17 @@
 /* eslint-disable function-paren-newline */
-import {checkProps, findByTestAttr} from "../utils/utils";
+import {mount, render, shallow} from "enzyme";
 import App from "./App";
 import MatchMediaMock from "jest-matchmedia-mock";
 import {MemoryRouter} from "react-router-dom";
 import React from "react";
-import {render} from "@testing-library/react";
-import {mount, shallow} from "enzyme";
+import {findByTestAttr} from "../utils/utils";
+
+const matchMedia = new MatchMediaMock();
 
 describe("App shallow tests", () => {
    let component;
 
    beforeEach(() => {
-      const matchMedia = new MatchMediaMock();
       component = shallow(
          <MemoryRouter>
             <App/>
@@ -25,11 +25,15 @@ describe("App shallow tests", () => {
    });
 
    it("should contain a footer", () => {
-      expect(findByTestAttr(component, "footer").length).toBe(1);
+      expect(findByTestAttr(component, "footer")
+         .length)
+         .toBe(1);
    });
 
    it("should contain a navbar", () => {
-      expect(component.find("NavBar").length).toBe(1);
+      expect(component.find("NavBar")
+         .length)
+         .toBe(1);
    });
 });
 
@@ -37,7 +41,6 @@ describe("App mount tests", () => {
    let component;
 
    beforeEach(() => {
-      const matchMedia = new MatchMediaMock();
       component = mount(
          <MemoryRouter>
             <App/>
@@ -51,11 +54,21 @@ describe("App mount tests", () => {
          .toBeTruthy();
    });
 
-   it("should render one static page component at a time", () => {
+   it("it should show a loader and hide the main content if isLoading === true", () => {
+      expect(findByTestAttr(component, "loaderCont")
+         .length)
+         .toBe(1);
+
       expect(findByTestAttr(component, "pageComponent")
          .find("Transition")
          .children()
          .length)
-         .toBe(1);
+         .toBe(0);
+   });
+
+   it("should have an image pre-cache container with css class to hide", () => {
+      expect(findByTestAttr(component, "preCacheHidden")
+         .hasClass("preCacheHidden"))
+         .toBe(true);
    });
 });

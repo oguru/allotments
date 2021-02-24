@@ -1,6 +1,5 @@
-import React, {
-   useEffect, Suspense, useState, useRef
-} from "react";
+import React, {useEffect, useState, useRef} from "react";
+import {imagesInitial, imagesLg} from "./images/mainImages.js";
 import About from "./pages/About";
 import Articles from "./pages/Articles";
 import CSSTransition from "react-transition-group/CSSTransition";
@@ -9,13 +8,6 @@ import Info from "./pages/Info";
 import NavBar from "./components/NavBar";
 import {Route} from "react-router-dom";
 import styles from "./App.module.scss";
-import homeImg from "./images/randy-fath-ey6g0z_fs0-unsplash.jpg";
-import articlesImg from "./images/dana-devolk-n_0wi_oruce-unsplash.jpg";
-import aboutImg from "./images/prince-abid-iy1k44aa4uq-unsplash.jpg";
-import infoImg from "./images/thom-holmes-3w9aalszgo0-unsplash.jpg";
-import articlesImgSm from "./images/dana-devolk-n_0wi_oruce-unsplash-sm.jpg";
-import aboutImgSm from "./images/prince-abid-iy1k44aa4uq-unsplash-sm.jpg";
-import infoImgSm from "./images/thom-holmes-3w9aalszgo0-unsplash-sm.jpg";
 
 const App = () => {
 
@@ -40,26 +32,6 @@ const App = () => {
          setIsLargeScreen(false);
       }
    };
-
-   const imagesInitial = [
-      {src: homeImg,
-         alt: "home"},
-      {src: infoImgSm,
-         alt: "info"},
-      {src: articlesImgSm,
-         alt: "articles"},
-      {src: aboutImgSm,
-         alt: "about"}
-   ];
-
-   const imagesLg = [
-      {src: infoImg,
-         alt: "info"},
-      {src: articlesImg,
-         alt: "articles"},
-      {src: aboutImg,
-         alt: "about"}
-   ];
 
    const routes = [
       {
@@ -100,35 +72,40 @@ const App = () => {
    const transitionTime = isLargeScreen ? 400 : 800;
 
    return (
-      <div className="
-         d-flex
-         flex-column
-         h-100"
-      >
+      <div className={styles.app}>
          <NavBar
             isLargeScreen={isLargeScreen}
             routes={routes}
          />
-         <section className="
-            d-flex
-            flex-column
-            flex-grow-1
-            justify-content-center
-            align-items-center
-            position-relative"
-         >
-            <div style={{
-               display: "none"
-            }}>
-               {imagesInitial.map(img => <img src={img.src} onLoad={imageLoaded} key={img.src} alt="" />)}
+         <section>
+            <div
+               className={styles.preCacheHidden}
+               data-test="preCacheHidden"
+            >
+               {imagesInitial.map(img => (
+                  <img
+                     src={img.src}
+                     onLoad={imageLoaded}
+                     key={img.src}
+                     alt={img.alt}
+                  />
+               ))}
 
-               {isLoading ? null :
-                  imagesLg.map(img => <img src={img.src} key={img.src} alt="" />)
+               {isLoading ?
+                  null :
+                  imagesLg.map(img => (
+                     <img
+                        src={img.src}
+                        key={img.src}
+                        alt={img.alt}
+                     />
+                  ))
                }
             </div>
             {isLoading ?
                <div
                   className={styles.loaderCont}
+                  data-test="loaderCont"
                >
                   <span className={styles.loader}>
                      <span></span>
@@ -142,12 +119,7 @@ const App = () => {
                   >
                      {({match}) => (
                         <div
-                           className="
-                     d-flex
-                     flex-column
-                     position-absolute
-                     w-100
-                     h-100"
+                           className={styles.mainBody}
                            data-test="pageComponent"
                         >
                            <CSSTransition
@@ -165,10 +137,7 @@ const App = () => {
             }
          </section>
          <footer
-            className={`
-               ${styles.footerStyles}
-               `
-            }
+            className={styles.footerStyles}
             data-test="footer"
          >
             <p>
