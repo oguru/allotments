@@ -1,0 +1,31 @@
+.blockImg {
+    display: block;
+    height: 200px;
+    margin: 2rem auto;
+    object-fit: cover;
+    width: 100%;
+}
+
+.floatLeft,
+.floatRight {
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.floatLeft {
+    float: left;
+    margin-right: 1.5rem;
+}
+
+.floatRight {
+    float: right;
+    margin-left: 1.5rem;
+}
+
+@media only screen and (min-width: 768px) {
+    .floatLeft,
+    .floatRight {
+        margin-bottom: 0.25rem;
+        width: 33%;
+    }
+}

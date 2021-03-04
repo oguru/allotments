@@ -1,0 +1,39 @@
+.articlesCont {
+    // height: 100%;
+    overflow: hidden;
+    width: 100vw;
+    position: relative;
+
+    .articleBoxes {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding-bottom: 1rem;
+        padding-top: 1rem;
+        transition: 1s;
+        min-width: 100%;
+    }
+
+    .boxesIn {
+        transform: translateX(0);
+    }
+
+    .boxesOut {
+        transform: translateX(-100vw);
+    }
+
+    .articleCont {
+        min-width: 100%;
+        transition: 1s;
+    }
+
+    .articleIn {
+        transform: translateX(0);
+    }
+
+    .articleOut {
+        transform: translateX(100vw);
+    }
+}

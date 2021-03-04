@@ -1,0 +1,99 @@
+@import "../../variables.scss";
+
+.articleBox {
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    height: 250px;
+    overflow: hidden;
+    margin: 1rem;
+    position: relative;
+    width: 200px;
+
+    .articleBoxBot.articlePreview {
+        transform: scaleY(100%) translateY(0);
+    }
+
+    .articleBoxBot {
+        // background-color: $secondary-color;
+        background: linear-gradient(180deg, rgba(243,245,242,0) 0%, rgba(243,245,242,1) 15%, rgba(243,245,242,1) 30%, rgba(226,136,3,1) 30%, rgba(226,136,3,1) 100%);
+        bottom: 0;
+        height: 50px;
+        position: absolute;
+        transform: scaleY(50%) translateY(50%);
+        transition: 0.4s;
+        width: 100%;
+
+        p.articlePreview {
+            transform: scaleY(100%) translateY(0);
+        }
+
+        p {
+            color: $bg-color;
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 40px;
+            text-align: center;
+            transition: 0.4s;
+            transform: scaleY(200%) translateY(20px);
+            width: 200px;
+        }
+    }
+
+    .articleBoxText.articlePreview {
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+        transform: translateY(-50px);
+    }
+
+    .articleBoxText {
+        background-color: $bg-color;
+        border-radius: 0;
+        cursor: pointer;
+        font-size: 16px;
+        height: 175px;
+        line-height: 1.25rem;
+        padding: 0.5rem;
+        // text-overflow: ellipsis;
+        transition: 0.5s;
+        transform: translateY(0);
+        // pointer-events: none;
+        position: relative;
+        
+        p {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            // pointer-events: none;
+            // text-overflow: ellipsis;
+        }
+
+        h3 {
+            // pointer-events: none;
+            // display: flex;
+            // align-items: center;
+            // margin: auto;
+            font-size: 1.375rem;
+            // height: 115px;
+            text-align: center;
+            width: 100%;
+        }
+    }
+
+    .articleImg.articlePreview {
+        transform: scale(110%);
+    }
+
+    .articleImg {
+            // position: absolute;
+            cursor: pointer;
+            min-width: 100%;
+            height: 50%;
+            overflow: hidden;
+            transition: 0.6s;
+            // bottom: 0;
+            // top: 0;
+            // left: -30%;
+            // right: 0;
+            z-index: -1;
+    }
+}

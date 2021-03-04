@@ -1,3 +1,4 @@
+import "./global.scss";
 import React, {useEffect, useState, useRef} from "react";
 import {imagesInitial, imagesLg} from "./images/mainImages.js";
 import About from "./pages/About";
@@ -7,12 +8,18 @@ import Home from "./pages/Home";
 import Info from "./pages/Info";
 import NavBar from "./components/NavBar";
 import {Route} from "react-router-dom";
+import {articleData} from "./data/articleData.js";
 import styles from "./App.module.scss";
 
 const App = () => {
 
    const [isLargeScreen, setIsLargeScreen] = useState(true);
    const [isLoading, setIsLoading] = useState(true);
+   const [articlesJsx, setArticlesJsx] = useState([]);
+
+   useEffect(() => {
+      getArticlesJsx();
+   }, []);
 
    useEffect(() => {
       const mediaQuery = window.matchMedia("(min-width: 768px)");
@@ -31,6 +38,59 @@ const App = () => {
       } else {
          setIsLargeScreen(false);
       }
+   };
+
+   const buildEl = el => {
+      if (el.floatImage) {
+         return (
+            <>
+               <img alt={el.alt} className={`float${el.floatDir}`} src={el.floatImage} />
+               {el.content.map(subEl =>
+                  // <div key={subEl.text || subEl.li}>
+                  buildEl(subEl)
+                  // </div>
+               )}
+            </>
+         );
+      }
+
+      return (
+         <>
+            {el.subHeading
+               && <h5>{el.subHeading}</h5>
+            }
+            {el.li
+               && <ul>
+                  {el.li.map(li => <li key={li}>{li}</li>)}
+               </ul>
+            }
+            {el.text
+               && <p>{el.text}</p>
+            }
+            {el.image
+               && <img alt={el.alt} className="blockImg" src={el.image} />
+            }
+         </>
+      );
+   };
+
+   const getArticlesJsx = () => {
+      const articles = articleData.map(article => {
+         return [article.id, {
+            id: article.id,
+            mainImg: article.mainImg,
+            mainImgThumb: article.mainImgThumb,
+            mainImgAlt: article.mainImgAlt,
+            title: article.title,
+            initText: <p>{article.content[0].text}</p>,
+            content: article.content.map(el =>
+               // <div key={el.id}>
+               buildEl(el)
+               // </div>
+            )
+         }];
+      });
+      setArticlesJsx(articles);
    };
 
    const routes = [
@@ -54,7 +114,7 @@ const App = () => {
 
    const components = {
       "About": <About />,
-      "Articles": <Articles />,
+      "Articles": <Articles articlesJsx={articlesJsx} />,
       "Home": <Home />,
       "Info": <Info />
    };
@@ -77,7 +137,13 @@ const App = () => {
             isLargeScreen={isLargeScreen}
             routes={routes}
          />
-         <section>
+         {/* {articlesJsx.map(el => {
+            return <>
+               {el[1].title}
+               {el[1].content}
+            </>;
+         })} */}
+         <section className={styles.mainBody}>
             <div
                className={styles.preCacheHidden}
                data-test="preCacheHidden"
@@ -119,7 +185,7 @@ const App = () => {
                   >
                      {({match}) => (
                         <div
-                           className={styles.mainBody}
+                           className={styles.mainPage}
                            data-test="pageComponent"
                         >
                            <CSSTransition
@@ -128,7 +194,9 @@ const App = () => {
                               timeout={transitionTime}
                               unmountOnExit
                            >
-                              {components[route.name]}
+                              <div className={styles.pageCont}>
+                                 {components[route.name]}
+                              </div>
                            </CSSTransition>
                         </div>
                      )}
