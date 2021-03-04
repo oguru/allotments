@@ -82,7 +82,7 @@ const App = () => {
             mainImgThumb: article.mainImgThumb,
             mainImgAlt: article.mainImgAlt,
             title: article.title,
-            initText: <p>{article.content[0].text}</p>,
+            initText: article.content[0].text,
             content: article.content.map(el =>
                // <div key={el.id}>
                buildEl(el)

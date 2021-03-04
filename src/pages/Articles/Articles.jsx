@@ -33,8 +33,8 @@ const Articles = (props) => {
    };
 
    const showArticle = (index) => {
-      setArticleVisible(true);
       setCurrentArticle(articlesJsx[index]);
+      setArticleVisible(true);
    };
 
    const articleBoxes = articlesJsx.map((article, index) => (
@@ -55,7 +55,6 @@ const Articles = (props) => {
          />
          <div className={`${styles.articlesCont} container`}>
             <section
-               onClick={() => setArticleVisible(true)}
                className={`
                   ${styles.articleBoxes} 
                   ${articleVisible ? styles.boxesOut : styles.boxesIn}
@@ -71,10 +70,13 @@ const Articles = (props) => {
                }
                // onClick={() => setArticleVisible(false)}
             >
+               {/* {currentArticle[0][1] ? */}
                <Article
                   // title={}
                   content={currentArticle[0][1]}
                />
+               {/* : null */}
+               {/* } */}
             </section>
          </div>
 
