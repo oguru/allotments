@@ -1,33 +1,48 @@
 .articlesCont {
     // height: 100%;
-    overflow: hidden;
+    // flex-grow: 1;
+    // overflow: hidden;
+    // overflow-x: hidden;
+    // overflow-y: auto;
     width: 100vw;
     position: relative;
 
-    .articleBoxes {
-        position: absolute;
-        // display: none;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        padding-bottom: 1rem;
-        padding-top: 1rem;
-        transition: 1s;
-        min-width: 100%;
-    }
-
-    .boxesIn {
+    .articlesMain.boxesIn {
         transform: translateX(0);
     }
 
-    .boxesOut {
+    .articlesMain.boxesOut {
+        opacity: 0;
         transform: translateX(-100vw);
     }
 
-    .articleCont {
-        min-width: 100%;
+    .articlesMain {
+        // position: absolute;
+        // display: none;
+        height: 100%;
+        overflow: auto;
+        padding-bottom: 1rem;
         transition: 1s;
+        min-width: 100%;
+
+        .articleBoxes {
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding-top: 1rem;
+        }
+    }
+
+    .articleCont {
+        left: 0;
+        min-width: 100%;
+        overflow: auto;
+        position: absolute;
+        top: 0;
+        transition: 1s;        
+        width: 100vw;
     }
 
     .articleIn {
@@ -35,6 +50,7 @@
     }
 
     .articleOut {
+        opacity: 0;
         transform: translateX(100vw);
     }
 }

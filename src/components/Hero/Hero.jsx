@@ -11,12 +11,13 @@ const Hero = (props) => {
       content: {
          heroSubtitle,
          heroTitle,
-         homepageText,
+         smallText,
          image,
          imageSm,
          imageTint
       },
-      homeHero
+      homeHero,
+      staticTxt
    } = props;
 
    const [typingDone, setTypingDone] = useState("");
@@ -25,12 +26,13 @@ const Hero = (props) => {
       content: PropTypes.shape({
          heroSubtitle: PropTypes.string,
          heroTitle: PropTypes.string.isRequired,
-         homepageText: PropTypes.string,
+         smallText: PropTypes.string,
          image: PropTypes.string.isRequired,
          imageSm: PropTypes.string,
          imageTint: PropTypes.number
       }),
-      homeHero: PropTypes.bool
+      homeHero: PropTypes.bool,
+      staticTxt: PropTypes.bool
    };
 
    const homeStyles = homeHero ? "homeStyles" : "";
@@ -54,39 +56,47 @@ const Hero = (props) => {
                ${styles.heroText} 
                container`}
             >
-               <div className={styles.typistCont}>
-                  <h1
-                     className={styles.hiddenText}
-                     data-test="hiddenText"
-                  >
-                     {heroTitle}
-                  </h1>
-                  <Typist
-                     avgTypingDelay={70}
-                     className={styles.typistEl}
-                     cursor={{
-                        hideWhenDone: true,
-                        hideWhenDoneDelay: 1400
-                     }}
-                     onTypingDone={() => setTypingDone("fadeIn")}
-                     startDelay={500}
-                  >
-                     <h1 data-test="heroHeadText">
+               {!staticTxt ? (
+                  <div className={styles.typistCont}>
+                     <h1
+                        className={styles.hiddenText}
+                        data-test="hiddenText"
+                     >
                         {heroTitle}
                      </h1>
-                  </Typist>
-               </div>
+                     <Typist
+                        avgTypingDelay={70}
+                        className={styles.typistEl}
+                        cursor={{
+                           hideWhenDone: true,
+                           hideWhenDoneDelay: 1400
+                        }}
+                        onTypingDone={() => setTypingDone("fadeIn")}
+                        startDelay={500}
+                     >
+                        <h1 data-test="heroHeadText">
+                           {heroTitle}
+                        </h1>
+                     </Typist>
+                  </div>
+               ) : null}
                <h4
-                  className={styles[typingDone]}
+                  className={staticTxt ?
+                     styles.staticTxt :
+                     styles[typingDone]
+                  }
                   data-test="heroSubText"
                >
                   {heroSubtitle}
                </h4>
                <h5
-                  className={styles[typingDone]}
+                  className={`
+                     ${staticTxt ? styles.staticTxt : styles[typingDone]} 
+                     ${homeHero ? styles.homeText : styles.smallText}`
+                  }
                   data-test="heroHomeText"
                >
-                  {homepageText}
+                  {smallText}
                </h5>
             </div>
          </div>

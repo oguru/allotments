@@ -11,6 +11,7 @@
 
 .heroCont {
     color: white;
+    flex-grow: 1;
     // margin: 0.5rem 0;
     overflow: hidden;
     padding: 2rem 0;
@@ -52,6 +53,11 @@
             transition-delay: 3.5s;
         }
 
+        .staticTxt {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         h1 {
             font-size: 1.625rem;
             display: inline;
@@ -67,6 +73,11 @@
 
         h4 {
             font-size: 1.25rem;
+        }
+
+        h5.smallText {
+            font-size: 0.875rem;
+            font-weight: normal;
         }
 
         h5 {

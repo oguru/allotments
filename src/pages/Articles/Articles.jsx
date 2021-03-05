@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import Article from "../../components/Article";
 import ArticleBox from "../../components/ArticleBox";
 import CSSTransition from "react-transition-group/CSSTransition";
@@ -12,17 +12,28 @@ import styles from "./Articles.module.scss";
 const Articles = (props) => {
    const {articlesJsx} = props;
 
+   const articleRef = useRef(null);
+   const boxesRef = useRef(null);
+
    Articles.propTypes = {
       articlesJsx: PropTypes.array
    };
 
    // const [state, dispatch] = useReducer(reducer, {}, init);
-   const [currentArticle, setCurrentArticle] = useState([articlesJsx[0]]);
+   const [currentArticle, setCurrentArticle] = useState(articlesJsx[0]);
    const [articleVisible, setArticleVisible] = useState(false);
+   const [articleHeight, setArticleHeight] = useState("unset");
 
-   // const reducer = (state, action) => {
+   useEffect(() => {
+      if (boxesRef.current) {
+         if (articleVisible) {
+            setArticleHeight("unset");
 
-   // };
+         } else {
+            setArticleHeight(`${boxesRef.current.offsetHeight}px`);
+         }
+      }
+   }, [articleVisible]);
 
    const heroContent = {
       heroTitle: "Articles & Tips",
@@ -35,6 +46,7 @@ const Articles = (props) => {
    const showArticle = (index) => {
       setCurrentArticle(articlesJsx[index]);
       setArticleVisible(true);
+      articleRef.current.scrollIntoView();
    };
 
    const articleBoxes = articlesJsx.map((article, index) => (
@@ -48,35 +60,41 @@ const Articles = (props) => {
       />
    ));
 
+   console.log(currentArticle[1]);
+
    return (
       <>
-         <Hero
-            content={heroContent}
-         />
-         <div className={`${styles.articlesCont} container`}>
+         <div
+            className={`${styles.articlesCont}`}
+            ref={articleRef}
+         >
             <section
                className={`
-                  ${styles.articleBoxes} 
-                  ${articleVisible ? styles.boxesOut : styles.boxesIn}
-                  container`
+                  ${styles.articlesMain} 
+                  ${articleVisible ? styles.boxesOut : styles.boxesIn}`
                }
+               ref={boxesRef}
             >
-               {articleBoxes}
+               <Hero
+                  content={heroContent}
+               />
+               <div className={`${styles.articleBoxes} container`}>
+                  {articleBoxes}
+               </div>
             </section>
+
             <section
                className={`
                   ${styles.articleCont}
                   ${articleVisible ? styles.articleIn : styles.articleOut}`
                }
-               // onClick={() => setArticleVisible(false)}
+               style={{height: articleHeight}}
             >
-               {/* {currentArticle[0][1] ? */}
                <Article
                   // title={}
-                  content={currentArticle[0][1]}
+                  content={currentArticle[1]}
+                  closeArticle={() => setArticleVisible(false)}
                />
-               {/* : null */}
-               {/* } */}
             </section>
          </div>
 

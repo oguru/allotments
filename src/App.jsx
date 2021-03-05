@@ -56,19 +56,19 @@ const App = () => {
 
       return (
          <>
-            {el.subHeading
-               && <h5>{el.subHeading}</h5>
+            {el.subHeading &&
+               <h5>{el.subHeading}</h5>
             }
-            {el.li
-               && <ul>
+            {el.li &&
+               <ul>
                   {el.li.map(li => <li key={li}>{li}</li>)}
                </ul>
             }
-            {el.text
-               && <p>{el.text}</p>
+            {el.text &&
+               <p>{el.text}</p>
             }
-            {el.image
-               && <img alt={el.alt} className="blockImg" src={el.image} />
+            {el.image &&
+               <img alt={el.alt} className="blockImg" src={el.image} />
             }
          </>
       );
@@ -77,6 +77,7 @@ const App = () => {
    const getArticlesJsx = () => {
       const articles = articleData.map(article => {
          return [article.id, {
+            credit: article.credit,
             id: article.id,
             mainImg: article.mainImg,
             mainImgThumb: article.mainImgThumb,

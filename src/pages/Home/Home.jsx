@@ -7,7 +7,7 @@ const Home = () => {
    const heroContent = {
       heroTitle: "Welcome to Stechford Allotments",
       heroSubtitle: "Your gateway to healthier living",
-      homepageText: "Click on a link in the navigation bar to learn more or to contact us",
+      smallText: "Click on a link in the navigation bar to learn more or to contact us",
       image: homeImg,
       imageTint: 0.3
    };

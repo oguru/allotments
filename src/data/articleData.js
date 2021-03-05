@@ -6,6 +6,7 @@ const articleData = [
    {
       id: 1,
       title: "Preparing A New Garden Plot",
+      credit: "Article provided by homegardenseedassociation.com",
       mainImg: prep1img,
       mainImgThumb: prep1thumb,
       mainImgAlt: "Dug soil",
@@ -61,6 +62,7 @@ const articleData = [
    {
       id: 2,
       title: "Testing this new one",
+      credit: "Article provided by homegardenseedassociation.com",
       mainImg: prep1img,
       mainImgThumb: prep1thumb,
       mainImgAlt: "Dug soil",
@@ -116,6 +118,7 @@ const articleData = [
    {
       id: 3,
       title: "Doing another test properly in the mean time",
+      credit: "Article provided by homegardenseedassociation.com",
       mainImg: prep1img,
       mainImgThumb: prep1thumb,
       mainImgAlt: "Dug soil",
