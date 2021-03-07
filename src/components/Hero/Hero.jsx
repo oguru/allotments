@@ -79,7 +79,11 @@ const Hero = (props) => {
                         </h1>
                      </Typist>
                   </div>
-               ) : null}
+               ) :
+                  <h1 data-test="heroHeadText">
+                     {heroTitle}
+                  </h1>
+               }
                <h4
                   className={staticTxt ?
                      styles.staticTxt :

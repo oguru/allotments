@@ -23,6 +23,7 @@ const Articles = (props) => {
    const [currentArticle, setCurrentArticle] = useState(articlesJsx[0]);
    const [articleVisible, setArticleVisible] = useState(false);
    const [articleHeight, setArticleHeight] = useState("unset");
+   // const [articleViewed, setArticleViewed] = useState(false);
 
    useEffect(() => {
       if (boxesRef.current) {
@@ -47,6 +48,7 @@ const Articles = (props) => {
       setCurrentArticle(articlesJsx[index]);
       setArticleVisible(true);
       articleRef.current.scrollIntoView();
+      // setArticleViewed(true);
    };
 
    const articleBoxes = articlesJsx.map((article, index) => (
@@ -77,6 +79,7 @@ const Articles = (props) => {
             >
                <Hero
                   content={heroContent}
+                  // staticText={articleViewed}
                />
                <div className={`${styles.articleBoxes} container`}>
                   {articleBoxes}
