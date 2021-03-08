@@ -4,6 +4,7 @@ import ArticleBox from "../../components/ArticleBox";
 import CSSTransition from "react-transition-group/CSSTransition";
 import Hero from "../../components/Hero";
 import PropTypes from "prop-types";
+import {Route} from "react-router-dom";
 // import {articleData} from "../../data/articleData.js";
 import articlesImg from "../../images/dana-devolk-n_0wi_oruce-unsplash.jpg";
 import articlesImgSm from "../../images/dana-devolk-n_0wi_oruce-unsplash-sm.jpg";
@@ -12,8 +13,8 @@ import styles from "./Articles.module.scss";
 const Articles = (props) => {
    const {articlesJsx} = props;
 
-   const articleRef = useRef(null);
-   const boxesRef = useRef(null);
+   // const articleRef = useRef(null);
+   // const boxesRef = useRef(null);
 
    Articles.propTypes = {
       articlesJsx: PropTypes.array
@@ -22,19 +23,19 @@ const Articles = (props) => {
    // const [state, dispatch] = useReducer(reducer, {}, init);
    const [currentArticle, setCurrentArticle] = useState(articlesJsx[0]);
    const [articleVisible, setArticleVisible] = useState(false);
-   const [articleHeight, setArticleHeight] = useState("unset");
-   // const [articleViewed, setArticleViewed] = useState(false);
+   // const [articleHeight, setArticleHeight] = useState("unset");
+   const [articleViewed, setArticleViewed] = useState(false);
 
-   useEffect(() => {
-      if (boxesRef.current) {
-         if (articleVisible) {
-            setArticleHeight("unset");
+   // useEffect(() => {
+   //    if (boxesRef.current) {
+   //       if (articleVisible) {
+   //          setArticleHeight("unset");
 
-         } else {
-            setArticleHeight(`${boxesRef.current.offsetHeight}px`);
-         }
-      }
-   }, [articleVisible]);
+   //       } else {
+   //          setArticleHeight(`${boxesRef.current.offsetHeight}px`);
+   //       }
+   //    }
+   // }, [articleVisible]);
 
    const heroContent = {
       heroTitle: "Articles & Tips",
@@ -47,8 +48,8 @@ const Articles = (props) => {
    const showArticle = (index) => {
       setCurrentArticle(articlesJsx[index]);
       setArticleVisible(true);
-      articleRef.current.scrollIntoView();
-      // setArticleViewed(true);
+      // articleRef.current.scrollIntoView();
+      setArticleViewed(true);
    };
 
    const articleBoxes = articlesJsx.map((article, index) => (
@@ -62,43 +63,55 @@ const Articles = (props) => {
       />
    ));
 
-   console.log(currentArticle[1]);
+   const animDir = articleVisible ? "slideLeft" : "slideRight";
 
    return (
       <>
          <div
-            className={`${styles.articlesCont}`}
-            ref={articleRef}
+            className={`${styles.articlesCont} ${styles[animDir]}`}
+            // ref={articleRef}
          >
-            <section
-               className={`
-                  ${styles.articlesMain} 
-                  ${articleVisible ? styles.boxesOut : styles.boxesIn}`
-               }
-               ref={boxesRef}
-            >
-               <Hero
-                  content={heroContent}
-                  // staticText={articleViewed}
-               />
-               <div className={`${styles.articleBoxes} container`}>
-                  {articleBoxes}
-               </div>
-            </section>
 
-            <section
-               className={`
-                  ${styles.articleCont}
-                  ${articleVisible ? styles.articleIn : styles.articleOut}`
-               }
-               style={{height: articleHeight}}
+            <CSSTransition
+               classNames={{...styles}}
+               in={!articleVisible}
+               timeout={1000}
+               unmountOnExit
             >
-               <Article
-                  // title={}
-                  content={currentArticle[1]}
-                  closeArticle={() => setArticleVisible(false)}
-               />
-            </section>
+               <section
+                  className={`${styles.articlesMain}`}
+                  // ref={boxesRef}
+               >
+                  <Hero
+                     content={heroContent}
+                     staticTxt={articleViewed}
+                  />
+                  <div className={`${styles.articleBoxes} container`}>
+                     {articleBoxes}
+                  </div>
+               </section>
+            </CSSTransition>
+
+            <CSSTransition
+               classNames={{...styles}}
+               in={articleVisible}
+               timeout={1000}
+               unmountOnExit
+            >
+               <section
+                  className={`
+                           ${styles.articleCont}
+                  `
+                  }
+                  // style={{height: articleHeight}}
+               >
+                  <Article
+                     content={currentArticle[1]}
+                     closeArticle={() => setArticleVisible(false)}
+                  />
+               </section>
+            </CSSTransition>
+
          </div>
 
       </>

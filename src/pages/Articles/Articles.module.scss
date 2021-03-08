@@ -1,3 +1,87 @@
+.articlesCont.slideLeft {
+    // .articlesMain.enter {
+    //     opacity: 0;
+    //     transform: translateX(-100vw);
+    //     transition: 1s;
+    //   }
+      
+    // .articlesMain.enterActive {
+    //     opacity: 1;
+    //     transform: translateX(0);
+    //     transition: 1s;
+    //   }
+
+    //   .articlesMain.enterDone {
+    //     opacity: 1;
+    //     transform: translateX(0);
+    //     transition: 1s;
+    //   }
+
+    .articlesMain.exit {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      
+      .articlesMain.exitActive {
+        opacity: 0;
+        transform: translateX(-100vw);
+        transition: 1s;
+      }
+
+      .articlesMain.exitDone {
+        opacity: 0;
+        transform: translateX(-100vw);
+      }
+  
+      .articleCont.enter {
+        opacity: 0;
+        transform: translateX(100vw);
+      }
+      
+      .articleCont.enterActive {
+        opacity: 1;
+        transform: translateX(0);
+        transition: 1s;
+      }
+
+      .articleCont.enterDone {
+        opacity: 1;
+        transform: translateX(0);
+      }
+}
+
+.articlesCont.slideRight {
+    .articlesMain.enter {
+        opacity: 0;
+        transform: translateX(-100vw);
+        transition: 1s;
+    }
+
+    .articlesMain.enterActive {
+        opacity: 1;
+        transform: translateX(0);
+        transition: 1s;
+    }
+
+    .articleCont.exit {
+        opacity: 1;
+        transform: translateX(0);
+        transition: 1s;
+    }
+
+    .articleCont.exitActive {
+        opacity: 0;
+        transform: translateX(100vw);
+        transition: 1s;
+    }
+
+    .articleCont.exitDone {
+        opacity: 0;
+        transform: translateX(100vw);
+        transition: 1s;
+    }
+}
+
 .articlesCont {
     // height: 100%;
     // flex-grow: 1;
@@ -7,14 +91,14 @@
     width: 100vw;
     position: relative;
 
-    .articlesMain.boxesIn {
-        transform: translateX(0);
-    }
+    // .articlesMain.boxesIn {
+    //     transform: translateX(0);
+    // }
 
-    .articlesMain.boxesOut {
-        opacity: 0;
-        transform: translateX(-100vw);
-    }
+    // .articlesMain.boxesOut {
+    //     opacity: 0;
+    //     transform: translateX(-100vw);
+    // }
 
     .articlesMain {
         // position: absolute;
@@ -41,16 +125,17 @@
         overflow: auto;
         position: absolute;
         top: 0;
+        transform: translateX(100vw);
         transition: 1s;        
         width: 100vw;
     }
 
-    .articleIn {
-        transform: translateX(0);
-    }
+    // .articleIn {
+    //     transform: translateX(0);
+    // }
 
-    .articleOut {
-        opacity: 0;
-        transform: translateX(100vw);
-    }
+    // .articleOut {
+    //     opacity: 0;
+    //     transform: translateX(100vw);
+    // }
 }

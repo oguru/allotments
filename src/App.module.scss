@@ -38,12 +38,24 @@
       transform: translateX(-1.5%);
     }
 
+    .exitDone {
+      opacity: 0;
+      transition: 350ms linear 150ms;
+      transform: translateX(-1.5%);
+    }
+
     .enter {
       opacity: 0;
       transform: translateX(1.5%);
     }
     
     .enterActive {
+      opacity: 1;
+      transition: 300ms linear 500ms;
+      transform: translateX(0);
+    }
+
+    .enterDone {
       opacity: 1;
       transition: 300ms linear 500ms;
       transform: translateX(0);

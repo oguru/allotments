@@ -10,6 +10,7 @@ const articleData = [
       mainImg: prep1img,
       mainImgThumb: prep1thumb,
       mainImgAlt: "Dug soil",
+      path: "/articles/newplot",
       content: [
          {
             text: "Eliminating weeds and getting the soil ready for your flowers and vegetables are important first steps in growing a successful garden. Time spent in preparation reduces the time you'll have to spend maintaining and weeding your garden over the course of the growing season."
@@ -66,6 +67,7 @@ const articleData = [
       mainImg: prep1img,
       mainImgThumb: prep1thumb,
       mainImgAlt: "Dug soil",
+      path: "/articles/newtest",
       content: [
          {
             text: "Eliminating weeds and getting the soil ready for your flowers and vegetables are important first steps in growing a successful garden. Time spent in preparation reduces the time you'll have to spend maintaining and weeding your garden over the course of the growing season."
@@ -122,6 +124,7 @@ const articleData = [
       mainImg: prep1img,
       mainImgThumb: prep1thumb,
       mainImgAlt: "Dug soil",
+      path: "/articles/anothertest",
       content: [
          {
             text: "Eliminating weeds and getting the soil ready for your flowers and vegetables are important first steps in growing a successful garden. Time spent in preparation reduces the time you'll have to spend maintaining and weeding your garden over the course of the growing season."
