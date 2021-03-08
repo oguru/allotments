@@ -16,10 +16,20 @@ const App = () => {
    const [isLargeScreen, setIsLargeScreen] = useState(true);
    const [isLoading, setIsLoading] = useState(true);
    const [articlesJsx, setArticlesJsx] = useState([]);
+   const [scrollPos, saveScrollPos] = useState(0);
+
+   const pageContRef = useRef(null);
 
    useEffect(() => {
       getArticlesJsx();
    }, []);
+
+   // useEffect(() => {
+
+   //    return () => {
+   //       cleanup
+   //    }
+   // }, [checkScrollPos])
 
    useEffect(() => {
       const mediaQuery = window.matchMedia("(min-width: 768px)");
@@ -113,9 +123,23 @@ const App = () => {
       }
    ];
 
+   const setScrollPos = () => {
+      pageContRef.current.scrollTop = scrollPos;
+   };
+
+   const scrollToTop = () => {
+      pageContRef.current.scrollTop = 0;
+   };
+
    const components = {
       "About": <About />,
-      "Articles": <Articles articlesJsx={articlesJsx} />,
+      "Articles":
+         <Articles
+            articlesJsx={articlesJsx}
+            saveScrollPos={() => saveScrollPos(pageContRef.current.scrollTop)}
+            scrollToTop={scrollToTop}
+            setScrollPos={setScrollPos}
+         />,
       "Home": <Home />,
       "Info": <Info />
    };
@@ -131,6 +155,10 @@ const App = () => {
    };
 
    const transitionTime = isLargeScreen ? 400 : 800;
+
+   // const checkScrollPos = () => {
+   //    return pageContRef.current.scrollTop;
+   // };
 
    return (
       <div className={styles.app}>
@@ -195,7 +223,10 @@ const App = () => {
                               timeout={transitionTime}
                               unmountOnExit
                            >
-                              <div className={styles.pageCont}>
+                              <div
+                                 className={styles.pageCont}
+                                 ref={pageContRef}
+                              >
                                  {components[route.name]}
                               </div>
                            </CSSTransition>

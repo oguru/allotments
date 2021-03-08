@@ -11,31 +11,18 @@ import articlesImgSm from "../../images/dana-devolk-n_0wi_oruce-unsplash-sm.jpg"
 import styles from "./Articles.module.scss";
 
 const Articles = (props) => {
-   const {articlesJsx} = props;
-
-   // const articleRef = useRef(null);
-   // const boxesRef = useRef(null);
+   const {articlesJsx, saveScrollPos, scrollToTop, setScrollPos} = props;
 
    Articles.propTypes = {
-      articlesJsx: PropTypes.array
+      articlesJsx: PropTypes.array,
+      saveScrollPos: PropTypes.func,
+      scrollToTop: PropTypes.func,
+      setScrollPos: PropTypes.func
    };
 
-   // const [state, dispatch] = useReducer(reducer, {}, init);
    const [currentArticle, setCurrentArticle] = useState(articlesJsx[0]);
    const [articleVisible, setArticleVisible] = useState(false);
-   // const [articleHeight, setArticleHeight] = useState("unset");
    const [articleViewed, setArticleViewed] = useState(false);
-
-   // useEffect(() => {
-   //    if (boxesRef.current) {
-   //       if (articleVisible) {
-   //          setArticleHeight("unset");
-
-   //       } else {
-   //          setArticleHeight(`${boxesRef.current.offsetHeight}px`);
-   //       }
-   //    }
-   // }, [articleVisible]);
 
    const heroContent = {
       heroTitle: "Articles & Tips",
@@ -47,9 +34,19 @@ const Articles = (props) => {
 
    const showArticle = (index) => {
       setCurrentArticle(articlesJsx[index]);
+      saveScrollPos();
       setArticleVisible(true);
-      // articleRef.current.scrollIntoView();
       setArticleViewed(true);
+      setTimeout(() => {
+         scrollToTop();
+      }, 510);
+   };
+
+   const closeArticle = () => {
+      setArticleVisible(false);
+      setTimeout(() => {
+         setScrollPos();
+      }, 500);
    };
 
    const articleBoxes = articlesJsx.map((article, index) => (
@@ -69,18 +66,15 @@ const Articles = (props) => {
       <>
          <div
             className={`${styles.articlesCont} ${styles[animDir]}`}
-            // ref={articleRef}
          >
 
             <CSSTransition
                classNames={{...styles}}
                in={!articleVisible}
                timeout={1000}
-               unmountOnExit
             >
                <section
                   className={`${styles.articlesMain}`}
-                  // ref={boxesRef}
                >
                   <Hero
                      content={heroContent}
@@ -99,15 +93,11 @@ const Articles = (props) => {
                unmountOnExit
             >
                <section
-                  className={`
-                           ${styles.articleCont}
-                  `
-                  }
-                  // style={{height: articleHeight}}
+                  className={`${styles.articleCont}`}
                >
                   <Article
                      content={currentArticle[1]}
-                     closeArticle={() => setArticleVisible(false)}
+                     closeArticle={() => closeArticle()}
                   />
                </section>
             </CSSTransition>
