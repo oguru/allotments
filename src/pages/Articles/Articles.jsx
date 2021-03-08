@@ -47,7 +47,10 @@ const Articles = (props) => {
    const showArticle = (index) => {
       setCurrentArticle(articlesJsx[index]);
       setArticleVisible(true);
-      articleRef.current.scrollIntoView();
+      setTimeout(() => {
+         articleRef.current.scrollIntoView();
+      }, 250);
+
       // setArticleViewed(true);
    };
 
