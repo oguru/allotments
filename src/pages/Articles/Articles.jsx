@@ -34,9 +34,9 @@ const Articles = (props) => {
 
    const showArticle = (index) => {
       setCurrentArticle(articlesJsx[index]);
-      saveScrollPos();
       setArticleVisible(true);
       setArticleViewed(true);
+      saveScrollPos();
       setTimeout(() => {
          scrollToTop();
       }, 510);

@@ -7,23 +7,22 @@
       
       .articlesMain.exitActive {
         opacity: 0;
-        transform: translateX(-50vw);
+        transform: translateX(-100vw);
         transition-timing-function: ease-in;
       }
 
       .articlesMain.exitDone {
         opacity: 0;
-        transform: translateX(-50vw);
+        transform: translateX(-100vw);
       }
   
       .articleCont.enter {
         opacity: 0;
-        transform: translateX(50vw);
+        transform: translateX(100vw);
       }
       
       .articleCont.enterActive {
         opacity: 1;
-        transition-delay: 0.5s;
         transition-timing-function: ease-out;
         transform: translateX(0);
       }
@@ -37,13 +36,12 @@
 .articlesCont.slideRight {
     .articlesMain.enter {
         opacity: 0;
-        transform: translateX(-50vw);
+        transform: translateX(-100vw);
     }
 
     .articlesMain.enterActive {
         opacity: 1;
         transition-timing-function: ease-out;
-        transition-delay: 0.5s;
         transform: translateX(0);
     }
 
@@ -55,14 +53,80 @@
     .articleCont.exitActive {
         opacity: 0;
         transition-timing-function: ease-in;
-        transform: translateX(50vw);
+        transform: translateX(100vw);
     }
 
     .articleCont.exitDone {
         opacity: 0;
-        transform: translateX(50vw);
+        transform: translateX(100vw);
     }
 }
+
+// .articlesCont.slideLeft {
+ 
+//     .articlesMain.exit {
+//         opacity: 1;
+//         transform: translateX(0);
+//       }
+      
+//       .articlesMain.exitActive {
+//         opacity: 0;
+//         transform: translateX(-50vw);
+//         transition-timing-function: ease-in;
+//       }
+
+//       .articlesMain.exitDone {
+//         opacity: 0;
+//         transform: translateX(-50vw);
+//       }
+  
+//       .articleCont.enter {
+//         opacity: 0;
+//         transform: translateX(50vw);
+//       }
+      
+//       .articleCont.enterActive {
+//         opacity: 1;
+//         transition-delay: 0.5s;
+//         transition-timing-function: ease-out;
+//         transform: translateX(0);
+//       }
+
+//       .articleCont.enterDone {
+//         opacity: 1;
+//         transform: translateX(0);
+//       }
+// }
+
+// .articlesCont.slideRight {
+//     .articlesMain.enter {
+//         opacity: 0;
+//         transform: translateX(-50vw);
+//     }
+
+//     .articlesMain.enterActive {
+//         opacity: 1;
+//         transition-timing-function: ease-out;
+//         transition-delay: 0.5s;
+//         transform: translateX(0);
+//     }
+
+//     .articleCont.exit {
+//         opacity: 1;
+//         transform: translateX(0);
+//     }
+
+//     .articleCont.exitActive {
+//         opacity: 0;
+//         transition-timing-function: ease-in;
+//         transform: translateX(50vw);
+//     }
+
+//     .articleCont.exitDone {
+//         opacity: 0;
+//         transform: translateX(50vw);
+//     }
+// }
 
 .articlesCont {
     width: 100vw;

@@ -17,6 +17,7 @@ const App = () => {
    const [isLoading, setIsLoading] = useState(true);
    const [articlesJsx, setArticlesJsx] = useState([]);
    const [scrollPos, saveScrollPos] = useState(0);
+   const [pageRef, setPageRef] = useState();
 
    const pageContRef = useRef(null);
 
@@ -26,10 +27,7 @@ const App = () => {
 
    // useEffect(() => {
 
-   //    return () => {
-   //       cleanup
-   //    }
-   // }, [checkScrollPos])
+   // }, [saveScrollPos])
 
    useEffect(() => {
       const mediaQuery = window.matchMedia("(min-width: 768px)");
@@ -131,14 +129,18 @@ const App = () => {
       pageContRef.current.scrollTop = 0;
    };
 
+   const saveScrollVal = () => {
+      saveScrollPos(pageContRef.current.scrollTop);
+   };
+
    const components = {
       "About": <About />,
       "Articles":
          <Articles
             articlesJsx={articlesJsx}
-            saveScrollPos={() => saveScrollPos(pageContRef.current.scrollTop)}
-            scrollToTop={scrollToTop}
-            setScrollPos={setScrollPos}
+            saveScrollPos={() => saveScrollVal()}
+            scrollToTop={() => scrollToTop()}
+            setScrollPos={() => setScrollPos()}
          />,
       "Home": <Home />,
       "Info": <Info />
@@ -220,6 +222,7 @@ const App = () => {
                            <CSSTransition
                               classNames={{...styles}}
                               in={match != null}
+                              // nodeRef={pageContRef}
                               timeout={transitionTime}
                               unmountOnExit
                            >
