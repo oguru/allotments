@@ -21,13 +21,15 @@ const App = () => {
 
    const pageContRef = useRef(null);
 
+   const onRef = (node) => {
+      if (node) {
+         pageContRef.current = node;
+      }
+   };
+
    useEffect(() => {
       getArticlesJsx();
    }, []);
-
-   // useEffect(() => {
-
-   // }, [saveScrollPos])
 
    useEffect(() => {
       const mediaQuery = window.matchMedia("(min-width: 768px)");
@@ -121,12 +123,24 @@ const App = () => {
       }
    ];
 
+   let scrollTimer;
+
+   const stopTimer = () => {
+      clearTimeout(scrollTimer);
+   };
+
    const setScrollPos = () => {
-      pageContRef.current.scrollTop = scrollPos;
+      stopTimer();
+      scrollTimer = setTimeout(() => {
+         pageContRef.current.scrollTop = scrollPos;
+      }, 500);
    };
 
    const scrollToTop = () => {
-      pageContRef.current.scrollTop = 0;
+      stopTimer();
+      scrollTimer = setTimeout(() => {
+         pageContRef.current.scrollTop = 0;
+      }, 500);
    };
 
    const saveScrollVal = () => {
@@ -228,7 +242,7 @@ const App = () => {
                            >
                               <div
                                  className={styles.pageCont}
-                                 ref={pageContRef}
+                                 ref={onRef}
                               >
                                  {components[route.name]}
                               </div>

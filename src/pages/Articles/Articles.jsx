@@ -89,7 +89,7 @@ const Articles = (props) => {
             <CSSTransition
                classNames={{...styles}}
                in={articleVisible}
-               timeout={1000}
+               timeout={1500}
                unmountOnExit
             >
                <section
