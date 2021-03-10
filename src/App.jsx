@@ -16,6 +16,16 @@ const App = () => {
    const [isLargeScreen, setIsLargeScreen] = useState(true);
    const [isLoading, setIsLoading] = useState(true);
    const [articlesJsx, setArticlesJsx] = useState([]);
+   const [scrollPos, saveScrollPos] = useState(0);
+   const [pageRef, setPageRef] = useState();
+
+   const pageContRef = useRef(null);
+
+   const onRef = (node) => {
+      if (node) {
+         pageContRef.current = node;
+      }
+   };
 
    useEffect(() => {
       getArticlesJsx();
@@ -113,9 +123,39 @@ const App = () => {
       }
    ];
 
+   let scrollTimer;
+
+   const stopTimer = () => {
+      clearTimeout(scrollTimer);
+   };
+
+   const setScrollPos = () => {
+      stopTimer();
+      scrollTimer = setTimeout(() => {
+         pageContRef.current.scrollTop = scrollPos;
+      }, 500);
+   };
+
+   const scrollToTop = () => {
+      stopTimer();
+      scrollTimer = setTimeout(() => {
+         pageContRef.current.scrollTop = 0;
+      }, 500);
+   };
+
+   const saveScrollVal = () => {
+      saveScrollPos(pageContRef.current.scrollTop);
+   };
+
    const components = {
       "About": <About />,
-      "Articles": <Articles articlesJsx={articlesJsx} />,
+      "Articles":
+         <Articles
+            articlesJsx={articlesJsx}
+            saveScrollPos={() => saveScrollVal()}
+            scrollToTop={() => scrollToTop()}
+            setScrollPos={() => setScrollPos()}
+         />,
       "Home": <Home />,
       "Info": <Info />
    };
@@ -131,6 +171,10 @@ const App = () => {
    };
 
    const transitionTime = isLargeScreen ? 400 : 800;
+
+   // const checkScrollPos = () => {
+   //    return pageContRef.current.scrollTop;
+   // };
 
    return (
       <div className={styles.app}>
@@ -192,10 +236,14 @@ const App = () => {
                            <CSSTransition
                               classNames={{...styles}}
                               in={match != null}
+                              // nodeRef={pageContRef}
                               timeout={transitionTime}
                               unmountOnExit
                            >
-                              <div className={styles.pageCont}>
+                              <div
+                                 className={styles.pageCont}
+                                 ref={onRef}
+                              >
                                  {components[route.name]}
                               </div>
                            </CSSTransition>

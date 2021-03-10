@@ -1,36 +1,156 @@
-.articlesCont {
-    // height: 100%;
-    // flex-grow: 1;
-    // overflow: hidden;
-    // overflow-x: hidden;
-    // overflow-y: auto;
-    width: 100vw;
-    position: relative;
-
-    .articlesMain.boxesIn {
+.articlesCont.slideLeft {
+ 
+    .articlesMain.exit {
+        opacity: 1;
         transform: translateX(0);
-    }
+      }
+      
+      .articlesMain.exitActive {
+        opacity: 0;
+        transform: translateX(-100vw);
+        // transition-timing-function: ease-out;
+      }
 
-    .articlesMain.boxesOut {
+      .articlesMain.exitDone {
+        opacity: 0;
+        transform: translateX(-100vw);
+      }
+  
+      .articleCont.enter {
+        opacity: 0;
+        transform: translateX(100vw);
+      }
+      
+      .articleCont.enterActive {
+        opacity: 1;
+        // transition-timing-function: ease-out;
+        transform: translateX(0);
+      }
+
+      .articleCont.enterDone {
+        opacity: 1;
+        transform: translateX(0);
+      }
+}
+
+.articlesCont.slideRight {
+    .articlesMain.enter {
         opacity: 0;
         transform: translateX(-100vw);
     }
 
+    .articlesMain.enterActive {
+        opacity: 1;
+        // transition-timing-function: ease-out;
+        // transition-timing-function: ease-out;
+        transform: translateX(0);
+    }
+
+    .articlesMain.enterDone {
+        opacity: 1;
+        // transition-timing-function: ease-out;
+        transform: translateX(0);
+    }
+
+    .articleCont.exit {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .articleCont.exitActive {
+        opacity: 0;
+        // transition-timing-function: ease-out;
+        transform: translateX(100vw);
+    }
+
+    .articleCont.exitDone {
+        opacity: 0;
+        transform: translateX(100vw);
+    }
+}
+
+// .articlesCont.slideLeft {
+ 
+//     .articlesMain.exit {
+//         opacity: 1;
+//         transform: translateX(0);
+//       }
+      
+//       .articlesMain.exitActive {
+//         opacity: 0;
+//         transform: translateX(-50vw);
+//         transition-timing-function: ease-in;
+//       }
+
+//       .articlesMain.exitDone {
+//         opacity: 0;
+//         transform: translateX(-50vw);
+//       }
+  
+//       .articleCont.enter {
+//         opacity: 0;
+//         transform: translateX(50vw);
+//       }
+      
+//       .articleCont.enterActive {
+//         opacity: 1;
+//         transition-delay: 0.5s;
+//         transition-timing-function: ease-out;
+//         transform: translateX(0);
+//       }
+
+//       .articleCont.enterDone {
+//         opacity: 1;
+//         transform: translateX(0);
+//       }
+// }
+
+// .articlesCont.slideRight {
+//     .articlesMain.enter {
+//         opacity: 0;
+//         transform: translateX(-50vw);
+//     }
+
+//     .articlesMain.enterActive {
+//         opacity: 1;
+//         transition-timing-function: ease-out;
+//         transition-delay: 0.5s;
+//         transform: translateX(0);
+//     }
+
+//     .articleCont.exit {
+//         opacity: 1;
+//         transform: translateX(0);
+//     }
+
+//     .articleCont.exitActive {
+//         opacity: 0;
+//         transition-timing-function: ease-in;
+//         transform: translateX(50vw);
+//     }
+
+//     .articleCont.exitDone {
+//         opacity: 0;
+//         transform: translateX(50vw);
+//     }
+// }
+
+.articlesCont {
+    width: 100vw;
+    position: relative;
+
     .articlesMain {
-        // position: absolute;
-        // display: none;
         height: 100%;
-        overflow: auto;
         padding-bottom: 1rem;
-        transition: 1s;
+        transition-duration: 1s;
         min-width: 100%;
 
         .articleBoxes {
             align-items: center;
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: flex-start;
             padding-top: 1rem;
         }
     }
@@ -38,19 +158,32 @@
     .articleCont {
         left: 0;
         min-width: 100%;
-        overflow: auto;
+        // overflow: auto;
         position: absolute;
         top: 0;
-        transition: 1s;        
+        transform: translateX(100vw);
+        transition-duration: 1s;
+        // transition: 1s;        
         width: 100vw;
     }
 
-    .articleIn {
-        transform: translateX(0);
-    }
+    // .articleIn {
+    //     transform: translateX(0);
+    // }
 
-    .articleOut {
-        opacity: 0;
-        transform: translateX(100vw);
+    // .articleOut {
+    //     opacity: 0;
+    //     transform: translateX(100vw);
+    // }
+}
+
+@media only screen and (min-width: 576px) {
+    .articlesCont {
+        .articlesMain {
+            .articleBoxes {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
     }
 }
