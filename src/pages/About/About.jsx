@@ -1,7 +1,7 @@
 import Hero from "../../components/Hero";
 import React from "react";
-import aboutImg from "../../images/prince-abid-iy1k44aa4uq-unsplash.jpg";
-import aboutImgSm from "../../images/prince-abid-iy1k44aa4uq-unsplash-sm.jpg";
+import aboutImg from "../../images/about-main.jpg";
+import aboutImgSm from "../../images/about-main-sm.jpg";
 import styles from "./About.module.scss";
 
 const About = () => {

@@ -1,6 +1,6 @@
 import "./global.scss";
 import React, {useEffect, useState, useRef} from "react";
-import {imagesInitial, imagesLg} from "./images/mainImages.js";
+import {mainImagesInit, mainImagesLg} from "./images/imageImports.js";
 import About from "./pages/About";
 import Articles from "./pages/Articles";
 import CSSTransition from "react-transition-group/CSSTransition";
@@ -123,22 +123,14 @@ const App = () => {
       }
    ];
 
-   let scrollTimer;
-
-   const stopTimer = () => {
-      clearTimeout(scrollTimer);
-   };
-
    const setScrollPos = () => {
-      stopTimer();
-      scrollTimer = setTimeout(() => {
+      setTimeout(() => {
          pageContRef.current.scrollTop = scrollPos;
       }, 500);
    };
 
    const scrollToTop = () => {
-      stopTimer();
-      scrollTimer = setTimeout(() => {
+      setTimeout(() => {
          pageContRef.current.scrollTop = 0;
       }, 500);
    };
@@ -165,7 +157,7 @@ const App = () => {
    const imageLoaded = () => {
       counter.current += 1;
 
-      if (counter.current >= imagesInitial.length) {
+      if (counter.current >= mainImagesInit.length) {
          setIsLoading(false);
       }
    };
@@ -193,7 +185,7 @@ const App = () => {
                className={styles.preCacheHidden}
                data-test="preCacheHidden"
             >
-               {imagesInitial.map(img => (
+               {mainImagesInit.map(img => (
                   <img
                      src={img.src}
                      onLoad={imageLoaded}
@@ -202,16 +194,16 @@ const App = () => {
                   />
                ))}
 
-               {isLoading ?
+               {/* {isLoading ?
                   null :
-                  imagesLg.map(img => (
+                  mainImagesLg.map(img => (
                      <img
                         src={img.src}
                         key={img.src}
                         alt={img.alt}
                      />
                   ))
-               }
+               } */}
             </div>
             {isLoading ?
                <div

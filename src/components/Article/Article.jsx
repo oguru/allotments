@@ -1,3 +1,4 @@
+import Button from "../Button";
 import Hero from "../Hero";
 import React from "react";
 import styles from "./Article.module.scss";
@@ -19,7 +20,7 @@ const Article = (props) => {
          {props ?
             <article
                className={styles.article}
-               onClick={closeArticle}
+               // onClick={closeArticle}
             >
                {/* <h4>
                {content.title}
@@ -28,6 +29,10 @@ const Article = (props) => {
                   <Hero content={heroContent} staticTxt/>
                </div>
                <div className={`${styles.articleContent} container`}>
+                  <Button
+                     handleClick={closeArticle}
+                     text="Back"
+                  />
                   {content.content}
                </div>
 

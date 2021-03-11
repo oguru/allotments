@@ -1,6 +1,6 @@
 import Hero from "../../components/Hero";
 import React from "react";
-import homeImg from "../../images/randy-fath-ey6g0z_fs0-unsplash.jpg";
+import homeImg from "../../images/home-main.jpg";
 
 const Home = () => {
 

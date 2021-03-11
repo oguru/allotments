@@ -6,8 +6,8 @@ import Hero from "../../components/Hero";
 import PropTypes from "prop-types";
 import {Route} from "react-router-dom";
 // import {articleData} from "../../data/articleData.js";
-import articlesImg from "../../images/dana-devolk-n_0wi_oruce-unsplash.jpg";
-import articlesImgSm from "../../images/dana-devolk-n_0wi_oruce-unsplash-sm.jpg";
+import articlesImg from "../../images/articles-main.jpg";
+import articlesImgSm from "../../images/articles-main-sm.jpg";
 import styles from "./Articles.module.scss";
 
 const Articles = (props) => {
