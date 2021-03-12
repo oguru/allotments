@@ -11,18 +11,32 @@ import articlesImgSm from "../../images/articles-main-sm.jpg";
 import styles from "./Articles.module.scss";
 
 const Articles = (props) => {
-   const {articlesJsx, saveScrollPos, scrollToTop, setScrollPos} = props;
+   const {
+      articlesJsx,
+      saveScrollPos,
+      scrollToTop,
+      setScrollPos,
+      windowWidth
+   } = props;
 
    Articles.propTypes = {
       articlesJsx: PropTypes.array,
       saveScrollPos: PropTypes.func,
       scrollToTop: PropTypes.func,
-      setScrollPos: PropTypes.func
+      setScrollPos: PropTypes.func,
+      windowWidth: PropTypes.number
    };
 
    const [currentArticle, setCurrentArticle] = useState(articlesJsx[0]);
    const [articleVisible, setArticleVisible] = useState(false);
    const [articleViewed, setArticleViewed] = useState(false);
+   const [imageSize, setImageSize] = useState("sm");
+
+   useEffect(() => {
+      if (windowWidth < 768) {
+         setImageSize(sm);
+      }
+   }, [windowWidth]);
 
    const heroContent = {
       heroTitle: "Articles & Tips",
@@ -32,8 +46,19 @@ const Articles = (props) => {
       imageTint: 0.4
    };
 
-   const showArticle = (index) => {
+   const calcArticleJsx = (index) => {
+      let image;
+
+      if (windowWidth < 768) {
+         image = articlesJsx[index][1].MainImg;
+      }
+
       setCurrentArticle(articlesJsx[index]);
+   };
+
+   const showArticle = (index) => {
+      calcArticleJsx(index);
+      // setCurrentArticle(articlesJsx[index]);
       setArticleVisible(true);
       setArticleViewed(true);
       saveScrollPos();
@@ -52,8 +77,8 @@ const Articles = (props) => {
    const articleBoxes = articlesJsx.map((article, index) => (
       <ArticleBox
          key={article[1].id}
-         mainImg={article[1].mainImgThumb}
-         mainImgAlt={article[1].mainImgAlt}
+         MainImg={article[1].MainImgSm}
+         MainImgAlt={article[1].MainImgAlt}
          showArticle={() => showArticle(index)}
          text={article[1].initText}
          title={article[1].title}

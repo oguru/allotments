@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import styles from "./ArticleBox.module.scss";
 
 const ArticleBox = (props) => {
-   const {mainImg, mainImgAlt, showArticle, text, title} = props;
+   const {MainImg, MainImgAlt, showArticle, text, title} = props;
 
    const [preview, setPreview] = useState("");
    const [inAnimation, setInAnimation] = useState(false);
@@ -81,12 +81,12 @@ const ArticleBox = (props) => {
          }}
       >
          <img
-            alt={mainImgAlt}
+            alt={MainImgAlt}
             className={`
                   ${styles[preview]} 
                   ${styles.articleImg}`
             }
-            src={mainImg}/>
+            src={MainImg}/>
          <div
             onTransitionEnd={() => setInAnimation(false)}
             className={`${styles.articleBoxText} ${styles[preview]}`}>

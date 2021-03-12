@@ -8,10 +8,12 @@ import infoImg from "./info-main.jpg";
 import infoImgSm from "./info-main-sm.jpg";
 
 // article images
-import art1Mainimg from "./art-1-main.jpg";
-import art1Mainthumb from "./art-1-main-sm.jpg";
+import art1MainImg from "./art-1-main.jpg";
+import art1MainSm from "./art-1-main-sm.jpg";
 import art1PhTest from "./art-1-ph-test.jpg";
 import art1SoilPrep from "./art-1-soil-prep.jpg";
+import art2MainImg from "./art-2-main-md.jpg";
+import art2MainThumb from "./art-2-main-sm.jpg";
 
 const mainImagesInit = [
    {src: homeImg,
@@ -34,10 +36,12 @@ const mainImagesLg = [
 ];
 
 const articleImages = {
-   art1Mainimg,
-   art1Mainthumb,
+   art1MainImg,
+   art1MainSm,
    art1SoilPrep,
-   art1PhTest
+   art1PhTest,
+   art2MainImg,
+   art2MainThumb
 };
 
 export {articleImages, mainImagesInit, mainImagesLg};

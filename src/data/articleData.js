@@ -9,9 +9,9 @@ const template = {
    id: 1,
    title: "",
    credit: "",
-   mainImg: art1Mainimg,
-   mainImgThumb: art1Mainthumb,
-   mainImgAlt: "",
+   MainImg: img.art1MainImg,
+   MainImgSm: img.art1MainSm,
+   MainImgAlt: "",
    path: "/articles/",
    content: [
       {
@@ -34,9 +34,9 @@ const articleData = [
       id: 1,
       title: "Preparing A New Garden Plot",
       credit: "Article provided by homegardenseedassociation.com",
-      mainImg: img.art1Mainimg,
-      mainImgThumb: img.art1Mainthumb,
-      mainImgAlt: "Dug soil",
+      MainImg: img.art1MainImg,
+      MainImgSm: img.art1MainSm,
+      MainImgAlt: "Dug soil",
       path: "/articles/new-plot",
       content: [
          {
@@ -92,11 +92,11 @@ const articleData = [
    },
    {
       id: 2,
-      title: "How Does Gardening Build Health",
+      title: "How Does Gardening Build Health?",
       credit: "Article provided by homegardenseedassociation.com",
-      mainImg: art1Mainimg,
-      mainImgThumb: art1Mainthumb,
-      mainImgAlt: "",
+      MainImg: img.art2MainImg,
+      MainImgSm: img.art2MainThumb,
+      MainImgAlt: "",
       path: "/articles/build-health",
       content: [
          {
@@ -112,7 +112,7 @@ const articleData = [
             ]
          }
       ]
-   };
+   }
 ];
 
 export {articleData};

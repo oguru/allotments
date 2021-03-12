@@ -17,6 +17,7 @@ const App = () => {
    const [isLoading, setIsLoading] = useState(true);
    const [articlesJsx, setArticlesJsx] = useState([]);
    const [scrollPos, saveScrollPos] = useState(0);
+   const [windowWidth, setWindowWidth] = useState();
    const [pageRef, setPageRef] = useState();
 
    const pageContRef = useRef(null);
@@ -29,6 +30,13 @@ const App = () => {
 
    useEffect(() => {
       getArticlesJsx();
+   }, []);
+
+   useEffect(() => {
+      const getWidth = () => setWindowWidth(window.innerWidth);
+
+      window.addEventListener("resize", getWidth);
+      getWidth();
    }, []);
 
    useEffect(() => {
@@ -89,9 +97,9 @@ const App = () => {
          return [article.id, {
             credit: article.credit,
             id: article.id,
-            mainImg: article.mainImg,
-            mainImgThumb: article.mainImgThumb,
-            mainImgAlt: article.mainImgAlt,
+            MainImg: article.MainImg,
+            MainImgSm: article.MainImgSm,
+            MainImgAlt: article.MainImgAlt,
             title: article.title,
             initText: article.content[0].text,
             content: article.content.map(el =>
@@ -147,6 +155,7 @@ const App = () => {
             saveScrollPos={() => saveScrollVal()}
             scrollToTop={() => scrollToTop()}
             setScrollPos={() => setScrollPos()}
+            windowWidth={windowWidth}
          />,
       "Home": <Home />,
       "Info": <Info />
