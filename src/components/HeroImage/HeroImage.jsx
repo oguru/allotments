@@ -13,7 +13,7 @@ const HeroImage = (props) => {
    HeroImage.propTypes = {
       homeStyle: PropTypes.string,
       imageTint: PropTypes.number,
-      src: PropTypes.string.isRequired,
+      src: PropTypes.string,
       srcSm: PropTypes.string
    };
 

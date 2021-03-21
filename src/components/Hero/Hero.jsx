@@ -1,8 +1,10 @@
 import "./cursor.scss";
 import React, {useState} from "react";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import HeroImage from "../HeroImage";
 import PropTypes from "prop-types";
 import Typist from "react-typist";
+import {faLevelDownAlt} from "@fortawesome/free-solid-svg-icons";
 import styles from "./Hero.module.scss";
 
 const Hero = (props) => {
@@ -16,6 +18,8 @@ const Hero = (props) => {
          imageSm,
          imageTint
       },
+      article,
+      closeArticle,
       homeHero,
       staticTxt
    } = props;
@@ -31,6 +35,8 @@ const Hero = (props) => {
          imageSm: PropTypes.string,
          imageTint: PropTypes.number
       }),
+      article: PropTypes.bool,
+      closeArticle: PropTypes.func,
       homeHero: PropTypes.bool,
       staticTxt: PropTypes.bool
    };
@@ -102,6 +108,16 @@ const Hero = (props) => {
                >
                   {smallText}
                </h5>
+               {article &&
+               <div
+                  className={styles.backArrowCont}
+                  onClick={closeArticle}
+               >
+                  <FontAwesomeIcon
+                     className={styles.backArrow}
+                     icon={faLevelDownAlt}
+                  />
+               </div>}
             </div>
          </div>
       </>

@@ -1,13 +1,18 @@
+import React, {useEffect, useState} from "react";
 import Button from "../Button";
 import Hero from "../Hero";
-import React, {useEffect, useState} from "react";
+import PropTypes from "prop-types";
 import styles from "./Article.module.scss";
 
 const Article = (props) => {
    const {closeArticle, content} = props;
 
+   Article.propTypes = {
+      closeArticle: PropTypes.func,
+      content: PropTypes.object
+   };
+
    const heroContent = {
-      // heroTitle: content.title,
       heroSubtitle: content.title,
       image: content.MainImg,
       imageSm: content.MainImgSm,
@@ -22,13 +27,18 @@ const Article = (props) => {
                className={styles.article}
             >
                <div className={styles.articleHead}>
-                  <Hero content={heroContent} staticTxt/>
+                  <Hero
+                     closeArticle={closeArticle}
+                     content={heroContent}
+                     article
+                     staticTxt
+                  />
                </div>
                <div className={`${styles.articleContent} container`}>
-                  <Button
+                  {/* <Button
                      handleClick={closeArticle}
                      text="Back"
-                  />
+                  /> */}
                   {content.content}
                </div>
 

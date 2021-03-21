@@ -1,4 +1,4 @@
-import "./global.scss";
+// import "./global.scss";
 import React, {useEffect, useState, useRef} from "react";
 import {mainImagesInit, mainImagesLg} from "./images/imageImports.js";
 import About from "./pages/About";
@@ -9,6 +9,7 @@ import Info from "./pages/Info";
 import NavBar from "./components/NavBar";
 import {Route} from "react-router-dom";
 import {articleData} from "./data/articleData.js";
+import articleStyles from "./components/Article/Article.module.scss";
 import styles from "./App.module.scss";
 
 const App = () => {
@@ -18,7 +19,6 @@ const App = () => {
    const [articlesJsx, setArticlesJsx] = useState([]);
    const [scrollPos, saveScrollPos] = useState(0);
    const [windowWidth, setWindowWidth] = useState();
-   const [pageRef, setPageRef] = useState();
 
    const pageContRef = useRef(null);
 
@@ -32,12 +32,12 @@ const App = () => {
       getArticlesJsx();
    }, []);
 
-   useEffect(() => {
-      const getWidth = () => setWindowWidth(window.innerWidth);
+   // useEffect(() => {
+   //    const getWidth = () => setWindowWidth(window.innerWidth);
 
-      window.addEventListener("resize", getWidth);
-      getWidth();
-   }, []);
+   //    window.addEventListener("resize", getWidth);
+   //    getWidth();
+   // }, []);
 
    useEffect(() => {
       const mediaQuery = window.matchMedia("(min-width: 768px)");
@@ -59,10 +59,12 @@ const App = () => {
    };
 
    const buildEl = el => {
+      const imgCaption = el.caption ? `${articleStyles.imgCaption}` : "";
+
       if (el.floatImage) {
          return (
             <>
-               <img alt={el.alt} className={`float${el.floatDir}`} src={el.floatImage} />
+               <img alt={el.alt} className={`${articleStyles[el.floatDir]} ${imgCaption}`} src={el.floatImage} />
                {el.content.map(subEl =>
                   // <div key={subEl.text || subEl.li}>
                   buildEl(subEl)
@@ -77,16 +79,65 @@ const App = () => {
             {el.subHeading &&
                <h5>{el.subHeading}</h5>
             }
+            {el.bold &&
+               <p className={`
+                  ${articleStyles.bold} 
+                  ${articleStyles.articleTxt}`
+               }>
+                  {el.bold}
+               </p>
+            }
             {el.li &&
                <ul>
                   {el.li.map(li => <li key={li}>{li}</li>)}
                </ul>
             }
-            {el.text &&
-               <p>{el.text}</p>
+            {el.liText &&
+               <ul className={articleStyles.liText}>
+                  {el.liText.map(liText => <li key={liText}>{liText}</li>)}
+               </ul>
             }
-            {el.image &&
-               <img alt={el.alt} className="blockImg" src={el.image} />
+            {el.imageSm && el.imageLg &&
+                  <img
+                     alt={el.alt}
+                     className={`${articleStyles.blockImg} ${imgCaption}`}
+                     srcSet={`${el.imageSm} 300w, ${el.imageLg} 1024w`}
+                     src={el.imageSm} />
+            }
+            {el.splitImage &&
+               <div className={`
+                  ${articleStyles.splitImgCont} 
+                  ${imgCaption}`
+               }>
+                  <img
+                     alt={el.splitImage.img1.alt}
+                     className={articleStyles.splitImage}
+                     src={el.splitImage.img1.img}
+                  />
+                  <img
+                     alt={el.splitImage.img2.alt}
+                     className={articleStyles.splitImage}
+                     src={el.splitImage.img2.img}
+                  />
+               </div>
+            }
+            {el.text &&
+               <p className={`
+                  ${imgCaption} 
+                  ${articleStyles.articleTxt}`
+               }>
+                  {el.text}
+               </p>
+            }
+            {el.link &&
+               <a
+                  className={articleStyles.articleLink}
+                  href={el.link}
+                  rel="noreferrer"
+                  target="_blank"
+               >
+                  {el.link}
+               </a>
             }
          </>
       );

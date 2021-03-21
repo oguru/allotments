@@ -1,34 +1,31 @@
 @import "../../variables.scss";
 
 .articleBox {
+    align-self: center;
     border-radius: 0.25rem;
     cursor: pointer;
     height: 300px;
     overflow: hidden;
-    margin: 1rem;
     position: relative;
     width: 250px;
 
     .articleBoxBot.articlePreview {
         background-color: $secondary-color-light;
-        transform: scaleY(100%) translateY(0);
+        transform: scaleY(1) translateY(0);
     }
 
     .articleBoxBot {
         background-color: $secondary-color;
         border-top-left-radius: 0.25rem;
         border-top-right-radius: 0.25rem;
-        // background: linear-gradient(180deg, rgba(243,245,242,0) 0%, rgba(243,245,242,1) 15%, rgba(243,245,242,1) 30%, rgba(226,136,3,1) 30%, rgba(226,136,3,1) 100%);
         bottom: 0;
         height: 40px;
-        // pointer-events: none;
         position: absolute;
-        transform: scaleY(50%) translateY(50%);
+        transform: scaleY(0.5) translateY(50%);
         transition: 0.6s ease-in-out;
-        width: 100%;
 
         p.articlePreview {
-            transform: scaleY(100%) translateY(0);
+            transform: scaleY(1) translateY(-37.5px);
         }
 
         p {
@@ -38,9 +35,23 @@
             line-height: 40px;
             text-align: center;
             transition: 0.6s ease-in-out;
-            // transition-timing-function: ;
-            transform: scaleY(150%) translateY(30px);
+            transform: scaleY(1.5) translateY(0px);
             width: 250px;
+        }
+
+        .arrowUp.articlePreview {
+            opacity: 0;
+            transform: scaleY(1) translateY(-40px);
+        }
+
+        .arrowUp {
+            color: white;
+            margin-top: 7.5px;
+            height: 25px;
+            width: 100%;
+            transform: scaleY(2) translateY(0);
+            transition: 0.6s ease-in-out;
+
         }
     }
 
@@ -69,17 +80,11 @@
             text-overflow: ellipsis;
             -webkit-box-orient: vertical;
         }
-
-        h3 {
-            font-size: 1.375rem;
-            text-align: center;
-            width: 100%;
-        }
     }
 
     .articleImg.articlePreview {
-        transform: scale(108%);
-        filter: saturate(120%);
+        transform: scale(1.08);
+        filter: saturate(140%);
     }
 
     .articleImg {
@@ -87,6 +92,6 @@
             height: 50%;
             overflow: hidden;
             transition: 0.6s ease-in-out;
-            z-index: -1;
+            transform: scale(1);
     }
 }

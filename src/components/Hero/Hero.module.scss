@@ -4,7 +4,6 @@
 @import "../../../node_modules/bootstrap/scss/mixins/breakpoints";
 
 .heroCont.homeStyles {
-    // flex-grow: 1;
     height: 100%;
     padding: 3rem 0;
 }
@@ -12,7 +11,6 @@
 .heroCont {
     color: white;
     flex-grow: 1;
-    // margin: 0.5rem 0;
     overflow: hidden;
     padding: 2rem 0;
     position: relative;
@@ -41,6 +39,26 @@
             opacity: 0;
             transform: translateY(10%);
             transition: transform 1.5s, opacity 1.5s;
+        }
+
+        .backArrowCont {
+            align-items: center;
+            border: 3px solid rgba(255, 255, 255, 0.685);
+            border-radius: 0.25rem;
+            cursor: pointer;
+            display: flex;
+            height: 40px;
+            justify-content: center;
+            margin-top: 1.25rem;
+            width: 80px;
+
+            .backArrow {
+                font-size: 30px;
+                // margin: 5px auto;
+                // position: relative;
+                // top: 5px;
+                transform: rotate(90deg);
+            }
         }
 
         .fadeIn {

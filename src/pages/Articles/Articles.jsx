@@ -6,7 +6,7 @@ import Hero from "../../components/Hero";
 import PropTypes from "prop-types";
 import {Route} from "react-router-dom";
 // import {articleData} from "../../data/articleData.js";
-import articlesImg from "../../images/articles-main.jpg";
+import articlesImg from "../../images/articles-main-lg.jpg";
 import articlesImgSm from "../../images/articles-main-sm.jpg";
 import styles from "./Articles.module.scss";
 
@@ -30,13 +30,6 @@ const Articles = (props) => {
    const [currentArticle, setCurrentArticle] = useState(articlesJsx[0]);
    const [articleVisible, setArticleVisible] = useState(false);
    const [articleViewed, setArticleViewed] = useState(false);
-   const [imageSize, setImageSize] = useState("sm");
-
-   useEffect(() => {
-      if (windowWidth < 768) {
-         setImageSize(sm);
-      }
-   }, [windowWidth]);
 
    const heroContent = {
       heroTitle: "Articles & Tips",
@@ -58,7 +51,6 @@ const Articles = (props) => {
 
    const showArticle = (index) => {
       calcArticleJsx(index);
-      // setCurrentArticle(articlesJsx[index]);
       setArticleVisible(true);
       setArticleViewed(true);
       saveScrollPos();
@@ -89,10 +81,10 @@ const Articles = (props) => {
 
    return (
       <>
-         <div
-            className={`${styles.articlesCont} ${styles[animDir]}`}
-         >
-
+         <div className={`
+            ${styles.articlesCont} 
+            ${styles[animDir]}`
+         }>
             <CSSTransition
                classNames={{...styles}}
                in={!articleVisible}
@@ -110,7 +102,6 @@ const Articles = (props) => {
                   </div>
                </section>
             </CSSTransition>
-
             <CSSTransition
                classNames={{...styles}}
                in={articleVisible}
@@ -126,9 +117,7 @@ const Articles = (props) => {
                   />
                </section>
             </CSSTransition>
-
          </div>
-
       </>
    );
 };

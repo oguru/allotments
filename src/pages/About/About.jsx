@@ -1,6 +1,6 @@
 import Hero from "../../components/Hero";
 import React from "react";
-import aboutImg from "../../images/about-main.jpg";
+import aboutImg from "../../images/about-main-lg.jpg";
 import aboutImgSm from "../../images/about-main-sm.jpg";
 import styles from "./About.module.scss";
 

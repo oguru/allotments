@@ -1,4 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faAngleUp} from "@fortawesome/free-solid-svg-icons";
 import styles from "./ArticleBox.module.scss";
 
 const ArticleBox = (props) => {
@@ -89,19 +91,23 @@ const ArticleBox = (props) => {
             src={MainImg}/>
          <div
             onTransitionEnd={() => setInAnimation(false)}
-            className={`${styles.articleBoxText} ${styles[preview]}`}>
+            className={`
+               ${styles.articleBoxText} 
+               ${styles[preview]}`
+            }
+         >
             <h5 ref={titleRef}>{title}</h5>
-            {/* <div className={styles.pTextCont}> */}
-            <p
-               style={getBoxStyles}>
-               {text}
-            </p>
-            {/* </div> */}
+            <p style={getBoxStyles}>{text}</p>
          </div>
          <div className={`${styles.articleBoxBot} ${styles[preview]}`}>
-            <p
-               className={styles[preview]}
-            >
+            <FontAwesomeIcon
+               className={`
+                  ${styles.arrowUp} 
+                  ${styles[preview]}`
+               }
+               icon={faAngleUp}
+            />
+            <p className={styles[preview]}>
                Read More
             </p>
          </div>
