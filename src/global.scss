@@ -1,113 +1,27 @@
-// Article.jsx
+.backArrowCont {
+    align-items: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    display: flex;
+    height: 30px;
+    justify-content: flex-start;
+    margin-top: 1.25rem;
+    width: 50px;
+    transform: scale(1) translateX(0px);
+    transition: transform 0.4s;
 
-p.imgCaption {
-    font-size: 14px;
-    text-align: center;
-}
+    &:hover {
+        transform: scale(1) translateX(-15px);
+    }
 
-img.imgCaption {
-    margin-bottom: 1rem;
-}
-
-ul {
-    columns: 1;
-    font-size: 16px;
-}
-
-ul.liText {
-    columns: 1;
+    p {
+        font-size: 16px;
+        margin: 0 0.5rem;
+    }
     
-    li {
-        margin-bottom: 1rem;
-    }
-}
-
-.articleLink {
-    margin-bottom: 2rem;
-}
-
-.articleTxt {
-    font-size: 16px;
-    margin-bottom: 1rem;
-}
-
-.bold {
-    font-weight: bold;
-    font-size: 18px;
-    margin-top: 2rem;
-}
-
-.blockImg {
-    display: block;
-    height: 200px;
-    margin: 2rem auto;
-    object-fit: cover;
-    width: 100%;
-}
-
-.floatLeft,
-.floatRight {
-    margin-bottom: 2rem;
-    margin-top: 2rem;
-    width: 100%;
-}
-
-.floatLeft {
-    float: left;
-    margin-right: 1.5rem;
-}
-
-.floatRight {
-    float: right;
-    margin-left: 1.5rem;
-}
-
-.splitImgCont.imgCaption {
-    margin-bottom: 0;
-}
-
-.splitImgCont {
-    margin-bottom: 1rem;
-    margin-top: 2rem;
-
-    .splitImage {
-        margin-bottom: 1rem;
-        width: 100%;
-    }
-}
-
-@media only screen and (min-width: 768px) {
-    ul {
-        columns: 2;
-    }
-
-    .floatLeft,
-    .floatRight {
-        margin-top: 0;
-        margin-bottom: 0.25rem;
-        width: 33%;
-    }
-
-    .splitImgCont {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        // margin: 0 1rem;
-
-        .splitImage {
-            width: 48%;
-        }
-    }
-}
-
-@media only screen and (min-width: 992px) {
-    ul {
-        columns: 3;
-    }
-}
-
-@media only screen and (min-width: 1536px) {
-    .splitImage {
-        width: 50%;
+    .backArrow {
+        height: 30px;
+        font-size: 24px;
+        text-align: left;
     }
 }

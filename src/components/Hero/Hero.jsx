@@ -4,7 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import HeroImage from "../HeroImage";
 import PropTypes from "prop-types";
 import Typist from "react-typist";
-import {faLevelDownAlt} from "@fortawesome/free-solid-svg-icons";
+import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import styles from "./Hero.module.scss";
 
 const Hero = (props) => {
@@ -25,6 +25,7 @@ const Hero = (props) => {
    } = props;
 
    const [typingDone, setTypingDone] = useState("");
+   const [backHoverStyle, setBackHoverStyle] = useState("");
 
    Hero.propTypes = {
       content: PropTypes.shape({
@@ -111,12 +112,16 @@ const Hero = (props) => {
                {article &&
                <div
                   className={styles.backArrowCont}
+                  onMouseEnter={() => setBackHoverStyle("backHover")}
+                  onMouseLeave={() => setBackHoverStyle("")}
                   onClick={closeArticle}
                >
+                  <span className={`${styles.backBorder} ${styles[backHoverStyle]}`}></span>
                   <FontAwesomeIcon
                      className={styles.backArrow}
-                     icon={faLevelDownAlt}
+                     icon={faAngleLeft}
                   />
+                  <p>BACK</p>
                </div>}
             </div>
          </div>

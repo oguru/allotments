@@ -2,51 +2,14 @@ import {articleImages} from "../images/imageImports";
 
 const img = articleImages;
 
-const template = {
-   id: 1,
-   title: "",
-   credit: "",
-   MainImg: img.art1MainImg,
-   MainImgSm: img.art1MainBox,
-   MainImgAlt: "",
-   path: "/articles/",
-   content: [
-      {
-         text: "",
-         subHeading: "",
-         bold: "",
-         li: ["", ""],
-         liText: ["", ""],
-         image: img.imgSrc,
-         splitImage: {
-            img1: {
-               img: img.imgSrc,
-               alt: ""
-            },
-            img2: {
-               img: img.imgSrc,
-               alt: ""
-            }
-         },
-         floatImage: img.imgSrc,
-         floatDir: "floatRight",
-         alt: "Soil Ph Testing",
-         content: [
-            {
-            }
-         ]
-      }
-   ]
-};
-
 const articleData = [
    {
       id: 1,
       title: "Preparing A New Garden Plot",
       credit: "Article provided by homegardenseedassociation.com",
-      MainImg: img.art1MainImg,
-      MainImgSm: img.art1MainBox,
-      MainImgAlt: "Dug soil",
+      mainImg: img.art1MainImg,
+      mainImgBox: img.art1MainBox,
+      mainImgAlt: "Dug soil",
       path: "/articles/new-plot",
       content: [
          {
@@ -113,9 +76,9 @@ const articleData = [
       id: 2,
       title: "How Does Gardening Build Health?",
       credit: "Article provided by homegardenseedassociation.com",
-      MainImg: img.art2MainImg,
-      MainImgSm: img.art2MainBox,
-      MainImgAlt: "",
+      mainImg: img.art2MainImg,
+      mainImgBox: img.art2MainBox,
+      mainImgAlt: "",
       path: "/articles/build-health",
       content: [
          {
@@ -177,9 +140,9 @@ const articleData = [
       id: 3,
       title: "Seed Starting Timeline For Success",
       credit: "Article provided by homegardenseedassociation.com",
-      MainImg: img.art3MainImg,
-      MainImgSm: img.art3MainBox,
-      MainImgAlt: "",
+      mainImg: img.art3MainImg,
+      mainImgBox: img.art3MainBox,
+      mainImgAlt: "",
       path: "/articles/build-health",
       content: [
          {
@@ -356,9 +319,9 @@ const articleData = [
       id: 4,
       title: "Germination Troubleshooting Guide",
       credit: "Article provided by homegardenseedassociation.com",
-      MainImg: img.art4MainImg,
-      MainImgSm: img.art4MainBox,
-      MainImgAlt: "",
+      mainImg: img.art4MainImg,
+      mainImgBox: img.art4MainBox,
+      mainImgAlt: "",
       path: "/articles/germination-troubleshooting",
       content: [
          {
@@ -446,18 +409,18 @@ const articleData = [
       id: 5,
       title: "Want Safe Food? Grow Your Own",
       credit: "Article provided by homegardenseedassociation.com",
-      MainImg: img.art5Random,
-      MainImgSm: img.art5Random,
-      MainImgAlt: "",
+      mainImg: img.art5MainImg,
+      mainImgBox: img.art5MainBox,
+      mainImgAlt: "Vegetables growing",
       path: "/articles/safe-food",
       content: [
          {
             text: "Between 1990 and 2009, there were 363 outbreaks of food-borne illness linked to various leafy greens, including iceberg lettuce, romaine, and spinach, causing 13,568 cases of illness. This statistic comes from a study published in 2009 by the Center for Science in the Public Interest identifying the sources of outbreaks of food-borne illness."
          },
          {
-            // floatImage: img.,
-            // floatDir: "floatRight",
-            // alt: "",
+            floatImage: img.art5Spinach,
+            floatDir: "floatRight",
+            alt: "Bundle of spinach",
             content: [
                {
                   text: "Leafy greens are some of the most nutritious foods you can eat, especially dark green varieties such as spinach and kale. They contain an abundance of vitamins, antioxidants, and fiber. While the food we buy from the supermarket is, statistically speaking, very safe overall, there are ways you can reduce your risk even further."
@@ -473,9 +436,9 @@ const articleData = [
             ]
          },
          {
-            // floatImage: img.,
-            // floatDir: "floatLeft",
-            // alt: "",
+            floatImage: img.art5SaladGreens,
+            floatDir: "floatLeft",
+            alt: "Salad greens",
             content: [
                {
                   bold: "Salad greens:",
@@ -497,14 +460,15 @@ const articleData = [
          }
       ]
    }
+];
 
-   /*
+const template = {
    id: 1,
    title: "",
    credit: "",
-   MainImg: img.art1MainImg,
-   MainImgSm: img.art1MainBox,
-   MainImgAlt: "",
+   mainImg: img.art1mainImg,
+   mainImgBox: img.art1MainBox,
+   mainImgAlt: "",
    path: "/articles/",
    content: [
       {
@@ -533,8 +497,6 @@ const articleData = [
          ]
       }
    ]
-
-   */
-];
+};
 
 export {articleData};

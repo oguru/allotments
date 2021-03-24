@@ -1,8 +1,26 @@
 import Hero from "../../components/Hero";
-import React from "react";
+import React, {useEffect} from "react";
+import PropTypes from "prop-types";
 import homeImg from "../../images/home-main.jpg";
 
-const Home = () => {
+const Home = (props) => {
+   const {setStaticTxt, staticTxt} = props;
+
+   Home.propTypes = {
+      setStaticTxt: PropTypes.func,
+      staticTxt: PropTypes.bool
+   };
+
+   useEffect(() => {
+      if (!staticTxt) {
+         setTimeout(() => {
+            setStaticTxt(prevState => ({
+               ...prevState,
+               home: true
+            }));
+         }, 5000);
+      }
+   }, []);
 
    const heroContent = {
       heroTitle: "Welcome to Stechford Allotments",
@@ -16,6 +34,7 @@ const Home = () => {
       <Hero
          content={heroContent}
          homeHero
+         staticTxt={staticTxt}
       />
    );
 };

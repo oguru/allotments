@@ -14,10 +14,17 @@ import styles from "./App.module.scss";
 
 const App = () => {
 
+   const [articlesJsx, setArticlesJsx] = useState([]);
    const [isLargeScreen, setIsLargeScreen] = useState(true);
    const [isLoading, setIsLoading] = useState(true);
-   const [articlesJsx, setArticlesJsx] = useState([]);
+   // const [routes, setRoutes] = useState();
    const [scrollPos, saveScrollPos] = useState(0);
+   const [staticTxt, setStaticTxt] = useState({
+      about: false,
+      articles: false,
+      home: false,
+      info: false
+   });
    const [windowWidth, setWindowWidth] = useState();
 
    const pageContRef = useRef(null);
@@ -30,6 +37,7 @@ const App = () => {
 
    useEffect(() => {
       getArticlesJsx();
+      // getRoutes();
    }, []);
 
    // useEffect(() => {
@@ -145,12 +153,13 @@ const App = () => {
 
    const getArticlesJsx = () => {
       const articles = articleData.map(article => {
-         return [article.id, {
+         return {
             credit: article.credit,
             id: article.id,
-            MainImg: article.MainImg,
-            MainImgSm: article.MainImgSm,
-            MainImgAlt: article.MainImgAlt,
+            mainImg: article.mainImg,
+            mainImgBox: article.mainImgBox,
+            mainImgAlt: article.mainImgAlt,
+            path: article.path,
             title: article.title,
             initText: article.content[0].text,
             content: article.content.map(el =>
@@ -158,7 +167,7 @@ const App = () => {
                buildEl(el)
                // </div>
             )
-         }];
+         };
       });
       setArticlesJsx(articles);
    };
@@ -199,17 +208,31 @@ const App = () => {
    };
 
    const components = {
-      "About": <About />,
+      "About":
+         <About
+            setStaticTxt={setStaticTxt}
+            staticTxt={staticTxt.about}
+         />,
       "Articles":
          <Articles
             articlesJsx={articlesJsx}
             saveScrollPos={() => saveScrollVal()}
             scrollToTop={() => scrollToTop()}
             setScrollPos={() => setScrollPos()}
+            setStaticTxt={setStaticTxt}
+            staticTxt={staticTxt.articles}
             windowWidth={windowWidth}
          />,
-      "Home": <Home />,
-      "Info": <Info />
+      "Home":
+         <Home
+            setStaticTxt={setStaticTxt}
+            staticTxt={staticTxt.home}
+         />,
+      "Info":
+         <Info
+            setStaticTxt={setStaticTxt}
+            staticTxt={staticTxt.info}
+         />
    };
 
    const counter = useRef(0);

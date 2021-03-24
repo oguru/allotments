@@ -27,25 +27,28 @@ import art1SoilPrep from "./art-1-soil-prep.jpg";
 import art2Community from "./art-2-community.jpg";
 import art2Healthy from "./art-2-healthy.jpg";
 import art2MainBox from "./art-2-main-box.jpg";
-import art2MainImg from "./art-2-main-md.jpg";
+import art2MainImg from "./art-2-main-lg.jpg";
 
 import art3MainBox from "./art-3-main-box.jpg";
-import art3MainImg from "./art-3-main-md.jpg";
+import art3MainImg from "./art-3-main-lg.jpg";
 import art3SeedStart1 from "./art-3-seed-starting-1.jpg";
 import art3SeedStart2 from "./art-3-seed-starting-2.jpg";
 import art3Seedlings from "./art-3-seedlings.jpg";
 
+import art4BadLeaves from "./art-4-bad-leaves.jpg";
+import art4BeetrootLg from "./art-4-beetroot-lg.jpg";
+import art4BeetrootSm from "./art-4-beetroot-sm.jpg";
 import art4CarrotsLg from "./art-4-carrots-lg.jpg";
 import art4CarrotsSm from "./art-4-carrots-sm.jpg";
 import art4MainBox from "./art-4-main-box.jpg";
-import art4MainImg from "./art-4-main-md.jpg";
+import art4MainImg from "./art-4-main-lg.jpg";
 import art4SeedlingsLg from "./art-4-seedlings-lg.jpg";
 import art4SeedlingsSm from "./art-4-seedlings-sm.jpg";
-import art4BeetrootLg from "./art-4-beetroot-lg.jpg";
-import art4BeetrootSm from "./art-4-beetroot-sm.jpg";
-import art4BadLeaves from "./art-4-bad-leaves.jpg";
 
-import art5Random from "./Originals/maarten-van-den-heuvel-1n8zqoqfugc-unsplash.jpg";
+import art5MainBox from "./art-5-main-box.jpg";
+import art5MainImg from "./art-5-main-lg.jpg";
+import art5SaladGreens from "./art-5-salad-greens.jpg";
+import art5Spinach from "./art-5-spinach.jpg";
 
 // const mainImagesInit = {
 //    init: [
@@ -103,7 +106,10 @@ const articleImages = {
    art4BeetrootLg,
    art4BeetrootSm,
    art4BadLeaves,
-   art5Random
+   art5MainImg,
+   art5MainBox,
+   art5SaladGreens,
+   art5Spinach
 };
 
 export {articleImages, mainImagesInit, mainImagesLg};

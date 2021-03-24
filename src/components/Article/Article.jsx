@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from "react";
 import Button from "../Button";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Hero from "../Hero";
 import PropTypes from "prop-types";
+import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import styles from "./Article.module.scss";
 
 const Article = (props) => {
@@ -12,10 +14,12 @@ const Article = (props) => {
       content: PropTypes.object
    };
 
+   const [backHoverStyle, setBackHoverStyle] = useState("");
+
    const heroContent = {
       heroSubtitle: content.title,
-      image: content.MainImg,
-      imageSm: content.MainImgSm,
+      image: content.mainImg,
+      imageSm: content.mainImgBox,
       imageTint: 0.4,
       smallText: content.credit
    };
@@ -35,15 +39,27 @@ const Article = (props) => {
                   />
                </div>
                <div className={`${styles.articleContent} container`}>
-                  {/* <Button
-                     handleClick={closeArticle}
-                     text="Back"
-                  /> */}
                   {content.content}
+                  <div
+                     className={`${styles.backArrowCont}`}
+                     onMouseEnter={() => setBackHoverStyle("backHover")}
+                     onMouseLeave={() => setBackHoverStyle("")}
+                     onClick={closeArticle}
+                  >
+                     <span className={`
+                        ${styles.backBorder} 
+                        ${styles[backHoverStyle]}`
+                     }></span>
+                     <FontAwesomeIcon
+                        className={styles.backArrow}
+                        icon={faAngleLeft}
+                     />
+                     <p>BACK</p>
+                  </div>
                </div>
-
             </article> : null
          }
+
       </>
    );
 };

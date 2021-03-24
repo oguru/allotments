@@ -1,5 +1,3 @@
-// check global stylesheet for other styles
-
 .article {
     height: 100%;
     
@@ -35,7 +33,7 @@
         
         .articleTxt {
             font-size: 16px;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
         
         .bold {
@@ -93,6 +91,52 @@
             margin-bottom: 1rem;
         }
     }
+
+    .backArrowCont {
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 4rem;
+        // padding: 0;
+        transform: translateX(0px);
+        transition: transform 0.4s;
+        width: 50px;
+
+        &:hover {
+            transform: translateX(-15px);
+        }
+
+        p {
+            font-size: 16px;
+            height: 25px;
+            line-height: 25px;
+            margin: 0 0.5rem;
+        }
+        
+        .backArrow {
+            height: 25px;
+            font-size: 24px;
+            text-align: left;
+        }
+
+        .backBorder {
+            border-bottom: solid 1px rgba(0, 0, 0, 0.534);
+            border-top: solid 1px rgba(0, 0, 0, 0.534);
+            content: "";
+            display: inline-block;
+            height: 25px;
+            min-width: 65px;
+            position: absolute;
+            transform: translateX(0px);
+            transition: 0.4s;
+        }
+
+        .backHover {
+            border-color: black;
+            transform: translateX(20px);
+        }
+    }
 }
 
 @media only screen and (min-width: 768px) {
@@ -113,7 +157,6 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
-                // margin: 0 1rem;
         
                 .splitImage {
                     width: 48%;

@@ -4,7 +4,7 @@ import {faAngleUp} from "@fortawesome/free-solid-svg-icons";
 import styles from "./ArticleBox.module.scss";
 
 const ArticleBox = (props) => {
-   const {MainImg, MainImgAlt, showArticle, text, title} = props;
+   const {mainImg, mainImgAlt, showArticle, text, title} = props;
 
    const [preview, setPreview] = useState("");
    const [inAnimation, setInAnimation] = useState(false);
@@ -83,12 +83,13 @@ const ArticleBox = (props) => {
          }}
       >
          <img
-            alt={MainImgAlt}
+            alt={mainImgAlt}
             className={`
                   ${styles[preview]} 
                   ${styles.articleImg}`
             }
-            src={MainImg}/>
+            src={mainImg}
+         />
          <div
             onTransitionEnd={() => setInAnimation(false)}
             className={`

@@ -16,6 +16,8 @@ const Articles = (props) => {
       saveScrollPos,
       scrollToTop,
       setScrollPos,
+      setStaticTxt,
+      staticTxt,
       windowWidth
    } = props;
 
@@ -24,12 +26,24 @@ const Articles = (props) => {
       saveScrollPos: PropTypes.func,
       scrollToTop: PropTypes.func,
       setScrollPos: PropTypes.func,
+      setStaticTxt: PropTypes.func,
+      staticTxt: PropTypes.bool,
       windowWidth: PropTypes.number
    };
 
    const [currentArticle, setCurrentArticle] = useState(articlesJsx[0]);
    const [articleVisible, setArticleVisible] = useState(false);
-   const [articleViewed, setArticleViewed] = useState(false);
+
+   useEffect(() => {
+      if (!staticTxt) {
+         setTimeout(() => {
+            setStaticTxt(prevState => ({
+               ...prevState,
+               articles: true
+            }));
+         }, 5000);
+      }
+   }, []);
 
    const heroContent = {
       heroTitle: "Articles & Tips",
@@ -43,7 +57,7 @@ const Articles = (props) => {
       let image;
 
       if (windowWidth < 768) {
-         image = articlesJsx[index][1].MainImg;
+         image = articlesJsx[index].mainImg;
       }
 
       setCurrentArticle(articlesJsx[index]);
@@ -52,7 +66,6 @@ const Articles = (props) => {
    const showArticle = (index) => {
       calcArticleJsx(index);
       setArticleVisible(true);
-      setArticleViewed(true);
       saveScrollPos();
       setTimeout(() => {
          scrollToTop();
@@ -68,12 +81,12 @@ const Articles = (props) => {
 
    const articleBoxes = articlesJsx.map((article, index) => (
       <ArticleBox
-         key={article[1].id}
-         MainImg={article[1].MainImgSm}
-         MainImgAlt={article[1].MainImgAlt}
+         key={article.id}
+         mainImg={article.mainImgBox}
+         mainImgAlt={article.mainImgAlt}
          showArticle={() => showArticle(index)}
-         text={article[1].initText}
-         title={article[1].title}
+         text={article.initText}
+         title={article.title}
       />
    ));
 
@@ -95,7 +108,7 @@ const Articles = (props) => {
                >
                   <Hero
                      content={heroContent}
-                     staticTxt={articleViewed}
+                     staticTxt={staticTxt}
                   />
                   <div className={`${styles.articleBoxes} container`}>
                      {articleBoxes}
@@ -112,7 +125,7 @@ const Articles = (props) => {
                   className={`${styles.articleCont}`}
                >
                   <Article
-                     content={currentArticle[1]}
+                     content={currentArticle}
                      closeArticle={() => closeArticle()}
                   />
                </section>
