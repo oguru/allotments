@@ -1,7 +1,7 @@
 import Hero from "../../components/Hero";
 import React from "react";
-import infoImg from "../../images/thom-holmes-3w9aalszgo0-unsplash.jpg";
-import infoImgSm from "../../images/thom-holmes-3w9aalszgo0-unsplash-sm.jpg";
+import infoImg from "../../images/info-main.jpg";
+import infoImgSm from "../../images/info-main-sm.jpg";
 import styles from "./Info.module.scss";
 
 const Info = () => {

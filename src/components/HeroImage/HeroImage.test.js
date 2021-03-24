@@ -4,8 +4,8 @@ import {checkProps, findByTestAttr} from "../../../utils/utils";
 import HeroImage from "./HeroImage";
 import React from "react";
 import mount from "enzyme/mount";
-import src from "../../images/dana-devolk-n_0wi_oruce-unsplash.jpg";
-import srcSm from "../../images/dana-devolk-n_0wi_oruce-unsplash-sm.jpg";
+import src from "../../images/articles-main.jpg";
+import srcSm from "../../images/articles-main-sm.jpg";
 
 describe("HeroImage tests", () => {
    let component;

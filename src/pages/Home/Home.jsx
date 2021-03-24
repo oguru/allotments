@@ -1,13 +1,31 @@
 import Hero from "../../components/Hero";
-import React from "react";
-import homeImg from "../../images/randy-fath-ey6g0z_fs0-unsplash.jpg";
+import React, {useEffect} from "react";
+import PropTypes from "prop-types";
+import homeImg from "../../images/home-main.jpg";
 
-const Home = () => {
+const Home = (props) => {
+   const {setStaticTxt, staticTxt} = props;
+
+   Home.propTypes = {
+      setStaticTxt: PropTypes.func,
+      staticTxt: PropTypes.bool
+   };
+
+   useEffect(() => {
+      if (!staticTxt) {
+         setTimeout(() => {
+            setStaticTxt(prevState => ({
+               ...prevState,
+               home: true
+            }));
+         }, 5000);
+      }
+   }, []);
 
    const heroContent = {
       heroTitle: "Welcome to Stechford Allotments",
       heroSubtitle: "Your gateway to healthier living",
-      homepageText: "Click on a link in the navigation bar to learn more or to contact us",
+      smallText: "Click on a link in the navigation bar to learn more or to contact us",
       image: homeImg,
       imageTint: 0.3
    };
@@ -16,6 +34,7 @@ const Home = () => {
       <Hero
          content={heroContent}
          homeHero
+         staticTxt={staticTxt}
       />
    );
 };

@@ -7,20 +7,23 @@
     box-sizing: border-box;
     padding: none;
     margin: none;
+    scrollbar-width: thin;
 }
+
 
 .app {
   display: flex;
   flex-direction: column;
   height: 100%;
   
-  section {
+  .mainBody {
     align-items: center;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     justify-content: center;
-    overflow: hidden;
+    margin: 0.5rem 0;
+    overflow: auto;
     position: relative;
     
     .exit {
@@ -29,6 +32,12 @@
     }
     
     .exitActive {
+      opacity: 0;
+      transition: 350ms linear 150ms;
+      transform: translateX(-1.5%);
+    }
+
+    .exitDone {
       opacity: 0;
       transition: 350ms linear 150ms;
       transform: translateX(-1.5%);
@@ -45,6 +54,12 @@
       transform: translateX(0);
     }
 
+    .enterDone {
+      opacity: 1;
+      transition: 300ms linear 500ms;
+      transform: translateX(0);
+    }
+
     .loaderCont {
       align-items: center;
       display: flex;
@@ -53,8 +68,8 @@
       .loader {
         animation: rotate 2s infinite linear;
         display: block;
-        height: $loader-h;
-        width: $loader-w;
+        height: 80px;
+        width: 40px;
         position: relative;
 
         span {
@@ -85,12 +100,18 @@
       }
     }
 
-    .mainBody {
-      display: flex;
-      flex-direction: column;
+    .mainPage {
       height: 100%;
       position: absolute;
       width: 100%;
+
+      .pageCont {
+        scroll-behavior: smooth;
+        height: 100%;
+        overflow-x: hidden;
+        position: relative;
+        scroll-behavior: smooth;
+      }
     }
 
     .preCacheHidden {
@@ -116,29 +137,25 @@
   }
 }
 
-@include media-breakpoint-up(sm) {
-  .footerStyles {
-    padding: 0.875rem 0.5rem;
-    p {
-      font-size: 1rem;
-    }
-  }
-}
+// @include media-breakpoint-up(sm) {
+//   .app {
+//     .footerStyles {
+//       p {
+//       }
+//     }
+//   }
+// }
 
 @include media-breakpoint-up(md) {
-  .footerStyles {
-    p {
-      font-size: 1.125rem;
-    }
-  }
-
-  section {
-    .exitActive {
-      transition: 200ms linear 0ms;
-    }
- 
-    .enterActive {
-      transition: 300ms linear 100ms;
+  .app {
+    .mainBody {
+      .exitActive {
+        transition: 200ms linear 0ms;
+      }
+  
+      .enterActive {
+        transition: 300ms linear 100ms;
+      }
     }
   }
 }

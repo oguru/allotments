@@ -1,0 +1,27 @@
+.backArrowCont {
+    align-items: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    display: flex;
+    height: 30px;
+    justify-content: flex-start;
+    margin-top: 1.25rem;
+    width: 50px;
+    transform: scale(1) translateX(0px);
+    transition: transform 0.4s;
+
+    &:hover {
+        transform: scale(1) translateX(-15px);
+    }
+
+    p {
+        font-size: 16px;
+        margin: 0 0.5rem;
+    }
+    
+    .backArrow {
+        height: 30px;
+        font-size: 24px;
+        text-align: left;
+    }
+}
