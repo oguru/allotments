@@ -15,16 +15,19 @@ const getNoticesJsx = (setNotices) => {
       .get()
       .then(querySnapshot => {
          const items = [];
-         //  return querySnapshot.map(item => item.data());
+
          querySnapshot.forEach(item => {
             const itemDate = buildDate(item
                .data()
                .date
                .toDate());
 
+            const id = item.id;
+
             items.push({
                ...item.data(),
-               stringDate: itemDate
+               date: itemDate,
+               id
             });
          });
          setNotices(items);

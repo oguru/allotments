@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Hero from "../../components/Hero";
+import Notice from "../../components/Notice";
 import PropTypes from "prop-types";
 import grassTexture from "../../images/info-grass-texture.jpg";
 import infoImg from "../../images/info-main.jpg";
@@ -52,31 +53,14 @@ const Info = (props) => {
       imageTint: 0.45
    };
 
-   const buildNotices = notices.map(item => (
-      <div className="card border shadow-sm my-5" key={`${item.title}${item.date}`}>
-         <div className="card-header d-flex justify-between mdb-color lighten-5">
-            <p className="flex-grow-1 m-auto">{item.title}</p>
-            <p className="card-text m-auto text-muted small">{item.stringDate}</p>
-         </div>
-         <div className="card-footer rgba-white-strong border-0 ">
-            <p className="info-item-text card-text">{item.desc}</p>
-         </div>
-      </div>
-   ));
-
-   // const buildNotices = () => {
-   //    return (
-   //    <div class="card border shadow-sm my-5">
-   //              <div class="card-header d-flex justify-between mdb-color lighten-5">
-   //                  <p class="flex-grow-1 m-auto">@item.Value("infoItemTitle")</p>
-   //                  <p class="card-text m-auto text-muted small">@itemDate</p>
-   //              </div>
-   //              <div class="card-footer rgba-white-strong border-0 ">
-   //                  <p class="info-item-text card-text">@item.Value("infoItemText")</p>
-   //              </div>
-   //          </div>
-   //    )
-   // }
+   const buildNotices = () => {
+      return notices.map(item => (
+         <Notice
+            key={`${item.title}`}
+            item={item}
+         />
+      ));
+   };
 
    return (
       <>
@@ -189,7 +173,7 @@ const Info = (props) => {
 
          <section className="container my-5">
             <h3 className="mb-4">Notices</h3>
-            {buildNotices}
+            {buildNotices()}
          </section>
       </>
    );

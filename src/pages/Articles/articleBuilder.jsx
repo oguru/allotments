@@ -24,17 +24,7 @@ const buildEl = el => {
    }
 
    return (
-      <React.Fragment
-         key={count++
-            // el.li
-            // || el.text
-            // || el.bold
-            // || el.splitImage.img1.alt
-            // || el.alt
-            // || el.link
-            // || el.subHeading
-         }
-      >
+      <React.Fragment key={count++}>
          {el.subHeading &&
              <h5>{el.subHeading}</h5>
          }

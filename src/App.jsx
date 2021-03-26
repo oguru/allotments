@@ -44,9 +44,13 @@ const App = () => {
          const articles = getArticlesJsx(articleData);
          setArticlesJsx(articles);
 
-         getNoticesJsx(setNotices);
+         fetchNotices();
       }
    }, [isLoading]);
+
+   const fetchNotices = () => {
+      getNoticesJsx(setNotices);
+   };
 
    // useEffect(() => {
    //    const getWidth = () => setWindowWidth(window.innerWidth);
@@ -121,6 +125,7 @@ const App = () => {
          />,
       "Admin":
          <Admin
+            fetchNotices={fetchNotices}
             loggedIn={loggedIn}
             notices={notices}
             setLoggedIn={setLoggedIn}

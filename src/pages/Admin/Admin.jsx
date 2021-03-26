@@ -1,18 +1,23 @@
 import Hero from "../../components/Hero";
+import Notice from "../../components/Notice";
 import PropTypes from "prop-types";
-import React from "react";
+import React, {useState} from "react";
 import adminImg from "../../images/admin-main-lg.jpg";
 import adminImgSm from "../../images/admin-main-sm.jpg";
+import {firestore} from "../../firebase.js";
 import styles from "./Admin.module.scss";
 
 const Admin = (props) => {
-   const {loggedIn, notices, setLoggedIn} = props;
+   const {fetchNotices, loggedIn, notices, setLoggedIn} = props;
 
    Admin.propTypes = {
+      fetchNotices: PropTypes.func,
       loggedIn: PropTypes.bool,
       notices: PropTypes.array,
       setLoggedIn: PropTypes.func
    };
+
+   const [newNotice, setNewNotice] = useState(false);
 
    const subtitle = loggedIn ?
       "Edit and add new notices to the info page here." :
@@ -26,19 +31,56 @@ const Admin = (props) => {
       imageTint: 0.1
    };
 
-   const buildNotices = notices.map(item => {
-      return <>
-         <div className="card border shadow-sm my-5" key={`${item.title}2`}>
-            <div className="card-header d-flex justify-between mdb-color lighten-5">
-               <input className="flex-grow-1 m-auto">{item.title}</input>
-               <p className="card-text m-auto text-muted small">{item.stringDate}</p>
-            </div>
-            <div className="card-footer rgba-white-strong border-0 ">
-               <p className="info-item-text card-text">{item.desc}</p>
-            </div>
-         </div>
-      </>;
-   });
+   const addToDb = (newDesc, newTitle) => {
+
+      const newDoc = {
+         desc: newDesc,
+         title: newTitle,
+         date: new Date()
+      };
+
+      firestore
+         .collection("notices")
+         .doc()
+         .set(newDoc)
+         .then(() => {
+            fetchNotices();
+         });
+   };
+
+   const modifyNotice = (newDesc, newTitle, id) => {
+
+      const newDetails = {
+         desc: newDesc,
+         title: newTitle
+      };
+
+      firestore
+         .collection("notices")
+         .doc(id)
+         .update(newDetails)
+         .then(() => {
+            fetchNotices();
+         });
+   };
+
+   const deleteNotice = (id) => {
+      firestore
+         .collection("notices")
+         .doc(id)
+         .delete()
+         .then(() => fetchNotices());
+   };
+
+   const buildNotices = notices.map(item => (
+      <Notice
+         deleteNotice={deleteNotice}
+         modifyNotice={modifyNotice}
+         item={item}
+         key={`${item.id}`}
+         loggedIn={loggedIn}
+      />
+   ));
 
    return (
       <>
@@ -46,6 +88,18 @@ const Admin = (props) => {
             content={heroContent}
             staticTxt
          />
+         {loggedIn &&
+         <div className="container">
+            <button className="container my-4" onClick={() => setNewNotice(true)}>Add Notice</button>
+         </div>
+         }
+         {newNotice &&
+            <Notice
+               addToDb={addToDb}
+               newNotice={newNotice}
+               setNewNotice={setNewNotice}
+            />
+         }
          {buildNotices}
       </>
    );
