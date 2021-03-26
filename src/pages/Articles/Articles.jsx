@@ -41,7 +41,7 @@ const Articles = (props) => {
                ...prevState,
                articles: true
             }));
-         }, 5000);
+         }, 3000);
       }
    }, []);
 

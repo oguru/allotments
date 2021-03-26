@@ -104,15 +104,17 @@ const NavBar = (props) => {
                      data-test="navBarLinkGroup"
                      ref={navLinkGroup}
                   >
-                     {routes.map((route, index) => (
-                        <NavLink
-                           closeNav={() => closeNav()}
-                           linkType={checkIsActive(route.path)}
-                           key={`${index}_${route.name}`}
-                           path={route.path}
-                           linkText={route.name}
-                        />
-                     ))}
+                     {routes.map((route, index) => {
+                        return route.name !== "Admin" ? (
+                           <NavLink
+                              closeNav={() => closeNav()}
+                              linkType={checkIsActive(route.path)}
+                              key={`${index}_${route.name}`}
+                              path={route.path}
+                              linkText={route.name}
+                           />
+                        ) : null;
+                     })}
                   </div>
                </CSSTransition>
             </div>
