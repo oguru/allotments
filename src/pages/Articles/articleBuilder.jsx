@@ -1,10 +1,11 @@
 import React from "react";
 import articleStyles from "../../components/Article/Article.module.scss";
+import globalStyles from "../../global.scss";
 
 let count = 0;
 
-const buildEl = el => {
-   const imgCaption = el.caption ? `${articleStyles.imgCaption}` : "";
+const buildEl = (el, article) => {
+   const imgCaption = el.caption ? `${"imgCaption"}` : "";
 
    if (el.floatImage) {
       return (
@@ -12,10 +13,10 @@ const buildEl = el => {
             <img
                alt={el.alt}
                className={`
-                    ${articleStyles[el.floatDir]} 
+                    ${el.floatDir} 
                     ${imgCaption}`
                }
-               key={count++}
+               key={`${article || "about"}${count++}`}
                src={el.floatImage}
             />
             {el.content.map(subEl => buildEl(subEl))}
@@ -30,42 +31,42 @@ const buildEl = el => {
          }
          {el.bold &&
              <p className={`
-                ${articleStyles.bold} 
-                ${articleStyles.articleTxt}`
+                ${"bold"} 
+                ${"articleTxt"}`
              }>
                 {el.bold}
              </p>
          }
          {el.li &&
-             <ul>
+             <ul className={"ulStyle"}>
                 {el.li.map(li => <li key={li}>{li}</li>)}
              </ul>
          }
          {el.liText &&
-             <ul className={articleStyles.liText}>
+             <ul className={"liText"}>
                 {el.liText.map(liText => <li key={liText}>{liText}</li>)}
              </ul>
          }
          {el.imageSm && el.imageLg &&
                 <img
                    alt={el.alt}
-                   className={`${articleStyles.blockImg} ${imgCaption}`}
+                   className={`${"blockImg"} ${imgCaption}`}
                    srcSet={`${el.imageSm} 300w, ${el.imageLg} 1024w`}
                    src={el.imageSm} />
          }
          {el.splitImage &&
              <div className={`
-                ${articleStyles.splitImgCont} 
+                ${"splitImgCont"} 
                 ${imgCaption}`
              }>
                 <img
                    alt={el.splitImage.img1.alt}
-                   className={articleStyles.splitImage}
+                   className={"splitImage"}
                    src={el.splitImage.img1.img}
                 />
                 <img
                    alt={el.splitImage.img2.alt}
-                   className={articleStyles.splitImage}
+                   className={"splitImage"}
                    src={el.splitImage.img2.img}
                 />
              </div>
@@ -73,14 +74,14 @@ const buildEl = el => {
          {el.text &&
              <p className={`
                 ${imgCaption} 
-                ${articleStyles.articleTxt}`
+                ${"articleTxt"}`
              }>
                 {el.text}
              </p>
          }
          {el.link &&
              <a
-                className={articleStyles.articleLink}
+                className={"articleLink"}
                 href={el.link}
                 rel="noreferrer"
                 target="_blank"
@@ -92,21 +93,25 @@ const buildEl = el => {
    );
 };
 
-const getArticlesJsx = (articleData) => {
-   const articles = articleData.map(article => {
-      return {
-         credit: article.credit,
-         id: article.id,
-         mainImg: article.mainImg,
-         mainImgBox: article.mainImgBox,
-         mainImgAlt: article.mainImgAlt,
-         path: article.path,
-         title: article.title,
-         initText: article.content[0].text,
-         content: article.content.map(el => buildEl(el))
-      };
-   });
-   return articles;
+const getContentJsx = (contentData, articles) => {
+   console.log(contentData);
+   const jsxContent = articles ?
+      contentData.map(article => {
+         return {
+            credit: article.credit,
+            id: article.id,
+            mainImg: article.mainImg,
+            mainImgBox: article.mainImgBox,
+            mainImgAlt: article.mainImgAlt,
+            path: article.path,
+            title: article.title,
+            initText: article.content[0].text,
+            content: article.content.map(el => buildEl(el, article))
+         };
+      }) :
+      contentData.map(el => buildEl(el));
+
+   return jsxContent;
 };
 
-export default getArticlesJsx;
+export {getContentJsx};

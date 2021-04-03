@@ -70,7 +70,7 @@ const NavBar = (props) => {
                data-test="navBrand"
                href="/"
             >
-               Stechford Allotments
+               Francis Rd Allotments
             </a>
             <div
                className={styles.burgerIcon}

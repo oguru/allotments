@@ -20,6 +20,7 @@ const Hero = (props) => {
       },
       article,
       closeArticle,
+      component,
       homeHero,
       staticTxt
    } = props;
@@ -109,6 +110,7 @@ const Hero = (props) => {
                >
                   {smallText}
                </h5>
+               {component}
                {article &&
                <div
                   className={styles.backArrowCont}

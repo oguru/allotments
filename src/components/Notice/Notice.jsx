@@ -3,16 +3,18 @@ import PropTypes from "prop-types";
 import styles from "./Notice.module.scss";
 
 const Notice = (props) => {
-   const {addToDb, deleteNotice, modifyNotice, item, loggedIn, newNotice, setNewNotice} = props;
+   const {
+      addToDb,
+      deleteNotice,
+      modifyNotice,
+      item,
+      loggedIn,
+      newNotice,
+      setNewNotice
+   } = props;
 
    const [newTitle, setNewTitle] = useState("");
    const [newDesc, setNewDesc] = useState("");
-
-   //  useEffect(() => {
-   //   if (newNotice) {
-
-   //   }
-   //  }, [])
 
    Notice.propTypes = {
       addToDb: PropTypes.func,
@@ -38,12 +40,14 @@ const Notice = (props) => {
             <input
                className="flex-grow-1 mr-3"
                onChange={e => setNewTitle(e.target.value)}
+               placeholder="Notice title goes here..."
             />
          </div>
          <div className="card-footer rgba-white-strong border-0 ">
             <textarea
                className="info-item-text card-text w-100"
                onChange={e => setNewDesc(e.target.value)}
+               placeholder="Notice text goes here..."
             />
          </div>
          <div className="d-flex">
@@ -78,7 +82,7 @@ const Notice = (props) => {
       if (editMode && loggedIn && !newNotice) {
          return (
             <>
-               <div className="card-header d-flex justify-between mdb-color lighten-5">
+               <div className={`card-header d-flex justify-between lighten-5`}>
                   <input
                      className="flex-grow-1 mr-3"
                      onChange={(e) => setNewTitle(e.target.value)}
@@ -88,13 +92,12 @@ const Notice = (props) => {
                      {item.date}
                   </p>
                </div>
-               <div className="card-footer rgba-white-strong border-0 ">
+               <div className="card-body">
                   <textarea
                      className="info-item-text card-text w-100"
                      onChange={(e) => setNewDesc(e.target.value)}
                      value={newDesc}
                   />
-                  <p>{item.id}</p>
                </div>
                <div className="d-flex">
                   <button
@@ -115,7 +118,7 @@ const Notice = (props) => {
       } else if (!newNotice) {
          return (
             <>
-               <div className="card-header d-flex justify-between mdb-color lighten-5">
+               <div className={`${styles.noticeHeader} card-header d-flex justify-between`}>
                   <p className="flex-grow-1 m-auto">
                      {item.title}
                   </p>
@@ -123,7 +126,7 @@ const Notice = (props) => {
                      {item.date}
                   </p>
                </div>
-               <div className="card-footer rgba-white-strong border-0 ">
+               <div className="card-body">
                   <p className="info-item-text card-text">
                      {item.desc}
                   </p>
@@ -173,7 +176,7 @@ const Notice = (props) => {
 
    return (
       <>
-         <div className="card border shadow-sm my-5 mx-5" >
+         <div className="card border shadow-sm my-5" >
             {newItem || notice}
          </div>
       </>

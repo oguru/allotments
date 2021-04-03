@@ -5,7 +5,7 @@ import CSSTransition from "react-transition-group/CSSTransition";
 import Hero from "../../components/Hero";
 import PropTypes from "prop-types";
 import {Route} from "react-router-dom";
-// import {articleData} from "../../data/articleData.js";
+// import {contentData} from "../../data/contentData.js";
 import articlesImg from "../../images/articles-main-lg.jpg";
 import articlesImgSm from "../../images/articles-main-sm.jpg";
 import styles from "./Articles.module.scss";

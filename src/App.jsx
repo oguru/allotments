@@ -1,5 +1,7 @@
 // import "./global.scss";
 import React, {useEffect, useState, useRef} from "react";
+import {aboutData, articlesData} from "./data/contentData.js";
+import {getContentJsx} from "./pages/Articles/articleBuilder.jsx";
 import {mainImagesInit, mainImagesLg} from "./images/imageImports.js";
 import About from "./pages/About";
 import Admin from "./pages/Admin";
@@ -9,16 +11,15 @@ import Home from "./pages/Home";
 import Info from "./pages/Info";
 import NavBar from "./components/NavBar";
 import {Route} from "react-router-dom";
-import {articleData} from "./data/articleData.js";
 import firebase from "./firebase";
-import getArticlesJsx from "./pages/Articles/articleBuilder.jsx";
 import getNoticesJsx from "./pages/Info/noticeBuilder.jsx";
 import styles from "./App.module.scss";
 
 const App = () => {
 
+   const [aboutJsx, setAboutJsx] = useState();
    const [articlesJsx, setArticlesJsx] = useState([]);
-   const [loggedIn, setLoggedIn] = useState(true);
+   const [loggedIn, setLoggedIn] = useState(false);
    const [notices, setNotices] = useState([]);
    const [isLargeScreen, setIsLargeScreen] = useState(true);
    const [isLoading, setIsLoading] = useState(true);
@@ -41,8 +42,11 @@ const App = () => {
 
    useEffect(() => {
       if (!isLoading) {
-         const articles = getArticlesJsx(articleData);
+         const articles = getContentJsx(articlesData, true);
          setArticlesJsx(articles);
+
+         const about = getContentJsx(aboutData);
+         setAboutJsx(about);
 
          fetchNotices();
       }
@@ -120,6 +124,7 @@ const App = () => {
    const components = {
       "About":
          <About
+            aboutJsx={aboutJsx}
             setStaticTxt={setStaticTxt}
             staticTxt={staticTxt.about}
          />,
@@ -252,7 +257,7 @@ const App = () => {
          >
             <p>
                © 2021 Copyright:
-               <a href="/"> Stechford Allotments</a>
+               <a href="/"> Francis Rd Allotments</a>
             </p>
          </footer>
       </div>

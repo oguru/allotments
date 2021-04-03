@@ -52,7 +52,7 @@ describe("NavBar tests", () => {
    it("should have a nav brand/title with the correct title", () => {
       expect(findByTestAttr(component, "navBrand")
          .text())
-         .toBe("Stechford Allotments");
+         .toBe("Francis Rd Allotments");
    });
 
    test("nav brand/title should have the correct re-direct path to home", () => {
