@@ -1,3 +1,7 @@
+img {
+    border-radius: 0.25rem;
+}
+
 .backArrowCont {
     align-items: center;
     border-radius: 0.25rem;
@@ -140,6 +144,7 @@
             justify-content: space-between;
     
             .splitImage {
+                // object-fit: cover;
                 width: 48%;
             }
         }

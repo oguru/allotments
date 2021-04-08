@@ -1,7 +1,5 @@
 // import "./global.scss";
 import React, {useEffect, useState, useRef} from "react";
-import {aboutData, articlesData} from "./data/contentData.js";
-import {getContentJsx} from "./pages/Articles/articleBuilder.jsx";
 import {mainImagesInit, mainImagesLg} from "./images/imageImports.js";
 import About from "./pages/About";
 import Admin from "./pages/Admin";
@@ -11,13 +9,15 @@ import Home from "./pages/Home";
 import Info from "./pages/Info";
 import NavBar from "./components/NavBar";
 import {Route} from "react-router-dom";
+import {articlesData} from "./data/contentData.js";
 import firebase from "./firebase";
+import {getContentJsx} from "./pages/Articles/articleBuilder.jsx";
 import getNoticesJsx from "./pages/Info/noticeBuilder.jsx";
 import styles from "./App.module.scss";
 
 const App = () => {
 
-   const [aboutJsx, setAboutJsx] = useState();
+   // const [aboutJsx, setAboutJsx] = useState();
    const [articlesJsx, setArticlesJsx] = useState([]);
    const [loggedIn, setLoggedIn] = useState(false);
    const [notices, setNotices] = useState([]);
@@ -45,8 +45,8 @@ const App = () => {
          const articles = getContentJsx(articlesData, true);
          setArticlesJsx(articles);
 
-         const about = getContentJsx(aboutData);
-         setAboutJsx(about);
+         // const about = getContentJsx(aboutData);
+         // setAboutJsx(about);
 
          fetchNotices();
       }
@@ -117,6 +117,10 @@ const App = () => {
       }, 500);
    };
 
+   const scrollToBot = () => {
+      pageContRef.current.scrollTop = 0;
+   };
+
    const saveScrollVal = () => {
       saveScrollPos(pageContRef.current.scrollTop);
    };
@@ -124,7 +128,7 @@ const App = () => {
    const components = {
       "About":
          <About
-            aboutJsx={aboutJsx}
+            // aboutJsx={aboutJsx}
             setStaticTxt={setStaticTxt}
             staticTxt={staticTxt.about}
          />,
@@ -257,7 +261,7 @@ const App = () => {
          >
             <p>
                © 2021 Copyright:
-               <a href="/"> Francis Rd Allotments</a>
+               <a href="/"> Francis Road Allotments</a>
             </p>
          </footer>
       </div>

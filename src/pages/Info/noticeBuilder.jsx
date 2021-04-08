@@ -3,7 +3,7 @@ import {firestore} from "../../firebase.js";
 
 const buildDate = (date) => {
    const shortDate =
-      `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+      `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
 
    return shortDate;
 };

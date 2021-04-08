@@ -1,14 +1,14 @@
-import {articleImages} from "../images/imageImports";
+import {aboutImages, articleImages} from "../images/imageImports";
 
-const img = articleImages;
+const img = [articleImages, aboutImages];
 
 const articlesData = [
    {
       id: 1,
       title: "Preparing A New Garden Plot",
       credit: "Article provided by homegardenseedassociation.com",
-      mainImg: img.art1MainImg,
-      mainImgBox: img.art1MainBox,
+      mainImg: img[0].art1MainImg,
+      mainImgBox: img[0].art1MainBox,
       mainImgAlt: "Dug soil",
       path: "/articles/new-plot",
       content: [
@@ -29,7 +29,7 @@ const articlesData = [
             ]
          },
          {
-            floatImage: img.art1SoilPrep,
+            floatImage: img[0].art1SoilPrep,
             floatDir: "floatLeft",
             alt: "Soil preparation",
             content: [
@@ -48,7 +48,7 @@ const articlesData = [
             text: "Remove existing lawn by slicing under the sod with a spade and cutting it into manageable pieces. Add the pieces to your compost or use it to patch bare spots elsewhere. Kill weeds with glyphosate herbicide, pull them by hand, or chop them with a hoe or mattock and rake them up. If time permits, you can smother grass and weeds with old carpeting or black plastic anchored to the ground. For best results, leave the covering in place for several weeks of hot weather."
          },
          {
-            floatImage: img.art1PhTest,
+            floatImage: img[0].art1PhTest,
             floatDir: "floatRight",
             alt: "Soil Ph Testing",
             content: [
@@ -76,8 +76,8 @@ const articlesData = [
       id: 2,
       title: "How Does Gardening Build Health?",
       credit: "Article provided by homegardenseedassociation.com",
-      mainImg: img.art2MainImg,
-      mainImgBox: img.art2MainBox,
+      mainImg: img[0].art2MainImg,
+      mainImgBox: img[0].art2MainBox,
       mainImgAlt: "",
       path: "/articles/build-health",
       content: [
@@ -92,7 +92,7 @@ const articlesData = [
             text: "You can expend calories by going dutifully to the gym, or you can simply live an active life: “Non-exercise activity thermogenesis” or NEAT, is now officially recognized as an effective way to keep incoming and outgoing calories in healthy balance. According to Dr. James Levine of the Mayo Clinic, engaging in everyday activities can overcome a propensity to gain weight. “NEAT includes all those activities that render us vibrant, unique, and independent beings,” says Dr. Levine. Gardening, for instance, expends 200-400 calories per hour!"
          },
          {
-            floatImage: img.art2Healthy,
+            floatImage: img[0].art2Healthy,
             floatDir: "floatRight",
             alt: "Healthy elderly woman",
             content: [
@@ -114,7 +114,7 @@ const articlesData = [
             ]
          },
          {
-            floatImage: img.art2Community,
+            floatImage: img[0].art2Community,
             floatDir: "floatLeft",
             alt: "Father and son gardening",
             content: [
@@ -140,8 +140,8 @@ const articlesData = [
       id: 3,
       title: "Seed Starting Timeline For Success",
       credit: "Article provided by homegardenseedassociation.com",
-      mainImg: img.art3MainImg,
-      mainImgBox: img.art3MainBox,
+      mainImg: img[0].art3MainImg,
+      mainImgBox: img[0].art3MainBox,
       mainImgAlt: "",
       path: "/articles/build-health",
       content: [
@@ -166,8 +166,8 @@ const articlesData = [
             ]
          },
          {
-            imageSm: img.art3Seedlings,
-            imageLg: img.art3Seedlings,
+            imageSm: img[0].art3Seedlings,
+            imageLg: img[0].art3Seedlings,
             alt: "Seedlings"
          },
          {
@@ -201,11 +201,11 @@ const articlesData = [
          {
             splitImage: {
                img1: {
-                  img: img.art3SeedStart1,
+                  img: img[0].art3SeedStart1,
                   alt: "Indoor greenhouse trays"
                },
                img2: {
-                  img: img.art3SeedStart2,
+                  img: img[0].art3SeedStart2,
                   alt: "Indoor greenhouse seedlings"
                }
             }
@@ -319,8 +319,8 @@ const articlesData = [
       id: 4,
       title: "Germination Troubleshooting Guide",
       credit: "Article provided by homegardenseedassociation.com",
-      mainImg: img.art4MainImg,
-      mainImgBox: img.art4MainBox,
+      mainImg: img[0].art4MainImg,
+      mainImgBox: img[0].art4MainBox,
       mainImgAlt: "",
       path: "/articles/germination-troubleshooting",
       content: [
@@ -331,8 +331,8 @@ const articlesData = [
             text: "What is a gardener to do? For one thing, don’t give up! As you build experience, your garden will flourish, and you will gain the confidence and knowledge that you need to get it right, every time."
          },
          {
-            imageSm: img.art4CarrotsSm,
-            imageLg: img.art4CarrotsLg,
+            imageSm: img[0].art4CarrotsSm,
+            imageLg: img[0].art4CarrotsLg,
             alt: "Carrots",
             text: "Carrot seeds can take time to germinate. Keep seedbeds moist by laying moistburlap or row cover fabric over the soil. Remove it when seedlings appear.",
             caption: true
@@ -359,8 +359,8 @@ const articlesData = [
          },
          {
             // seedling image banner
-            imageSm: img.art4SeedlingsSm,
-            imageLg: img.art4SeedlingsLg,
+            imageSm: img[0].art4SeedlingsSm,
+            imageLg: img[0].art4SeedlingsLg,
             text: "Starting seeds indoors will give you more control over variables that can cause poor germination.",
             caption: true
          },
@@ -370,8 +370,8 @@ const articlesData = [
          },
          {
             // beetroot seedlings image banner
-            imageSm: img.art4BeetrootSm,
-            imageLg: img.art4BeetrootLg,
+            imageSm: img[0].art4BeetrootSm,
+            imageLg: img[0].art4BeetrootLg,
             text: "It’s important to thin seedlings of root vegetables, such as beets, so roots can develop properly",
             caption: true
          },
@@ -387,7 +387,7 @@ const articlesData = [
             text: "This is more than likely a soil problem. The soil is too wet, too dry, too compacted, too deficient in necessary nutrients, or the pH is too extreme. Start by checking the drainage of your soil with a simple drainage test: dig a 12-inch hole and fill it with water, if it doesn’t drain in 30 minutes, raised beds are your answer. Good soil preparation, and the addition of generous amount of compost, will solve many soil problems. A soil test will give you a complete picture of the structure and quality of your soil."
          },
          {
-            floatImage: img.art4BadLeaves,
+            floatImage: img[0].art4BadLeaves,
             floatDir: "floatLeft",
             alt: "unhealthy looking leaves",
             text: "Groundhogs and rabbits will chew some seedlings down to a nub overnight, given the chance",
@@ -409,8 +409,8 @@ const articlesData = [
       id: 5,
       title: "Want Safe Food? Grow Your Own",
       credit: "Article provided by homegardenseedassociation.com",
-      mainImg: img.art5MainImg,
-      mainImgBox: img.art5MainBox,
+      mainImg: img[0].art5MainImg,
+      mainImgBox: img[0].art5MainBox,
       mainImgAlt: "Vegetables growing",
       path: "/articles/safe-food",
       content: [
@@ -418,7 +418,7 @@ const articlesData = [
             text: "Between 1990 and 2009, there were 363 outbreaks of food-borne illness linked to various leafy greens, including iceberg lettuce, romaine, and spinach, causing 13,568 cases of illness. This statistic comes from a study published in 2009 by the Center for Science in the Public Interest identifying the sources of outbreaks of food-borne illness."
          },
          {
-            floatImage: img.art5Spinach,
+            floatImage: img[0].art5Spinach,
             floatDir: "floatRight",
             alt: "Bundle of spinach",
             content: [
@@ -436,7 +436,7 @@ const articlesData = [
             ]
          },
          {
-            floatImage: img.art5SaladGreens,
+            floatImage: img[0].art5SaladGreens,
             floatDir: "floatLeft",
             alt: "Salad greens",
             content: [
@@ -462,39 +462,71 @@ const articlesData = [
    }
 ];
 
-const aboutData = [
-   {
-      text: "Francis Road Allotments is sandwiched between Bordesley Green East and Francis Road (entrance on Richmond Road opposite the mosque).  It is one of the oldest allotments in Birmingham and goes back to the First World War when a piece of land to grow much needed food during the war was highly sought after.  This followed on throughout the Second World War and up until the 80s was a thriving allotment with ahost of gardeners and a long waiting list.  Unfortunately, this declined during the 90s and even further over the first 10 years of this Millennium until the Council decided to close it."
-   },
-   {
-      text: "The remaining 4 plotholders on the site were up in arms and enlisted my help as I was then Secretary of Stechford Village Neighbourhood Forum to take minutes at a meeting between plotholders, the Council and the Allotment Association.  Such was the strength of feeling that the Council said if we could raise the profile and get new plotholders onto the site, they would keep it open.  "
-   },
-   {
-      text: "Myself and another plotholder spent over two weeks going out in the rain to knock on everyone’s doors in the area to drum up interest and such was the response that the Council gave us a stay of execution and totally renovated the site."
-   },
-   {
-      text: "In the Spring of 2007 we had a grand opening and 34 new plotholders came on board, myself included!"
-   },
-   {
-      text: "People have come and gone over the years – it is hard, continuous work in the growing season, but for anyone who has tasted home grown vegetables will know that the rewards are immense – there is no taste like it!  Added to this is the social side of getting out in the fresh air and having a chat with other people on the site."
-   },
-   {
-      text: "In October 2019 we became an Association, responsible for all areas of looking after the allotment.  Before lockdown, we held various social functions in our Community Hub and have enjoyed the artwork and input from Arts in the Yard who have made our site part of their Arts Trail – Stechford on Sea!Now lockdown is easing, we hope to hold further functions for the wider community – watch this space!!"
-   },
-   {
-      text: "We are now up to two thirds capacity – a much smaller site than in the 1900s, but a thriving, friendly one."
-   },
-   {
-      text: "Please feel free to send your ideas, give your thoughts, or even have a moan, and thank you for visiting our site."
-   }
-];
+// const aboutData = [
+//    {
+//       text: "Francis Road Allotments is sandwiched between Bordesley Green East and Francis Road (entrance on Richmond Road opposite the mosque). It is one of the oldest allotments in Birmingham and goes back to the First World War when a piece of land to grow much needed food during the war was highly sought after. This followed on throughout the Second World War and up until the 80s was a thriving allotment with a host of gardeners and a long waiting list. Unfortunately, this declined during the 90s and even further over the first 10 years of this Millennium until the Council decided to close it."
+//    },
+//    {
+//       text: "The remaining 4 plotholders on the site were up in arms and such was the strength of feeling that the Council said if we could raise the profile and get new plotholders onto the site, they would keep it open."
+//    },
+//    {
+//       text: "The next two weeks were spent knocking on everyone’s doors in the area to drum up interest. The response was so good that the Council gave us a stay of execution and totally renovated the site."
+//    },
+//    {
+//       text: "In the Spring of 2007 we had a grand opening and 34 new plotholders came on board."
+//    },
+//    {
+//       splitImage: {
+//          img1: {
+//             img: img[1].Daffodils,
+//             alt: "Daffodils"
+//          },
+//          img2: {
+//             img: img[1].Flowers,
+//             alt: ""
+//          }
+//       }
+//    },
+//    {
+//       text: "People have come and gone over the years – it is hard, continuous work in the growing season, but for anyone who has tasted home grown vegetables will know that the rewards are immense – there is no taste like it! It doesn’t have to be all vegetables of course… Added to this is the social side of getting out in the fresh air and having a chat with other people on the site."
+//    },
+//    // {
+//    //    floatImage: img[1].Daffodils,
+//    //    floatDir: "floatLeft",
+//    //    alt: "Daffodils",
+//    //    content: {
+
+//    //    }
+//    // },
+//    {
+//       text: "In October 2019 we became an Association, responsible for all areas of looking after the allotment. Before lockdown, we held various social functions in our Community Hub * put the picture of the soup share and the gathering outside the hub on our Open Day here and have enjoyed the artwork and input from Arts in the Yard who have made our site part of their Arts Trail – Stechford on Sea! **Put pictures of painted storage unit and also one of beach huts here. Now lockdown is easing, we hope to hold further functions for the wider community – watch this space!! "
+//    },
+//    {
+//       splitImage: {
+//          img1: {
+//             img: img[1].People,
+//             alt: "Art painted container with people"
+//          },
+//          img2: {
+//             img: img[1].Sheds,
+//             alt: "Painted sheds"
+//          }
+//       }
+//    },
+//    {
+//       text: "We are now up to two thirds capacity – a much smaller site than in the 1900s, but a thriving, friendly one."
+//    },
+//    {
+//       text: "Please feel free to send your ideas, give your thoughts, or even have a moan, and thank you for visiting our site."
+//    }
+// ];
 
 const template = {
    id: 1,
    title: "",
    credit: "",
-   mainImg: img.art1mainImg,
-   mainImgBox: img.art1MainBox,
+   mainImg: img[0].art1mainImg,
+   mainImgBox: img[0].art1MainBox,
    mainImgAlt: "",
    path: "/articles/",
    content: [
@@ -504,18 +536,18 @@ const template = {
          bold: "",
          li: ["", ""],
          liText: ["", ""],
-         image: img.imgSrc,
+         image: img[0].imgSrc,
          splitImage: {
             img1: {
-               img: img.imgSrc,
+               img: img[0].imgSrc,
                alt: ""
             },
             img2: {
-               img: img.imgSrc,
+               img: img[0].imgSrc,
                alt: ""
             }
          },
-         floatImage: img.imgSrc,
+         floatImage: img[0].imgSrc,
          floatDir: "floatRight",
          alt: "Soil Ph Testing",
          content: [
@@ -526,4 +558,4 @@ const template = {
    ]
 };
 
-export {articlesData, aboutData};
+export {articlesData};

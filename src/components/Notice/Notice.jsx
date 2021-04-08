@@ -176,7 +176,7 @@ const Notice = (props) => {
 
    return (
       <>
-         <div className="card border shadow-sm my-5" >
+         <div className="card border shadow-sm mt-5" >
             {newItem || notice}
          </div>
       </>

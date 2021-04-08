@@ -50,6 +50,106 @@ import art5MainImg from "./art-5-main-lg.jpg";
 import art5SaladGreens from "./art-5-salad-greens.jpg";
 import art5Spinach from "./art-5-spinach.jpg";
 
+// about images
+import After from "./about-after.jpg";
+import After2 from "./about-after-2.jpg";
+import Before from "./about-before.jpg";
+import Before2 from "./about-before-2.jpg";
+import Communal from "./about-communal-area.jpg";
+import Communal2 from "./about-communal-area-2.jpg";
+import Daffodils from "./about-daffodils.jpg";
+import Flowers from "./about-flowers.jpg";
+import Grass from "./about-grass.jpg";
+import Path from "./about-path.jpg";
+import Path2 from "./about-path-2.jpg";
+import Path3 from "./about-path-3.jpg";
+import Path4 from "./about-path-4.jpg";
+import People from "./about-people.jpg";
+import People2 from "./about-people-2.jpg";
+import Plot from "./about-plot.jpg";
+import Plot2 from "./about-plot-2.jpg";
+import Plot3 from "./about-plot-3.jpg";
+import SchoolPlot from "./about-school-plot.jpg";
+import Seats from "./about-seats.jpg";
+import Sheds from "./about-sheds.jpg";
+import Welcome from "./about-welcome.jpg";
+
+const aboutImages = {
+   Daffodils,
+   Flowers,
+   People,
+   People2,
+   Path4,
+   Sheds
+};
+
+const galleryImages = [
+   {
+      src: Welcome
+      // alt: "Welcome sign",
+   },
+   {
+      src: Before,
+      alt: "Before"
+   },
+   {
+      src: After,
+      alt: "After"
+   },
+   {
+      src: Before2,
+      alt: "Before"
+   },
+   {
+      src: After2,
+      alt: "After"
+   },
+   {
+      src: Communal,
+      alt: "Community hub"
+   },
+   {
+      src: Communal2,
+      alt: "Community hub"
+      // alt: "Communal area benches and hut"
+   },
+   {
+      src: Grass
+      // alt: "Grass near a plot, and greenhouse"
+   },
+   {
+      src: Path
+      // alt: "Path with small sheds"
+   },
+   {
+      src: Path2
+      // alt: "Path with small sheds and fence"
+   },
+   {
+      src: Path3
+      // alt: "Path with grass and fence"
+   },
+   {
+      src: Plot
+      // alt: "Allotment plot with large shed"
+   },
+   {
+      src: Plot2
+      // alt: "Square allotment plot with paths and produce"
+   },
+   {
+      src: Plot3
+      // alt: "Long allotment plot with paths and produce"
+   },
+   {
+      src: SchoolPlot,
+      alt: "One of our Primary School plots"
+   },
+   {
+      src: Seats,
+      alt: "Special seats for the little ones!"
+   }
+];
 // const mainImagesInit = {
 //    init: [
 //       {src: homeImg,
@@ -112,4 +212,4 @@ const articleImages = {
    art5Spinach
 };
 
-export {articleImages, mainImagesInit, mainImagesLg};
+export {aboutImages, articleImages, galleryImages, mainImagesInit, mainImagesLg};

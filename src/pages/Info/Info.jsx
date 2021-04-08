@@ -99,7 +99,7 @@ const Info = (props) => {
             content={heroContent}
             staticTxt={staticTxt}
          />
-         <section className={`${styles.infoCont} container`}>
+         <section className={`${styles.infoCont} ${styles.infoSection} container`}>
             <h3>Plot Info</h3>
 
             {/* Plot container */}
@@ -219,20 +219,32 @@ const Info = (props) => {
             <div className="mt-5">
 
                <p className="font-weight-bold">Disclaimer</p>
+               <p>These are the 2021 prices.</p>
                <p>The plots vary in length but are usually the same width in one unbroken strip.</p>
                <p>The purpose of the graph shown is to give a rough visual representation of the total area of each plot size in relation to the other.</p>
                <p>It is for comparison purposes only and does not accurately represent the layout of available plots. Please contact us directly for more specific information on available plots.</p>
             </div>
          </section>
 
-         <section className="container my-1">
+         <section className={`${styles.infoSection} container`}>
             <h3 className="mb-4">Notices</h3>
             {buildNotices()}
          </section>
 
-         <section className="container my-1">
-            <h3 className="mb-4">Contact Us</h3>
-            <p>For more information, to book an allotment, or arrange a viewing please call Carole on 07764 260 099.</p>
+         <section className={`${styles.infoSection} ${styles.contactSection} container`}>
+            <h3 className="mb-4">Contact & How to Find Us</h3>
+            <p>For more information, to book an allotment, or arrange a viewing please contact Carole on 07764 260 099 or via <span><a href = "mailto: francisroadallotments@gmail.com">francisroadallotments@gmail.com</a></span> .</p>
+            <p className="bold">Directions:</p>
+            <p>Francis Road Allotments is sandwiched between Bordesley Green East and Francis Road (entrance on Richmond Road opposite the mosque).</p>
+            <iframe
+               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1444.9136910322652!2d-1.8160123530754408!3d52.478312125148044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTLCsDI4JzQyLjMiTiAxwrA0OCc1NC42Ilc!5e0!3m2!1sen!2suk!4v1617529544435!5m2!1sen!2suk"
+               // width="600"
+               // height="450"
+               className={styles.googleMap}
+               allowFullScreen=""
+               loading="lazy"
+               title="Our Location"
+            ></iframe>
          </section>
       </>
    );

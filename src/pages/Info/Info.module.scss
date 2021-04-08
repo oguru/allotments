@@ -1,9 +1,15 @@
 @import "../../variables.scss";
 
-.infoCont {
-    margin-top: 1rem;
-    // margin: 2rem auto;
+.infoSection {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
 
+.contactSection {
+    margin-bottom: 4rem;
+}
+
+.infoCont {
     h3 {
         margin-bottom: 2rem;
     }
@@ -153,11 +159,29 @@
     font-size: 0.9rem;
 }
 
-
-
-
 .plot-car {
     object-fit: fill;
     width: 25%;
     height: 20%;
+}
+
+.googleMap {
+    border: none;
+    border-radius: 0.25rem;
+    display: block;
+    margin: 2rem auto;
+    width: 100%;
+    height: 300px;
+}
+
+@media only screen and (min-width: 576px) {
+    .googleMap {
+        height: 400px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .googleMap {
+    height: 450px;
+    }
 }

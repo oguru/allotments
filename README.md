@@ -1,7 +1,7 @@
-# Francis Rd Allotments Website
+# Francis Road Allotments Website
 
 ## Description
-A freelance work in progress to build an allotment website for Francis Rd Allotments in Birmingham, with good UX and UI as a priority.
+A freelance work in progress to build an allotment website for Francis Road Allotments in Birmingham, with good UX and UI as a priority.
 
 ## Setup
 1 - Clone the repository.\

@@ -23,7 +23,7 @@ const Home = (props) => {
    }, []);
 
    const heroContent = {
-      heroTitle: "Welcome to Francis Rd Allotments",
+      heroTitle: "Welcome to Francis Road Allotments",
       heroSubtitle: "Your gateway to healthier living",
       smallText: "Click on a link in the navigation bar to learn more or to contact us",
       image: homeImg,
