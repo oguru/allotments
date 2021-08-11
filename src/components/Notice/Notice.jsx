@@ -94,8 +94,7 @@ const Notice = (props) => {
                </div>
                <div className="card-body">
                   <textarea
-                     style={{whiteSpace: "pre-wrap"}}
-                     className="info-item-text card-text w-100"
+                     className={`${styles.textWrap} info-item-text card-text w-100`}
                      onChange={(e) => setNewDesc(e.target.value)}
                      value={newDesc}
                   />
@@ -128,7 +127,7 @@ const Notice = (props) => {
                   </p>
                </div>
                <div className="card-body">
-                  <p style={{whiteSpace: "pre-wrap"}} className="info-item-text card-text">
+                  <p className={`${styles.textWrap} info-item-text card-text`}>
                      {item.desc}
                   </p>
                </div>
