@@ -358,7 +358,6 @@ const articlesData = [
             text: "Most seeds will germinate well when the days lengthen and the soil warms. Keep in mind, however, that the ground heats up more slowly than the air. Generally speaking, seeds germinate well when nights are consistently above 50°F, but there are exceptions. Spinach, for example, needs cool soil, and eggplants, peppers, and melons prefer warm soil. Time your planting accordingly, or germinate seeds indoors, where you can control the temperature."
          },
          {
-            // seedling image banner
             imageSm: img[0].art4SeedlingsSm,
             imageLg: img[0].art4SeedlingsLg,
             text: "Starting seeds indoors will give you more control over variables that can cause poor germination.",
@@ -369,16 +368,12 @@ const articlesData = [
             text: "If some seed germinates well, but parts of a row come up empty, suspect seed- or seedling-eating insects or animals. Slugs, snails, and crickets dine on seeds and seedlings, cucumber beetles can make squash seedlings disappear overnight, and ants will carry your seeds away to their underground stash. What to do? Try a second sowing, and cover it with row cover or burlap to exclude such pests as crickets and cucumber beetles. Iron phosphate baits such as “Sluggo” and “Escar-Go!” deter slugs and snails, and are harmless to pets and people. If beet or chard germination is a problem, try setting mousetraps. For ant problems, rimming your row with baking soda or a string soaked with citrus oil may help. Or, rearrange your plantings so that direct-sown seeds are in areas with minimal ant activity."
          },
          {
-            // beetroot seedlings image banner
             imageSm: img[0].art4BeetrootSm,
             imageLg: img[0].art4BeetrootLg,
             text: "It’s important to thin seedlings of root vegetables, such as beets, so roots can develop properly",
             caption: true
          },
          {
-            // beetroot seeds image banner
-            // imageSm: ,
-            // imageLg: ,
             text: "Mice can sniff out beet seeds, hollow them out, and reduce germination to almost nothing",
             caption: true
          },
@@ -461,65 +456,6 @@ const articlesData = [
       ]
    }
 ];
-
-// const aboutData = [
-//    {
-//       text: "Francis Road Allotments is sandwiched between Bordesley Green East and Francis Road (entrance on Richmond Road opposite the mosque). It is one of the oldest allotments in Birmingham and goes back to the First World War when a piece of land to grow much needed food during the war was highly sought after. This followed on throughout the Second World War and up until the 80s was a thriving allotment with a host of gardeners and a long waiting list. Unfortunately, this declined during the 90s and even further over the first 10 years of this Millennium until the Council decided to close it."
-//    },
-//    {
-//       text: "The remaining 4 plotholders on the site were up in arms and such was the strength of feeling that the Council said if we could raise the profile and get new plotholders onto the site, they would keep it open."
-//    },
-//    {
-//       text: "The next two weeks were spent knocking on everyone’s doors in the area to drum up interest. The response was so good that the Council gave us a stay of execution and totally renovated the site."
-//    },
-//    {
-//       text: "In the Spring of 2007 we had a grand opening and 34 new plotholders came on board."
-//    },
-//    {
-//       splitImage: {
-//          img1: {
-//             img: img[1].Daffodils,
-//             alt: "Daffodils"
-//          },
-//          img2: {
-//             img: img[1].Flowers,
-//             alt: ""
-//          }
-//       }
-//    },
-//    {
-//       text: "People have come and gone over the years – it is hard, continuous work in the growing season, but for anyone who has tasted home grown vegetables will know that the rewards are immense – there is no taste like it! It doesn’t have to be all vegetables of course… Added to this is the social side of getting out in the fresh air and having a chat with other people on the site."
-//    },
-//    // {
-//    //    floatImage: img[1].Daffodils,
-//    //    floatDir: "floatLeft",
-//    //    alt: "Daffodils",
-//    //    content: {
-
-//    //    }
-//    // },
-//    {
-//       text: "In October 2019 we became an Association, responsible for all areas of looking after the allotment. Before lockdown, we held various social functions in our Community Hub * put the picture of the soup share and the gathering outside the hub on our Open Day here and have enjoyed the artwork and input from Arts in the Yard who have made our site part of their Arts Trail – Stechford on Sea! **Put pictures of painted storage unit and also one of beach huts here. Now lockdown is easing, we hope to hold further functions for the wider community – watch this space!! "
-//    },
-//    {
-//       splitImage: {
-//          img1: {
-//             img: img[1].People,
-//             alt: "Art painted container with people"
-//          },
-//          img2: {
-//             img: img[1].Sheds,
-//             alt: "Painted sheds"
-//          }
-//       }
-//    },
-//    {
-//       text: "We are now up to two thirds capacity – a much smaller site than in the 1900s, but a thriving, friendly one."
-//    },
-//    {
-//       text: "Please feel free to send your ideas, give your thoughts, or even have a moan, and thank you for visiting our site."
-//    }
-// ];
 
 const template = {
    id: 1,
