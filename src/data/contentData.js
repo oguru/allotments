@@ -1,14 +1,14 @@
-import {articleImages} from "../images/imageImports";
+import {aboutImages, articleImages} from "../images/imageImports";
 
-const img = articleImages;
+const img = [articleImages, aboutImages];
 
-const articleData = [
+const articlesData = [
    {
       id: 1,
       title: "Preparing A New Garden Plot",
       credit: "Article provided by homegardenseedassociation.com",
-      mainImg: img.art1MainImg,
-      mainImgBox: img.art1MainBox,
+      mainImg: img[0].art1MainImg,
+      mainImgBox: img[0].art1MainBox,
       mainImgAlt: "Dug soil",
       path: "/articles/new-plot",
       content: [
@@ -29,7 +29,7 @@ const articleData = [
             ]
          },
          {
-            floatImage: img.art1SoilPrep,
+            floatImage: img[0].art1SoilPrep,
             floatDir: "floatLeft",
             alt: "Soil preparation",
             content: [
@@ -48,7 +48,7 @@ const articleData = [
             text: "Remove existing lawn by slicing under the sod with a spade and cutting it into manageable pieces. Add the pieces to your compost or use it to patch bare spots elsewhere. Kill weeds with glyphosate herbicide, pull them by hand, or chop them with a hoe or mattock and rake them up. If time permits, you can smother grass and weeds with old carpeting or black plastic anchored to the ground. For best results, leave the covering in place for several weeks of hot weather."
          },
          {
-            floatImage: img.art1PhTest,
+            floatImage: img[0].art1PhTest,
             floatDir: "floatRight",
             alt: "Soil Ph Testing",
             content: [
@@ -76,8 +76,8 @@ const articleData = [
       id: 2,
       title: "How Does Gardening Build Health?",
       credit: "Article provided by homegardenseedassociation.com",
-      mainImg: img.art2MainImg,
-      mainImgBox: img.art2MainBox,
+      mainImg: img[0].art2MainImg,
+      mainImgBox: img[0].art2MainBox,
       mainImgAlt: "",
       path: "/articles/build-health",
       content: [
@@ -92,7 +92,7 @@ const articleData = [
             text: "You can expend calories by going dutifully to the gym, or you can simply live an active life: “Non-exercise activity thermogenesis” or NEAT, is now officially recognized as an effective way to keep incoming and outgoing calories in healthy balance. According to Dr. James Levine of the Mayo Clinic, engaging in everyday activities can overcome a propensity to gain weight. “NEAT includes all those activities that render us vibrant, unique, and independent beings,” says Dr. Levine. Gardening, for instance, expends 200-400 calories per hour!"
          },
          {
-            floatImage: img.art2Healthy,
+            floatImage: img[0].art2Healthy,
             floatDir: "floatRight",
             alt: "Healthy elderly woman",
             content: [
@@ -114,7 +114,7 @@ const articleData = [
             ]
          },
          {
-            floatImage: img.art2Community,
+            floatImage: img[0].art2Community,
             floatDir: "floatLeft",
             alt: "Father and son gardening",
             content: [
@@ -140,8 +140,8 @@ const articleData = [
       id: 3,
       title: "Seed Starting Timeline For Success",
       credit: "Article provided by homegardenseedassociation.com",
-      mainImg: img.art3MainImg,
-      mainImgBox: img.art3MainBox,
+      mainImg: img[0].art3MainImg,
+      mainImgBox: img[0].art3MainBox,
       mainImgAlt: "",
       path: "/articles/build-health",
       content: [
@@ -166,8 +166,8 @@ const articleData = [
             ]
          },
          {
-            imageSm: img.art3Seedlings,
-            imageLg: img.art3Seedlings,
+            imageSm: img[0].art3Seedlings,
+            imageLg: img[0].art3Seedlings,
             alt: "Seedlings"
          },
          {
@@ -201,11 +201,11 @@ const articleData = [
          {
             splitImage: {
                img1: {
-                  img: img.art3SeedStart1,
+                  img: img[0].art3SeedStart1,
                   alt: "Indoor greenhouse trays"
                },
                img2: {
-                  img: img.art3SeedStart2,
+                  img: img[0].art3SeedStart2,
                   alt: "Indoor greenhouse seedlings"
                }
             }
@@ -319,8 +319,8 @@ const articleData = [
       id: 4,
       title: "Germination Troubleshooting Guide",
       credit: "Article provided by homegardenseedassociation.com",
-      mainImg: img.art4MainImg,
-      mainImgBox: img.art4MainBox,
+      mainImg: img[0].art4MainImg,
+      mainImgBox: img[0].art4MainBox,
       mainImgAlt: "",
       path: "/articles/germination-troubleshooting",
       content: [
@@ -331,8 +331,8 @@ const articleData = [
             text: "What is a gardener to do? For one thing, don’t give up! As you build experience, your garden will flourish, and you will gain the confidence and knowledge that you need to get it right, every time."
          },
          {
-            imageSm: img.art4CarrotsSm,
-            imageLg: img.art4CarrotsLg,
+            imageSm: img[0].art4CarrotsSm,
+            imageLg: img[0].art4CarrotsLg,
             alt: "Carrots",
             text: "Carrot seeds can take time to germinate. Keep seedbeds moist by laying moistburlap or row cover fabric over the soil. Remove it when seedlings appear.",
             caption: true
@@ -358,9 +358,8 @@ const articleData = [
             text: "Most seeds will germinate well when the days lengthen and the soil warms. Keep in mind, however, that the ground heats up more slowly than the air. Generally speaking, seeds germinate well when nights are consistently above 50°F, but there are exceptions. Spinach, for example, needs cool soil, and eggplants, peppers, and melons prefer warm soil. Time your planting accordingly, or germinate seeds indoors, where you can control the temperature."
          },
          {
-            // seedling image banner
-            imageSm: img.art4SeedlingsSm,
-            imageLg: img.art4SeedlingsLg,
+            imageSm: img[0].art4SeedlingsSm,
+            imageLg: img[0].art4SeedlingsLg,
             text: "Starting seeds indoors will give you more control over variables that can cause poor germination.",
             caption: true
          },
@@ -369,16 +368,12 @@ const articleData = [
             text: "If some seed germinates well, but parts of a row come up empty, suspect seed- or seedling-eating insects or animals. Slugs, snails, and crickets dine on seeds and seedlings, cucumber beetles can make squash seedlings disappear overnight, and ants will carry your seeds away to their underground stash. What to do? Try a second sowing, and cover it with row cover or burlap to exclude such pests as crickets and cucumber beetles. Iron phosphate baits such as “Sluggo” and “Escar-Go!” deter slugs and snails, and are harmless to pets and people. If beet or chard germination is a problem, try setting mousetraps. For ant problems, rimming your row with baking soda or a string soaked with citrus oil may help. Or, rearrange your plantings so that direct-sown seeds are in areas with minimal ant activity."
          },
          {
-            // beetroot seedlings image banner
-            imageSm: img.art4BeetrootSm,
-            imageLg: img.art4BeetrootLg,
+            imageSm: img[0].art4BeetrootSm,
+            imageLg: img[0].art4BeetrootLg,
             text: "It’s important to thin seedlings of root vegetables, such as beets, so roots can develop properly",
             caption: true
          },
          {
-            // beetroot seeds image banner
-            // imageSm: ,
-            // imageLg: ,
             text: "Mice can sniff out beet seeds, hollow them out, and reduce germination to almost nothing",
             caption: true
          },
@@ -387,7 +382,7 @@ const articleData = [
             text: "This is more than likely a soil problem. The soil is too wet, too dry, too compacted, too deficient in necessary nutrients, or the pH is too extreme. Start by checking the drainage of your soil with a simple drainage test: dig a 12-inch hole and fill it with water, if it doesn’t drain in 30 minutes, raised beds are your answer. Good soil preparation, and the addition of generous amount of compost, will solve many soil problems. A soil test will give you a complete picture of the structure and quality of your soil."
          },
          {
-            floatImage: img.art4BadLeaves,
+            floatImage: img[0].art4BadLeaves,
             floatDir: "floatLeft",
             alt: "unhealthy looking leaves",
             text: "Groundhogs and rabbits will chew some seedlings down to a nub overnight, given the chance",
@@ -409,8 +404,8 @@ const articleData = [
       id: 5,
       title: "Want Safe Food? Grow Your Own",
       credit: "Article provided by homegardenseedassociation.com",
-      mainImg: img.art5MainImg,
-      mainImgBox: img.art5MainBox,
+      mainImg: img[0].art5MainImg,
+      mainImgBox: img[0].art5MainBox,
       mainImgAlt: "Vegetables growing",
       path: "/articles/safe-food",
       content: [
@@ -418,7 +413,7 @@ const articleData = [
             text: "Between 1990 and 2009, there were 363 outbreaks of food-borne illness linked to various leafy greens, including iceberg lettuce, romaine, and spinach, causing 13,568 cases of illness. This statistic comes from a study published in 2009 by the Center for Science in the Public Interest identifying the sources of outbreaks of food-borne illness."
          },
          {
-            floatImage: img.art5Spinach,
+            floatImage: img[0].art5Spinach,
             floatDir: "floatRight",
             alt: "Bundle of spinach",
             content: [
@@ -436,7 +431,7 @@ const articleData = [
             ]
          },
          {
-            floatImage: img.art5SaladGreens,
+            floatImage: img[0].art5SaladGreens,
             floatDir: "floatLeft",
             alt: "Salad greens",
             content: [
@@ -466,8 +461,8 @@ const template = {
    id: 1,
    title: "",
    credit: "",
-   mainImg: img.art1mainImg,
-   mainImgBox: img.art1MainBox,
+   mainImg: img[0].art1mainImg,
+   mainImgBox: img[0].art1MainBox,
    mainImgAlt: "",
    path: "/articles/",
    content: [
@@ -477,18 +472,18 @@ const template = {
          bold: "",
          li: ["", ""],
          liText: ["", ""],
-         image: img.imgSrc,
+         image: img[0].imgSrc,
          splitImage: {
             img1: {
-               img: img.imgSrc,
+               img: img[0].imgSrc,
                alt: ""
             },
             img2: {
-               img: img.imgSrc,
+               img: img[0].imgSrc,
                alt: ""
             }
          },
-         floatImage: img.imgSrc,
+         floatImage: img[0].imgSrc,
          floatDir: "floatRight",
          alt: "Soil Ph Testing",
          content: [
@@ -499,4 +494,4 @@ const template = {
    ]
 };
 
-export {articleData};
+export {articlesData};

@@ -23,7 +23,8 @@
     flex-grow: 1;
     justify-content: center;
     margin: 0.5rem 0;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     position: relative;
     
     .exit {

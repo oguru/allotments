@@ -2,22 +2,27 @@
 import React, {useEffect, useState, useRef} from "react";
 import {mainImagesInit, mainImagesLg} from "./images/imageImports.js";
 import About from "./pages/About";
+import Admin from "./pages/Admin";
 import Articles from "./pages/Articles";
 import CSSTransition from "react-transition-group/CSSTransition";
 import Home from "./pages/Home";
 import Info from "./pages/Info";
 import NavBar from "./components/NavBar";
 import {Route} from "react-router-dom";
-import {articleData} from "./data/articleData.js";
-import articleStyles from "./components/Article/Article.module.scss";
+import {articlesData} from "./data/contentData.js";
+import firebase from "./firebase";
+import {getContentJsx} from "./pages/Articles/articleBuilder.jsx";
+import getNoticesJsx from "./pages/Info/noticeBuilder.jsx";
 import styles from "./App.module.scss";
 
 const App = () => {
 
+   // const [aboutJsx, setAboutJsx] = useState();
    const [articlesJsx, setArticlesJsx] = useState([]);
+   const [loggedIn, setLoggedIn] = useState(false);
+   const [notices, setNotices] = useState([]);
    const [isLargeScreen, setIsLargeScreen] = useState(true);
    const [isLoading, setIsLoading] = useState(true);
-   // const [routes, setRoutes] = useState();
    const [scrollPos, saveScrollPos] = useState(0);
    const [staticTxt, setStaticTxt] = useState({
       about: false,
@@ -36,9 +41,20 @@ const App = () => {
    };
 
    useEffect(() => {
-      getArticlesJsx();
-      // getRoutes();
-   }, []);
+      if (!isLoading) {
+         const articles = getContentJsx(articlesData, true);
+         setArticlesJsx(articles);
+
+         // const about = getContentJsx(aboutData);
+         // setAboutJsx(about);
+
+         fetchNotices();
+      }
+   }, [isLoading]);
+
+   const fetchNotices = () => {
+      getNoticesJsx(setNotices);
+   };
 
    // useEffect(() => {
    //    const getWidth = () => setWindowWidth(window.innerWidth);
@@ -66,112 +82,6 @@ const App = () => {
       }
    };
 
-   const buildEl = el => {
-      const imgCaption = el.caption ? `${articleStyles.imgCaption}` : "";
-
-      if (el.floatImage) {
-         return (
-            <>
-               <img alt={el.alt} className={`${articleStyles[el.floatDir]} ${imgCaption}`} src={el.floatImage} />
-               {el.content.map(subEl =>
-                  // <div key={subEl.text || subEl.li}>
-                  buildEl(subEl)
-                  // </div>
-               )}
-            </>
-         );
-      }
-
-      return (
-         <>
-            {el.subHeading &&
-               <h5>{el.subHeading}</h5>
-            }
-            {el.bold &&
-               <p className={`
-                  ${articleStyles.bold} 
-                  ${articleStyles.articleTxt}`
-               }>
-                  {el.bold}
-               </p>
-            }
-            {el.li &&
-               <ul>
-                  {el.li.map(li => <li key={li}>{li}</li>)}
-               </ul>
-            }
-            {el.liText &&
-               <ul className={articleStyles.liText}>
-                  {el.liText.map(liText => <li key={liText}>{liText}</li>)}
-               </ul>
-            }
-            {el.imageSm && el.imageLg &&
-                  <img
-                     alt={el.alt}
-                     className={`${articleStyles.blockImg} ${imgCaption}`}
-                     srcSet={`${el.imageSm} 300w, ${el.imageLg} 1024w`}
-                     src={el.imageSm} />
-            }
-            {el.splitImage &&
-               <div className={`
-                  ${articleStyles.splitImgCont} 
-                  ${imgCaption}`
-               }>
-                  <img
-                     alt={el.splitImage.img1.alt}
-                     className={articleStyles.splitImage}
-                     src={el.splitImage.img1.img}
-                  />
-                  <img
-                     alt={el.splitImage.img2.alt}
-                     className={articleStyles.splitImage}
-                     src={el.splitImage.img2.img}
-                  />
-               </div>
-            }
-            {el.text &&
-               <p className={`
-                  ${imgCaption} 
-                  ${articleStyles.articleTxt}`
-               }>
-                  {el.text}
-               </p>
-            }
-            {el.link &&
-               <a
-                  className={articleStyles.articleLink}
-                  href={el.link}
-                  rel="noreferrer"
-                  target="_blank"
-               >
-                  {el.link}
-               </a>
-            }
-         </>
-      );
-   };
-
-   const getArticlesJsx = () => {
-      const articles = articleData.map(article => {
-         return {
-            credit: article.credit,
-            id: article.id,
-            mainImg: article.mainImg,
-            mainImgBox: article.mainImgBox,
-            mainImgAlt: article.mainImgAlt,
-            path: article.path,
-            title: article.title,
-            initText: article.content[0].text,
-            content: article.content.map(el =>
-               // <div key={el.id}>
-               buildEl(el)
-               // </div>
-            )
-         };
-      });
-      setArticlesJsx(articles);
-   };
-
    const routes = [
       {
          path: "/",
@@ -184,6 +94,10 @@ const App = () => {
       {
          path: "/info",
          name: "Info"
+      },
+      {
+         path: "/admin",
+         name: "Admin"
       },
       {
          path: "/articles",
@@ -203,6 +117,10 @@ const App = () => {
       }, 500);
    };
 
+   const scrollToBot = () => {
+      pageContRef.current.scrollTop = 0;
+   };
+
    const saveScrollVal = () => {
       saveScrollPos(pageContRef.current.scrollTop);
    };
@@ -210,8 +128,16 @@ const App = () => {
    const components = {
       "About":
          <About
+            // aboutJsx={aboutJsx}
             setStaticTxt={setStaticTxt}
             staticTxt={staticTxt.about}
+         />,
+      "Admin":
+         <Admin
+            fetchNotices={fetchNotices}
+            loggedIn={loggedIn}
+            notices={notices}
+            setLoggedIn={setLoggedIn}
          />,
       "Articles":
          <Articles
@@ -230,6 +156,7 @@ const App = () => {
          />,
       "Info":
          <Info
+            notices={notices}
             setStaticTxt={setStaticTxt}
             staticTxt={staticTxt.info}
          />
@@ -304,16 +231,16 @@ const App = () => {
                      exact path={route.path}
                   >
                      {({match}) => (
-                        <div
-                           className={styles.mainPage}
-                           data-test="pageComponent"
+                        <CSSTransition
+                           classNames={{...styles}}
+                           in={match != null}
+                           // nodeRef={pageContRef}
+                           timeout={transitionTime}
+                           unmountOnExit
                         >
-                           <CSSTransition
-                              classNames={{...styles}}
-                              in={match != null}
-                              // nodeRef={pageContRef}
-                              timeout={transitionTime}
-                              unmountOnExit
+                           <div
+                              className={styles.mainPage}
+                              data-test="pageComponent"
                            >
                               <div
                                  className={styles.pageCont}
@@ -321,8 +248,8 @@ const App = () => {
                               >
                                  {components[route.name]}
                               </div>
-                           </CSSTransition>
-                        </div>
+                           </div>
+                        </CSSTransition>
                      )}
                   </Route>
                ))
@@ -334,7 +261,7 @@ const App = () => {
          >
             <p>
                © 2021 Copyright:
-               <a href="/"> Stechford Allotments</a>
+               <a href="/"> Francis Road Allotments</a>
             </p>
          </footer>
       </div>

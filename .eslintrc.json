@@ -49,7 +49,7 @@
         "key-spacing": "warn",
         "keyword-spacing": "warn",
         "lines-between-class-members": "warn",
-        "max-len": ["warn", {"ignoreUrls": true, "ignoreStrings": true, "ignoreComments": true, "ignoreTemplateLiterals": true, "ignoreRegExpLiterals": true}],
+        "max-len": ["off", {"ignoreUrls": true, "ignorePattern": "<p>", "ignoreStrings": true, "ignoreComments": true, "ignoreTemplateLiterals": true, "ignoreRegExpLiterals": true}],
         "multiline-comment-style": "off",
         "new-cap": "warn",
         // "newline-after-var": 0,

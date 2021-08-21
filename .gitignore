@@ -22,6 +22,11 @@
 .env.test.local
 .env.production.local
 
+# firebase
+/src/firebase.js
+adminsdk-995iq-e1f877b30a.json
+
+# logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
