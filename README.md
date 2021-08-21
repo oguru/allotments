@@ -2,6 +2,7 @@
 
 ## Description
 A freelance work in progress to build an allotment website for Francis Road Allotments in Birmingham, with good UX and UI as a priority.
+Currently fully functional, with remaining tests to be completed along with code clean up and improving the UI of the admin page.
 
 ## Setup
 1 - Clone the repository.\
