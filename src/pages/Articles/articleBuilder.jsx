@@ -89,6 +89,20 @@ const buildEl = (el, article) => {
                 {el.link}
              </a>
          }
+         {el.imageGrid &&
+         <div className={"imageGridCont"}>
+            {el.imageGrid.map(({img, text, alt}) => {
+               return (
+                  <div key={img}
+                     className="gridBox"
+                  >
+                     <img className="gridImage" src={img} alt={alt}/>
+                     <p className={"imgCaption articleTxt"}>{text || ""}</p>
+                  </div>
+               );
+            })}
+         </div>
+         }
       </React.Fragment>
    );
 };

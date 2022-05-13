@@ -9,6 +9,7 @@ import {Route} from "react-router-dom";
 import articlesImg from "../../images/articles-main-lg.jpg";
 import articlesImgSm from "../../images/articles-main-sm.jpg";
 import styles from "./Articles.module.scss";
+import globalStyles from "../../global.scss";
 
 const Articles = (props) => {
    const {
