@@ -1,6 +1,6 @@
 import React from "react";
-import articleStyles from "../../components/Article/Article.module.scss";
-import globalStyles from "../../global.scss";
+import articleStyles from "../components/Article/Article.module.scss";
+import globalStyles from "../global.scss";
 
 let count = 0;
 
