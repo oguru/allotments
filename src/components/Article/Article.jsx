@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from "react";
-import Button from "../Button";
+import React, {useRef} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Hero from "../Hero";
 import PropTypes from "prop-types";
@@ -14,7 +13,11 @@ const Article = (props) => {
       content: PropTypes.object
    };
 
-   const [backHoverStyle, setBackHoverStyle] = useState("");
+   const backHoverStyle = useRef("");
+
+   const setBackHoverStyle = (style) => {
+      backHoverStyle.current = style;
+   };
 
    const heroContent = {
       heroSubtitle: content.title,
@@ -48,7 +51,7 @@ const Article = (props) => {
                   >
                      <span className={`
                         ${styles.backBorder} 
-                        ${styles[backHoverStyle]}`
+                        ${styles[backHoverStyle.current]}`
                      }></span>
                      <FontAwesomeIcon
                         className={styles.backArrow}

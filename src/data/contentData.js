@@ -2,7 +2,140 @@ import {aboutImages, articleImages} from "../images/imageImports";
 
 const img = [articleImages, aboutImages];
 
+const template = {
+   id: 1,
+   title: "",
+   credit: "",
+   mainImg: img[0].art1mainImg,
+   mainImgBox: img[0].art1MainBox,
+   mainImgAlt: "",
+   path: "/articles/",
+   content: [
+      {
+         text: "",
+         caption: true,
+         subHeading: "",
+         bold: "",
+         li: ["", ""],
+         liText: ["", ""],
+         image: img[0].imgSrc,
+         splitImage: {
+            img1: {
+               img: img[0].imgSrc,
+               alt: ""
+            },
+            img2: {
+               img: img[0].imgSrc,
+               alt: ""
+            }
+         },
+         imageGrid: [{img: img[0].imgSrc,
+            text: ""}, {img: img[0].imgSrc2,
+            text: ""}],
+         floatImage: img[0].imgSrc,
+         floatDir: "floatRight",
+         alt: "Soil Ph Testing",
+         content: [{}]
+      }
+   ]
+};
+
 const articlesData = [
+   {
+      id: 0,
+      title: "The Queen's Platinum Jubilee Project",
+      credit: "Thanks to The Big Lottery Community Fund",
+      mainImg: img[0].art0MainImg,
+      mainImgBox: img[0].art0MainBox,
+      mainImgAlt: "Queen Elizabeth",
+      path: "/articles/jubilee",
+      content: [
+         {
+            text: "Thanks to the generosity of the Big Lottery Community Fund, we were able to convert this waste piece of land on our allotment site."
+         },
+         {
+            image: img[0].art0Waste,
+            alt: "Waste land",
+
+            text: " It’s an ongoing project and not yet completed but we are hoping to open it on 4 June when we will have our celebration of the Queen’s Platinum Jubilee. Everyone is welcome - and please keep your fingers crossed that there will be enough rain before then to allow the grass to grow! Watch this space for more photos of our progress!"
+
+         },
+         {
+            imageGrid: [
+               {
+                  img: img[0].art0Waste2,
+                  alt: "Grass with garden waste",
+                  text: "The waste ground."
+               },
+               {
+                  img: img[0].art0Clearing,
+                  alt: "Dug up soil",
+                  text: "Clearing the ground."
+               },
+               {
+                  img: img[0].art0Rain,
+                  alt: "Muddy land",
+                  text: "Work still carried on through the rain."
+               },
+               {
+                  img: img[0].art0Parking,
+                  alt: "Hard ground with boundary",
+                  text: "The car parking space and hard standing ground taking shape."
+               },
+               {
+                  img: img[0].art0Machinery,
+                  alt: "Heavy machinery at work",
+                  text: "Some heavy machinery at work!"
+               },
+               {
+                  img: img[0].art0Mound,
+                  alt: "Raised ground around parking boundary",
+                  text: "Making a mound all around the perimeter for the red white and blue wild flowers."
+               },
+               {
+                  img: img[0].art0Membrane,
+                  alt: "White covering on the ground",
+                  text: "Weed suppressing membrane."
+               },
+               {
+                  img: img[0].art0Andy,
+                  alt: "Man in high vis jacket",
+                  text: "Our hard working Andy!"
+               },
+               {
+                  img: img[0].art0TopSoil,
+                  alt: "Mound of soil and path",
+                  text: "Fresh topsoil for the grassed area."
+               },
+               {
+                  img: img[0].art0Shape,
+                  alt: "Half finished work",
+                  text: "Taking shape!"
+               },
+               {
+                  img: img[0].art0Hope,
+                  alt: "Level soil ground",
+                  text: "Hopefully it will all be green and in full colour in time for the Queen’s Platinum Jubilee celebrations."
+               },
+               {
+                  img: img[0].art0Pergola1,
+                  alt: "Pergola",
+                  text: ""
+               },
+               {
+                  img: img[0].art0Pergola2,
+                  alt: "Pergola",
+                  text: ""
+               },
+               {
+                  img: img[0].art0Pergola3,
+                  alt: "Pergola",
+                  text: "Our new Pergola arrives"
+               }
+            ]
+         }
+      ]
+   },
    {
       id: 1,
       title: "Preparing A New Garden Plot",
@@ -101,7 +234,8 @@ const articlesData = [
                   text: 'Women aged 50 and older who garden weekly have stronger bones than those who engage in jogging, swimming, walking, or aerobics, according to a 2000 study by Dr. Lori Turner at the University of Arkansas. "We hadn’t expected yard work to be significant ...But there’s a lot of weight-bearing motion going on in the garden—digging holes, pulling weeds, pushing a mower," concluded Dr. Turne.'
                },
                {
-                  subHeading: "People Who Garden Are Less Likely To Be Deficient in Vitamin D",
+                  subHeading:
+              "People Who Garden Are Less Likely To Be Deficient in Vitamin D",
                   text: "Vitamin D is widely recognized as the sunshine vitamin. A deficit has been linked to an increased risk of a number of ailments, including common cancers, type 1 diabetes, and rheumatoid arthritis. Absorbing enough sunlight to allow your body to produce sufficient vitamin D but not so much that you risk skin cancer can be tricky. Age complicates the situation, as a person over 65 years of age exposed to the same amount of sunlight as a 20-year-old person makes only about 25% of the vitamin D."
                },
                {
@@ -123,7 +257,8 @@ const articlesData = [
                   text: "The networks and social support that come from being involved in a Community Garden brings a whole other set of mental health benefits. Shared experiences with others growing traditional ethnic foods can be a starting point for understanding between cultures. The entire community benefits from a Community Garden in multiple ways: better nutrition, enhanced mental health, social ties, and an increased appreciation of social diversity.   Bok choy is rich in vitamins C, A and calcium. For the highest benefit, prepare it straight from  the garden, stirfried very quickly until just tendercrisp."
                },
                {
-                  subHeading: "The Fresher the Food, the Greater the Nutrient Content",
+                  subHeading:
+              "The Fresher the Food, the Greater the Nutrient Content",
                   text: "Get the most out of your vegetables by eating them fresh from the garden. Vitamin C content can decline rapidly, particularly in leafy greens like spinach, after just three days of refrigeration. The best way to be sure your vegetables offer maximum nutritional benefit is to grow them yourself."
                },
                {
@@ -389,11 +524,13 @@ const articlesData = [
             caption: true,
             content: [
                {
-                  subHeading: "Problem: Seeds germinate well but root vegetables do not develop properly.",
+                  subHeading:
+              "Problem: Seeds germinate well but root vegetables do not develop properly.",
                   text: "Thin! Yes, it is difficult to snip a living plant off at its base, but you must if you want to grow beets, carrots, radishes, or turnips of any size. Wait until seedlings have two sets of leaves and, very carefully, remove weaker seedlings—use scissors to avoid disturbing the neighboring plants. This can be done in two stages. Refer to seed packets for specifics on final spacing."
                },
                {
-                  subHeading: "Problem: Seeds germinate and growth is good, but young plants disappear overnight.",
+                  subHeading:
+              "Problem: Seeds germinate and growth is good, but young plants disappear overnight.",
                   text: "Suspect rabbits or, worse, groundhogs. A good fence, with a wire barrier buried at least 6 inches underground, will keep them out. Sometimes, however, all it takes to deter critters (assuming they’re not too hungry) is covering plants with floating row covers."
                }
             ]
@@ -456,42 +593,5 @@ const articlesData = [
       ]
    }
 ];
-
-const template = {
-   id: 1,
-   title: "",
-   credit: "",
-   mainImg: img[0].art1mainImg,
-   mainImgBox: img[0].art1MainBox,
-   mainImgAlt: "",
-   path: "/articles/",
-   content: [
-      {
-         text: "",
-         subHeading: "",
-         bold: "",
-         li: ["", ""],
-         liText: ["", ""],
-         image: img[0].imgSrc,
-         splitImage: {
-            img1: {
-               img: img[0].imgSrc,
-               alt: ""
-            },
-            img2: {
-               img: img[0].imgSrc,
-               alt: ""
-            }
-         },
-         floatImage: img[0].imgSrc,
-         floatDir: "floatRight",
-         alt: "Soil Ph Testing",
-         content: [
-            {
-            }
-         ]
-      }
-   ]
-};
 
 export {articlesData};

@@ -19,6 +19,25 @@ import infoImgMd from "./info-main-md.jpg";
 import infoImgSm from "./info-main-sm.jpg";
 
 // article images
+
+import art0MainImg from "./art-0-main-lg.jpg";
+import art0MainBox from "./art-0-main-box.jpg";
+import art0Andy from "./art-0-andy.jpeg";
+import art0Clearing from "./art-0-clearing.jpeg";
+import art0Hope from "./art-0-hope.jpeg";
+import art0Machinery from "./art-0-machinery.jpeg";
+import art0Membrane from "./art-0-membrane.jpeg";
+import art0Mound from "./art-0-mound.jpeg";
+import art0Parking from "./art-0-parking.jpeg";
+import art0Pergola1 from "./art-0-pergola1.jpeg";
+import art0Pergola2 from "./art-0-pergola2.jpeg";
+import art0Pergola3 from "./art-0-pergola3.jpeg";
+import art0Rain from "./art-0-rain.jpeg";
+import art0Shape from "./art-0-shape.jpeg";
+import art0TopSoil from "./art-0-topsoil.jpeg";
+import art0Waste from "./art-0-waste.jpeg";
+import art0Waste2 from "./art-0-waste2.jpeg";
+
 import art1MainBox from "./art-1-main-box.jpg";
 import art1MainImg from "./art-1-main-lg.jpg";
 import art1PhTest from "./art-1-ph-test.jpg";
@@ -184,6 +203,23 @@ const mainImagesLg = [
 ];
 
 const articleImages = {
+   art0MainImg,
+   art0MainBox,
+   art0Andy,
+   art0Clearing,
+   art0Hope,
+   art0Machinery,
+   art0Membrane,
+   art0Mound,
+   art0Parking,
+   art0Pergola1,
+   art0Pergola2,
+   art0Pergola3,
+   art0Rain,
+   art0Shape,
+   art0TopSoil,
+   art0Waste,
+   art0Waste2,
    art1MainImg,
    art1MainBox,
    art1SoilPrep,
@@ -212,4 +248,10 @@ const articleImages = {
    art5Spinach
 };
 
-export {aboutImages, articleImages, galleryImages, mainImagesInit, mainImagesLg};
+export {
+   aboutImages,
+   articleImages,
+   galleryImages,
+   mainImagesInit,
+   mainImagesLg
+};

@@ -130,6 +130,12 @@ const Notice = (props) => {
                   <p className={`${styles.textWrap} info-item-text card-text`}>
                      {item.desc}
                   </p>
+                  {item.link &&
+                  <a
+                     href={item.link.href}
+                     target={item.link.href.charAt(0) === "/" ? "_self" : "_blank"} rel="noreferrer">
+                     {item.link.text}
+                  </a>}
                </div>
                {loggedIn && !editMode &&
             <div className="d-flex">

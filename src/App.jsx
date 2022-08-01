@@ -11,7 +11,7 @@ import NavBar from "./components/NavBar";
 import {Route} from "react-router-dom";
 import {articlesData} from "./data/contentData.js";
 import firebase from "./firebase";
-import {getContentJsx} from "./pages/Articles/articleBuilder.jsx";
+import {getContentJsx} from "./util/articleBuilder.jsx";
 import getNoticesJsx from "./pages/Info/noticeBuilder.jsx";
 import styles from "./App.module.scss";
 
@@ -55,13 +55,6 @@ const App = () => {
    const fetchNotices = () => {
       getNoticesJsx(setNotices);
    };
-
-   // useEffect(() => {
-   //    const getWidth = () => setWindowWidth(window.innerWidth);
-
-   //    window.addEventListener("resize", getWidth);
-   //    getWidth();
-   // }, []);
 
    useEffect(() => {
       const mediaQuery = window.matchMedia("(min-width: 768px)");
@@ -172,8 +165,6 @@ const App = () => {
       }
    };
 
-   const transitionTime = isLargeScreen ? 400 : 800;
-
    // const checkScrollPos = () => {
    //    return pageContRef.current.scrollTop;
    // };
@@ -235,7 +226,7 @@ const App = () => {
                            classNames={{...styles}}
                            in={match != null}
                            // nodeRef={pageContRef}
-                           timeout={transitionTime}
+                           timeout={isLargeScreen ? 400 : 800}
                            unmountOnExit
                         >
                            <div
