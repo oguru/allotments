@@ -40,10 +40,6 @@ describe("NavBar tests", () => {
       matchMedia.clear();
    });
 
-   it("should render without error", () => {
-      expect(findByTestAttr(component, "navbar").length).toBe(1);
-   });
-
    it("should match the snapshot", () => {
       expect(component)
          .toMatchSnapshot();
@@ -52,7 +48,7 @@ describe("NavBar tests", () => {
    it("should have a nav brand/title with the correct title", () => {
       expect(findByTestAttr(component, "navBrand")
          .text())
-         .toBe("Francis Road Allotments");
+         .toBe("Francis Rd Allotments");
    });
 
    test("nav brand/title should have the correct re-direct path to home", () => {

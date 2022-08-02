@@ -5,15 +5,15 @@ import styles from "./NavLink.module.scss";
 
 const NavLink = (props) => {
    const {
-      closeNav,
-      linkType,
+      handleCloseNav,
+      linkStyle,
       linkText,
       path
    } = props;
 
    NavLink.propTypes = {
-      closeNav: PropTypes.func.isRequired,
-      linkType: PropTypes.string,
+      handleCloseNav: PropTypes.func.isRequired,
+      linkStyle: PropTypes.string,
       linkText: PropTypes.string.isRequired,
       path: PropTypes.string.isRequired
    };
@@ -25,12 +25,12 @@ const NavLink = (props) => {
       >
          <Link
             className={`
-              ${styles[linkType]}
+              ${styles[linkStyle]}
               nav-link
               rounded`
             }
             data-test="navLink"
-            onClick={closeNav}
+            onClick={handleCloseNav}
             to={path}
          >
             {linkText}
