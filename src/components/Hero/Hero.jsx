@@ -10,6 +10,7 @@ import styles from "./Hero.module.scss";
 const Hero = (props) => {
 
    const {
+      children,
       content: {
          heroSubtitle,
          heroTitle,
@@ -18,17 +19,16 @@ const Hero = (props) => {
          imageSm,
          imageTint
       },
-      article,
-      closeArticle,
       component,
       homeHero,
       staticTxt
    } = props;
 
    const [typingDone, setTypingDone] = useState("");
-   const [backHoverStyle, setBackHoverStyle] = useState("");
 
    Hero.propTypes = {
+      children: PropTypes.object,
+      component: PropTypes.object,
       content: PropTypes.shape({
          heroSubtitle: PropTypes.string,
          heroTitle: PropTypes.string.isRequired,
@@ -111,20 +111,7 @@ const Hero = (props) => {
                   {smallText}
                </h5>
                {component}
-               {article &&
-               <div
-                  className={styles.backArrowCont}
-                  onMouseEnter={() => setBackHoverStyle("backHover")}
-                  onMouseLeave={() => setBackHoverStyle("")}
-                  onClick={closeArticle}
-               >
-                  <span className={`${styles.backBorder} ${styles[backHoverStyle]}`}></span>
-                  <FontAwesomeIcon
-                     className={styles.backArrow}
-                     icon={faAngleLeft}
-                  />
-                  <p>BACK</p>
-               </div>}
+               {children}
             </div>
          </div>
       </>

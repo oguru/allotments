@@ -1,8 +1,7 @@
-import React, {useRef} from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import BackArrow from "../BackArrow";
 import Hero from "../Hero";
 import PropTypes from "prop-types";
-import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
+import React from "react";
 import styles from "./Article.module.scss";
 
 const Article = (props) => {
@@ -11,12 +10,6 @@ const Article = (props) => {
    Article.propTypes = {
       closeArticle: PropTypes.func,
       content: PropTypes.object
-   };
-
-   const backHoverStyle = useRef("");
-
-   const setBackHoverStyle = (style) => {
-      backHoverStyle.current = style;
    };
 
    const heroContent = {
@@ -39,30 +32,16 @@ const Article = (props) => {
                      content={heroContent}
                      article
                      staticTxt
-                  />
+                  >
+                     <BackArrow arrowStyle="Light" handleClick={closeArticle} />
+                  </Hero>
                </div>
                <div className={`${styles.articleContent} container`}>
                   {content.content}
-                  <div
-                     className={`${styles.backArrowCont}`}
-                     onMouseEnter={() => setBackHoverStyle("backHover")}
-                     onMouseLeave={() => setBackHoverStyle("")}
-                     onClick={closeArticle}
-                  >
-                     <span className={`
-                        ${styles.backBorder} 
-                        ${styles[backHoverStyle.current]}`
-                     }></span>
-                     <FontAwesomeIcon
-                        className={styles.backArrow}
-                        icon={faAngleLeft}
-                     />
-                     <p>BACK</p>
-                  </div>
+                  <BackArrow arrowStyle="Dark" handleClick={closeArticle} />
                </div>
             </article> : null
          }
-
       </>
    );
 };
