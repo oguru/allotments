@@ -27,7 +27,7 @@ const NavBar = (props) => {
       setPathName(location.pathname);
    }, [location]);
 
-   const calcOpenNavHeight = () => {
+   const setOpenNavHeight = () => {
       const height = navLinkGroup.current.offsetHeight;
       setMenuHeight(height);
    };
@@ -35,14 +35,6 @@ const NavBar = (props) => {
    const mobNavHeight = isLargeScreen ?
       "unset" : isNavOpen ?
          `${menuHeight + 16}px` : 0;
-
-   const closeNav = () => {
-      setIsNavOpen(false);
-   };
-
-   const checkIsActive = (route) => {
-      return route === pathName ? "activeLink" : "";
-   };
 
    const navIconAnim = isNavOpen ? "navCross" : "";
    const navLinkGroup = useRef(null);
@@ -63,10 +55,7 @@ const NavBar = (props) => {
             container"
          >
             <a
-               className={`
-                  ${styles.navBrandText} 
-                  navbar-brand
-               `}
+               className={styles.navBrandText}
                data-test="navBrand"
                href="/"
             >
@@ -96,19 +85,19 @@ const NavBar = (props) => {
                   classNames={{...styles}}
                   in={isNavOpen}
                   nodeRef={navLinkGroup}
-                  onEnter={calcOpenNavHeight}
+                  onEnter={setOpenNavHeight}
                   timeout={500}
                >
                   <div
-                     className={`${styles.navBarLinkGroup}`}
+                     className={styles.navBarLinkGroup}
                      data-test="navBarLinkGroup"
                      ref={navLinkGroup}
                   >
                      {routes.map((route, index) => {
                         return route.name !== "Admin" ? (
                            <NavLink
-                              closeNav={() => closeNav()}
-                              linkType={checkIsActive(route.path)}
+                              handleCloseNav={() => setIsNavOpen(false)}
+                              linkStyle={route.path === pathName ? "activeLink" : ""}
                               key={`${index}_${route.name}`}
                               path={route.path}
                               linkText={route.name}
