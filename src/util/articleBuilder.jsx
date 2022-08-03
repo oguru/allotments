@@ -108,7 +108,6 @@ const buildEl = (el, article) => {
 };
 
 const getContentJsx = (contentData, articles) => {
-   console.log(contentData);
    const jsxContent = articles ?
       contentData.map(article => {
          return {

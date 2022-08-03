@@ -13,10 +13,10 @@ describe("Hero tests", () => {
          content: {
             heroSubtitle: "heroSubtitle",
             heroTitle: "heroTitle",
-            homepageText: "homepageText",
             image: "/imagepath",
             imageSm: "/smallimagepath",
-            imageTint: 0.4
+            imageTint: 0.4,
+            smallText: "smallText"
          },
          homeHero: true
       };
@@ -66,8 +66,8 @@ describe("Hero tests", () => {
          .text())
          .toBe(testProps.content.heroSubtitle);
 
-      expect(findByTestAttr(component, "heroHomeText")
+      expect(findByTestAttr(component, "smallText")
          .text())
-         .toBe(testProps.content.homepageText);
+         .toBe(testProps.content.smallText);
    });
 });

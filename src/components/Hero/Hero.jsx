@@ -10,6 +10,7 @@ import styles from "./Hero.module.scss";
 const Hero = (props) => {
 
    const {
+      children,
       content: {
          heroSubtitle,
          heroTitle,
@@ -18,17 +19,16 @@ const Hero = (props) => {
          imageSm,
          imageTint
       },
-      article,
-      closeArticle,
       component,
       homeHero,
       staticTxt
    } = props;
 
    const [typingDone, setTypingDone] = useState("");
-   const [backHoverStyle, setBackHoverStyle] = useState("");
 
    Hero.propTypes = {
+      children: PropTypes.object,
+      component: PropTypes.object,
       content: PropTypes.shape({
          heroSubtitle: PropTypes.string,
          heroTitle: PropTypes.string.isRequired,
@@ -38,7 +38,6 @@ const Hero = (props) => {
          imageTint: PropTypes.number
       }),
       article: PropTypes.bool,
-      closeArticle: PropTypes.func,
       homeHero: PropTypes.bool,
       staticTxt: PropTypes.bool
    };
@@ -106,25 +105,13 @@ const Hero = (props) => {
                      ${staticTxt ? styles.staticTxt : styles[typingDone]} 
                      ${homeHero ? styles.homeText : styles.smallText}`
                   }
-                  data-test="heroHomeText"
+                  data-test="smallText"
                >
                   {smallText}
                </h5>
                {component}
-               {article &&
-               <div
-                  className={styles.backArrowCont}
-                  onMouseEnter={() => setBackHoverStyle("backHover")}
-                  onMouseLeave={() => setBackHoverStyle("")}
-                  onClick={closeArticle}
-               >
-                  <span className={`${styles.backBorder} ${styles[backHoverStyle]}`}></span>
-                  <FontAwesomeIcon
-                     className={styles.backArrow}
-                     icon={faAngleLeft}
-                  />
-                  <p>BACK</p>
-               </div>}
+               {/* Article BackArrow */}
+               {children}
             </div>
          </div>
       </>
