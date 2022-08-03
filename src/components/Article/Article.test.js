@@ -6,11 +6,11 @@ import {getContentJsx} from "../../util/articleBuilder";
 import {shallow} from "enzyme";
 
 describe("Article tests", () => {
-   const articles = getContentJsx([articlesData[0]], true);
+   const article = getContentJsx([articlesData[0]], true)[0];
 
    const testProps = {
       closeArticle: jest.fn,
-      content: articles[0]
+      content: article
    };
 
    test("Article PropTypes check should not throw a warning", () => {

@@ -6,6 +6,14 @@ export const findByTestAttr = (component, attr) => {
    return wrapper;
 };
 
+export const findMultipleByTestAttr = (component, attrArray ) => {
+   return attrArray.map(attr => {
+      const el = findByTestAttr(component, attr);
+      
+      return el;
+   })
+}
+
 export const checkProps = (component, expectedProps) => {
    const propsErr = checkPropTypes(
       component.propTypes,

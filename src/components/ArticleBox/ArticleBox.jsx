@@ -51,7 +51,7 @@ const ArticleBox = (props) => {
       }
    }, [titleRef]);
 
-   const calculatedBoxStyles = {
+   const calculatedLineClamp = {
       WebkitLineClamp: preview || inAnimation ?
          textLineCounts?.expandedLineCount :
          textLineCounts?.lineCount
@@ -60,6 +60,7 @@ const ArticleBox = (props) => {
    return (
       <article
          className={`${styles.articleBox}`}
+         data-test="articleBoxMain"
          onClick={handleShowArticle}
          onMouseEnter={() => {
             setInAnimation(true);
@@ -76,6 +77,7 @@ const ArticleBox = (props) => {
                   ${styles[preview]} 
                   ${styles.articleImg}`
             }
+            data-test="articleBoxImage"
             src={previewImg}
          />
          <div
@@ -84,19 +86,25 @@ const ArticleBox = (props) => {
                ${styles.articleBoxText} 
                ${styles[preview]}`
             }
+            data-test="articleBoxTextCont"
          >
             <h5 ref={titleRef}>{title}</h5>
-            <p style={textLineCounts && calculatedBoxStyles}>{text}</p>
+            <p style={textLineCounts && calculatedLineClamp}
+               data-test="articleBoxText"
+            >{text}</p>
          </div>
-         <div className={`${styles.articleBoxBot} ${styles[preview]}`}>
+         <div className={`${styles.articleBoxBot} ${styles[preview]}`}
+            data-test="articleBoxBot"
+         >
             <FontAwesomeIcon
                className={`
                   ${styles.arrowUp} 
                   ${styles[preview]}`
                }
+               data-test="arrowUpIcon"
                icon={faAngleUp}
             />
-            <p className={styles[preview]}>
+            <p className={styles[preview]} data-test="readMoreText">
                Read More
             </p>
          </div>
