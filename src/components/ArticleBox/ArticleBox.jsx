@@ -5,78 +5,57 @@ import {faAngleUp} from "@fortawesome/free-solid-svg-icons";
 import styles from "./ArticleBox.module.scss";
 
 const ArticleBox = (props) => {
-   const {mainImg, mainImgAlt, handleShowArticle, text = "", title} = props;
+   const {previewImg, previewImgAlt, handleShowArticle, text = "", title} = props;
 
    ArticleBox.propTypes = {
-      mainImg: PropTypes.string.isRequired,
-      mainImgAlt: PropTypes.string,
+      previewImg: PropTypes.string.isRequired,
+      previewImgAlt: PropTypes.string,
       handleShowArticle: PropTypes.func.isRequired,
       text: PropTypes.string,
       title: PropTypes.string.isRequired
    };
 
-   const [preview, setPreview] = useState("");
+   const [textLineCounts, setLineCounts] = useState(null);
    const [inAnimation, setInAnimation] = useState(false);
-   const [boxStyles, setBoxStyles] = useState();
-
+   const [preview, setPreviewClass] = useState("");
    const titleRef = useRef(null);
 
+   // Dimension calculations for dynamic inline line-clamp style
    useEffect(() => {
       if (titleRef.current) {
-         const contSize = 300;
+         // textBoxHeight = box container height - image height - padding
+         const textBoxHeight = 300 - 150 - 20;
          const lineHeight = 20;
-         const imageSize = 150;
-         const readMoreHoverAddSize = 40;
-         const readMoreStdAddSize = 20;
-         const textHoverAddSize = 50;
+         const expandedReadMoreHeight = 40;
+         const readMoreHeight = 20;
+         const expandedTextHeight = 50;
          const titleHeight = titleRef.current.offsetHeight;
-         const padding = 20;
 
-         const stdLineCount =
-            Math.floor((contSize
-               - imageSize
-               - readMoreStdAddSize
-               - titleHeight
-               - padding)
+         const lineCount =
+            Math.floor((textBoxHeight
+               - readMoreHeight
+               - titleHeight)
                / lineHeight);
 
-         const hoverLineCount =
-            Math.floor((contSize
-               - imageSize
-               - readMoreHoverAddSize
-               + textHoverAddSize
-               - titleHeight
-               - padding)
+         const expandedLineCount =
+            Math.floor((textBoxHeight
+               - expandedReadMoreHeight
+               + expandedTextHeight
+               - titleHeight)
                / lineHeight);
 
-         const stdTextBoxHeight =
-            Math.floor(stdLineCount * lineHeight);
-
-         const hoverTextBoxHeight =
-            Math.floor(hoverLineCount * lineHeight);
-
-         const textBoxStyles = {
-            hoverLineCount,
-            hoverTextBoxHeight,
-            stdLineCount,
-            stdTextBoxHeight
-         };
-
-         setBoxStyles(textBoxStyles);
+         setLineCounts({
+            expandedLineCount,
+            lineCount
+         });
       }
    }, [titleRef]);
 
-   const getBoxStyles = boxStyles ? {
-      height: preview ?
-         boxStyles.hoverTextBoxHeight :
-         inAnimation ? boxStyles.hoverTextBoxHeight :
-            boxStyles.stdTextBoxHeight,
-      WebkitLineClamp: preview ?
-         boxStyles.hoverLineCount :
-         inAnimation ? boxStyles.hoverLineCount :
-            boxStyles.stdLineCount
-
-   } : null;
+   const calculatedBoxStyles = {
+      WebkitLineClamp: preview || inAnimation ?
+         textLineCounts?.expandedLineCount :
+         textLineCounts?.lineCount
+   };
 
    return (
       <article
@@ -84,20 +63,20 @@ const ArticleBox = (props) => {
          onClick={handleShowArticle}
          onMouseEnter={() => {
             setInAnimation(true);
-            setPreview("articlePreview");
+            setPreviewClass("articlePreview");
          }}
          onMouseLeave={() => {
             setInAnimation(true);
-            setPreview("");
+            setPreviewClass("");
          }}
       >
          <img
-            alt={mainImgAlt}
+            alt={previewImgAlt}
             className={`
                   ${styles[preview]} 
                   ${styles.articleImg}`
             }
-            src={mainImg}
+            src={previewImg}
          />
          <div
             onTransitionEnd={() => setInAnimation(false)}
@@ -107,7 +86,7 @@ const ArticleBox = (props) => {
             }
          >
             <h5 ref={titleRef}>{title}</h5>
-            <p style={getBoxStyles}>{text}</p>
+            <p style={textLineCounts && calculatedBoxStyles}>{text}</p>
          </div>
          <div className={`${styles.articleBoxBot} ${styles[preview]}`}>
             <FontAwesomeIcon

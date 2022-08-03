@@ -83,8 +83,8 @@ const Articles = (props) => {
    const articleBoxes = articlesJsx.map((article, index) => (
       <ArticleBox
          key={article.id}
-         mainImg={article.mainImgBox}
-         mainImgAlt={article.mainImgAlt}
+         previewImg={article.mainImgBox}
+         previewImgAlt={article.mainImgAlt}
          handleShowArticle={() => handleShowArticle(index)}
          text={article.initText}
          title={article.title}
