@@ -64,7 +64,7 @@ const Articles = (props) => {
       setCurrentArticle(articlesJsx[index]);
    };
 
-   const showArticle = (index) => {
+   const handleShowArticle = (index) => {
       calcArticleJsx(index);
       setArticleVisible(true);
       saveScrollPos();
@@ -85,7 +85,7 @@ const Articles = (props) => {
          key={article.id}
          mainImg={article.mainImgBox}
          mainImgAlt={article.mainImgAlt}
-         showArticle={() => showArticle(index)}
+         handleShowArticle={() => handleShowArticle(index)}
          text={article.initText}
          title={article.title}
       />

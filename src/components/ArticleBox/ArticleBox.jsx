@@ -1,10 +1,19 @@
 import React, {useEffect, useRef, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import PropTypes from "prop-types";
 import {faAngleUp} from "@fortawesome/free-solid-svg-icons";
 import styles from "./ArticleBox.module.scss";
 
 const ArticleBox = (props) => {
-   const {mainImg, mainImgAlt, showArticle, text, title} = props;
+   const {mainImg, mainImgAlt, handleShowArticle, text = "", title} = props;
+
+   ArticleBox.propTypes = {
+      mainImg: PropTypes.string.isRequired,
+      mainImgAlt: PropTypes.string,
+      handleShowArticle: PropTypes.func.isRequired,
+      text: PropTypes.string,
+      title: PropTypes.string.isRequired
+   };
 
    const [preview, setPreview] = useState("");
    const [inAnimation, setInAnimation] = useState(false);
@@ -72,7 +81,7 @@ const ArticleBox = (props) => {
    return (
       <article
          className={`${styles.articleBox}`}
-         onClick={showArticle}
+         onClick={handleShowArticle}
          onMouseEnter={() => {
             setInAnimation(true);
             setPreview("articlePreview");
