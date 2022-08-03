@@ -38,7 +38,6 @@ const Hero = (props) => {
          imageTint: PropTypes.number
       }),
       article: PropTypes.bool,
-      closeArticle: PropTypes.func,
       homeHero: PropTypes.bool,
       staticTxt: PropTypes.bool
    };
@@ -111,6 +110,7 @@ const Hero = (props) => {
                   {smallText}
                </h5>
                {component}
+               {/* Article BackArrow */}
                {children}
             </div>
          </div>

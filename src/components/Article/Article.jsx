@@ -5,10 +5,10 @@ import React from "react";
 import styles from "./Article.module.scss";
 
 const Article = (props) => {
-   const {closeArticle, content} = props;
+   const {handleCloseArticle, content} = props;
 
    Article.propTypes = {
-      closeArticle: PropTypes.func,
+      handleCloseArticle: PropTypes.func,
       content: PropTypes.object
    };
 
@@ -22,26 +22,23 @@ const Article = (props) => {
 
    return (
       <>
-         {props ?
-            <article
-               className={styles.article}
-            >
-               <div className={styles.articleHead}>
-                  <Hero
-                     closeArticle={closeArticle}
-                     content={heroContent}
-                     article
-                     staticTxt
-                  >
-                     <BackArrow arrowStyle="Light" handleClick={closeArticle} />
-                  </Hero>
-               </div>
-               <div className={`${styles.articleContent} container`}>
-                  {content.content}
-                  <BackArrow arrowStyle="Dark" handleClick={closeArticle} />
-               </div>
-            </article> : null
-         }
+         <article
+            className={styles.article}
+         >
+            <div className={styles.articleHead}>
+               <Hero
+                  content={heroContent}
+                  article
+                  staticTxt
+               >
+                  <BackArrow arrowStyle="Light" handleClick={handleCloseArticle} />
+               </Hero>
+            </div>
+            <div className={`${styles.articleContent} container`}>
+               {content.content}
+               <BackArrow arrowStyle="Dark" handleClick={handleCloseArticle} />
+            </div>
+         </article>
       </>
    );
 };

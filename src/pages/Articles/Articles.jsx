@@ -127,7 +127,7 @@ const Articles = (props) => {
                >
                   <Article
                      content={currentArticle}
-                     closeArticle={() => closeArticle()}
+                     handleCloseArticle={closeArticle}
                   />
                </section>
             </CSSTransition>
