@@ -105,7 +105,7 @@ const Hero = (props) => {
                      ${staticTxt ? styles.staticTxt : styles[typingDone]} 
                      ${homeHero ? styles.homeText : styles.smallText}`
                   }
-                  data-test="heroHomeText"
+                  data-test="smallText"
                >
                   {smallText}
                </h5>

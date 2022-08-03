@@ -16,15 +16,18 @@ const BackArrow = ({arrowStyle, handleClick}) => {
    return (
       <div
          className={`${styles.backArrowCont}`}
+         data-test="backArrowCont"
          onMouseEnter={() => setBackHoverStyle(`backHover${arrowStyle}`)}
          onMouseLeave={() => setBackHoverStyle("")}
          onClick={handleClick}
       >
-         <span className={`
-            ${styles.backBorder} 
-            ${styles[`backBorder${arrowStyle}`]} 
-            ${styles[backHoverStyle]}`
-         }/>
+         <span
+            className={`
+               ${styles.backBorder} 
+               ${styles[`backBorder${arrowStyle}`]} 
+               ${styles[backHoverStyle]}`}
+            data-test="backBorder"
+         />
          <FontAwesomeIcon
             className={styles.backArrow}
             icon={faAngleLeft}
