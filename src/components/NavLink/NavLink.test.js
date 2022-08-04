@@ -8,8 +8,8 @@ import mount from "enzyme/mount";
 describe("NavLink tests", () => {
    let component;
    const testProps = {
-      closeNav: jest.fn(),
-      linkType: "",
+      handleCloseNav: jest.fn(),
+      linkStyle: "",
       linkText: "test text",
       path: "/testpath"
    };
@@ -18,16 +18,12 @@ describe("NavLink tests", () => {
       component = mount(
          <MemoryRouter>
             <NavLink
-               closeNav={testProps.closeNav}
-               linkType={testProps.linkType}
+               handleCloseNav={testProps.handleCloseNav}
+               linkStyle={testProps.linkStyle}
                linkText={testProps.linkText}
                path={testProps.path}
             />
          </MemoryRouter>);
-   });
-
-   it("should render without error", () => {
-      expect(findByTestAttr(component, "navLinkCont").length).toBe(1);
    });
 
    it("should match the snapshot", () => {
@@ -41,7 +37,7 @@ describe("NavLink tests", () => {
       expect(propsErr).toBeUndefined();
    });
 
-   it("should gain the correct CSS style if linkType === 'activeLink'", () => {
+   it("should gain the correct CSS style if linkStyle === 'activeLink'", () => {
       expect(findByTestAttr(component, "navLink")
          .hasClass("activeLink"))
          .toBe(false);
@@ -52,7 +48,7 @@ describe("NavLink tests", () => {
                component
                   .props()
                   .children
-               , {linkType: "activeLink"}
+               , {linkStyle: "activeLink"}
             )
       });
 
@@ -61,10 +57,10 @@ describe("NavLink tests", () => {
          .toBe(true);
    });
 
-   it("should call closeNav when a link is clicked", () => {
+   it("should call handleCloseNav when a link is clicked", () => {
       findByTestAttr(component, "navLink").simulate("click");
 
-      expect(testProps.closeNav.mock.calls.length).toBe(1);
+      expect(testProps.handleCloseNav.mock.calls.length).toBe(1);
    });
 
    it("should display render linkText and path props correctly", () => {
