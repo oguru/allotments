@@ -29,10 +29,6 @@ describe("Hero tests", () => {
       );
    });
 
-   it("should render", () => {
-      expect(render(component)).toBeTruthy();
-   });
-
    test("Hero PropTypes check should not throw a warning", () => {
       const propsErr = checkProps(Hero, testProps);
 
@@ -43,13 +39,13 @@ describe("Hero tests", () => {
       const heroCont = findByTestAttr(component, "heroCont");
 
       expect(heroCont
-         .hasClass("homeStyles"))
+         .hasClass("homeStyle"))
          .toBe(true);
 
       component.setProps({homeHero: false});
 
       expect(findByTestAttr(component, "heroCont")
-         .hasClass("homeStyles"))
+         .hasClass("homeStyle"))
          .toBe(false);
    });
 
