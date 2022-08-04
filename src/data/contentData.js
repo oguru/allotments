@@ -2,7 +2,7 @@ import {aboutImages, articleImages} from "../images/imageImports";
 
 const img = [articleImages, aboutImages];
 
-const template = {
+/* const template = {
    id: 1,
    title: "",
    credit: "",
@@ -38,7 +38,7 @@ const template = {
          content: [{}]
       }
    ]
-};
+}; */
 
 const articlesData = [
    {
