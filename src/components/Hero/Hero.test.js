@@ -39,13 +39,13 @@ describe("Hero tests", () => {
       const heroCont = findByTestAttr(component, "heroCont");
 
       expect(heroCont
-         .hasClass("homeStyles"))
+         .hasClass("homeStyle"))
          .toBe(true);
 
       component.setProps({homeHero: false});
 
       expect(findByTestAttr(component, "heroCont")
-         .hasClass("homeStyles"))
+         .hasClass("homeStyle"))
          .toBe(false);
    });
 
