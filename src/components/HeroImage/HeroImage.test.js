@@ -4,7 +4,7 @@ import {checkProps, findByTestAttr} from "../../../utils/utils";
 import HeroImage from "./HeroImage";
 import React from "react";
 import mount from "enzyme/mount";
-import src from "../../images/articles-main.jpg";
+import src from "../../images/articles-main-lg.jpg";
 import srcSm from "../../images/articles-main-sm.jpg";
 
 describe("HeroImage tests", () => {
@@ -29,24 +29,10 @@ describe("HeroImage tests", () => {
       );
    });
 
-   it("should render without error", () => {
-      expect(findByTestAttr(component, "heroImage")
-         .length)
-         .toBe(2);
-   });
-
    test("HeroImage PropTypes check should not throw a warning", () => {
       const propsErr = checkProps(HeroImage, testProps);
 
       expect(propsErr).toBeUndefined();
-   });
-
-   it("should throw an error if src prop is missing", () => {
-      testProps.src = null;
-      const propsErr = checkProps(HeroImage, testProps);
-
-      expect(propsErr).toBeTruthy();
-
    });
 
    it("should match the snapshot", () => {
