@@ -29,10 +29,6 @@ describe("Hero tests", () => {
       );
    });
 
-   it("should render", () => {
-      expect(render(component)).toBeTruthy();
-   });
-
    test("Hero PropTypes check should not throw a warning", () => {
       const propsErr = checkProps(Hero, testProps);
 

@@ -1,14 +1,11 @@
 import "./cursor.scss";
 import React, {useState} from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import HeroImage from "../HeroImage";
 import PropTypes from "prop-types";
 import Typist from "react-typist";
-import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import styles from "./Hero.module.scss";
 
 const Hero = (props) => {
-
    const {
       children,
       content: {
@@ -24,7 +21,7 @@ const Hero = (props) => {
       staticTxt
    } = props;
 
-   const [typingDone, setTypingDone] = useState("");
+   const [animationClass, setAnimationClass] = useState("");
 
    Hero.propTypes = {
       children: PropTypes.object,
@@ -32,29 +29,29 @@ const Hero = (props) => {
       content: PropTypes.shape({
          heroSubtitle: PropTypes.string,
          heroTitle: PropTypes.string.isRequired,
-         smallText: PropTypes.string,
          image: PropTypes.string.isRequired,
          imageSm: PropTypes.string,
-         imageTint: PropTypes.number
+         imageTint: PropTypes.number,
+         smallText: PropTypes.string
       }),
       article: PropTypes.bool,
       homeHero: PropTypes.bool,
       staticTxt: PropTypes.bool
    };
 
-   const homeStyles = homeHero ? "homeStyles" : "";
+   const homeStyle = homeHero ? "homeStyle" : "";
 
    return (
       <>
          <div
             className={`
                ${styles.heroCont}
-               ${styles[homeStyles]}
+               ${styles[homeStyle]}
             `}
             data-test="heroCont"
          >
             <HeroImage
-               homeStyle={homeHero ? "homeStyle" : ""}
+               homeStyle={homeStyle}
                imageTint={imageTint}
                src={image}
                srcSm={imageSm}
@@ -78,7 +75,7 @@ const Hero = (props) => {
                            hideWhenDone: true,
                            hideWhenDoneDelay: 1400
                         }}
-                        onTypingDone={() => setTypingDone("fadeIn")}
+                        onTypingDone={() => setAnimationClass("fadeIn")}
                         startDelay={500}
                      >
                         <h1 data-test="heroHeadText">
@@ -92,9 +89,8 @@ const Hero = (props) => {
                   </h1>
                }
                <h4
-                  className={staticTxt ?
-                     styles.staticTxt :
-                     styles[typingDone]
+                  className={
+                     staticTxt ? styles.staticTxt : styles[animationClass]
                   }
                   data-test="heroSubText"
                >
@@ -102,7 +98,7 @@ const Hero = (props) => {
                </h4>
                <h5
                   className={`
-                     ${staticTxt ? styles.staticTxt : styles[typingDone]} 
+                     ${staticTxt ? styles.staticTxt : styles[animationClass]} 
                      ${homeHero ? styles.homeText : styles.smallText}`
                   }
                   data-test="smallText"

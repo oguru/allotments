@@ -3,7 +3,7 @@
 @import "../../../node_modules/bootstrap/scss/variables";
 @import "../../../node_modules/bootstrap/scss/mixins/breakpoints";
 
-.heroCont.homeStyles {
+.heroCont.homeStyle {
     height: 100%;
     padding: 3rem 0;
 }
@@ -104,7 +104,7 @@
 }
   
   @include media-breakpoint-up(md) {
-    .heroCont.homeStyles {
+    .heroCont.homeStyle {
         padding: 4rem 0;
     }
 
