@@ -10,9 +10,9 @@ describe("ArticleBox tests", () => {
    const handleShowArticleMock = jest.fn();
    const article = getContentJsx([articlesData[0]], true)[0];
    const testProps = {
+      handleShowArticle: handleShowArticleMock,
       previewImg: article.mainImgBox,
       previewImgAlt: article.mainImgAlt,
-      handleShowArticle: handleShowArticleMock,
       text: article.initText,
       title: article.title
    };
@@ -20,9 +20,9 @@ describe("ArticleBox tests", () => {
    describe("Mount tests", () => {
       beforeEach(() => {
          component = mount(<ArticleBox
+            handleShowArticle={handleShowArticleMock}
             previewImg={testProps.previewImg}
             previewImgAlt={testProps.previewImgAlt}
-            handleShowArticle={handleShowArticleMock}
             text={testProps.text}
             title={testProps.title}
          />);
@@ -78,9 +78,9 @@ describe("ArticleBox tests", () => {
    describe("Shallow tests", () => {
       beforeEach(() => {
          component = shallow(<ArticleBox
+            handleShowArticle={handleShowArticleMock}
             previewImg={testProps.previewImg}
             previewImgAlt={testProps.previewImgAlt}
-            handleShowArticle={handleShowArticleMock}
             text={testProps.text}
             title={testProps.title}
          />);
