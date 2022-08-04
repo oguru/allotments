@@ -1,7 +1,7 @@
 import {checkProps, findByTestAttr} from "../../../utils/utils";
-import {render, shallow} from "enzyme";
 import BackArrow from "./BackArrow";
 import React from "react";
+import {shallow} from "enzyme";
 
 describe("BackArrow tests", () => {
    let component;
