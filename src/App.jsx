@@ -1,5 +1,6 @@
 // import "./global.scss";
 import React, {useEffect, useState, useRef} from "react";
+import {collection, deleteDoc, doc, onSnapshot} from "@firebase/firestore";
 import {mainImagesInit, mainImagesLg} from "./images/imageImports.js";
 import About from "./pages/About";
 import Admin from "./pages/Admin";
@@ -10,10 +11,10 @@ import Info from "./pages/Info";
 import NavBar from "./components/NavBar";
 import {Route} from "react-router-dom";
 import {articlesData} from "./data/contentData.js";
-import firebase from "./firebase";
+import {firestore} from "./firebase.js";
 import {getContentJsx} from "./util/articleBuilder.jsx";
-import getNoticesJsx from "./pages/Info/noticeBuilder.jsx";
 import styles from "./App.module.scss";
+import {formatDate} from "./util/utils.js";
 
 const App = () => {
 
@@ -48,13 +49,29 @@ const App = () => {
          // const about = getContentJsx(aboutData);
          // setAboutJsx(about);
 
-         fetchNotices();
+         firestore
+            .collection("notices")
+            .orderBy("date", "desc").onSnapshot(snapshot => {
+               const items = [];
+
+               snapshot.forEach(item => {
+                  const itemDate = formatDate(item
+                     .data()
+                     .date
+                     .toDate());
+
+                  const id = item.id;
+
+                  items.push({
+                     ...item.data(),
+                     date: itemDate,
+                     id
+                  });
+               });
+               setNotices(items);
+            });
       }
    }, [isLoading]);
-
-   const fetchNotices = () => {
-      getNoticesJsx(setNotices);
-   };
 
    useEffect(() => {
       const mediaQuery = window.matchMedia("(min-width: 768px)");
@@ -127,7 +144,6 @@ const App = () => {
          />,
       "Admin":
          <Admin
-            fetchNotices={fetchNotices}
             loggedIn={loggedIn}
             notices={notices}
             setLoggedIn={setLoggedIn}

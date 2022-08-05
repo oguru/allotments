@@ -10,7 +10,7 @@ import {firestore} from "../../firebase.js";
 import styles from "./Admin.module.scss";
 
 const Admin = (props) => {
-   const {fetchNotices, loggedIn, notices, setLoggedIn} = props;
+   const {loggedIn, notices, setLoggedIn} = props;
 
    Admin.propTypes = {
       fetchNotices: PropTypes.func,
@@ -53,10 +53,7 @@ const Admin = (props) => {
       firestore
          .collection("notices")
          .doc()
-         .set(newDoc)
-         .then(() => {
-            fetchNotices();
-         });
+         .set(newDoc);
    };
 
    const modifyNotice = (newDesc, newTitle, id) => {
@@ -69,18 +66,14 @@ const Admin = (props) => {
       firestore
          .collection("notices")
          .doc(id)
-         .update(newDetails)
-         .then(() => {
-            fetchNotices();
-         });
+         .update(newDetails);
    };
 
    const deleteNotice = (id) => {
       firestore
          .collection("notices")
          .doc(id)
-         .delete()
-         .then(() => fetchNotices());
+         .delete();
    };
 
    const buildNotices = notices.map(item => (
