@@ -1,6 +1,5 @@
 // import "./global.scss";
 import React, {useEffect, useState, useRef} from "react";
-import {collection, deleteDoc, doc, onSnapshot} from "@firebase/firestore";
 import {mainImagesInit, mainImagesLg} from "./images/imageImports.js";
 import About from "./pages/About";
 import Admin from "./pages/Admin";
@@ -24,14 +23,12 @@ const App = () => {
    const [notices, setNotices] = useState([]);
    const [isLargeScreen, setIsLargeScreen] = useState(true);
    const [isLoading, setIsLoading] = useState(true);
-   const [scrollPos, saveScrollPos] = useState(0);
    const [staticTxt, setStaticTxt] = useState({
       about: false,
       articles: false,
       home: false,
       info: false
    });
-   const [windowWidth, setWindowWidth] = useState();
 
    const pageContRef = useRef(null);
 
@@ -115,26 +112,6 @@ const App = () => {
       }
    ];
 
-   const setScrollPos = () => {
-      setTimeout(() => {
-         pageContRef.current.scrollTop = scrollPos;
-      }, 500);
-   };
-
-   const scrollToTop = () => {
-      setTimeout(() => {
-         pageContRef.current.scrollTop = 0;
-      }, 500);
-   };
-
-   const scrollToBot = () => {
-      pageContRef.current.scrollTop = 0;
-   };
-
-   const saveScrollVal = () => {
-      saveScrollPos(pageContRef.current.scrollTop);
-   };
-
    const components = {
       "About":
          <About
@@ -151,12 +128,9 @@ const App = () => {
       "Articles":
          <Articles
             articlesJsx={articlesJsx}
-            saveScrollPos={() => saveScrollVal()}
-            scrollToTop={() => scrollToTop()}
-            setScrollPos={() => setScrollPos()}
+            isLargeScreen={isLargeScreen}
             setStaticTxt={setStaticTxt}
             staticTxt={staticTxt.articles}
-            windowWidth={windowWidth}
          />,
       "Home":
          <Home
@@ -249,12 +223,17 @@ const App = () => {
                               className={styles.mainPage}
                               data-test="pageComponent"
                            >
-                              <div
-                                 className={styles.pageCont}
-                                 ref={onRef}
-                              >
-                                 {components[route.name]}
-                              </div>
+                              {route.name === "Articles" ?
+                                 components[route.name] :
+                                 (
+                                    <div
+                                       className={styles.pageCont}
+                                       ref={onRef}
+                                    >
+                                       {components[route.name]}
+                                    </div>
+
+                                 )}
                            </div>
                         </CSSTransition>
                      )}

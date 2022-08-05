@@ -9,31 +9,45 @@ import {Route} from "react-router-dom";
 import articlesImg from "../../images/articles-main-lg.jpg";
 import articlesImgSm from "../../images/articles-main-sm.jpg";
 import styles from "./Articles.module.scss";
-import globalStyles from "../../global.scss";
+import {pageCont} from "../../App.module.scss";
 
 const Articles = (props) => {
    const {
       articlesJsx,
-      saveScrollPos,
-      scrollToTop,
-      setScrollPos,
+      isLargeScreen,
       setStaticTxt,
-      staticTxt,
-      windowWidth
+      staticTxt
    } = props;
 
    Articles.propTypes = {
       articlesJsx: PropTypes.array,
-      saveScrollPos: PropTypes.func,
-      scrollToTop: PropTypes.func,
-      setScrollPos: PropTypes.func,
+      isLargeScreen: PropTypes.bool,
       setStaticTxt: PropTypes.func,
-      staticTxt: PropTypes.bool,
-      windowWidth: PropTypes.number
+      staticTxt: PropTypes.bool
    };
 
    const [currentArticle, setCurrentArticle] = useState(articlesJsx[0]);
    const [articleVisible, setArticleVisible] = useState(false);
+   const [scrollPos, saveScrollPos] = useState(0);
+   const pageContRef = useRef(null);
+
+   const onRef = (node) => {
+      if (node) {
+         pageContRef.current = node;
+      }
+   };
+
+   const setScrollPos = () => {
+      setTimeout(() => {
+         pageContRef.current.scrollTop = scrollPos;
+      }, 500);
+   };
+
+   const scrollToTop = () => {
+      setTimeout(() => {
+         pageContRef.current.scrollTop = 0;
+      }, 500);
+   };
 
    useEffect(() => {
       if (!staticTxt) {
@@ -57,7 +71,7 @@ const Articles = (props) => {
    const calcArticleJsx = (index) => {
       let image;
 
-      if (windowWidth < 768) {
+      if (!isLargeScreen) {
          image = articlesJsx[index].mainImg;
       }
 
@@ -67,7 +81,7 @@ const Articles = (props) => {
    const handleShowArticle = (index) => {
       calcArticleJsx(index);
       setArticleVisible(true);
-      saveScrollPos();
+      saveScrollPos(pageContRef.current.scrollTop);
       setTimeout(() => {
          scrollToTop();
       }, 500);
@@ -95,42 +109,47 @@ const Articles = (props) => {
 
    return (
       <>
-         <div className={`
+         <div
+            className={pageCont}
+            ref={onRef}
+         >
+            <div className={`
             ${styles.articlesCont} 
             ${styles[animDir]}`
-         }>
-            <CSSTransition
-               classNames={{...styles}}
-               in={!articleVisible}
-               timeout={1000}
-            >
-               <section
-                  className={`${styles.articlesMain}`}
+            }>
+               <CSSTransition
+                  classNames={{...styles}}
+                  in={!articleVisible}
+                  timeout={1000}
                >
-                  <Hero
-                     content={heroContent}
-                     staticTxt={staticTxt}
-                  />
-                  <div className={`${styles.articleBoxes} container`}>
-                     {articleBoxes}
-                  </div>
-               </section>
-            </CSSTransition>
-            <CSSTransition
-               classNames={{...styles}}
-               in={articleVisible}
-               timeout={1500}
-               unmountOnExit
-            >
-               <section
-                  className={`${styles.articleCont}`}
+                  <section
+                     className={`${styles.articlesMain}`}
+                  >
+                     <Hero
+                        content={heroContent}
+                        staticTxt={staticTxt}
+                     />
+                     <div className={`${styles.articleBoxes} container`}>
+                        {articleBoxes}
+                     </div>
+                  </section>
+               </CSSTransition>
+               <CSSTransition
+                  classNames={{...styles}}
+                  in={articleVisible}
+                  timeout={1500}
+                  unmountOnExit
                >
-                  <Article
-                     content={currentArticle}
-                     handleCloseArticle={closeArticle}
-                  />
-               </section>
-            </CSSTransition>
+                  <section
+                     className={`${styles.articleCont}`}
+                  >
+                     <Article
+                        content={currentArticle}
+                        handleCloseArticle={closeArticle}
+                     />
+                  </section>
+               </CSSTransition>
+            </div>
          </div>
       </>
    );
