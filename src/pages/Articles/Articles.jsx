@@ -14,16 +14,12 @@ import {pageCont} from "../../App.module.scss";
 const Articles = (props) => {
    const {
       articlesJsx,
-      isLargeScreen,
-      setStaticTxt,
-      staticTxt
+      isLargeScreen
    } = props;
 
    Articles.propTypes = {
       articlesJsx: PropTypes.array,
-      isLargeScreen: PropTypes.bool,
-      setStaticTxt: PropTypes.func,
-      staticTxt: PropTypes.bool
+      isLargeScreen: PropTypes.bool
    };
 
    const [currentArticle, setCurrentArticle] = useState(articlesJsx[0]);
@@ -49,18 +45,8 @@ const Articles = (props) => {
       }, 500);
    };
 
-   useEffect(() => {
-      if (!staticTxt) {
-         setTimeout(() => {
-            setStaticTxt(prevState => ({
-               ...prevState,
-               articles: true
-            }));
-         }, 3000);
-      }
-   }, []);
-
    const heroContent = {
+      id: "articles",
       heroTitle: "Articles & Tips",
       heroSubtitle: "Keep an eye out here for articles and tips to help you grow the most astonishing Aubergines, monstrous Marrows and the richest Rhubarb!",
       image: articlesImg,
@@ -127,7 +113,6 @@ const Articles = (props) => {
                   >
                      <Hero
                         content={heroContent}
-                        staticTxt={staticTxt}
                      />
                      <div className={`${styles.articleBoxes} container`}>
                         {articleBoxes}

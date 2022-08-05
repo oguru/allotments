@@ -14,6 +14,7 @@ import {firestore} from "./firebase.js";
 import {getContentJsx} from "./util/articleBuilder.jsx";
 import styles from "./App.module.scss";
 import {formatDate} from "./util/utils.js";
+import StaticTxtProvider from "./context/staticTxtContext.js";
 
 const App = () => {
 
@@ -23,12 +24,6 @@ const App = () => {
    const [notices, setNotices] = useState([]);
    const [isLargeScreen, setIsLargeScreen] = useState(true);
    const [isLoading, setIsLoading] = useState(true);
-   const [staticTxt, setStaticTxt] = useState({
-      about: false,
-      articles: false,
-      home: false,
-      info: false
-   });
 
    useEffect(() => {
       if (!isLoading) {
@@ -108,8 +103,6 @@ const App = () => {
       "About":
          <About
             // aboutJsx={aboutJsx}
-            setStaticTxt={setStaticTxt}
-            staticTxt={staticTxt.about}
          />,
       "Admin":
          <Admin
@@ -121,20 +114,11 @@ const App = () => {
          <Articles
             articlesJsx={articlesJsx}
             isLargeScreen={isLargeScreen}
-            setStaticTxt={setStaticTxt}
-            staticTxt={staticTxt.articles}
          />,
       "Home":
-         <Home
-            setStaticTxt={setStaticTxt}
-            staticTxt={staticTxt.home}
-         />,
+         <Home />,
       "Info":
-         <Info
-            notices={notices}
-            setStaticTxt={setStaticTxt}
-            staticTxt={staticTxt.info}
-         />
+         <Info notices={notices} />
    };
 
    const counter = useRef(0);
@@ -146,10 +130,6 @@ const App = () => {
          setIsLoading(false);
       }
    };
-
-   // const checkScrollPos = () => {
-   //    return pageContRef.current.scrollTop;
-   // };
 
    return (
       <div className={styles.app}>
@@ -200,37 +180,39 @@ const App = () => {
                      </span>
                   </div>
                </> :
-               routes.map(route => (
-                  <Route
-                     key={route.path}
-                     exact path={route.path}
-                  >
-                     {({match}) => (
-                        <CSSTransition
-                           classNames={{...styles}}
-                           in={match != null}
-                           timeout={isLargeScreen ? 400 : 800}
-                           unmountOnExit
-                        >
-                           <div
-                              className={styles.mainPage}
-                              data-test="pageComponent"
+               <StaticTxtProvider>
+                  {routes.map(route => (
+                     <Route
+                        key={route.path}
+                        exact path={route.path}
+                     >
+                        {({match}) => (
+                           <CSSTransition
+                              classNames={{...styles}}
+                              in={match != null}
+                              timeout={isLargeScreen ? 400 : 800}
+                              unmountOnExit
                            >
-                              {route.name === "Articles" ?
-                                 components[route.name] :
-                                 (
-                                    <div
-                                       className={styles.pageCont}
-                                    >
-                                       {components[route.name]}
-                                    </div>
+                              <div
+                                 className={styles.mainPage}
+                                 data-test="pageComponent"
+                              >
+                                 {route.name === "Articles" ?
+                                    components[route.name] :
+                                    (
+                                       <div
+                                          className={styles.pageCont}
+                                       >
+                                          {components[route.name]}
+                                       </div>
 
-                                 )}
-                           </div>
-                        </CSSTransition>
-                     )}
-                  </Route>
-               ))
+                                    )}
+                              </div>
+                           </CSSTransition>
+                        )}
+                     </Route>
+                  ))}
+               </StaticTxtProvider>
             }
          </section>
          <footer

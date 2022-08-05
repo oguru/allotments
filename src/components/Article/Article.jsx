@@ -13,6 +13,7 @@ const Article = (props) => {
    };
 
    const heroContent = {
+      id: "article",
       heroSubtitle: content.title,
       image: content.mainImg,
       imageSm: content.mainImgBox,
@@ -28,8 +29,6 @@ const Article = (props) => {
             <div className={styles.articleHead}>
                <Hero
                   content={heroContent}
-                  article
-                  staticTxt
                >
                   <BackArrow arrowStyle="Light" handleClick={handleCloseArticle} />
                </Hero>

@@ -35,6 +35,7 @@ const Admin = (props) => {
       "Please log in to continue";
 
    const heroContent = {
+      id: "admin",
       heroTitle: "Admin",
       heroSubtitle: subtitle,
       image: adminImg,
@@ -125,7 +126,6 @@ const Admin = (props) => {
          <Hero
             content={heroContent}
             component={loginComponent}
-            staticTxt
          />
          <div className="container">
 

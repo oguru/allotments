@@ -8,29 +8,16 @@ import infoImgSm from "../../images/info-main-sm.jpg";
 import styles from "./Info.module.scss";
 
 const Info = (props) => {
-   const {notices, setStaticTxt, staticTxt} = props;
+   const {notices} = props;
 
    Info.propTypes = {
-      notices: PropTypes.array,
-      setStaticTxt: PropTypes.func,
-      staticTxt: PropTypes.bool
+      notices: PropTypes.array
    };
 
    const [metreMeasure, setMetreMeasure] = useState(true);
    const [plotType, setPlotType] = useState("sm");
    const [plotSize, setPlotSize] = useState();
    const [plotInfo, setPlotInfo] = useState();
-
-   useEffect(() => {
-      if (!staticTxt) {
-         setTimeout(() => {
-            setStaticTxt(prevState => ({
-               ...prevState,
-               info: true
-            }));
-         }, 3000);
-      }
-   }, []);
 
    useEffect(() => {
       let size = "120m";
@@ -67,6 +54,7 @@ const Info = (props) => {
    }, [plotType, metreMeasure]);
 
    const heroContent = {
+      id: "info",
       heroTitle: "Plot Information & What's New",
       heroSubtitle: "Explore different plots to suit your needs and find updates and current news here",
       image: infoImg,
@@ -97,7 +85,6 @@ const Info = (props) => {
       <>
          <Hero
             content={heroContent}
-            staticTxt={staticTxt}
          />
          <section className={`${styles.infoCont} ${styles.infoSection} container`}>
             <h3>Plot Info</h3>

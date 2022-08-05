@@ -1,14 +1,16 @@
 import "./cursor.scss";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import HeroImage from "../HeroImage";
 import PropTypes from "prop-types";
 import Typist from "react-typist";
 import styles from "./Hero.module.scss";
+import {useStaticTxt} from "../../context/staticTxtContext";
 
 const Hero = (props) => {
    const {
       children,
       content: {
+         id,
          heroSubtitle,
          heroTitle,
          smallText,
@@ -16,30 +18,41 @@ const Hero = (props) => {
          imageSm,
          imageTint
       },
-      component,
-      homeHero,
-      staticTxt
+      component
    } = props;
-
-   const [animationClass, setAnimationClass] = useState("");
 
    Hero.propTypes = {
       children: PropTypes.object,
       component: PropTypes.object,
       content: PropTypes.shape({
+         id: PropTypes.string,
          heroSubtitle: PropTypes.string,
          heroTitle: PropTypes.string.isRequired,
          image: PropTypes.string.isRequired,
          imageSm: PropTypes.string,
          imageTint: PropTypes.number,
          smallText: PropTypes.string
-      }),
-      article: PropTypes.bool,
-      homeHero: PropTypes.bool,
-      staticTxt: PropTypes.bool
+      })
    };
 
-   const homeStyle = homeHero ? "homeStyle" : "";
+   const [animationClass, setAnimationClass] = useState("");
+
+   const {
+      staticTxt: {[id]: staticTxt},
+      updateStaticTxt
+   } = useStaticTxt();
+
+   useEffect(() => {
+      if (!staticTxt) {
+         const staticTxtTimer = setTimeout(() => {
+            updateStaticTxt(id);
+         }, id === "home" ? 5000 : 3000);
+
+         return () => clearTimeout(staticTxtTimer);
+      }
+   }, []);
+
+   const homeStyle = id === "home" ? "homeStyle" : "";
 
    return (
       <>
@@ -99,7 +112,7 @@ const Hero = (props) => {
                <h5
                   className={`
                      ${staticTxt ? styles.staticTxt : styles[animationClass]} 
-                     ${homeHero ? styles.homeText : styles.smallText}`
+                     ${homeStyle ? styles.homeText : styles.smallText}`
                   }
                   data-test="smallText"
                >
