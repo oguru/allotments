@@ -172,20 +172,22 @@ const App = () => {
             </>;
          })} */}
          <section className={styles.mainBody}>
-            <div
-               className={styles.preCacheHidden}
-               data-test="preCacheHidden"
-            >
-               {mainImagesInit.map(img => (
-                  <img
-                     src={img.src}
-                     onLoad={imageLoaded}
-                     key={img.src}
-                     alt={img.alt}
-                  />
-               ))}
+            {isLoading ?
+               <>
+                  <div
+                     className={styles.preCacheHidden}
+                     data-test="preCacheHidden"
+                  >
+                     {mainImagesInit.map(img => (
+                        <img
+                           src={img.src}
+                           onLoad={imageLoaded}
+                           key={img.src}
+                           alt={img.alt}
+                        />
+                     ))}
 
-               {/* {isLoading ?
+                     {/* {isLoading ?
                   null :
                   mainImagesLg.map(img => (
                      <img
@@ -195,17 +197,17 @@ const App = () => {
                      />
                   ))
                } */}
-            </div>
-            {isLoading ?
-               <div
-                  className={styles.loaderCont}
-                  data-test="loaderCont"
-               >
-                  <span className={styles.loader}>
-                     <span></span>
-                     <span></span>
-                  </span>
-               </div> :
+                  </div>
+                  <div
+                     className={styles.loaderCont}
+                     data-test="loaderCont"
+                  >
+                     <span className={styles.loader}>
+                        <span></span>
+                        <span></span>
+                     </span>
+                  </div>
+               </> :
                routes.map(route => (
                   <Route
                      key={route.path}
