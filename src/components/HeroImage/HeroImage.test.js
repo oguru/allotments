@@ -1,6 +1,6 @@
 /* eslint-disable function-paren-newline */
 /* eslint-disable no-extra-parens */
-import {checkProps, findByTestAttr} from "../../../utils/utils";
+import {checkProps, findByTestAttr} from "../../util/utils";
 import HeroImage from "./HeroImage";
 import React from "react";
 import mount from "enzyme/mount";

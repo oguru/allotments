@@ -1,5 +1,5 @@
 /* eslint-disable function-paren-newline */
-import {checkProps, findByTestAttr} from "../../../utils/utils";
+import {checkProps, findByTestAttr} from "../../util/utils";
 import {render, shallow} from "enzyme";
 import Hero from "./Hero";
 import React from "react";

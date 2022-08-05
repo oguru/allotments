@@ -1,4 +1,4 @@
-import {checkProps, findByTestAttr} from "../../../utils/utils";
+import {checkProps, findByTestAttr} from "../../util/utils";
 import BackArrow from "./BackArrow";
 import React from "react";
 import {shallow} from "enzyme";

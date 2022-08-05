@@ -4,7 +4,7 @@ import App from "./App";
 import MatchMediaMock from "jest-matchmedia-mock";
 import {MemoryRouter} from "react-router-dom";
 import React from "react";
-import {findByTestAttr} from "../utils/utils";
+import {findByTestAttr} from "./util/utils";
 
 const matchMedia = new MatchMediaMock();
 
