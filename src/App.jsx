@@ -30,14 +30,6 @@ const App = () => {
       info: false
    });
 
-   const pageContRef = useRef(null);
-
-   const onRef = (node) => {
-      if (node) {
-         pageContRef.current = node;
-      }
-   };
-
    useEffect(() => {
       if (!isLoading) {
          const articles = getContentJsx(articlesData, true);
@@ -217,7 +209,6 @@ const App = () => {
                         <CSSTransition
                            classNames={{...styles}}
                            in={match != null}
-                           // nodeRef={pageContRef}
                            timeout={isLargeScreen ? 400 : 800}
                            unmountOnExit
                         >
@@ -230,7 +221,6 @@ const App = () => {
                                  (
                                     <div
                                        className={styles.pageCont}
-                                       ref={onRef}
                                     >
                                        {components[route.name]}
                                     </div>
