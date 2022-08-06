@@ -9,16 +9,12 @@ import firebase from "firebase";
 import {firestore} from "../../firebase.js";
 import styles from "./Admin.module.scss";
 
-const Admin = (props) => {
-   const {loggedIn, notices, setLoggedIn} = props;
-
+const Admin = ({notices}) => {
    Admin.propTypes = {
-      fetchNotices: PropTypes.func,
-      loggedIn: PropTypes.bool,
-      notices: PropTypes.array,
-      setLoggedIn: PropTypes.func
+      notices: PropTypes.array
    };
 
+   const [loggedIn, setLoggedIn] = useState(false);
    const [newNotice, setNewNotice] = useState(false);
 
    useEffect(() => {

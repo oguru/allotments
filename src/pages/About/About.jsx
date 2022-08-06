@@ -3,7 +3,7 @@ import {aboutImages, galleryImages} from "../../images/imageImports";
 import Carousel from "react-gallery-carousel";
 import Hero from "../../components/Hero";
 import PropTypes from "prop-types";
-import React, {useEffect} from "react";
+import React from "react";
 import aboutImg from "../../images/about-main-lg.jpg";
 import aboutImgSm from "../../images/about-main-sm.jpg";
 import styles from "./About.module.scss";

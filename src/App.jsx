@@ -1,6 +1,5 @@
 // import "./global.scss";
 import React, {useEffect, useState, useRef} from "react";
-import {mainImagesInit, mainImagesLg} from "./images/imageImports.js";
 import About from "./pages/About";
 import Admin from "./pages/Admin";
 import Articles from "./pages/Articles";
@@ -9,18 +8,16 @@ import Home from "./pages/Home";
 import Info from "./pages/Info";
 import NavBar from "./components/NavBar";
 import {Route} from "react-router-dom";
+import StaticTxtProvider from "./context/staticTxtContext.js";
 import {articlesData} from "./data/contentData.js";
 import {firestore} from "./firebase.js";
-import {getContentJsx} from "./util/articleBuilder.jsx";
-import styles from "./App.module.scss";
 import {formatDate} from "./util/utils.js";
-import StaticTxtProvider from "./context/staticTxtContext.js";
+import {getContentJsx} from "./util/articleBuilder.jsx";
+import {mainImagesInit} from "./images/imageImports.js";
+import styles from "./App.module.scss";
 
 const App = () => {
-
-   // const [aboutJsx, setAboutJsx] = useState();
    const [articlesJsx, setArticlesJsx] = useState([]);
-   const [loggedIn, setLoggedIn] = useState(false);
    const [notices, setNotices] = useState([]);
    const [isLargeScreen, setIsLargeScreen] = useState(true);
    const [isLoading, setIsLoading] = useState(true);
@@ -29,9 +26,6 @@ const App = () => {
       if (!isLoading) {
          const articles = getContentJsx(articlesData, true);
          setArticlesJsx(articles);
-
-         // const about = getContentJsx(aboutData);
-         // setAboutJsx(about);
 
          firestore
             .collection("notices")
@@ -101,15 +95,9 @@ const App = () => {
 
    const components = {
       "About":
-         <About
-            // aboutJsx={aboutJsx}
-         />,
+         <About />,
       "Admin":
-         <Admin
-            loggedIn={loggedIn}
-            notices={notices}
-            setLoggedIn={setLoggedIn}
-         />,
+         <Admin notices={notices} />,
       "Articles":
          <Articles
             articlesJsx={articlesJsx}
@@ -137,12 +125,6 @@ const App = () => {
             isLargeScreen={isLargeScreen}
             routes={routes}
          />
-         {/* {articlesJsx.map(el => {
-            return <>
-               {el[1].title}
-               {el[1].content}
-            </>;
-         })} */}
          <section className={styles.mainBody}>
             {isLoading ?
                <>
@@ -158,17 +140,6 @@ const App = () => {
                            alt={img.alt}
                         />
                      ))}
-
-                     {/* {isLoading ?
-                  null :
-                  mainImagesLg.map(img => (
-                     <img
-                        src={img.src}
-                        key={img.src}
-                        alt={img.alt}
-                     />
-                  ))
-               } */}
                   </div>
                   <div
                      className={styles.loaderCont}

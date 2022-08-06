@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 import Article from "../../components/Article";
 import ArticleBox from "../../components/ArticleBox";
 import CSSTransition from "react-transition-group/CSSTransition";
