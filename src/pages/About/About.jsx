@@ -9,23 +9,19 @@ import aboutImgSm from "../../images/about-main-sm.jpg";
 import styles from "./About.module.scss";
 
 const About = (props) => {
-   const {setStaticTxt, staticTxt} = props;
-
    const img = aboutImages;
 
    About.propTypes = {
-      aboutJsx: PropTypes.array,
-      setStaticTxt: PropTypes.func,
-      staticTxt: PropTypes.bool
+      aboutJsx: PropTypes.array
    };
 
    const heroContent = {
+      id: "about",
       heroTitle: "About Us",
       heroSubtitle: "Where we started and how to get involved",
       image: aboutImg,
       imageSm: aboutImgSm,
       imageTint: 0.5
-
    };
    const caption = "imgCaption";
 

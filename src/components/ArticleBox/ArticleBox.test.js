@@ -1,4 +1,4 @@
-import {checkProps, findByTestAttr, findMultipleByTestAttr} from "../../../utils/utils";
+import {checkProps, findByTestAttr, findMultipleByTestAttr} from "../../util/utils";
 import {mount, shallow} from "enzyme";
 import ArticleBox from "./ArticleBox";
 import React from "react";

@@ -10,7 +10,6 @@
     scrollbar-width: thin;
 }
 
-
 .app {
   display: flex;
   flex-direction: column;
@@ -137,15 +136,6 @@
       }
   }
 }
-
-// @include media-breakpoint-up(sm) {
-//   .app {
-//     .footerStyles {
-//       p {
-//       }
-//     }
-//   }
-// }
 
 @include media-breakpoint-up(md) {
   .app {

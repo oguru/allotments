@@ -1,7 +1,7 @@
 import Article from "./Article";
 import React from "react";
 import {articlesData} from "../../data/contentData";
-import {checkProps} from "../../../utils/utils";
+import {checkProps} from "../../util/utils";
 import {getContentJsx} from "../../util/articleBuilder";
 import {shallow} from "enzyme";
 

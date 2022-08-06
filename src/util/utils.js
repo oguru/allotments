@@ -24,3 +24,10 @@ export const checkProps = (component, expectedProps) => {
    
    return propsErr;
 };
+
+export const formatDate = (date) => {
+   const shortDate =
+      `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+
+   return shortDate;
+};

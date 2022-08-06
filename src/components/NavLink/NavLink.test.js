@@ -1,5 +1,5 @@
 /* eslint-disable function-paren-newline */
-import {checkProps, findByTestAttr} from "../../../utils/utils";
+import {checkProps, findByTestAttr} from "../../util/utils";
 import {MemoryRouter} from "react-router-dom";
 import NavLink from "./NavLink";
 import React from "react";

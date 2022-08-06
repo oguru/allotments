@@ -9,16 +9,12 @@ import firebase from "firebase";
 import {firestore} from "../../firebase.js";
 import styles from "./Admin.module.scss";
 
-const Admin = (props) => {
-   const {fetchNotices, loggedIn, notices, setLoggedIn} = props;
-
+const Admin = ({notices}) => {
    Admin.propTypes = {
-      fetchNotices: PropTypes.func,
-      loggedIn: PropTypes.bool,
-      notices: PropTypes.array,
-      setLoggedIn: PropTypes.func
+      notices: PropTypes.array
    };
 
+   const [loggedIn, setLoggedIn] = useState(false);
    const [newNotice, setNewNotice] = useState(false);
 
    useEffect(() => {
@@ -35,6 +31,7 @@ const Admin = (props) => {
       "Please log in to continue";
 
    const heroContent = {
+      id: "admin",
       heroTitle: "Admin",
       heroSubtitle: subtitle,
       image: adminImg,
@@ -53,10 +50,7 @@ const Admin = (props) => {
       firestore
          .collection("notices")
          .doc()
-         .set(newDoc)
-         .then(() => {
-            fetchNotices();
-         });
+         .set(newDoc);
    };
 
    const modifyNotice = (newDesc, newTitle, id) => {
@@ -69,18 +63,14 @@ const Admin = (props) => {
       firestore
          .collection("notices")
          .doc(id)
-         .update(newDetails)
-         .then(() => {
-            fetchNotices();
-         });
+         .update(newDetails);
    };
 
    const deleteNotice = (id) => {
       firestore
          .collection("notices")
          .doc(id)
-         .delete()
-         .then(() => fetchNotices());
+         .delete();
    };
 
    const buildNotices = notices.map(item => (
@@ -132,7 +122,6 @@ const Admin = (props) => {
          <Hero
             content={heroContent}
             component={loginComponent}
-            staticTxt
          />
          <div className="container">
 

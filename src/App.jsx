@@ -1,6 +1,5 @@
 // import "./global.scss";
 import React, {useEffect, useState, useRef} from "react";
-import {mainImagesInit, mainImagesLg} from "./images/imageImports.js";
 import About from "./pages/About";
 import Admin from "./pages/Admin";
 import Articles from "./pages/Articles";
@@ -9,52 +8,48 @@ import Home from "./pages/Home";
 import Info from "./pages/Info";
 import NavBar from "./components/NavBar";
 import {Route} from "react-router-dom";
+import StaticTxtProvider from "./context/staticTxtContext.js";
 import {articlesData} from "./data/contentData.js";
-import firebase from "./firebase";
+import {firestore} from "./firebase.js";
+import {formatDate} from "./util/utils.js";
 import {getContentJsx} from "./util/articleBuilder.jsx";
-import getNoticesJsx from "./pages/Info/noticeBuilder.jsx";
+import {mainImagesInit} from "./images/imageImports.js";
 import styles from "./App.module.scss";
 
 const App = () => {
-
-   // const [aboutJsx, setAboutJsx] = useState();
    const [articlesJsx, setArticlesJsx] = useState([]);
-   const [loggedIn, setLoggedIn] = useState(false);
    const [notices, setNotices] = useState([]);
    const [isLargeScreen, setIsLargeScreen] = useState(true);
    const [isLoading, setIsLoading] = useState(true);
-   const [scrollPos, saveScrollPos] = useState(0);
-   const [staticTxt, setStaticTxt] = useState({
-      about: false,
-      articles: false,
-      home: false,
-      info: false
-   });
-   const [windowWidth, setWindowWidth] = useState();
-
-   const pageContRef = useRef(null);
-
-   const onRef = (node) => {
-      if (node) {
-         pageContRef.current = node;
-      }
-   };
 
    useEffect(() => {
       if (!isLoading) {
          const articles = getContentJsx(articlesData, true);
          setArticlesJsx(articles);
 
-         // const about = getContentJsx(aboutData);
-         // setAboutJsx(about);
+         firestore
+            .collection("notices")
+            .orderBy("date", "desc").onSnapshot(snapshot => {
+               const items = [];
 
-         fetchNotices();
+               snapshot.forEach(item => {
+                  const itemDate = formatDate(item
+                     .data()
+                     .date
+                     .toDate());
+
+                  const id = item.id;
+
+                  items.push({
+                     ...item.data(),
+                     date: itemDate,
+                     id
+                  });
+               });
+               setNotices(items);
+            });
       }
    }, [isLoading]);
-
-   const fetchNotices = () => {
-      getNoticesJsx(setNotices);
-   };
 
    useEffect(() => {
       const mediaQuery = window.matchMedia("(min-width: 768px)");
@@ -98,61 +93,20 @@ const App = () => {
       }
    ];
 
-   const setScrollPos = () => {
-      setTimeout(() => {
-         pageContRef.current.scrollTop = scrollPos;
-      }, 500);
-   };
-
-   const scrollToTop = () => {
-      setTimeout(() => {
-         pageContRef.current.scrollTop = 0;
-      }, 500);
-   };
-
-   const scrollToBot = () => {
-      pageContRef.current.scrollTop = 0;
-   };
-
-   const saveScrollVal = () => {
-      saveScrollPos(pageContRef.current.scrollTop);
-   };
-
    const components = {
       "About":
-         <About
-            // aboutJsx={aboutJsx}
-            setStaticTxt={setStaticTxt}
-            staticTxt={staticTxt.about}
-         />,
+         <About />,
       "Admin":
-         <Admin
-            fetchNotices={fetchNotices}
-            loggedIn={loggedIn}
-            notices={notices}
-            setLoggedIn={setLoggedIn}
-         />,
+         <Admin notices={notices} />,
       "Articles":
          <Articles
             articlesJsx={articlesJsx}
-            saveScrollPos={() => saveScrollVal()}
-            scrollToTop={() => scrollToTop()}
-            setScrollPos={() => setScrollPos()}
-            setStaticTxt={setStaticTxt}
-            staticTxt={staticTxt.articles}
-            windowWidth={windowWidth}
+            isLargeScreen={isLargeScreen}
          />,
       "Home":
-         <Home
-            setStaticTxt={setStaticTxt}
-            staticTxt={staticTxt.home}
-         />,
+         <Home />,
       "Info":
-         <Info
-            notices={notices}
-            setStaticTxt={setStaticTxt}
-            staticTxt={staticTxt.info}
-         />
+         <Info notices={notices} />
    };
 
    const counter = useRef(0);
@@ -165,85 +119,71 @@ const App = () => {
       }
    };
 
-   // const checkScrollPos = () => {
-   //    return pageContRef.current.scrollTop;
-   // };
-
    return (
       <div className={styles.app}>
          <NavBar
             isLargeScreen={isLargeScreen}
             routes={routes}
          />
-         {/* {articlesJsx.map(el => {
-            return <>
-               {el[1].title}
-               {el[1].content}
-            </>;
-         })} */}
          <section className={styles.mainBody}>
-            <div
-               className={styles.preCacheHidden}
-               data-test="preCacheHidden"
-            >
-               {mainImagesInit.map(img => (
-                  <img
-                     src={img.src}
-                     onLoad={imageLoaded}
-                     key={img.src}
-                     alt={img.alt}
-                  />
-               ))}
-
-               {/* {isLoading ?
-                  null :
-                  mainImagesLg.map(img => (
-                     <img
-                        src={img.src}
-                        key={img.src}
-                        alt={img.alt}
-                     />
-                  ))
-               } */}
-            </div>
             {isLoading ?
-               <div
-                  className={styles.loaderCont}
-                  data-test="loaderCont"
-               >
-                  <span className={styles.loader}>
-                     <span></span>
-                     <span></span>
-                  </span>
-               </div> :
-               routes.map(route => (
-                  <Route
-                     key={route.path}
-                     exact path={route.path}
+               <>
+                  <div
+                     className={styles.preCacheHidden}
+                     data-test="preCacheHidden"
                   >
-                     {({match}) => (
-                        <CSSTransition
-                           classNames={{...styles}}
-                           in={match != null}
-                           // nodeRef={pageContRef}
-                           timeout={isLargeScreen ? 400 : 800}
-                           unmountOnExit
-                        >
-                           <div
-                              className={styles.mainPage}
-                              data-test="pageComponent"
+                     {mainImagesInit.map(img => (
+                        <img
+                           src={img.src}
+                           onLoad={imageLoaded}
+                           key={img.src}
+                           alt={img.alt}
+                        />
+                     ))}
+                  </div>
+                  <div
+                     className={styles.loaderCont}
+                     data-test="loaderCont"
+                  >
+                     <span className={styles.loader}>
+                        <span></span>
+                        <span></span>
+                     </span>
+                  </div>
+               </> :
+               <StaticTxtProvider>
+                  {routes.map(route => (
+                     <Route
+                        key={route.path}
+                        exact path={route.path}
+                     >
+                        {({match}) => (
+                           <CSSTransition
+                              classNames={{...styles}}
+                              in={match != null}
+                              timeout={isLargeScreen ? 400 : 800}
+                              unmountOnExit
                            >
                               <div
-                                 className={styles.pageCont}
-                                 ref={onRef}
+                                 className={styles.mainPage}
+                                 data-test="pageComponent"
                               >
-                                 {components[route.name]}
+                                 {route.name === "Articles" ?
+                                    components[route.name] :
+                                    (
+                                       <div
+                                          className={styles.pageCont}
+                                       >
+                                          {components[route.name]}
+                                       </div>
+
+                                    )}
                               </div>
-                           </div>
-                        </CSSTransition>
-                     )}
-                  </Route>
-               ))
+                           </CSSTransition>
+                        )}
+                     </Route>
+                  ))}
+               </StaticTxtProvider>
             }
          </section>
          <footer

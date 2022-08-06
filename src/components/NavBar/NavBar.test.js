@@ -1,5 +1,5 @@
 /* eslint-disable function-paren-newline */
-import {checkProps, findByTestAttr} from "../../../utils/utils";
+import {checkProps, findByTestAttr} from "../../util/utils";
 import MatchMediaMock from "jest-matchmedia-mock";
 import {MemoryRouter} from "react-router-dom";
 import NavBar from "./NavBar";
