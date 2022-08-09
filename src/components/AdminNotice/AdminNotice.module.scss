@@ -1,0 +1,29 @@
+@import "../../variables.scss";
+
+.noticeButtons {
+    margin-left: auto;
+    padding: 0 20px 20px 0;
+
+    button {
+        border-radius: 0.25rem;
+        min-width: 75px;
+        margin-right: 10px;
+        transition-duration: 0.3s;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: $light-border-color 1.5px solid;
+        color: rgb(0, 0, 0);
+
+        &:active {
+            background-color: none;
+            border: none;
+        }
+    
+        &:hover,
+        &:focus-visible {
+            background-color: $secondary-color;
+            border: $light-border-color 1.5px solid;
+            color: white;
+            outline-style: none;
+        }
+    }
+}
