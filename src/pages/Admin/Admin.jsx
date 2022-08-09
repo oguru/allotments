@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import AdminNotice from "../../components/AdminNotice";
 import Hero from "../../components/Hero";
 import Notice from "../../components/Notice";
 import PropTypes from "prop-types";
@@ -23,7 +24,6 @@ const Admin = ({notices}) => {
             setLoggedIn(true);
          }
       });
-
    }, []);
 
    const subtitle = loggedIn ?
@@ -40,7 +40,6 @@ const Admin = ({notices}) => {
    };
 
    const addToDb = (newDesc, newTitle) => {
-
       const newDoc = {
          desc: newDesc,
          title: newTitle,
@@ -51,10 +50,11 @@ const Admin = ({notices}) => {
          .collection("notices")
          .doc()
          .set(newDoc);
+
+      setNewNotice(false);
    };
 
    const modifyNotice = (newDesc, newTitle, id) => {
-
       const newDetails = {
          desc: newDesc,
          title: newTitle
@@ -73,32 +73,19 @@ const Admin = ({notices}) => {
          .delete();
    };
 
-   const buildNotices = notices.map(item => (
-      <Notice
-         deleteNotice={deleteNotice}
-         modifyNotice={modifyNotice}
-         item={item}
-         key={`${item.id}`}
-         loggedIn={loggedIn}
-      />
-   ));
-
    // Configure FirebaseUI.
    const uiConfig = {
-   // Popup signin flow rather than redirect flow.
       signInFlow: "popup",
-      // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
       callbacks: {
          signInSuccess: () => setLoggedIn(true)
       },
-      // We will display Google and Facebook as auth providers.
       signInOptions: [
          firebase.auth.GoogleAuthProvider.PROVIDER_ID
       ]
    };
 
    const loginComponent = !loggedIn ?
-      <div style={{width: "250px",
+      <div className={styles.loginContainer} style={{width: "250px",
          margin: "0"}}>
          <StyledFirebaseAuth
             uiConfig={uiConfig}
@@ -113,7 +100,7 @@ const Admin = ({notices}) => {
                setLoggedIn(false);
             }}
          >
-                  Sign-out
+            Sign-out
          </button>
       </div>;
 
@@ -123,22 +110,46 @@ const Admin = ({notices}) => {
             content={heroContent}
             component={loginComponent}
          />
-         <div className="container">
-
-            {loggedIn &&
-            <>
-               <button className="container my-4" onClick={() => setNewNotice(true)}>Add Notice</button>
-            </>
-            }
-            {newNotice &&
-            <Notice
-               addToDb={addToDb}
-               newNotice={newNotice}
-               setNewNotice={setNewNotice}
-            />
-            }
-            {buildNotices}
-         </div>
+         <section className="container">
+            <div className={`${styles.noticeSection}`}>
+               {loggedIn && (
+                  <>
+                     <h4>Add New Notice</h4>
+                     {!newNotice ?
+                        <div
+                           className={`${styles.addButtonGroup} rounded mt-3`}
+                           onClick={() => setNewNotice(true)}
+                        >
+                           <button
+                              className={`${styles.addButton}`}></button>
+                           <span>Add Notice</span>
+                        </div> :
+                        (
+                           <AdminNotice
+                              handleSave={addToDb}
+                              newNotice={true}
+                              handleCancel={() => setNewNotice(false)}
+                           />)
+                     }
+                  </>
+               )}
+            </div>
+            <div className={`${styles.noticeSection}`}>
+               {loggedIn && <h4>Edit Notices</h4>}
+               {notices.map(item => loggedIn ? (
+                  <AdminNotice
+                     handleDelete={deleteNotice}
+                     handleSave={modifyNotice}
+                     item={item}
+                     key={`${item.id}`}
+                  />
+               ) : (
+                  <Notice
+                     item={item}
+                     key={`${item.id}`}
+                  />))}
+            </div>
+         </section>
       </>
    );
 };

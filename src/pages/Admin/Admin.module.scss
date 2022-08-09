@@ -1,0 +1,57 @@
+@import "../../variables.scss";
+
+.addButtonGroup {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    padding: 5px 8px;
+    transition: box-shadow 0.2s;
+    width: fit-content;
+
+    &:hover {
+        box-shadow: 0 0 2px 2px $light-border-color;
+    }
+}
+
+.addButton {
+    border-color: $primary-light;
+    border-radius: 100%;
+    border-style: solid;
+    border-width: 3.5px;
+    color: $primary-light;
+    height: 30px;
+    margin-right: 10px;
+    position: relative;
+    width: 30px;
+
+    &::before, &::after {
+        background: $primary-light;
+        border-radius: 0.25rem;
+        bottom: 0;
+        content: '';
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    &::before {
+        margin: 3px auto;
+        width: 3px;
+    }
+
+    &::after {
+        box-shadow: none;
+        height: 3px;
+        margin: auto 3px;
+    }
+}
+
+.noticeSection {
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+}
+
+.loginContainer {
+    width: 250px;
+}

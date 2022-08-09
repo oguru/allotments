@@ -7,3 +7,17 @@
 .noticeHeader {
     background-color: $bg-color;
 }
+
+.noticeInput {
+    border-width: 1px;
+    border-color: $light-border-color;
+    border-radius: 0.25rem;
+    border-style: solid;
+    transition: border-color 0.2s;
+
+    &:focus-visible {
+        outline: none;
+        border-color: $mid-border-color;
+        border-width: 1px;
+    }
+}

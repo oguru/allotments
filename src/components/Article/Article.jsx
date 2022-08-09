@@ -30,12 +30,18 @@ const Article = (props) => {
                <Hero
                   content={heroContent}
                >
-                  <BackArrow arrowStyle="Light" handleClick={handleCloseArticle} />
+                  <BackArrow
+                     arrowStyle="Light"
+                     handleClick={handleCloseArticle}
+                  />
                </Hero>
             </div>
             <div className={`${styles.articleContent} container`}>
                {content.content}
-               <BackArrow arrowStyle="Dark" handleClick={handleCloseArticle} />
+               <BackArrow
+                  arrowStyle="Dark"
+                  handleClick={handleCloseArticle}
+               />
             </div>
          </article>
       </>
