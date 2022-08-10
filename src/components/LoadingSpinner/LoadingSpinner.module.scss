@@ -1,0 +1,54 @@
+@import "../../variables.scss";
+
+.imageLoaderCont {
+    position: absolute;
+    top: calc(50% - 40px);
+    left: calc(50% - 20px);
+    z-index: 3;
+
+    .loader.imageLoader {
+        span {
+            background-color: white;
+        }
+    }
+}
+
+  .loaderCont {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    .loader {
+      animation: rotate 2s infinite linear;
+      display: block;
+      height: 80px;
+      width: 40px;
+      position: relative;
+
+      span {
+        animation: bounce 2s linear 1s infinite;
+        background-color: $secondary-color;
+        border-radius: 100%;
+        bottom: auto;
+        height: 30px;
+        position: absolute;
+        top: 0;
+        width: 30px;
+
+        &:first-child {
+          animation-delay: 0s;
+          bottom: 0;
+          top: auto;
+        }
+      }
+
+      @keyframes rotate {
+        100% {transform: rotate(360deg)}
+      }
+
+      @keyframes bounce {
+        0%, 100% {transform: scale(0)}
+        50% {transform: scale(1.0)}
+      }
+    }
+  }

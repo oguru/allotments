@@ -4,25 +4,17 @@ import ArticleBox from "../../components/ArticleBox";
 import CSSTransition from "react-transition-group/CSSTransition";
 import Hero from "../../components/Hero";
 import PropTypes from "prop-types";
-import {Route} from "react-router-dom";
-// import {contentData} from "../../data/contentData.js";
 import articlesImg from "../../images/articles-main-lg.jpg";
 import articlesImgSm from "../../images/articles-main-sm.jpg";
-import styles from "./Articles.module.scss";
 import {pageCont} from "../../App.module.scss";
+import styles from "./Articles.module.scss";
 
-const Articles = (props) => {
-   const {
-      articlesJsx,
-      isLargeScreen
-   } = props;
-
+const Articles = ({articlesJsx}) => {
    Articles.propTypes = {
-      articlesJsx: PropTypes.array,
-      isLargeScreen: PropTypes.bool
+      articlesJsx: PropTypes.array
    };
 
-   const [currentArticle, setCurrentArticle] = useState(articlesJsx[0]);
+   const currentArticle = useRef(articlesJsx[0]);
    const [articleVisible, setArticleVisible] = useState(false);
    const [scrollPos, saveScrollPos] = useState(0);
    const pageContRef = useRef(null);
@@ -54,18 +46,8 @@ const Articles = (props) => {
       imageTint: 0.4
    };
 
-   const calcArticleJsx = (index) => {
-      let image;
-
-      if (!isLargeScreen) {
-         image = articlesJsx[index].mainImg;
-      }
-
-      setCurrentArticle(articlesJsx[index]);
-   };
-
    const handleShowArticle = (index) => {
-      calcArticleJsx(index);
+      currentArticle.current = articlesJsx[index];
       setArticleVisible(true);
       saveScrollPos(pageContRef.current.scrollTop);
       setTimeout(() => {
@@ -86,6 +68,7 @@ const Articles = (props) => {
          previewImg={article.mainImgBox}
          previewImgAlt={article.mainImgAlt}
          handleShowArticle={() => handleShowArticle(index)}
+         index={index}
          text={article.initText}
          title={article.title}
       />
@@ -129,7 +112,7 @@ const Articles = (props) => {
                      className={`${styles.articleCont}`}
                   >
                      <Article
-                        content={currentArticle}
+                        content={currentArticle.current}
                         handleCloseArticle={closeArticle}
                      />
                   </section>

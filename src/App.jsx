@@ -6,6 +6,7 @@ import Articles from "./pages/Articles";
 import CSSTransition from "react-transition-group/CSSTransition";
 import Home from "./pages/Home";
 import Info from "./pages/Info";
+import LoadingSpinner from "./components/LoadingSpinner";
 import NavBar from "./components/NavBar";
 import {Route} from "react-router-dom";
 import StaticTxtProvider from "./context/staticTxtContext.js";
@@ -141,15 +142,7 @@ const App = () => {
                         />
                      ))}
                   </div>
-                  <div
-                     className={styles.loaderCont}
-                     data-test="loaderCont"
-                  >
-                     <span className={styles.loader}>
-                        <span></span>
-                        <span></span>
-                     </span>
-                  </div>
+                  <LoadingSpinner isPrimary={true} />
                </> :
                <StaticTxtProvider>
                   {routes.map(route => (
