@@ -2,18 +2,13 @@ import "react-gallery-carousel/dist/index.css";
 import {aboutImages, galleryImages} from "../../images/imageImports";
 import Carousel from "react-gallery-carousel";
 import Hero from "../../components/Hero";
-import PropTypes from "prop-types";
 import React from "react";
 import aboutImg from "../../images/about-main-lg.jpg";
 import aboutImgSm from "../../images/about-main-sm.jpg";
 import styles from "./About.module.scss";
 
-const About = (props) => {
+const About = () => {
    const img = aboutImages;
-
-   About.propTypes = {
-      aboutJsx: PropTypes.array
-   };
 
    const heroContent = {
       id: "about",
@@ -23,15 +18,11 @@ const About = (props) => {
       imageSm: aboutImgSm,
       imageTint: 0.5
    };
-   const caption = "imgCaption";
 
    return (
       <>
-         <Hero
-            content={heroContent}
-         />
+         <Hero content={heroContent} />
          <section className={`${styles.aboutSection} container`}>
-            {/* {aboutJsx} */}
             <p className={`
                 ${"articleTxt"}`
             }>Francis Road Allotments is sandwiched between Bordesley Green East and Francis Road (entrance on Richmond Road opposite the mosque). It is one of the oldest allotments in Birmingham and goes back to the First World War when a piece of land to grow much needed food during the war was highly sought after.
