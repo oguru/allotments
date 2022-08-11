@@ -1,0 +1,28 @@
+.skeletonLoader {
+    animation: placeholderShimmer 2s linear 0s infinite normal forwards;
+    background: linear-gradient(to right,#f3f3f3 5%,rgb(232, 232, 232) 20%,#f3f3f3 35%);
+    background-color: #f3f3f3;
+    background-size: 200% 200%;
+    border-radius: 0.25rem;
+    min-height: 100px;
+    position: relative;
+}
+
+.wrapperImage {
+    transition: 2s opacity;
+}
+
+.wrapperImageInit {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.wrapperImageLoaded {
+    opacity: 1;
+}
+
+@keyframes placeholderShimmer {
+    0%{background-position: 100% 0}
+    100%{background-position: -100% 0}
+}

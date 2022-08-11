@@ -1,49 +1,23 @@
-import React, {useRef, useState} from "react";
+import React, {useRef, useState, useMemo} from "react";
 import Article from "../../components/Article";
 import ArticleBox from "../../components/ArticleBox";
 import CSSTransition from "react-transition-group/CSSTransition";
 import Hero from "../../components/Hero";
 import PropTypes from "prop-types";
-import {Route} from "react-router-dom";
-// import {contentData} from "../../data/contentData.js";
 import articlesImg from "../../images/articles-main-lg.jpg";
 import articlesImgSm from "../../images/articles-main-sm.jpg";
-import styles from "./Articles.module.scss";
 import {pageCont} from "../../App.module.scss";
+import styles from "./Articles.module.scss";
 
-const Articles = (props) => {
-   const {
-      articlesJsx,
-      isLargeScreen
-   } = props;
-
+const Articles = ({articlesJsx}) => {
    Articles.propTypes = {
-      articlesJsx: PropTypes.array,
-      isLargeScreen: PropTypes.bool
+      articlesJsx: PropTypes.arrayOf(PropTypes.object)
    };
 
-   const [currentArticle, setCurrentArticle] = useState(articlesJsx[0]);
+   const pageContRef = React.useRef(null);
+   const currentArticle = useRef(articlesJsx[0]);
+   const scrollPos = useRef(0);
    const [articleVisible, setArticleVisible] = useState(false);
-   const [scrollPos, saveScrollPos] = useState(0);
-   const pageContRef = useRef(null);
-
-   const onRef = (node) => {
-      if (node) {
-         pageContRef.current = node;
-      }
-   };
-
-   const setScrollPos = () => {
-      setTimeout(() => {
-         pageContRef.current.scrollTop = scrollPos;
-      }, 500);
-   };
-
-   const scrollToTop = () => {
-      setTimeout(() => {
-         pageContRef.current.scrollTop = 0;
-      }, 500);
-   };
 
    const heroContent = {
       id: "articles",
@@ -54,20 +28,34 @@ const Articles = (props) => {
       imageTint: 0.4
    };
 
-   const calcArticleJsx = (index) => {
-      let image;
+   const articleBoxes = useMemo(() => articlesJsx.map((article, index) => (
+      <ArticleBox
+         key={article.id}
+         previewImg={article.mainImgBox}
+         previewImgAlt={article.mainImgAlt}
+         handleShowArticle={() => handleShowArticle(index)}
+         index={index}
+         text={article.initText}
+         title={article.title}
+      />
+   )), [articlesJsx]);
 
-      if (!isLargeScreen) {
-         image = articlesJsx[index].mainImg;
-      }
+   const setScrollPos = () => {
+      setTimeout(() => {
+         pageContRef.current.scrollTop = scrollPos.current;
+      }, 500);
+   };
 
-      setCurrentArticle(articlesJsx[index]);
+   const scrollToTop = () => {
+      setTimeout(() => {
+         pageContRef.current.scrollTop = 0;
+      }, 500);
    };
 
    const handleShowArticle = (index) => {
-      calcArticleJsx(index);
+      currentArticle.current = articlesJsx[index];
+      scrollPos.current = pageContRef.current.scrollTop;
       setArticleVisible(true);
-      saveScrollPos(pageContRef.current.scrollTop);
       setTimeout(() => {
          scrollToTop();
       }, 500);
@@ -80,29 +68,18 @@ const Articles = (props) => {
       }, 500);
    };
 
-   const articleBoxes = articlesJsx.map((article, index) => (
-      <ArticleBox
-         key={article.id}
-         previewImg={article.mainImgBox}
-         previewImgAlt={article.mainImgAlt}
-         handleShowArticle={() => handleShowArticle(index)}
-         text={article.initText}
-         title={article.title}
-      />
-   ));
-
-   const animDir = articleVisible ? "slideLeft" : "slideRight";
-
    return (
       <>
          <div
             className={pageCont}
-            ref={onRef}
+            data-test="articlesPageContainer"
+            ref={pageContRef}
          >
             <div className={`
-            ${styles.articlesCont} 
-            ${styles[animDir]}`
-            }>
+               ${styles.articlesCont} 
+               ${styles[articleVisible ? "slideLeft" : "slideRight"]}`}
+            data-test="articlesContainer"
+            >
                <CSSTransition
                   classNames={{...styles}}
                   in={!articleVisible}
@@ -110,6 +87,7 @@ const Articles = (props) => {
                >
                   <section
                      className={`${styles.articlesMain}`}
+                     data-test="articlesMain"
                   >
                      <Hero
                         content={heroContent}
@@ -129,7 +107,7 @@ const Articles = (props) => {
                      className={`${styles.articleCont}`}
                   >
                      <Article
-                        content={currentArticle}
+                        content={currentArticle.current}
                         handleCloseArticle={closeArticle}
                      />
                   </section>

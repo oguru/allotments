@@ -1,6 +1,5 @@
+import GhostImageWrapper from "../components/GhostImageWrapper/GhostImageWrapper";
 import React from "react";
-import articleStyles from "../components/Article/Article.module.scss";
-import globalStyles from "../global.scss";
 
 let count = 0;
 
@@ -10,9 +9,9 @@ const buildEl = (el, article) => {
    if (el.floatImage) {
       return (
          <>
-            <img
+            <GhostImageWrapper
                alt={el.alt}
-               className={`
+               classes={`
                     ${el.floatDir} 
                     ${imgCaption}`
                }
@@ -48,25 +47,26 @@ const buildEl = (el, article) => {
              </ul>
          }
          {el.imageSm && el.imageLg &&
-                <img
-                   alt={el.alt}
-                   className={`${"blockImg"} ${imgCaption}`}
-                   srcSet={`${el.imageSm} 300w, ${el.imageLg} 1024w`}
-                   src={el.imageSm} />
+            <GhostImageWrapper
+               alt={el.alt}
+               classes={`${"blockImg"} ${imgCaption}`}
+               srcSet={`${el.imageSm} 300w, ${el.imageLg} 1024w`}
+               src={el.imageSm}
+            />
          }
          {el.splitImage &&
              <div className={`
                 ${"splitImgCont"} 
                 ${imgCaption}`
              }>
-                <img
+                <GhostImageWrapper
                    alt={el.splitImage.img1.alt}
-                   className={"splitImage"}
+                   classes={"splitImage"}
                    src={el.splitImage.img1.img}
                 />
-                <img
+                <GhostImageWrapper
                    alt={el.splitImage.img2.alt}
-                   className={"splitImage"}
+                   classes={"splitImage"}
                    src={el.splitImage.img2.img}
                 />
              </div>
@@ -96,7 +96,7 @@ const buildEl = (el, article) => {
                   <div key={img}
                      className="gridBox"
                   >
-                     <img className="gridImage" src={img} alt={alt}/>
+                     <GhostImageWrapper classes="gridImage" src={img} alt={alt} />
                      <p className={"imgCaption articleTxt"}>{text || ""}</p>
                   </div>
                );

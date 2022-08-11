@@ -25,6 +25,7 @@ const Article = (props) => {
       <>
          <article
             className={styles.article}
+            data-test="article"
          >
             <div className={styles.articleHead}>
                <Hero

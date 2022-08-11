@@ -5,12 +5,13 @@ import {faAngleUp} from "@fortawesome/free-solid-svg-icons";
 import styles from "./ArticleBox.module.scss";
 
 const ArticleBox = (props) => {
-   const {previewImg, previewImgAlt, handleShowArticle, text = "", title} = props;
+   const {previewImg, previewImgAlt, handleShowArticle, text = "", title, index} = props;
 
    ArticleBox.propTypes = {
       previewImg: PropTypes.string.isRequired,
       previewImgAlt: PropTypes.string,
       handleShowArticle: PropTypes.func.isRequired,
+      index: PropTypes.number,
       text: PropTypes.string,
       title: PropTypes.string.isRequired
    };
@@ -18,6 +19,7 @@ const ArticleBox = (props) => {
    const [textLineCounts, setLineCounts] = useState(null);
    const [inAnimation, setInAnimation] = useState(false);
    const [preview, setPreviewClass] = useState("");
+   const [showBox, setShowBox] = useState(false);
    const titleRef = useRef(null);
 
    // Dimension calculations for dynamic inline line-clamp style
@@ -51,6 +53,14 @@ const ArticleBox = (props) => {
       }
    }, [titleRef]);
 
+   useEffect(() => {
+      const timer = setTimeout(() => {
+         setShowBox(true);
+      }, [index === 0 ? 0 : index * 100]);
+
+      return () => clearTimeout(timer);
+   }, []);
+
    const calculatedLineClamp = {
       WebkitLineClamp: preview || inAnimation ?
          textLineCounts?.expandedLineCount :
@@ -59,7 +69,7 @@ const ArticleBox = (props) => {
 
    return (
       <article
-         className={`${styles.articleBox}`}
+         className={`${styles.articleBox} ${showBox ? styles.showBox : ""}`}
          data-test="articleBoxMain"
          onClick={handleShowArticle}
          onMouseEnter={() => {
@@ -88,7 +98,12 @@ const ArticleBox = (props) => {
             }
             data-test="articleBoxTextCont"
          >
-            <h5 ref={titleRef}>{title}</h5>
+            <h5
+               data-test="articleBoxTitle"
+               ref={titleRef}
+            >
+               {title}
+            </h5>
             <p style={textLineCounts && calculatedLineClamp}
                data-test="articleBoxText"
             >{text}</p>
