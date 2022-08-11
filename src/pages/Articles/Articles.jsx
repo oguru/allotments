@@ -11,23 +11,17 @@ import styles from "./Articles.module.scss";
 
 const Articles = ({articlesJsx}) => {
    Articles.propTypes = {
-      articlesJsx: PropTypes.array
+      articlesJsx: PropTypes.arrayOf(PropTypes.object)
    };
 
+   const pageContRef = React.useRef(null);
    const currentArticle = useRef(articlesJsx[0]);
+   const scrollPos = useRef(0);
    const [articleVisible, setArticleVisible] = useState(false);
-   const [scrollPos, saveScrollPos] = useState(0);
-   const pageContRef = useRef(null);
-
-   const onRef = (node) => {
-      if (node) {
-         pageContRef.current = node;
-      }
-   };
 
    const setScrollPos = () => {
       setTimeout(() => {
-         pageContRef.current.scrollTop = scrollPos;
+         pageContRef.current.scrollTop = scrollPos.current;
       }, 500);
    };
 
@@ -48,8 +42,8 @@ const Articles = ({articlesJsx}) => {
 
    const handleShowArticle = (index) => {
       currentArticle.current = articlesJsx[index];
+      scrollPos.current = pageContRef.current.scrollTop;
       setArticleVisible(true);
-      saveScrollPos(pageContRef.current.scrollTop);
       setTimeout(() => {
          scrollToTop();
       }, 500);
@@ -80,12 +74,14 @@ const Articles = ({articlesJsx}) => {
       <>
          <div
             className={pageCont}
-            ref={onRef}
+            data-test="articlesPageContainer"
+            ref={pageContRef}
          >
             <div className={`
-            ${styles.articlesCont} 
-            ${styles[animDir]}`
-            }>
+               ${styles.articlesCont} 
+               ${styles[animDir]}`}
+            data-test="articlesContainer"
+            >
                <CSSTransition
                   classNames={{...styles}}
                   in={!articleVisible}
@@ -93,6 +89,7 @@ const Articles = ({articlesJsx}) => {
                >
                   <section
                      className={`${styles.articlesMain}`}
+                     data-test="articlesMain"
                   >
                      <Hero
                         content={heroContent}

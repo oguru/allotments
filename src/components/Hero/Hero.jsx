@@ -27,7 +27,7 @@ const Hero = (props) => {
       content: PropTypes.shape({
          id: PropTypes.string,
          heroSubtitle: PropTypes.string,
-         heroTitle: PropTypes.string.isRequired,
+         heroTitle: PropTypes.string,
          image: PropTypes.string.isRequired,
          imageSm: PropTypes.string,
          imageTint: PropTypes.number,

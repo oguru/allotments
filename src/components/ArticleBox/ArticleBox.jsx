@@ -98,7 +98,12 @@ const ArticleBox = (props) => {
             }
             data-test="articleBoxTextCont"
          >
-            <h5 ref={titleRef}>{title}</h5>
+            <h5
+               data-test="articleBoxTitle"
+               ref={titleRef}
+            >
+               {title}
+            </h5>
             <p style={textLineCounts && calculatedLineClamp}
                data-test="articleBoxText"
             >{text}</p>
