@@ -206,7 +206,7 @@
       { "avoidEscape": true, "allowTemplateLiterals": true }
     ],
     "react-hooks/rules-of-hooks": "warn",
-    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/exhaustive-deps": "off",
     "react/prop-types": "warn",
     "require-atomic-updates": "warn",
     "require-await": "warn",

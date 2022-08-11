@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useRef, useState, useMemo} from "react";
 import Article from "../../components/Article";
 import ArticleBox from "../../components/ArticleBox";
 import CSSTransition from "react-transition-group/CSSTransition";
@@ -19,6 +19,27 @@ const Articles = ({articlesJsx}) => {
    const scrollPos = useRef(0);
    const [articleVisible, setArticleVisible] = useState(false);
 
+   const heroContent = {
+      id: "articles",
+      heroTitle: "Articles & Tips",
+      heroSubtitle: "Keep an eye out here for articles and tips to help you grow the most astonishing Aubergines, monstrous Marrows and the richest Rhubarb!",
+      image: articlesImg,
+      imageSm: articlesImgSm,
+      imageTint: 0.4
+   };
+
+   const articleBoxes = useMemo(() => articlesJsx.map((article, index) => (
+      <ArticleBox
+         key={article.id}
+         previewImg={article.mainImgBox}
+         previewImgAlt={article.mainImgAlt}
+         handleShowArticle={() => handleShowArticle(index)}
+         index={index}
+         text={article.initText}
+         title={article.title}
+      />
+   )), [articlesJsx]);
+
    const setScrollPos = () => {
       setTimeout(() => {
          pageContRef.current.scrollTop = scrollPos.current;
@@ -29,15 +50,6 @@ const Articles = ({articlesJsx}) => {
       setTimeout(() => {
          pageContRef.current.scrollTop = 0;
       }, 500);
-   };
-
-   const heroContent = {
-      id: "articles",
-      heroTitle: "Articles & Tips",
-      heroSubtitle: "Keep an eye out here for articles and tips to help you grow the most astonishing Aubergines, monstrous Marrows and the richest Rhubarb!",
-      image: articlesImg,
-      imageSm: articlesImgSm,
-      imageTint: 0.4
    };
 
    const handleShowArticle = (index) => {
@@ -56,20 +68,6 @@ const Articles = ({articlesJsx}) => {
       }, 500);
    };
 
-   const articleBoxes = articlesJsx.map((article, index) => (
-      <ArticleBox
-         key={article.id}
-         previewImg={article.mainImgBox}
-         previewImgAlt={article.mainImgAlt}
-         handleShowArticle={() => handleShowArticle(index)}
-         index={index}
-         text={article.initText}
-         title={article.title}
-      />
-   ));
-
-   const animDir = articleVisible ? "slideLeft" : "slideRight";
-
    return (
       <>
          <div
@@ -79,7 +77,7 @@ const Articles = ({articlesJsx}) => {
          >
             <div className={`
                ${styles.articlesCont} 
-               ${styles[animDir]}`}
+               ${styles[articleVisible ? "slideLeft" : "slideRight"]}`}
             data-test="articlesContainer"
             >
                <CSSTransition

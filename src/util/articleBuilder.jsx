@@ -61,12 +61,12 @@ const buildEl = (el, article) => {
              }>
                 <GhostImageWrapper
                    alt={el.splitImage.img1.alt}
-                   className={"splitImage"}
+                   classes={"splitImage"}
                    src={el.splitImage.img1.img}
                 />
                 <GhostImageWrapper
                    alt={el.splitImage.img2.alt}
-                   className={"splitImage"}
+                   classes={"splitImage"}
                    src={el.splitImage.img2.img}
                 />
              </div>
@@ -96,7 +96,7 @@ const buildEl = (el, article) => {
                   <div key={img}
                      className="gridBox"
                   >
-                     <GhostImageWrapper className="gridImage" src={img} alt={alt} />
+                     <GhostImageWrapper classes="gridImage" src={img} alt={alt} />
                      <p className={"imgCaption articleTxt"}>{text || ""}</p>
                   </div>
                );

@@ -2,6 +2,7 @@ import LoadingSpinner from "../LoadingSpinner";
 import PropTypes from "prop-types";
 import React from "react";
 import styles from "./GhostImageWrapper.module.scss";
+import globalStyles from "../../global.scss";
 
 const GhostImageWrapper = (props) => {
    const {
