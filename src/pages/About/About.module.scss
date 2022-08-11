@@ -20,21 +20,19 @@
 
         .galleryCont * {
             font-weight: bold;
-            // overflow: hidden;
         }
 
         .galleryCont {
             height: 80vh;
-            // max-height: 600px;
 
             ul {
                 font-size: 18px;
             }
+            
             div {
                 span {
                     border-radius: 0.25rem;
                 }
-
             }
 
             figcaption {
