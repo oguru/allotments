@@ -1,0 +1,28 @@
+.login-container .firebaseui-container {
+    margin: 0;
+    max-width: unset;
+}
+
+.login-container .firebaseui-idp-text, .login-container .firebaseui-idp-text-long {
+    font-family: -apple-system, BlinkMacSystemFont, 'Nunito', sans-serif, 'Comfortaa', sans-serif, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    font-weight: bold;
+}
+
+.login-container .firebaseui-idp-button {
+    width: fit-content;
+}
+
+.login-container .firebaseui-card-content, .firebaseui-card-footer {
+    padding: 0;
+}
+
+.login-container .firebaseui-idp-list {
+    margin: 1.5rem 0 0;
+}
+
+.login-container .firebaseui-idp-list>.firebaseui-list-item {
+    margin-bottom: 0;
+    width: fit-content;
+}

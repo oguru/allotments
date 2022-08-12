@@ -17,13 +17,11 @@ const Hero = (props) => {
          image,
          imageSm,
          imageTint
-      },
-      component
+      }
    } = props;
 
    Hero.propTypes = {
       children: PropTypes.object,
-      component: PropTypes.object,
       content: PropTypes.shape({
          id: PropTypes.string,
          heroSubtitle: PropTypes.string,
@@ -118,8 +116,6 @@ const Hero = (props) => {
                >
                   {smallText}
                </h5>
-               {component}
-               {/* Article BackArrow */}
                {children}
             </div>
          </div>

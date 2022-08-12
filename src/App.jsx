@@ -1,4 +1,5 @@
 // import "./global.scss";
+import "./firebaseui-styling.global.css";
 import React, {useEffect, useState, useRef} from "react";
 import About from "./pages/About";
 import Admin from "./pages/Admin";
