@@ -11,7 +11,21 @@ const firebaseConfig = {
    appId: "1:194458161758:web:ed38e7dc0f74cb0b5c9acf",
    measurementId: "G-0SPTQ86DCE"
 };
-// Initialize Firebase
+
 firebase.initializeApp(firebaseConfig);
 
 export const firestore = firebase.firestore();
+
+export const checkAuth = ({uid, handleSuccess, handleFail}) => {
+   firestore
+      .collection("users")
+      .doc(uid)
+      .get()
+      .then(() => {
+         handleSuccess();
+      })
+      .catch(err => {
+         console.log("catch error: ", err);
+         handleFail(err);
+      });
+};

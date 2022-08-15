@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import {checkAuth, firestore} from "../../services/firebase.js";
 import AdminNotice from "../../components/AdminNotice";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Hero from "../../components/Hero";
@@ -9,22 +10,7 @@ import adminImg from "../../images/admin-main-lg.jpg";
 import adminImgSm from "../../images/admin-main-sm.jpg";
 import {faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
 import firebase from "firebase";
-import {firestore} from "../../services/firebase.js";
 import styles from "./Admin.module.scss";
-
-const checkAuth = ({uid, handleSuccess, handleFail}) => {
-   firestore
-      .collection("users")
-      .doc(uid)
-      .get()
-      .then(() => {
-         handleSuccess();
-      })
-      .catch(err => {
-         console.log("catch error: ", err);
-         handleFail(err);
-      });
-};
 
 const Admin = ({notices}) => {
    Admin.propTypes = {
@@ -41,7 +27,7 @@ const Admin = ({notices}) => {
    const [loginError, setLoginError] = useState(null);
 
    useEffect(() => {
-      firebase.auth().onAuthStateChanged((user) => {
+      return firebase.auth().onAuthStateChanged((user) => {
          if (user) {
             checkAuth({
                uid: user.uid,
@@ -110,8 +96,7 @@ const Admin = ({notices}) => {
          .delete();
    };
 
-   // Configure FirebaseUI.
-   const uiConfig = {
+   const firebaseUiConfig = {
       signInFlow: "popup",
       callbacks: {
          signInSuccess: () => false
@@ -130,7 +115,7 @@ const Admin = ({notices}) => {
                   }
                >
                   <StyledFirebaseAuth
-                     uiConfig={uiConfig}
+                     uiConfig={firebaseUiConfig}
                      firebaseAuth={firebase.auth()}
                   />
                   {loginError && <p className={styles.loginErrorText}>There was an error, please contact an Admin to sign in.</p>}
@@ -154,7 +139,6 @@ const Admin = ({notices}) => {
                </div>
             )}
          </Hero>
-
          <section className="container">
             <div className={`${styles.noticeSection}`}>
                {loggedIn && (
