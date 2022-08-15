@@ -9,7 +9,7 @@ import adminImg from "../../images/admin-main-lg.jpg";
 import adminImgSm from "../../images/admin-main-sm.jpg";
 import {faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
 import firebase from "firebase";
-import {firestore} from "../../firebase.js";
+import {firestore} from "../../services/firebase.js";
 import styles from "./Admin.module.scss";
 
 const checkAuth = ({uid, handleSuccess, handleFail}) => {
@@ -28,7 +28,12 @@ const checkAuth = ({uid, handleSuccess, handleFail}) => {
 
 const Admin = ({notices}) => {
    Admin.propTypes = {
-      notices: PropTypes.array
+      notices: PropTypes.arrayOf(PropTypes.shape({
+         date: PropTypes.string,
+         desc: PropTypes.string,
+         id: PropTypes.string,
+         title: PropTypes.string
+      }))
    };
 
    const [loggedIn, setLoggedIn] = useState(false);

@@ -1,16 +1,15 @@
-import {mount, shallow} from "enzyme";
-import React from "react";
-import {articlesData} from "../../data/contentData";
-import {getContentJsx} from "../../util/articleBuilder";
 import {checkProps, findByTestAttr} from "../../util/utils";
 import Articles from "./Articles";
+import React from "react";
 import StaticTxtProvider from "../../context/staticTxtContext.js";
 import {act} from "react-dom/test-utils";
+import {articlesData} from "../../data/contentData";
+import {getContentJsx} from "../../util/articleBuilder";
+import {mount} from "enzyme";
 
 describe("Articles tests", () => {
    const articles = getContentJsx([articlesData[0], articlesData[1]], true);
    let component;
-   let useRefSpy;
 
    const testProps = {
       articles
@@ -18,42 +17,17 @@ describe("Articles tests", () => {
 
    beforeEach(() => {
       jest.useFakeTimers();
-      // useRefSpy = jest.spyOn(React, "useRef");
 
       component = mount(<StaticTxtProvider>
          <Articles articlesJsx={articles} />
       </StaticTxtProvider>);
    });
 
-   //  afterEach(() => {
-   //  })
-
    test("Articles PropTypes check should not throw a warning", () => {
       const propsErr = checkProps(Articles, testProps);
 
       expect(propsErr).toBeUndefined();
    });
-
-   // it("should scroll to the top of the article when viewed", () => {
-   //    const articleBox = findByTestAttr(component, "articleBoxMain");
-   //    let articlesPageCont = findByTestAttr(component, "articlesPageContainer");
-
-   //    articlesPageCont.simulate("scroll", {target: {scrollTop: 100}});
-
-   //    articlesPageCont = findByTestAttr(component, "articlesPageContainer");
-
-   //    act(() => {
-   //       articleBox.first().simulate("click");
-   //    });
-
-   //    act(() => jest.runAllTimers());
-
-   //    component.update();
-
-   //    expect(useRefSpy).toHaveBeenCalledWith(0);
-   // });
-
-   // should scroll back to the position the articles page was before the user clicked on the article box, once they click back to close the article
 
    it("should display the correct article when the article box is clicked", () => {
       const articleBox = findByTestAttr(component, "articleBoxMain");
@@ -134,4 +108,27 @@ describe("Articles tests", () => {
 
       expect(currentArticle.length).toBe(0);
    });
+
+   // to do:
+
+   // it("should scroll to the top of the article when viewed", () => {
+   //    const articleBox = findByTestAttr(component, "articleBoxMain");
+   //    let articlesPageCont = findByTestAttr(component, "articlesPageContainer");
+
+   //    articlesPageCont.simulate("scroll", {target: {scrollTop: 100}});
+
+   //    articlesPageCont = findByTestAttr(component, "articlesPageContainer");
+
+   //    act(() => {
+   //       articleBox.first().simulate("click");
+   //    });
+
+   //    act(() => jest.runAllTimers());
+
+   //    component.update();
+
+   //    expect(useRefSpy).toHaveBeenCalledWith(0);
+   // });
+
+   // should scroll back to the position the articles page was before the user clicked on the article box, once they click back to close the article
 });
