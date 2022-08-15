@@ -7,13 +7,14 @@ Currently fully functional, with remaining tests to be completed along with code
 
 ## Setup
 1 - Clone the repository.\
-2 - Install dependencies with ```yarn install``` or other package manager.\
-3 - Run ```yarn start``` in the project directory from the command line .\
+2 - Install dependencies with ```yarn install``` or ```npm install```.\
+3 - Run ```yarn start``` or ```npm start``` in the project directory from the command line .\
 4 - Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+5 - Run ```yarn test``` or ```npm test``` in the project directory from the command line to run tests.
 
 ## Built Using
 React\
 Sass\
-mkrc
+Firestore
 
 #### [Link](https://francisroadallotments.co.uk/) to live site.
