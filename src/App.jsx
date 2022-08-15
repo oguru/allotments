@@ -12,7 +12,7 @@ import NavBar from "./components/NavBar";
 import {Route} from "react-router-dom";
 import StaticTxtProvider from "./context/staticTxtContext.js";
 import {articlesData} from "./data/contentData.js";
-import {firestore} from "./firebase.js";
+import {firestore} from "./services/firebase.js";
 import {formatDate} from "./util/utils.js";
 import {getContentJsx} from "./util/articleBuilder.jsx";
 import {mainImagesInit} from "./images/imageImports.js";
