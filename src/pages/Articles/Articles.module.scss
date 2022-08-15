@@ -49,27 +49,27 @@
 .articlesCont {
     position: relative;
     width: 100vw;
+}
 
-    .articleCont {
-        left: 0;
-        min-width: 100%;
-        position: absolute;
-        top: 0;
-        transform: translateX(100vw);
-        transition-duration: 1s;
-        width: 100vw;
-    }
+.articleCont {
+    left: 0;
+    min-width: 100%;
+    position: absolute;
+    top: 0;
+    transform: translateX(100vw);
+    transition-duration: 1s;
+    width: 100vw;
+}
 
-    .articlesMain {
-        transition-duration: 1s;
+.articlesMain {
+    transition-duration: 1s;
+}
 
-        .articleBoxes {
-            display: grid;
-            gap: 2rem 1.5rem;
-            grid-template-columns: repeat(auto-fill, 250px);
-            justify-content: center;
-            min-height: 100%;
-            padding: 2rem 0;
-        }
-    }
+.articleBoxes {
+    display: grid;
+    gap: 2rem 1.5rem;
+    grid-template-columns: repeat(auto-fill, 250px);
+    justify-content: center;
+    min-height: 100%;
+    padding: 2rem 0;
 }
