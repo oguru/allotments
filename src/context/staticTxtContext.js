@@ -1,4 +1,4 @@
-import React, {useContext, useRef, useState} from "react";
+import React, {useContext, useRef} from "react";
 import PropTypes from "prop-types";
 
 const StaticTxtContext = React.createContext();
@@ -22,28 +22,15 @@ export default function StaticTxtProvider(props) {
       home: false,
       info: false
    });
-   // const [staticTxt, setStaticTxt] = useState({
-   //    about: false,
-   //    admin: true,
-   //    article: true,
-   //    articles: false,
-   //    home: false,
-   //    info: false
-   // });
 
    const updateStaticTxt = (pageName) => {
       staticTxt.current[pageName] = true;
-      // setStaticTxt(prev => {
-      //    return {...prev,
-      //       [pageName]: true};
-      // });
    };
 
    return (
       <StaticTxtContext.Provider value={{
          staticTxt: staticTxt.current,
          updateStaticTxt
-         // setStaticTxt
       }}>{children}</StaticTxtContext.Provider>
    );
 }
