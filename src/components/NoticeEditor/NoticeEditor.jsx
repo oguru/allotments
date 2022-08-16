@@ -1,8 +1,8 @@
 import React, {useLayoutEffect, useRef, useState} from "react";
 import PropTypes from "prop-types";
-import styles from "../Notice/Notice.module.scss";
-import {noticeButtons} from "../AdminNotice/AdminNotice.module.scss";
 import {formatDate} from "../../util/utils";
+import {noticeButtons} from "../AdminNotice/AdminNotice.module.scss";
+import styles from "../Notice/Notice.module.scss";
 
 const MIN_TEXTAREA_HEIGHT = 32;
 
@@ -23,10 +23,9 @@ const NoticeEditor = (props) => {
    const [desc, setNewDesc] = useState(item?.desc || "");
    const textareaRef = useRef(null);
 
+   // Dynamic textarea resize on edit
    useLayoutEffect(() => {
-      // Reset height - important to shrink on delete
       textareaRef.current.style.height = "inherit";
-      // Set height
       textareaRef.current.style.height = `${Math.max(
          textareaRef.current.scrollHeight,
          MIN_TEXTAREA_HEIGHT
