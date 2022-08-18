@@ -3,9 +3,9 @@
 import {checkProps, findByTestAttr} from "../../util/utils";
 import HeroImage from "./HeroImage";
 import React from "react";
+import image from "../../images/articles-main-lg.jpg";
+import imageInit from "../../images/articles-main-sm.jpg";
 import mount from "enzyme/mount";
-import src from "../../images/articles-main-lg.jpg";
-import srcSm from "../../images/articles-main-sm.jpg";
 
 describe("HeroImage tests", () => {
    let component;
@@ -15,16 +15,16 @@ describe("HeroImage tests", () => {
       testProps = {
          homeStyle: "homeStyle",
          imageTint: 0.5,
-         src,
-         srcSm
+         image,
+         imageInit
       };
 
       component = mount(
          <HeroImage
             homeStyle={testProps.homeStyle}
             imageTint={testProps.imageTint}
-            src={testProps.src}
-            srcSm={testProps.srcSm}
+            image={testProps.image}
+            imageInit={testProps.imageInit}
          />
       );
    });
@@ -33,11 +33,6 @@ describe("HeroImage tests", () => {
       const propsErr = checkProps(HeroImage, testProps);
 
       expect(propsErr).toBeUndefined();
-   });
-
-   it("should match the snapshot", () => {
-      expect(component)
-         .toMatchSnapshot();
    });
 
    it("should have the correct background image inline styles", () => {
@@ -52,7 +47,7 @@ describe("HeroImage tests", () => {
       const smBgString = `linear-gradient(
             rgba(0, 0, 0, ${testProps.imageTint}),
             rgba(0, 0, 0, ${testProps.imageTint})
-         ), url(${testProps.srcSm})`
+         ), url(${testProps.imageInit})`
          .replace(/ /gu, "");
 
       const lgBgStyle = findByTestAttr(
@@ -66,7 +61,7 @@ describe("HeroImage tests", () => {
       const lgBgString = `linear-gradient(
             rgba(0, 0, 0, ${testProps.imageTint}),
             rgba(0, 0, 0, ${testProps.imageTint})
-         ), url(${testProps.src})`
+         ), url(${testProps.image})`
          .replace(/ /gu, "");
 
       expect(smBgStyle).toEqual(smBgString);
@@ -87,7 +82,7 @@ describe("HeroImage tests", () => {
       const smBgString = `linear-gradient(
             rgba(0, 0, 0, 0.3),
             rgba(0, 0, 0, 0.3)
-         ), url(${testProps.srcSm})`
+         ), url(${testProps.imageInit})`
          .replace(/ /gu, "");
 
       const lgBgStyle = findByTestAttr(
@@ -101,7 +96,7 @@ describe("HeroImage tests", () => {
       const lgBgString = `linear-gradient(
             rgba(0, 0, 0, 0.3),
             rgba(0, 0, 0, 0.3)
-         ), url(${testProps.src})`
+         ), url(${testProps.image})`
          .replace(/ /gu, "");
 
       expect(smBgStyle).toBe(smBgString);
@@ -113,5 +108,12 @@ describe("HeroImage tests", () => {
          .at(0)
          .hasClass("homeStyle"))
          .toBe(true);
+   });
+
+   it("should not render the init div if no initImage is supplied", () => {
+      component.setProps({imageInit: null});
+      const heroImage = findByTestAttr(component, "heroImage");
+      expect(heroImage.length).toBe(1);
+      expect(heroImage.hasClass("initImg")).toBe(false);
    });
 });
