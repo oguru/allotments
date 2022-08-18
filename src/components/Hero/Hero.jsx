@@ -15,19 +15,19 @@ const Hero = (props) => {
          heroTitle,
          smallText,
          image,
-         imageSm,
+         imageInit,
          imageTint
       }
    } = props;
 
    Hero.propTypes = {
-      children: PropTypes.object,
+      children: PropTypes.node,
       content: PropTypes.shape({
          id: PropTypes.string,
          heroSubtitle: PropTypes.string,
          heroTitle: PropTypes.string,
-         image: PropTypes.string.isRequired,
-         imageSm: PropTypes.string,
+         imageInit: PropTypes.string,
+         image: PropTypes.string,
          imageTint: PropTypes.number,
          smallText: PropTypes.string
       })
@@ -64,8 +64,8 @@ const Hero = (props) => {
             <HeroImage
                homeStyle={homeStyle}
                imageTint={imageTint}
-               src={image}
-               srcSm={imageSm}
+               image={image}
+               imageInit={imageInit}
             />
             <div className={`
                ${styles.heroText} 

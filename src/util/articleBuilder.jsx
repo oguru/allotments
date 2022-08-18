@@ -114,7 +114,6 @@ const getContentJsx = (contentData, articles) => {
             credit: article.credit,
             id: article.id,
             mainImg: article.mainImg,
-            mainImgBox: article.mainImgBox,
             mainImgAlt: article.mainImgAlt,
             path: article.path,
             title: article.title,

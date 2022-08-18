@@ -5,7 +5,7 @@ import styles from "./Notice.module.scss";
 const Notice = ({children, item}) => {
 
    Notice.propTypes = {
-      children: PropTypes.object,
+      children: PropTypes.node,
       item: PropTypes.object
    };
 

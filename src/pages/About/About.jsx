@@ -3,19 +3,22 @@ import {aboutImages, galleryImages} from "../../images/imageImports";
 import Carousel from "react-gallery-carousel";
 import Hero from "../../components/Hero";
 import React from "react";
-import aboutImg from "../../images/about-main-lg.jpg";
-import aboutImgSm from "../../images/about-main-sm.jpg";
 import styles from "./About.module.scss";
+import {useImageSize} from "../../context/imageSizeContext";
 
 const About = () => {
    const img = aboutImages;
+
+   const {getImageSize} = useImageSize();
+
+   const imgSize = getImageSize("about");
 
    const heroContent = {
       id: "about",
       heroTitle: "About Us",
       heroSubtitle: "Where we started and how to get involved",
-      image: aboutImg,
-      imageSm: aboutImgSm,
+      image: img.mainImg[imgSize],
+      imageInit: img.mainImg.init,
       imageTint: 0.5
    };
 

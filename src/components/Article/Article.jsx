@@ -3,6 +3,7 @@ import Hero from "../Hero";
 import PropTypes from "prop-types";
 import React from "react";
 import styles from "./Article.module.scss";
+import {useScreenSize} from "../../context/screenSizeContext";
 
 const Article = (props) => {
    const {handleCloseArticle, content} = props;
@@ -12,11 +13,13 @@ const Article = (props) => {
       content: PropTypes.object
    };
 
+   const {screenSize: imgSize} = useScreenSize();
+
    const heroContent = {
       id: "article",
       heroSubtitle: content.title,
-      image: content.mainImg,
-      imageSm: content.mainImgBox,
+      image: content.mainImg[imgSize],
+      imageInit: imgSize === "sm" ? null : content.mainImg.sm,
       imageTint: 0.4,
       smallText: content.credit
    };
