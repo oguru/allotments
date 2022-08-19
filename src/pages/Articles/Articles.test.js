@@ -1,11 +1,16 @@
 import {checkProps, findByTestAttr} from "../../util/utils";
 import Articles from "./Articles";
+import ImageSizeProvider from "../../context/imageSizeContext";
+import MatchMediaMock from "jest-matchmedia-mock";
 import React from "react";
+import ScreenSizeProvider from "../../context/screenSizeContext";
 import StaticTxtProvider from "../../context/staticTxtContext.js";
 import {act} from "react-dom/test-utils";
 import {articlesData} from "../../data/contentData";
 import {getContentJsx} from "../../util/articleBuilder";
 import {mount} from "enzyme";
+
+const matchMedia = new MatchMediaMock();
 
 describe("Articles tests", () => {
    const articles = getContentJsx([articlesData[0], articlesData[1]], true);
@@ -18,9 +23,13 @@ describe("Articles tests", () => {
    beforeEach(() => {
       jest.useFakeTimers();
 
-      component = mount(<StaticTxtProvider>
-         <Articles articlesJsx={articles} />
-      </StaticTxtProvider>);
+      component = mount(<ScreenSizeProvider>
+         <ImageSizeProvider>
+            <StaticTxtProvider>
+                  [<Articles articlesJsx={articles} />]
+            </StaticTxtProvider>
+         </ImageSizeProvider>
+      </ScreenSizeProvider>);
    });
 
    test("Articles PropTypes check should not throw a warning", () => {

@@ -2,9 +2,14 @@
 import * as plotDataImport from "../../data/plotData";
  import {checkProps, findByTestAttr} from "../../util/utils";
 import Info from "./Info";
+import MatchMediaMock from "jest-matchmedia-mock";
 import React from "react";
 import StaticTxtProvider from "../../context/staticTxtContext";
 import {mount} from "enzyme";
+import ImageSizeProvider from "../../context/imageSizeContext";
+import ScreenSizeProvider from "../../context/screenSizeContext";
+
+const matchMedia = new MatchMediaMock();
 
 describe("Info tests", () => {
    let component;
@@ -63,9 +68,14 @@ describe("Info tests", () => {
    plotDataImport.plotData = mockPlotData;
 
    beforeEach(() => {
-      component = mount(<StaticTxtProvider>
-         <Info notices={testProps.notices} />
-      </StaticTxtProvider>);
+      component = mount(
+      <ScreenSizeProvider>
+         <ImageSizeProvider>
+            <StaticTxtProvider>
+               [<Info notices={testProps.notices} />]
+            </StaticTxtProvider>
+         </ImageSizeProvider>
+      </ScreenSizeProvider>);
    });
 
    test("Info PropTypes check should not throw a warning", () => {

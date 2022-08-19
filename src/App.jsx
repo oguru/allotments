@@ -28,7 +28,11 @@ const App = () => {
 
    const homeImgSize = getImageSize("home");
    const homeImage = homeImages.mainImg[homeImgSize];
-   const updatedInitImages = [...Object.values(mainImagesInit), homeImage];
+   const updatedInitImages = [
+      ...mainImagesInit,
+      {src: homeImage,
+         id: "home"}
+   ];
 
    useEffect(() => {
       if (!isLoading) {
@@ -117,9 +121,9 @@ const App = () => {
                   >
                      {updatedInitImages.map(img => (
                         <img
-                           src={img}
+                           src={img.src}
                            onLoad={imageLoaded}
-                           key={img}
+                           key={img.id}
                            alt={"hidden initialiser"}
                         />
                      ))}

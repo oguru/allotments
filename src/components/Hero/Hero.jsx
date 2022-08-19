@@ -72,7 +72,7 @@ const Hero = (props) => {
                container`}
             >
                {!staticTxt ? (
-                  <div className={styles.typistCont}>
+                  <div data-test="typistCont" className={styles.typistCont}>
                      <h1
                         className={styles.hiddenText}
                         data-test="hiddenText"

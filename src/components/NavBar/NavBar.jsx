@@ -18,7 +18,7 @@ const NavBar = ({routes}) => {
    const [isNavOpen, setIsNavOpen] = useState(false);
    const [menuHeight, setMenuHeight] = useState("");
    const [pathName, setPathName] = useState("");
-   const {isMobileNav} = useScreenSize();
+   const {mobileNav} = useScreenSize();
 
    const location = useLocation();
 
@@ -31,7 +31,7 @@ const NavBar = ({routes}) => {
       setMenuHeight(height);
    };
 
-   const mobNavHeight = !isMobileNav ?
+   const mobNavHeight = !mobileNav ?
       "unset" : isNavOpen ?
          `${menuHeight + 16}px` : 0;
 
@@ -60,21 +60,23 @@ const NavBar = ({routes}) => {
             >
                Francis Rd Allotments
             </a>
-            <div
-               className={styles.burgerIcon}
-               data-test="burgerIcon"
-               onClick={() => setIsNavOpen(!isNavOpen)}
-            >
-               <span
-                  className={styles[navIconAnim]}>
-               </span>
-               <span
-                  className={styles[navIconAnim]}>
-               </span>
-               <span
-                  className={styles[navIconAnim]}>
-               </span>
-            </div>
+            {mobileNav &&
+               <div
+                  className={styles.burgerIcon}
+                  data-test="burgerIcon"
+                  onClick={() => setIsNavOpen(!isNavOpen)}
+               >
+                  <span
+                     className={styles[navIconAnim]}>
+                  </span>
+                  <span
+                     className={styles[navIconAnim]}>
+                  </span>
+                  <span
+                     className={styles[navIconAnim]}>
+                  </span>
+               </div>
+            }
             <div
                className={styles.navOverlay}
                data-test="navOverlay"

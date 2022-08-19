@@ -132,11 +132,14 @@ export const galleryImages = [
       alt: "Special seats for the little ones!"}
 ];
 
-export const mainImagesInit = {
-   info: infoImgInit,
-   articles: articlesImgInit,
-   about: aboutImgInit
-};
+export const mainImagesInit = [
+   {src: infoImgInit,
+      id: "info"},
+   {src: articlesImgInit,
+      id: "articles"},
+   {src: aboutImgInit,
+      id: "about"}
+];
 
 export const aboutImages = {
    mainImg: {
