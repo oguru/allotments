@@ -1,6 +1,6 @@
-// import "./global.scss";
 import "./firebaseui-styling.global.css";
 import React, {useEffect, useState, useRef} from "react";
+import {homeImages, mainImagesInit} from "./images/imageImports.js";
 import About from "./pages/About";
 import Admin from "./pages/Admin";
 import Articles from "./pages/Articles";
@@ -15,14 +15,24 @@ import {articlesData} from "./data/contentData.js";
 import {firestore} from "./services/firebase.js";
 import {formatDate} from "./util/utils.js";
 import {getContentJsx} from "./util/articleBuilder.jsx";
-import {mainImagesInit} from "./images/imageImports.js";
 import styles from "./App.module.scss";
+import {useImageSize} from "./context/imageSizeContext";
+import {useScreenSize} from "./context/screenSizeContext";
 
 const App = () => {
    const [articlesJsx, setArticlesJsx] = useState([]);
    const [notices, setNotices] = useState([]);
-   const [isLargeScreen, setIsLargeScreen] = useState(true);
    const [isLoading, setIsLoading] = useState(true);
+   const {isMobileNav} = useScreenSize();
+   const {getImageSize} = useImageSize();
+
+   const homeImgSize = getImageSize("home");
+   const homeImage = homeImages.mainImg[homeImgSize];
+   const updatedInitImages = [
+      ...mainImagesInit,
+      {src: homeImage,
+         id: "home"}
+   ];
 
    useEffect(() => {
       if (!isLoading) {
@@ -53,25 +63,6 @@ const App = () => {
       }
    }, [isLoading]);
 
-   useEffect(() => {
-      const mediaQuery = window.matchMedia("(min-width: 768px)");
-
-      handleMediaQueryChange(mediaQuery);
-      mediaQuery.addEventListener("change", (mQuery) => handleMediaQueryChange(mQuery));
-
-      return () => {
-         mediaQuery.removeEventListener("change", handleMediaQueryChange);
-      };
-   }, []);
-
-   const handleMediaQueryChange = mQuery => {
-      if (mQuery.matches) {
-         setIsLargeScreen(true);
-      } else {
-         setIsLargeScreen(false);
-      }
-   };
-
    const routes = [
       {
          path: "/",
@@ -101,12 +92,9 @@ const App = () => {
       "Admin":
          <Admin notices={notices} />,
       "Articles":
-         <Articles
-            articlesJsx={articlesJsx}
-            isLargeScreen={isLargeScreen}
-         />,
+         <Articles articlesJsx={articlesJsx} />,
       "Home":
-         <Home />,
+         <Home image={homeImage} />,
       "Info":
          <Info notices={notices} />
    };
@@ -116,17 +104,14 @@ const App = () => {
    const imageLoaded = () => {
       counter.current += 1;
 
-      if (counter.current >= mainImagesInit.length) {
+      if (counter.current >= updatedInitImages.length) {
          setIsLoading(false);
       }
    };
 
    return (
       <div className={styles.app}>
-         <NavBar
-            isLargeScreen={isLargeScreen}
-            routes={routes}
-         />
+         <NavBar routes={routes} />
          <section className={styles.mainBody}>
             {isLoading ?
                <>
@@ -134,12 +119,12 @@ const App = () => {
                      className={styles.preCacheHidden}
                      data-test="preCacheHidden"
                   >
-                     {mainImagesInit.map(img => (
+                     {updatedInitImages.map(img => (
                         <img
                            src={img.src}
                            onLoad={imageLoaded}
-                           key={img.src}
-                           alt={img.alt}
+                           key={img.id}
+                           alt={"hidden initialiser"}
                         />
                      ))}
                   </div>
@@ -155,7 +140,7 @@ const App = () => {
                            <CSSTransition
                               classNames={{...styles}}
                               in={match != null}
-                              timeout={isLargeScreen ? 400 : 800}
+                              timeout={isMobileNav ? 800 : 400}
                               unmountOnExit
                            >
                               <div

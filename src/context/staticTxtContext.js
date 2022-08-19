@@ -7,11 +7,9 @@ export const useStaticTxt = () => {
    return useContext(StaticTxtContext);
 };
 
-export default function StaticTxtProvider(props) {
-   const {children} = props;
-
+export default function StaticTxtProvider({children}) {
    StaticTxtProvider.propTypes = {
-      children: PropTypes.object
+      children: PropTypes.arrayOf(PropTypes.node)
    };
 
    const staticTxt = useRef({
@@ -31,6 +29,8 @@ export default function StaticTxtProvider(props) {
       <StaticTxtContext.Provider value={{
          staticTxt: staticTxt.current,
          updateStaticTxt
-      }}>{children}</StaticTxtContext.Provider>
+      }}>
+         {children}
+      </StaticTxtContext.Provider>
    );
 }

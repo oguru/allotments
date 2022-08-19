@@ -5,18 +5,24 @@ import MatchMediaMock from "jest-matchmedia-mock";
 import {MemoryRouter} from "react-router-dom";
 import React from "react";
 import {findByTestAttr} from "./util/utils";
+import ScreenSizeProvider from "./context/screenSizeContext";
+import ImageSizeProvider from "./context/imageSizeContext";
 
 const matchMedia = new MatchMediaMock();
 
-describe("App shallow tests", () => {
+describe("App tests", () => {
    let component;
 
    beforeEach(() => {
-      component = shallow(
+      component = mount(
          <MemoryRouter>
-            <App/>
+            <ScreenSizeProvider>
+               <ImageSizeProvider>
+                  <App/>
+               </ImageSizeProvider>
+            </ScreenSizeProvider>
          </MemoryRouter>
-      ).children().dive();
+      );
    });
 
    it("should match the snapshot", () => {
@@ -34,24 +40,6 @@ describe("App shallow tests", () => {
       expect(component.find("NavBar")
          .length)
          .toBe(1);
-   });
-});
-
-describe("App mount tests", () => {
-   let component;
-
-   beforeEach(() => {
-      component = mount(
-         <MemoryRouter>
-            <App/>
-         </MemoryRouter>
-      );
-   });
-
-   it("should render without errors", () => {
-
-      expect(render(component))
-         .toBeTruthy();
    });
 
    it("it should show a loader and hide the main content if isLoading === true", () => {

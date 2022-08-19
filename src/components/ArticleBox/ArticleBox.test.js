@@ -11,7 +11,7 @@ describe("ArticleBox tests", () => {
    const article = getContentJsx([articlesData[0]], true)[0];
    const testProps = {
       handleShowArticle: handleShowArticleMock,
-      previewImg: article.mainImgBox,
+      previewImg: article.mainImg.box,
       previewImgAlt: article.mainImgAlt,
       text: article.initText,
       title: article.title

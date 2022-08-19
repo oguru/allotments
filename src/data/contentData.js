@@ -45,8 +45,12 @@ const articlesData = [
       id: 0,
       title: "The Queen's Platinum Jubilee Project",
       credit: "Thanks to The Big Lottery Community Fund",
-      mainImg: img[0].art0MainImg,
-      mainImgBox: img[0].art0MainBox,
+      mainImg: {
+         sm: img[0].art0MainImgSm,
+         md: img[0].art0MainImgMd,
+         lg: img[0].art0MainImgLg,
+         box: img[0].art0MainBox
+      },
       mainImgAlt: "Queen Elizabeth",
       path: "/articles/jubilee",
       content: [
@@ -140,8 +144,12 @@ const articlesData = [
       id: 1,
       title: "Preparing A New Garden Plot",
       credit: "Article provided by homegardenseedassociation.com",
-      mainImg: img[0].art1MainImg,
-      mainImgBox: img[0].art1MainBox,
+      mainImg: {
+         sm: img[0].art1MainImgSm,
+         md: img[0].art1MainImgMd,
+         lg: img[0].art1MainImgLg,
+         box: img[0].art1MainBox
+      },
       mainImgAlt: "Dug soil",
       path: "/articles/new-plot",
       content: [
@@ -209,8 +217,12 @@ const articlesData = [
       id: 2,
       title: "How Does Gardening Build Health?",
       credit: "Article provided by homegardenseedassociation.com",
-      mainImg: img[0].art2MainImg,
-      mainImgBox: img[0].art2MainBox,
+      mainImg: {
+         sm: img[0].art2MainImgSm,
+         md: img[0].art2MainImgMd,
+         lg: img[0].art2MainImgLg,
+         box: img[0].art2MainBox
+      },
       mainImgAlt: "",
       path: "/articles/build-health",
       content: [
@@ -275,8 +287,12 @@ const articlesData = [
       id: 3,
       title: "Seed Starting Timeline For Success",
       credit: "Article provided by homegardenseedassociation.com",
-      mainImg: img[0].art3MainImg,
-      mainImgBox: img[0].art3MainBox,
+      mainImg: {
+         sm: img[0].art3MainImgSm,
+         md: img[0].art3MainImgMd,
+         lg: img[0].art3MainImgLg,
+         box: img[0].art3MainBox
+      },
       mainImgAlt: "",
       path: "/articles/build-health",
       content: [
@@ -454,8 +470,12 @@ const articlesData = [
       id: 4,
       title: "Germination Troubleshooting Guide",
       credit: "Article provided by homegardenseedassociation.com",
-      mainImg: img[0].art4MainImg,
-      mainImgBox: img[0].art4MainBox,
+      mainImg: {
+         sm: img[0].art4MainImgSm,
+         md: img[0].art4MainImgMd,
+         lg: img[0].art4MainImgLg,
+         box: img[0].art4MainBox
+      },
       mainImgAlt: "",
       path: "/articles/germination-troubleshooting",
       content: [
@@ -541,8 +561,12 @@ const articlesData = [
       id: 5,
       title: "Want Safe Food? Grow Your Own",
       credit: "Article provided by homegardenseedassociation.com",
-      mainImg: img[0].art5MainImg,
-      mainImgBox: img[0].art5MainBox,
+      mainImg: {
+         sm: img[0].art5MainImgSm,
+         md: img[0].art5MainImgMd,
+         lg: img[0].art5MainImgLg,
+         box: img[0].art5MainBox
+      },
       mainImgAlt: "Vegetables growing",
       path: "/articles/safe-food",
       content: [

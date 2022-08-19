@@ -6,15 +6,15 @@ const HeroImage = (props) => {
    const {
       homeStyle,
       imageTint,
-      src,
-      srcSm
+      image,
+      imageInit
    } = props;
 
    HeroImage.propTypes = {
       homeStyle: PropTypes.string,
       imageTint: PropTypes.number,
-      src: PropTypes.string,
-      srcSm: PropTypes.string
+      image: PropTypes.string,
+      imageInit: PropTypes.string
    };
 
    const [isLoaded, setIsLoaded] = useState(false);
@@ -25,9 +25,9 @@ const HeroImage = (props) => {
 
    const loadImageWithPromise = () => {
       return new Promise(resolve => {
-         const image = new Image();
-         image.onload = resolve;
-         image.src = src;
+         const mainImage = new Image();
+         mainImage.onload = resolve;
+         mainImage.src = image;
       });
    };
 
@@ -40,6 +40,7 @@ const HeroImage = (props) => {
 
    return (
       <>
+         {imageInit &&
          <div
             className={`
                ${styles.heroBg} 
@@ -51,11 +52,11 @@ const HeroImage = (props) => {
                {backgroundImage: `linear-gradient(
                   rgba(0, 0, 0, ${imageTint || 0.3}),
                   rgba(0, 0, 0, ${imageTint || 0.3})
-               ), url(${srcSm})`,
+               ), url(${imageInit})`,
                opacity: `${initImgOpacity}`}
             }
          >
-         </div>
+         </div>}
          <div
             className={`
                ${styles.heroBg}
@@ -66,7 +67,7 @@ const HeroImage = (props) => {
                {backgroundImage: `linear-gradient(
                   rgba(0, 0, 0, ${imageTint || 0.3}),
                   rgba(0, 0, 0, ${imageTint || 0.3})
-               ), url(${src})`}
+               ), url(${image})`}
             }
          >
          </div>

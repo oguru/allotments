@@ -4,10 +4,10 @@ import ArticleBox from "../../components/ArticleBox";
 import CSSTransition from "react-transition-group/CSSTransition";
 import Hero from "../../components/Hero";
 import PropTypes from "prop-types";
-import articlesImg from "../../images/articles-main-lg.jpg";
-import articlesImgSm from "../../images/articles-main-sm.jpg";
+import {articlesImages} from "../../images/imageImports";
 import {pageCont} from "../../App.module.scss";
 import styles from "./Articles.module.scss";
+import {useImageSize} from "../../context/imageSizeContext";
 
 const Articles = ({articlesJsx}) => {
    Articles.propTypes = {
@@ -19,19 +19,25 @@ const Articles = ({articlesJsx}) => {
    const scrollPos = useRef(0);
    const [articleVisible, setArticleVisible] = useState(false);
 
+   const img = articlesImages;
+
+   const {getImageSize} = useImageSize();
+
+   const imgSize = getImageSize("articles");
+
    const heroContent = {
       id: "articles",
       heroTitle: "Articles & Tips",
       heroSubtitle: "Keep an eye out here for articles and tips to help you grow the most astonishing Aubergines, monstrous Marrows and the richest Rhubarb!",
-      image: articlesImg,
-      imageSm: articlesImgSm,
+      image: img.mainImg[imgSize],
+      imageInit: img.mainImg.init,
       imageTint: 0.4
    };
 
    const articleBoxes = useMemo(() => articlesJsx.map((article, index) => (
       <ArticleBox
          key={article.id}
-         previewImg={article.mainImgBox}
+         previewImg={article.mainImg.box}
          previewImgAlt={article.mainImgAlt}
          handleShowArticle={() => handleShowArticle(index)}
          index={index}

@@ -8,18 +8,17 @@ import NavLink from "../NavLink";
 import PropTypes from "prop-types";
 import styles from "./NavBar.module.scss";
 import {useLocation} from "react-router-dom";
+import {useScreenSize} from "../../context/screenSizeContext";
 
-const NavBar = (props) => {
-   const {isLargeScreen, routes} = props;
-
+const NavBar = ({routes}) => {
    NavBar.propTypes = {
-      isLargeScreen: PropTypes.bool,
       routes: PropTypes.array.isRequired
    };
 
    const [isNavOpen, setIsNavOpen] = useState(false);
    const [menuHeight, setMenuHeight] = useState("");
    const [pathName, setPathName] = useState("");
+   const {mobileNav} = useScreenSize();
 
    const location = useLocation();
 
@@ -32,7 +31,7 @@ const NavBar = (props) => {
       setMenuHeight(height);
    };
 
-   const mobNavHeight = isLargeScreen ?
+   const mobNavHeight = !mobileNav ?
       "unset" : isNavOpen ?
          `${menuHeight + 16}px` : 0;
 
@@ -61,21 +60,23 @@ const NavBar = (props) => {
             >
                Francis Rd Allotments
             </a>
-            <div
-               className={styles.burgerIcon}
-               data-test="burgerIcon"
-               onClick={() => setIsNavOpen(!isNavOpen)}
-            >
-               <span
-                  className={styles[navIconAnim]}>
-               </span>
-               <span
-                  className={styles[navIconAnim]}>
-               </span>
-               <span
-                  className={styles[navIconAnim]}>
-               </span>
-            </div>
+            {mobileNav &&
+               <div
+                  className={styles.burgerIcon}
+                  data-test="burgerIcon"
+                  onClick={() => setIsNavOpen(!isNavOpen)}
+               >
+                  <span
+                     className={styles[navIconAnim]}>
+                  </span>
+                  <span
+                     className={styles[navIconAnim]}>
+                  </span>
+                  <span
+                     className={styles[navIconAnim]}>
+                  </span>
+               </div>
+            }
             <div
                className={styles.navOverlay}
                data-test="navOverlay"

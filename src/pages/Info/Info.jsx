@@ -3,24 +3,26 @@ import Hero from "../../components/Hero";
 import Notice from "../../components/Notice";
 import PropTypes from "prop-types";
 import grassTexture from "../../images/info-grass-texture.jpg";
-import infoImg from "../../images/info-main.jpg";
-import infoImgSm from "../../images/info-main-sm.jpg";
+import {infoImages} from "../../images/imageImports";
 import {plotData} from "../../data/plotData";
 import styles from "./Info.module.scss";
+import {useImageSize} from "../../context/imageSizeContext";
 
-const Info = (props) => {
-   const {notices} = props;
-
+const Info = ({notices}) => {
    Info.propTypes = {
       notices: PropTypes.array
    };
+
+   const img = infoImages;
+   const {getImageSize} = useImageSize();
+   const imgSize = getImageSize("info");
 
    const heroContent = {
       id: "info",
       heroTitle: "Plot Information & What's New",
       heroSubtitle: "Explore different plots to suit your needs and find updates and current news here",
-      image: infoImg,
-      imageSm: infoImgSm,
+      image: img.mainImg[imgSize],
+      imageInit: img.mainImg.init,
       imageTint: 0.45
    };
 
@@ -44,7 +46,11 @@ const Info = (props) => {
                Contact & How to Find Us
             </h3>
             <p>
-               For more information, to book an allotment, or arrange a viewing please contact Carole on 07764 260 099 or via <span><a href = "mailto: francisroadallotments@gmail.com">francisroadallotments@gmail.com</a></span> .
+               For more information, to book an allotment, or arrange a viewing please contact Carole on 07764 260 099 or via <span>
+                  <a href = "mailto: francisroadallotments@gmail.com">
+                     francisroadallotments@gmail.com
+                  </a>
+               </span> .
             </p>
             <p className="bold">
                Directions:
