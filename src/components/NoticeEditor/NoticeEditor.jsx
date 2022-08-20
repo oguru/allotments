@@ -16,7 +16,12 @@ const NoticeEditor = (props) => {
    NoticeEditor.propTypes = {
       handleSave: PropTypes.func,
       handleCancel: PropTypes.func,
-      item: PropTypes.object
+      item: PropTypes.shape({
+         date: PropTypes.string,
+         desc: PropTypes.string,
+         id: PropTypes.string,
+         title: PropTypes.string
+      })
    };
 
    const [title, setNewTitle] = useState(item?.title || "");
@@ -25,7 +30,6 @@ const NoticeEditor = (props) => {
 
    // Dynamic textarea resize on edit
    useLayoutEffect(() => {
-      textareaRef.current.style.height = "inherit";
       textareaRef.current.style.height = `${Math.max(
          textareaRef.current.scrollHeight,
          MIN_TEXTAREA_HEIGHT
@@ -51,6 +55,7 @@ const NoticeEditor = (props) => {
          <div className="card-body">
             <textarea
                className={`${styles.textWrap} ${styles.noticeInput} info-item-text card-text w-100`}
+               data-test="noticeTextArea"
                onChange={(e) => setNewDesc(e.target.value)}
                placeholder="Notice title goes here..."
                ref={textareaRef}
