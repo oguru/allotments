@@ -1,4 +1,4 @@
-import {aboutImages, articleImages} from "../images/imageImports";
+import {aboutImages, articleImages} from "../images/imageExports";
 
 const img = [articleImages, aboutImages];
 

@@ -1,5 +1,5 @@
 import "react-gallery-carousel/dist/index.css";
-import {aboutImages, galleryImages} from "../../images/imageImports";
+import {aboutImages, galleryImages} from "../../images/imageExports";
 import Carousel from "react-gallery-carousel";
 import Hero from "../../components/Hero";
 import React from "react";

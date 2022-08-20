@@ -4,7 +4,7 @@ import ArticleBox from "../../components/ArticleBox";
 import CSSTransition from "react-transition-group/CSSTransition";
 import Hero from "../../components/Hero";
 import PropTypes from "prop-types";
-import {articlesImages} from "../../images/imageImports";
+import {articlesImages} from "../../images/imageExports";
 import {pageCont} from "../../App.module.scss";
 import styles from "./Articles.module.scss";
 import {useImageSize} from "../../context/imageSizeContext";

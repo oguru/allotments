@@ -1,6 +1,6 @@
 import "./firebaseui-styling.global.css";
 import React, {useEffect, useState, useRef} from "react";
-import {homeImages, mainImagesInit} from "./images/imageImports.js";
+import {homeImages, mainImagesInit} from "./images/imageExports.js";
 import About from "./pages/About";
 import Admin from "./pages/Admin";
 import Articles from "./pages/Articles";
