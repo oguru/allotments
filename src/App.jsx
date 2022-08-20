@@ -30,13 +30,6 @@ const App = () => {
    const articlesRef = useRef(null);
    const homeRef = useRef(null);
 
-   const pageRefs = {
-      about: aboutRef,
-      info: infoRef,
-      articles: articlesRef,
-      home: homeRef
-   };
-
    const homeImgSize = getImageSize("home");
    const homeImage = homeImages.mainImg[homeImgSize];
    const updatedInitImages = [
@@ -44,6 +37,12 @@ const App = () => {
       {src: homeImage,
          id: "home"}
    ];
+   const pageRefs = {
+      about: aboutRef,
+      info: infoRef,
+      articles: articlesRef,
+      home: homeRef
+   };
 
    useEffect(() => {
       if (!isLoading) {
@@ -163,9 +162,7 @@ const App = () => {
                                  {route.name === "Articles" ?
                                     components[route.name] :
                                     (
-                                       <div
-                                          className={styles.pageCont}
-                                       >
+                                       <div className={styles.pageCont}>
                                           {components[route.name]}
                                        </div>
 

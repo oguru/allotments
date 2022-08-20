@@ -1,26 +1,15 @@
 $primary-color: #0A2004;
-// #033304;
-// #002d00
 $primary-light: #396F04;
 $secondary-color: #E28803;
 $secondary-color-light: #DEA606;
-// #C8963E;
-// #257e26;
-//  #529b52
 $bg-color: #F3F5F2;
-// $bg-color: #F5F3F5;
-// $bg-color: #E8EBE6;
-// #F3F1EF;
-// #d7ece0 
-// #d0e6d9 
-// #EEE5E9
 $light-border-color: #e6e6e6;
 $mid-border-color: #a2a2a2;
-// #ccd9c6
 $dark-border-color: #616161;
 $base-spacing: 8px;
 $loader-h: 80px;
 $loader-w: 40px;
+
 /*
 $grid-breakpoints: (
   xs: 0,
@@ -33,8 +22,4 @@ $grid-breakpoints: (
 
 @mixin nav-t-duration {
     transition-duration: 0.5s;
-}
-
-@mixin hero-transition {
-  
 }
