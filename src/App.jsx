@@ -25,6 +25,17 @@ const App = () => {
    const [isLoading, setIsLoading] = useState(true);
    const {isMobileNav} = useScreenSize();
    const {getImageSize} = useImageSize();
+   const aboutRef = useRef(null);
+   const infoRef = useRef(null);
+   const articlesRef = useRef(null);
+   const homeRef = useRef(null);
+
+   const pageRefs = {
+      about: aboutRef,
+      info: infoRef,
+      articles: articlesRef,
+      home: homeRef
+   };
 
    const homeImgSize = getImageSize("home");
    const homeImage = homeImages.mainImg[homeImgSize];
@@ -140,12 +151,14 @@ const App = () => {
                            <CSSTransition
                               classNames={{...styles}}
                               in={match != null}
+                              nodeRef={pageRefs[route.name.toLowerCase()]}
                               timeout={isMobileNav ? 800 : 400}
                               unmountOnExit
                            >
                               <div
                                  className={styles.mainPage}
                                  data-test="pageComponent"
+                                 ref={pageRefs[route.name.toLowerCase()]}
                               >
                                  {route.name === "Articles" ?
                                     components[route.name] :

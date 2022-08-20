@@ -18,6 +18,8 @@ const Articles = ({articlesJsx}) => {
    const currentArticle = useRef(articlesJsx[0]);
    const scrollPos = useRef(0);
    const [articleVisible, setArticleVisible] = useState(false);
+   const articlesMainRef = useRef(null);
+   const articleRef = useRef(null);
 
    const img = articlesImages;
 
@@ -89,11 +91,13 @@ const Articles = ({articlesJsx}) => {
                <CSSTransition
                   classNames={{...styles}}
                   in={!articleVisible}
+                  nodeRef={articlesMainRef}
                   timeout={1000}
                >
                   <section
                      className={`${styles.articlesMain}`}
                      data-test="articlesMain"
+                     ref={articlesMainRef}
                   >
                      <Hero
                         content={heroContent}
@@ -106,11 +110,13 @@ const Articles = ({articlesJsx}) => {
                <CSSTransition
                   classNames={{...styles}}
                   in={articleVisible}
+                  nodeRef={articleRef}
                   timeout={1500}
                   unmountOnExit
                >
                   <section
                      className={`${styles.articleCont}`}
+                     ref={articleRef}
                   >
                      <Article
                         content={currentArticle.current}
