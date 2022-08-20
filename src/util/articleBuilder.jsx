@@ -8,18 +8,17 @@ const buildEl = (el, article) => {
 
    if (el.floatImage) {
       return (
-         <>
+         <React.Fragment key={`${article || "about"}${count++}`}>
             <GhostImageWrapper
                alt={el.alt}
                classes={`
                     ${el.floatDir} 
                     ${imgCaption}`
                }
-               key={`${article || "about"}${count++}`}
                src={el.floatImage}
             />
             {el.content.map(subEl => buildEl(subEl))}
-         </>
+         </React.Fragment>
       );
    }
 
