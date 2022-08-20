@@ -28,8 +28,9 @@ export default function ScreenSizeProvider({children}) {
       ];
 
       handleMediaQuery(sizeQueries);
+      handleSetNav(mobileNavQuery);
 
-      mobileNavQuery.addEventListener("change", () => handleChangeNav(mobileNavQuery));
+      mobileNavQuery.addEventListener("change", () => handleSetNav(mobileNavQuery));
       mQuerySmall.addEventListener("change", () => handleMediaQuery(sizeQueries));
       mQueryLarge.addEventListener("change", () => handleMediaQuery(sizeQueries));
 
@@ -51,7 +52,7 @@ export default function ScreenSizeProvider({children}) {
       setScreenSize("md");
    };
 
-   const handleChangeNav = (mobileNavQuery) => {
+   const handleSetNav = (mobileNavQuery) => {
       if (mobileNavQuery.matches) {
          setMobileNav(true);
       } else {
