@@ -1,3 +1,4 @@
+import "firebase/auth";
 import React, {useState, useEffect} from "react";
 import {checkAuth, firestore} from "../../services/firebase.js";
 import AdminNotice from "../../components/AdminNotice";
@@ -8,7 +9,7 @@ import PropTypes from "prop-types";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import {adminImages} from "../../images/imageExports";
 import {faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import styles from "./Admin.module.scss";
 import {useImageSize} from "../../context/imageSizeContext.js";
 
@@ -103,7 +104,7 @@ const Admin = ({notices}) => {
    const firebaseUiConfig = {
       signInFlow: "popup",
       callbacks: {
-         signInSuccess: () => false
+         signInSuccessWithAuthResult: () => false
       },
       signInOptions: [
          firebase.auth.GoogleAuthProvider.PROVIDER_ID
