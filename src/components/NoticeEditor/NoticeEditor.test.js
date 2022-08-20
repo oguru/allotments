@@ -1,24 +1,35 @@
 import React from "react";
 import {render} from "@testing-library/react";
 import NoticeEditor from "./NoticeEditor";
+import {mount} from "enzyme";
+import {checkProps, findByTestAttr} from "../../util/utils";
 
 describe("NoticeEditor tests", () => {
-   it("should render", () => {
-      expect(render(<NoticeEditor />)).toBeTruthy();
+   let component;
+
+   const testProps = {
+      handleSave: () => jest.fn(),
+      handleCancel: () => jest.fn(),
+      item: {
+         id: "323f3f34fsdgerv",
+         desc: "test notice",
+         title: "test notice title",
+         date: "24/2/21"
+      }
+   };
+
+   beforeEach(() => {
+      component = mount(<NoticeEditor
+         item={testProps.item}
+         handleSave={testProps.handleSave}
+         handleCancel={testProps.handleCancel}
+      />);
+
    });
 
-   // it("should call handleSave with the correct details if a user clicks save whilst editing a notice", () => {
-   //    let noticeEditor = findByTestAttr(component, "noticeEditor");
-   //    // let noticeComponent = findByTestAttr(component, "noticeComponent");
-   //    const editBtn = findByTestAttr(component, "editNoticeBtn");
+   test("NoticeEditor PropTypes check should not throw a warning", () => {
+      const propsErr = checkProps(NoticeEditor, testProps);
 
-   //    editBtn.simulate("click");
-
-   //    noticeEditor = findByTestAttr(component, "noticeEditor");
-   //    noticeComponent = findByTestAttr(component, "noticeComponent");
-
-   //    expect(noticeEditor.length).toBe(1);
-   //    expect(noticeComponent.length)
-   //       .toBe(0);
-   // });
+      expect(propsErr).toBeUndefined();
+   });
 });
