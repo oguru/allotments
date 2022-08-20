@@ -26,11 +26,6 @@ describe("NavLink tests", () => {
          </MemoryRouter>);
    });
 
-   it("should match the snapshot", () => {
-      expect(component)
-         .toMatchSnapshot();
-   });
-
    test("NavLink PropTypes check should not throw a warning", () => {
       const propsErr = checkProps(NavLink, testProps);
 

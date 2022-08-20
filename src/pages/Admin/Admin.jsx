@@ -114,10 +114,7 @@ const Admin = ({notices}) => {
       <>
          <Hero content={heroContent}>
             {!loggedIn || loginError ? (
-               <div
-                  className={"login-container"
-                  }
-               >
+               <div className="login-container">
                   <StyledFirebaseAuth
                      uiConfig={firebaseUiConfig}
                      firebaseAuth={firebase.auth()}
@@ -144,7 +141,7 @@ const Admin = ({notices}) => {
             )}
          </Hero>
          <section className="container">
-            <div className={`${styles.noticeSection}`}>
+            <div className={styles.noticeSection}>
                {loggedIn && (
                   <>
                      <h4>Add New Notice</h4>
@@ -154,7 +151,7 @@ const Admin = ({notices}) => {
                            onClick={() => setNewNotice(true)}
                         >
                            <button
-                              className={`${styles.addButton}`}></button>
+                              className={styles.addButton}></button>
                            <span>Add Notice</span>
                         </div>
                      ) : (
@@ -167,7 +164,7 @@ const Admin = ({notices}) => {
                   </>
                )}
             </div>
-            <div className={`${styles.noticeSection}`}>
+            <div className={styles.noticeSection}>
                {loggedIn &&
                   <h4>Edit Notices</h4>
                }
@@ -176,12 +173,12 @@ const Admin = ({notices}) => {
                      handleDelete={deleteNotice}
                      handleSave={modifyNotice}
                      item={item}
-                     key={`${item.id}`}
+                     key={item.id}
                   />
                ) : (
                   <Notice
                      item={item}
-                     key={`${item.id}`}
+                     key={item.id}
                   />))}
             </div>
          </section>

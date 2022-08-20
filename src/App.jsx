@@ -135,7 +135,7 @@ const App = () => {
                            src={img.src}
                            onLoad={imageLoaded}
                            key={img.id}
-                           alt={"hidden initialiser"}
+                           alt="hidden initialiser"
                         />
                      ))}
                   </div>

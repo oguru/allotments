@@ -15,7 +15,7 @@ const BackArrow = ({arrowStyle, handleClick}) => {
 
    return (
       <div
-         className={`${styles.backArrowCont}`}
+         className={styles.backArrowCont}
          data-test="backArrowCont"
          onMouseEnter={() => setBackHoverStyle(`backHover${arrowStyle}`)}
          onMouseLeave={() => setBackHoverStyle("")}

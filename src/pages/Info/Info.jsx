@@ -35,7 +35,7 @@ const Info = ({notices}) => {
             <h3 className="mb-4">Notices</h3>
             {notices.map(item => (
                <Notice
-                  key={`${item.id}`}
+                  key={item.id}
                   item={item}
                />
             ))}

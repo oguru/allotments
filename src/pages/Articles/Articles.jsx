@@ -95,7 +95,7 @@ const Articles = ({articlesJsx}) => {
                   timeout={1000}
                >
                   <section
-                     className={`${styles.articlesMain}`}
+                     className={styles.articlesMain}
                      data-test="articlesMain"
                      ref={articlesMainRef}
                   >
@@ -115,7 +115,7 @@ const Articles = ({articlesJsx}) => {
                   unmountOnExit
                >
                   <section
-                     className={`${styles.articleCont}`}
+                     className={styles.articleCont}
                      ref={articleRef}
                   >
                      <Article

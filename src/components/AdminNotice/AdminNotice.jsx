@@ -34,7 +34,7 @@ const AdminNotice = (props) => {
             />
          ) : (
             <Notice item={item}>
-               <div className={`${styles.noticeButtons}`}>
+               <div className={styles.noticeButtons}>
                   {delWarning ? (
                      <>
                         <button
