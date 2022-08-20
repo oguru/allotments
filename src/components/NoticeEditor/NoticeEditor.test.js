@@ -1,12 +1,7 @@
-import React from "react";
-import {render} from "@testing-library/react";
 import NoticeEditor from "./NoticeEditor";
-import {mount} from "enzyme";
-import {checkProps, findByTestAttr} from "../../util/utils";
+import {checkProps} from "../../util/utils";
 
 describe("NoticeEditor tests", () => {
-   let component;
-
    const testProps = {
       handleSave: () => jest.fn(),
       handleCancel: () => jest.fn(),
@@ -17,15 +12,6 @@ describe("NoticeEditor tests", () => {
          date: "24/2/21"
       }
    };
-
-   beforeEach(() => {
-      component = mount(<NoticeEditor
-         item={testProps.item}
-         handleSave={testProps.handleSave}
-         handleCancel={testProps.handleCancel}
-      />);
-
-   });
 
    test("NoticeEditor PropTypes check should not throw a warning", () => {
       const propsErr = checkProps(NoticeEditor, testProps);

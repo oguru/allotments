@@ -11,94 +11,95 @@
     transform: translateX(80px);
     opacity: 0;
     width: 250px;
-
-    .articleBoxBot.articlePreview {
-        background-color: $secondary-color-light;
-        transform: scaleY(1) translateY(0);
-    }
-
-    .articleBoxBot {
-        background-color: $secondary-color;
-        border-top-left-radius: 0.25rem;
-        border-top-right-radius: 0.25rem;
-        bottom: 0;
-        height: 40px;
-        position: absolute;
-        transform: scaleY(0.5) translateY(50%);
-        transition: 0.6s ease-in-out;
-
-        p.articlePreview {
-            transform: scaleY(1) translateY(-37.5px);
-        }
-
-        p {
-            color: $bg-color;
-            font-size: 20px;
-            font-weight: bold;
-            line-height: 40px;
-            text-align: center;
-            transition: 0.6s ease-in-out;
-            transform: scaleY(1.5) translateY(0px);
-            width: 250px;
-        }
-
-        .arrowUp.articlePreview {
-            opacity: 0;
-            transform: scaleY(1) translateY(-40px);
-        }
-
-        .arrowUp {
-            color: white;
-            margin-top: 7.5px;
-            height: 25px;
-            width: 100%;
-            transform: scaleY(2) translateY(0);
-            transition: 0.6s ease-in-out;
-        }
-    }
-
-    .articleBoxText.articlePreview {
-        border-top-left-radius: 0.25rem;
-        border-top-right-radius: 0.25rem;
-        transform: translateY(-50px);
-    }
-
-    .articleBoxText {
-        background-color: $bg-color;
-        border-radius: 0;
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        font-size: 16px;
-        height: 180px;
-        line-height: 1.25rem;
-        padding: 0.625rem;
-        transition: 0.6s ease-in-out;
-        transform: translateY(0);
-            
-        p {
-            display: -webkit-box;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            -webkit-box-orient: vertical;
-        }
-    }
-
-    .articleImg.articlePreview {
-        transform: scale(1.08);
-        filter: saturate(140%);
-    }
-
-    .articleImg {
-        min-width: 100%;
-        height: 50%;
-        overflow: hidden;
-        transition: 0.6s ease-in-out;
-        transform: scale(1);
-    }
 }
 
 .articleBox.showBox {
     transform: translateX(0px);
     opacity: 1;
 }
+
+.articleBoxBot.articlePreview {
+    background-color: $secondary-color-light;
+    transform: scaleY(1) translateY(0);
+}
+
+.articleBoxBot {
+    background-color: $secondary-color;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    bottom: 0;
+    height: 40px;
+    position: absolute;
+    transform: scaleY(0.5) translateY(50%);
+    transition: 0.6s ease-in-out;
+
+    p.articlePreview {
+        transform: scaleY(1) translateY(-37.5px);
+    }
+
+    p {
+        color: $bg-color;
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 40px;
+        text-align: center;
+        transition: 0.6s ease-in-out;
+        transform: scaleY(1.5) translateY(0px);
+        width: 250px;
+    }
+}
+
+.arrowUp.articlePreview {
+    opacity: 0;
+    transform: scaleY(1) translateY(-40px);
+}
+
+.arrowUp {
+    color: white;
+    margin-top: 7.5px;
+    height: 25px;
+    width: 100%;
+    transform: scaleY(2) translateY(0);
+    transition: 0.6s ease-in-out;
+}
+
+.articleBoxText.articlePreview {
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    transform: translateY(-50px);
+}
+
+.articleBoxText {
+    background-color: $bg-color;
+    border-radius: 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    height: 180px;
+    line-height: 1.25rem;
+    padding: 0.625rem;
+    transition: 0.6s ease-in-out;
+    transform: translateY(0);
+        
+    p {
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+    }
+}
+
+.articleImg.articlePreview {
+    transform: scale(1.08);
+    filter: saturate(140%);
+}
+
+.articleImg {
+    min-width: 100%;
+    height: 50%;
+    overflow: hidden;
+    transition: 0.6s ease-in-out;
+    transform: scale(1);
+}
+

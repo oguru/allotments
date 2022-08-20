@@ -30,12 +30,6 @@ img {
     }
 }
 
-// .ulStyle {
-//     border: red solid 10px;
-// }
-
-// about/article layout
-
 ul {
     columns: 1;
     font-size: 16px;
@@ -106,11 +100,11 @@ p.imgCaption {
 .splitImgCont {
     margin-bottom: 1rem;
     margin-top: 2rem;
+}
 
-    .splitImage {
-        margin-bottom: 1rem;
-        width: 100%;
-    }
+.splitImage {
+    margin-bottom: 1rem;
+    width: 100%;
 }
 
 .imageGridCont {
@@ -122,14 +116,60 @@ p.imgCaption {
     width: 100%;
     min-height: 100%;
     padding: 2rem 0;
+}
+
+.gridBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: fit-content;
+    width: 100%;
+    margin: 0.5rem;
+
+    img {
+        object-fit: contain;
+        object-position: 50% 50%;
+        width: 100%;
+        flex-grow: 1;
+        margin-bottom: 0.5rem;
+    }
+
+    p {
+        height: fit-content;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    ul {
+        columns: 2;
+    }
+
+    .floatLeft,
+    .floatRight {
+        margin-top: 0;
+        margin-bottom: 0.25rem;
+        width: 33%;
+    }
+
+    .splitImgCont {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .splitImage {
+        width: 48%;
+    }
+
+}
+
+@media only screen and (min-width: 992px) {
+    ul {
+        columns: 3;
+    }
     
     .gridBox {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        height: fit-content;
-        width: 100%;
-        margin: 0.5rem;
+        width: calc(50% - 1rem);
 
         img {
             object-fit: contain;
@@ -145,77 +185,8 @@ p.imgCaption {
     }
 }
 
-
-// .articleHead {
-//     h4 {
-//         font-weight: bold;
-//     }
-
-//     h5 {
-//         margin-bottom: 1rem;
-//     }
-// }
-
-
-@media only screen and (min-width: 768px) {
-
-        ul {
-            columns: 2;
-        }
-    
-        .floatLeft,
-        .floatRight {
-            margin-top: 0;
-            margin-bottom: 0.25rem;
-            width: 33%;
-        }
-    
-        .splitImgCont {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-    
-            .splitImage {
-                // object-fit: cover;
-                width: 48%;
-            }
-        }
-
-}
-
-@media only screen and (min-width: 992px) {
-
-    ul {
-        columns: 3;
-    }
-
-    .imageGridCont {
-        
-        .gridBox {
-            width: calc(50% - 1rem);
-    
-            img {
-                object-fit: contain;
-                object-position: 50% 50%;
-                // height: 350px;
-                // max-height: 350px;
-                // min-height: 350px;
-                width: 100%;
-                flex-grow: 1;
-                margin-bottom: 0.5rem;
-            }
-    
-            p {
-                height: fit-content;
-            }
-        }
-    }
-}
-
 @media only screen and (min-width: 1536px) {
-
-        .splitImage {
-            width: 50%;
-        }
-
+    .splitImage {
+        width: 50%;
+    }
 }
