@@ -1,3 +1,4 @@
+import "firebase/auth";
 import React, {useState, useEffect} from "react";
 import {checkAuth, firestore} from "../../services/firebase.js";
 import AdminNotice from "../../components/AdminNotice";
@@ -6,11 +7,11 @@ import Hero from "../../components/Hero";
 import Notice from "../../components/Notice";
 import PropTypes from "prop-types";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-import adminImg from "../../images/admin-main-lg.jpg";
-import adminImgSm from "../../images/admin-main-sm.jpg";
+import {adminImages} from "../../images/imageExports";
 import {faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import styles from "./Admin.module.scss";
+import {useImageSize} from "../../context/imageSizeContext.js";
 
 const Admin = ({notices}) => {
    Admin.propTypes = {
@@ -25,6 +26,10 @@ const Admin = ({notices}) => {
    const [loggedIn, setLoggedIn] = useState(false);
    const [newNotice, setNewNotice] = useState(false);
    const [loginError, setLoginError] = useState(null);
+
+   const img = adminImages;
+   const {getImageSize} = useImageSize();
+   const imgSize = getImageSize("admin");
 
    useEffect(() => {
       return firebase.auth().onAuthStateChanged((user) => {
@@ -57,8 +62,8 @@ const Admin = ({notices}) => {
       id: "admin",
       heroTitle: "Admin",
       heroSubtitle: subtitle,
-      image: adminImg,
-      imageSm: adminImgSm,
+      image: img.mainImg[imgSize],
+      imageInit: imgSize === "sm" ? null : img.mainImg.sm,
       imageTint: 0.1
    };
 
@@ -99,7 +104,7 @@ const Admin = ({notices}) => {
    const firebaseUiConfig = {
       signInFlow: "popup",
       callbacks: {
-         signInSuccess: () => false
+         signInSuccessWithAuthResult: () => false
       },
       signInOptions: [
          firebase.auth.GoogleAuthProvider.PROVIDER_ID
@@ -110,10 +115,7 @@ const Admin = ({notices}) => {
       <>
          <Hero content={heroContent}>
             {!loggedIn || loginError ? (
-               <div
-                  className={"login-container"
-                  }
-               >
+               <div className="login-container">
                   <StyledFirebaseAuth
                      uiConfig={firebaseUiConfig}
                      firebaseAuth={firebase.auth()}
@@ -140,7 +142,7 @@ const Admin = ({notices}) => {
             )}
          </Hero>
          <section className="container">
-            <div className={`${styles.noticeSection}`}>
+            <div className={styles.noticeSection}>
                {loggedIn && (
                   <>
                      <h4>Add New Notice</h4>
@@ -150,7 +152,7 @@ const Admin = ({notices}) => {
                            onClick={() => setNewNotice(true)}
                         >
                            <button
-                              className={`${styles.addButton}`}></button>
+                              className={styles.addButton}></button>
                            <span>Add Notice</span>
                         </div>
                      ) : (
@@ -163,7 +165,7 @@ const Admin = ({notices}) => {
                   </>
                )}
             </div>
-            <div className={`${styles.noticeSection}`}>
+            <div className={styles.noticeSection}>
                {loggedIn &&
                   <h4>Edit Notices</h4>
                }
@@ -172,12 +174,12 @@ const Admin = ({notices}) => {
                      handleDelete={deleteNotice}
                      handleSave={modifyNotice}
                      item={item}
-                     key={`${item.id}`}
+                     key={item.id}
                   />
                ) : (
                   <Notice
                      item={item}
-                     key={`${item.id}`}
+                     key={item.id}
                   />))}
             </div>
          </section>

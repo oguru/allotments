@@ -4,22 +4,21 @@ import React from "react";
 let count = 0;
 
 const buildEl = (el, article) => {
-   const imgCaption = el.caption ? `${"imgCaption"}` : "";
+   const imgCaption = el.caption ? "imgCaption" : "";
 
    if (el.floatImage) {
       return (
-         <>
+         <React.Fragment key={`${article || "about"}${count++}`}>
             <GhostImageWrapper
                alt={el.alt}
                classes={`
                     ${el.floatDir} 
                     ${imgCaption}`
                }
-               key={`${article || "about"}${count++}`}
                src={el.floatImage}
             />
             {el.content.map(subEl => buildEl(subEl))}
-         </>
+         </React.Fragment>
       );
    }
 
@@ -29,44 +28,41 @@ const buildEl = (el, article) => {
              <h5>{el.subHeading}</h5>
          }
          {el.bold &&
-             <p className={`
-                ${"bold"} 
-                ${"articleTxt"}`
-             }>
+             <p className="bold articleTxt">
                 {el.bold}
              </p>
          }
          {el.li &&
-             <ul className={"ulStyle"}>
+             <ul className="ulStyle">
                 {el.li.map(li => <li key={li}>{li}</li>)}
              </ul>
          }
          {el.liText &&
-             <ul className={"liText"}>
+             <ul className="liText">
                 {el.liText.map(liText => <li key={liText}>{liText}</li>)}
              </ul>
          }
          {el.imageSm && el.imageLg &&
             <GhostImageWrapper
                alt={el.alt}
-               classes={`${"blockImg"} ${imgCaption}`}
+               classes={`blockImg ${imgCaption}`}
                srcSet={`${el.imageSm} 300w, ${el.imageLg} 1024w`}
                src={el.imageSm}
             />
          }
          {el.splitImage &&
              <div className={`
-                ${"splitImgCont"} 
+                splitImgCont 
                 ${imgCaption}`
              }>
                 <GhostImageWrapper
                    alt={el.splitImage.img1.alt}
-                   classes={"splitImage"}
+                   classes="splitImage"
                    src={el.splitImage.img1.img}
                 />
                 <GhostImageWrapper
                    alt={el.splitImage.img2.alt}
-                   classes={"splitImage"}
+                   classes="splitImage"
                    src={el.splitImage.img2.img}
                 />
              </div>
@@ -74,14 +70,14 @@ const buildEl = (el, article) => {
          {el.text &&
              <p className={`
                 ${imgCaption} 
-                ${"articleTxt"}`
+                articleTxt`
              }>
                 {el.text}
              </p>
          }
          {el.link &&
              <a
-                className={"articleLink"}
+                className="articleLink"
                 href={el.link}
                 rel="noreferrer"
                 target="_blank"
@@ -90,14 +86,14 @@ const buildEl = (el, article) => {
              </a>
          }
          {el.imageGrid &&
-         <div className={"imageGridCont"}>
+         <div className="imageGridCont">
             {el.imageGrid.map(({img, text, alt}) => {
                return (
                   <div key={img}
                      className="gridBox"
                   >
                      <GhostImageWrapper classes="gridImage" src={img} alt={alt} />
-                     <p className={"imgCaption articleTxt"}>{text || ""}</p>
+                     <p className="imgCaption articleTxt">{text || ""}</p>
                   </div>
                );
             })}

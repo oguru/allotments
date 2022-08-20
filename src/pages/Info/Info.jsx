@@ -2,8 +2,7 @@ import React, {useState} from "react";
 import Hero from "../../components/Hero";
 import Notice from "../../components/Notice";
 import PropTypes from "prop-types";
-import grassTexture from "../../images/info-grass-texture.jpg";
-import {infoImages} from "../../images/imageImports";
+import {infoImages} from "../../images/imageExports";
 import {plotData} from "../../data/plotData";
 import styles from "./Info.module.scss";
 import {useImageSize} from "../../context/imageSizeContext";
@@ -36,7 +35,7 @@ const Info = ({notices}) => {
             <h3 className="mb-4">Notices</h3>
             {notices.map(item => (
                <Notice
-                  key={`${item.id}`}
+                  key={item.id}
                   item={item}
                />
             ))}
@@ -74,6 +73,8 @@ const PlotInfo = () => {
    const [metreMeasure, setMetreMeasure] = useState(true);
    const [plotType, setPlotType] = useState("sm");
 
+   const img = infoImages;
+
    const plotMinSm = plotType === "min" ?
       styles.plotMin : plotType === "sm" ?
          styles.plotSm : "";
@@ -91,7 +92,7 @@ const PlotInfo = () => {
                         <img
                            alt="Grass texture"
                            className={styles.grassTexture}
-                           src={grassTexture}
+                           src={img.textures.grass}
                         />
                      </div>
                      <div className={`

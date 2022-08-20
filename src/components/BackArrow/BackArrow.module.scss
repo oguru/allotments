@@ -18,40 +18,40 @@
         line-height: 25px;
         margin: 0 0.5rem;
     }
-    
-    .backArrow {
-        height: 25px;
-        font-size: 24px;
-        text-align: left;
-    }
+}
 
-    .backBorder {
-        content: "";
-        display: inline-block;
-        height: 25px;
-        min-width: 65px;
-        position: absolute;
-        transform: translateX(0px);
-        transition: 0.4s;
-    }
+.backArrow {
+    height: 25px;
+    font-size: 24px;
+    text-align: left;
+}
 
-    .backBorderDark {
-        border-bottom: solid 1px rgba(0, 0, 0, 0.534);
-        border-top: solid 1px rgba(0, 0, 0, 0.534);
-    }
+.backBorder {
+    content: "";
+    display: inline-block;
+    height: 25px;
+    min-width: 65px;
+    position: absolute;
+    transform: translateX(0px);
+    transition: 0.4s;
+}
 
-    .backBorderLight {
-        border-bottom: solid 1px rgba(255, 255, 255, 0.534);
-        border-top: solid 1px rgba(255, 255, 255, 0.534);
-    }
+.backBorderDark {
+    border-bottom: solid 1px rgba(0, 0, 0, 0.534);
+    border-top: solid 1px rgba(0, 0, 0, 0.534);
+}
 
-    .backHoverDark {
-        border-color: black;
-        transform: translateX(20px);
-    }
+.backBorderLight {
+    border-bottom: solid 1px rgba(255, 255, 255, 0.534);
+    border-top: solid 1px rgba(255, 255, 255, 0.534);
+}
 
-    .backHoverLight {
-        border-color: white;
-        transform: translateX(20px);
-    }
+.backHoverDark {
+    border-color: black;
+    transform: translateX(20px);
+}
+
+.backHoverLight {
+    border-color: white;
+    transform: translateX(20px);
 }

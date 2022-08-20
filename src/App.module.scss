@@ -15,98 +15,94 @@
   flex-direction: column;
   height: 100%;
   
-  .mainBody {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: center;
-    margin: 0.5rem 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-    position: relative;
-    
-    .exit {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    
-    .exitActive {
-      opacity: 0;
-      transition: 350ms linear 150ms;
-      transform: translateX(-1.5%);
-    }
+}
 
-    .exitDone {
-      opacity: 0;
-      transition: 350ms linear 150ms;
-      transform: translateX(-1.5%);
-    }
+.mainBody {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  margin: 0.5rem 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+}
 
-    .enter {
-      opacity: 0;
-      transform: translateX(1.5%);
-    }
-    
-    .enterActive {
-      opacity: 1;
-      transition: 300ms linear 500ms;
-      transform: translateX(0);
-    }
+.exit {
+  opacity: 1;
+  transform: translateX(0);
+}
 
-    .enterDone {
-      opacity: 1;
-      transition: 300ms linear 500ms;
-      transform: translateX(0);
-    }
+.exitActive {
+  opacity: 0;
+  transition: 350ms linear 150ms;
+  transform: translateX(-1.5%);
+}
 
-    .mainPage {
-      height: 100%;
-      position: absolute;
-      width: 100%;
+.exitDone {
+  opacity: 0;
+  transition: 350ms linear 150ms;
+  transform: translateX(-1.5%);
+}
 
-      .pageCont {
-        scroll-behavior: smooth;
-        height: 100%;
-        overflow-x: hidden;
-        position: relative;
-        scroll-behavior: smooth;
-      }
-    }
+.enter {
+  opacity: 0;
+  transform: translateX(1.5%);
+}
 
-    .preCacheHidden {
-      display: none;
-    }
-  }
+.enterActive {
+  opacity: 1;
+  transition: 300ms linear 500ms;
+  transform: translateX(0);
+}
 
-  .footerStyles {
-      background-color:$primary-color;
-      padding: 0.625rem;
+.enterDone {
+  opacity: 1;
+  transition: 300ms linear 500ms;
+  transform: translateX(0);
+}
 
-      p {
+.mainPage {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.pageCont {
+  height: 100%;
+  overflow-x: hidden;
+  position: relative;
+  scroll-behavior: smooth;
+}
+
+.preCacheHidden {
+  display: none;
+}
+
+.footerStyles {
+    background-color:$primary-color;
+    padding: 0.625rem;
+
+    p {
+        color: white;
+        font-size: 0.875rem;
+        margin: 0;
+        text-align: center;
+
+        a {
           color: white;
-          font-size: 0.875rem;
-          margin: 0;
-          text-align: center;
-
-          a {
-            color: white;
-            text-decoration: none;
-          }
-      }
-  }
+          text-decoration: none;
+        }
+    }
 }
 
 @include media-breakpoint-up(md) {
-  .app {
-    .mainBody {
-      .exitActive {
-        transition: 200ms linear 0ms;
-      }
-  
-      .enterActive {
-        transition: 300ms linear 100ms;
-      }
-    }
+  .exitActive {
+    transition: 200ms linear 0ms;
+  }
+
+  .enterActive {
+    transition: 300ms linear 100ms;
   }
 }

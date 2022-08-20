@@ -1,5 +1,5 @@
 import GhostImageWrapper from "./GhostImageWrapper";
-import InfoMainImg from "../../images/info-main.jpg";
+import InfoMainImg from "../../images/main/info/info-main.jpg";
 import React from "react";
 import {findByTestAttr} from "../../util/utils";
 import {mount} from "enzyme";

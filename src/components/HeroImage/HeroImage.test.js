@@ -3,8 +3,8 @@
 import {checkProps, findByTestAttr} from "../../util/utils";
 import HeroImage from "./HeroImage";
 import React from "react";
-import image from "../../images/articles-main-lg.jpg";
-import imageInit from "../../images/articles-main-sm.jpg";
+import image from "../../images/main/articles/articles-main-lg.jpg";
+import imageInit from "../../images/main/articles/articles-main-sm.jpg";
 import mount from "enzyme/mount";
 
 describe("HeroImage tests", () => {

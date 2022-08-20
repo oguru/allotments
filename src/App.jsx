@@ -1,6 +1,6 @@
 import "./firebaseui-styling.global.css";
 import React, {useEffect, useState, useRef} from "react";
-import {homeImages, mainImagesInit} from "./images/imageImports.js";
+import {homeImages, mainImagesInit} from "./images/imageExports.js";
 import About from "./pages/About";
 import Admin from "./pages/Admin";
 import Articles from "./pages/Articles";
@@ -25,6 +25,10 @@ const App = () => {
    const [isLoading, setIsLoading] = useState(true);
    const {isMobileNav} = useScreenSize();
    const {getImageSize} = useImageSize();
+   const aboutRef = useRef(null);
+   const infoRef = useRef(null);
+   const articlesRef = useRef(null);
+   const homeRef = useRef(null);
 
    const homeImgSize = getImageSize("home");
    const homeImage = homeImages.mainImg[homeImgSize];
@@ -33,6 +37,12 @@ const App = () => {
       {src: homeImage,
          id: "home"}
    ];
+   const pageRefs = {
+      about: aboutRef,
+      info: infoRef,
+      articles: articlesRef,
+      home: homeRef
+   };
 
    useEffect(() => {
       if (!isLoading) {
@@ -124,7 +134,7 @@ const App = () => {
                            src={img.src}
                            onLoad={imageLoaded}
                            key={img.id}
-                           alt={"hidden initialiser"}
+                           alt="hidden initialiser"
                         />
                      ))}
                   </div>
@@ -140,19 +150,19 @@ const App = () => {
                            <CSSTransition
                               classNames={{...styles}}
                               in={match != null}
+                              nodeRef={pageRefs[route.name.toLowerCase()]}
                               timeout={isMobileNav ? 800 : 400}
                               unmountOnExit
                            >
                               <div
                                  className={styles.mainPage}
                                  data-test="pageComponent"
+                                 ref={pageRefs[route.name.toLowerCase()]}
                               >
                                  {route.name === "Articles" ?
                                     components[route.name] :
                                     (
-                                       <div
-                                          className={styles.pageCont}
-                                       >
+                                       <div className={styles.pageCont}>
                                           {components[route.name]}
                                        </div>
 

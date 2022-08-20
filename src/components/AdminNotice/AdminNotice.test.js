@@ -5,12 +5,7 @@ import {mount} from "enzyme";
 
 describe("AdminNotice tests", () => {
    let component;
-   const mockNotice = {
-      date: "26/07/2022",
-      desc: "test notice description",
-      id: "yPeQtmygeVZFt0Cb898R",
-      title: "test notice title"
-   };
+   let mockNotice = {};
 
    const mockHandleSave = jest.fn();
    const mockHandleCancel = jest.fn();
@@ -25,6 +20,13 @@ describe("AdminNotice tests", () => {
    };
 
    beforeEach(() => {
+      mockNotice = {
+         date: "26/07/2022",
+         desc: "test notice description",
+         id: "yPeQtmygeVZFt0Cb898R",
+         title: "test notice title"
+      };
+
       component = mount(<AdminNotice
          handleSave={mockHandleSave}
          newNotice={testProps.newNotice}
