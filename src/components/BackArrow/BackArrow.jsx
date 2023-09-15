@@ -6,11 +6,6 @@ import styles from "./BackArrow.module.scss";
 
 const BackArrow = ({arrowStyle, handleClick}) => {
 
-   BackArrow.propTypes = {
-      arrowStyle: PropTypes.string,
-      handleClick: PropTypes.func.isRequired
-   };
-
    const [backHoverStyle, setBackHoverStyle] = useState("");
 
    return (
@@ -35,6 +30,11 @@ const BackArrow = ({arrowStyle, handleClick}) => {
          <p>BACK</p>
       </div>
    );
+};
+
+BackArrow.propTypes = {
+   arrowStyle: PropTypes.string,
+   handleClick: PropTypes.func.isRequired
 };
 
 export default BackArrow;

@@ -8,10 +8,6 @@ import styles from "./Info.module.scss";
 import {useImageSize} from "../../context/imageSizeContext";
 
 const Info = ({notices}) => {
-   Info.propTypes = {
-      notices: PropTypes.array
-   };
-
    const img = infoImages;
    const {getImageSize} = useImageSize();
    const imgSize = getImageSize("info");
@@ -67,6 +63,10 @@ const Info = ({notices}) => {
          </section>
       </>
    );
+};
+
+Info.propTypes = {
+   notices: PropTypes.array
 };
 
 const PlotInfo = () => {

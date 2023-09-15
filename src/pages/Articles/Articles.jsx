@@ -10,10 +10,6 @@ import styles from "./Articles.module.scss";
 import {useImageSize} from "../../context/imageSizeContext";
 
 const Articles = ({articlesJsx}) => {
-   Articles.propTypes = {
-      articlesJsx: PropTypes.arrayOf(PropTypes.object)
-   };
-
    const pageContRef = React.useRef(null);
    const currentArticle = useRef(articlesJsx[0]);
    const scrollPos = useRef(0);
@@ -128,6 +124,10 @@ const Articles = ({articlesJsx}) => {
          </div>
       </>
    );
+};
+
+Articles.propTypes = {
+   articlesJsx: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default Articles;

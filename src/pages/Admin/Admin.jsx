@@ -14,15 +14,6 @@ import styles from "./Admin.module.scss";
 import {useImageSize} from "../../context/imageSizeContext.js";
 
 const Admin = ({notices}) => {
-   Admin.propTypes = {
-      notices: PropTypes.arrayOf(PropTypes.shape({
-         date: PropTypes.string,
-         desc: PropTypes.string,
-         id: PropTypes.string,
-         title: PropTypes.string
-      }))
-   };
-
    const [loggedIn, setLoggedIn] = useState(false);
    const [newNotice, setNewNotice] = useState(false);
    const [loginError, setLoginError] = useState(null);
@@ -185,6 +176,15 @@ const Admin = ({notices}) => {
          </section>
       </>
    );
+};
+
+Admin.propTypes = {
+   notices: PropTypes.arrayOf(PropTypes.shape({
+      date: PropTypes.string,
+      desc: PropTypes.string,
+      id: PropTypes.string,
+      title: PropTypes.string
+   }))
 };
 
 export default Admin;

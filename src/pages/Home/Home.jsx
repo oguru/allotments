@@ -3,10 +3,6 @@ import PropTypes from "prop-types";
 import React from "react";
 
 const Home = ({image}) => {
-
-   Home.propTypes = {
-      image: PropTypes.string
-   };
    const heroContent = {
       id: "home",
       heroTitle: "Welcome to Francis Road Allotments",
@@ -19,6 +15,10 @@ const Home = ({image}) => {
    return (
       <Hero content={heroContent} />
    );
+};
+
+Home.propTypes = {
+   image: PropTypes.string
 };
 
 export default Home;

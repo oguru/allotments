@@ -8,11 +8,6 @@ import {useScreenSize} from "../../context/screenSizeContext";
 const Article = (props) => {
    const {handleCloseArticle, content} = props;
 
-   Article.propTypes = {
-      handleCloseArticle: PropTypes.func,
-      content: PropTypes.object
-   };
-
    const {screenSize: imgSize} = useScreenSize();
 
    const heroContent = {
@@ -50,6 +45,11 @@ const Article = (props) => {
          </article>
       </>
    );
+};
+
+Article.propTypes = {
+   handleCloseArticle: PropTypes.func,
+   content: PropTypes.object
 };
 
 export default Article;

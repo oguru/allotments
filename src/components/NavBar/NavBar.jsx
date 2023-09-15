@@ -11,10 +11,6 @@ import {useLocation} from "react-router-dom";
 import {useScreenSize} from "../../context/screenSizeContext";
 
 const NavBar = ({routes}) => {
-   NavBar.propTypes = {
-      routes: PropTypes.array.isRequired
-   };
-
    const [isNavOpen, setIsNavOpen] = useState(false);
    const [menuHeight, setMenuHeight] = useState("");
    const [pathName, setPathName] = useState("");
@@ -111,6 +107,10 @@ const NavBar = ({routes}) => {
          </div>
       </nav>
    );
+};
+
+NavBar.propTypes = {
+   routes: PropTypes.array.isRequired
 };
 
 export default NavBar;

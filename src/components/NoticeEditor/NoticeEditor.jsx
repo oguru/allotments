@@ -13,17 +13,6 @@ const NoticeEditor = (props) => {
       item
    } = props;
 
-   NoticeEditor.propTypes = {
-      handleSave: PropTypes.func,
-      handleCancel: PropTypes.func,
-      item: PropTypes.shape({
-         date: PropTypes.string,
-         desc: PropTypes.string,
-         id: PropTypes.string,
-         title: PropTypes.string
-      })
-   };
-
    const [title, setNewTitle] = useState(item?.title || "");
    const [desc, setNewDesc] = useState(item?.desc || "");
    const textareaRef = useRef(null);
@@ -89,6 +78,17 @@ const NoticeEditor = (props) => {
 
       </div>
    );
+};
+
+NoticeEditor.propTypes = {
+   handleSave: PropTypes.func,
+   handleCancel: PropTypes.func,
+   item: PropTypes.shape({
+      date: PropTypes.string,
+      desc: PropTypes.string,
+      id: PropTypes.string,
+      title: PropTypes.string
+   })
 };
 
 export default NoticeEditor;

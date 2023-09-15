@@ -12,13 +12,6 @@ const GhostImageWrapper = (props) => {
       src
    } = props;
 
-   GhostImageWrapper.propTypes = {
-      alt: PropTypes.string,
-      classes: PropTypes.string,
-      srcSet: PropTypes.string,
-      src: PropTypes.string
-   };
-
    const [isLoading, setIsLoading] = React.useState(true);
 
    return (
@@ -45,6 +38,13 @@ const GhostImageWrapper = (props) => {
          />
       </>
    );
+};
+
+GhostImageWrapper.propTypes = {
+   alt: PropTypes.string,
+   classes: PropTypes.string,
+   srcSet: PropTypes.string,
+   src: PropTypes.string
 };
 
 export default GhostImageWrapper;

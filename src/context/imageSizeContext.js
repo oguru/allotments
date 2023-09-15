@@ -9,10 +9,6 @@ export const useImageSize = () => {
 };
 
 export default function ImageSizeProvider({children}) {
-   ImageSizeProvider.propTypes = {
-      children: PropTypes.node
-   };
-
    const {screenSize} = useScreenSize();
    const maxLoadedImageSize = useRef({
       home: screenSize
@@ -45,3 +41,7 @@ export default function ImageSizeProvider({children}) {
       </ImageSizeContext.Provider>
    );
 }
+
+ImageSizeProvider.propTypes = {
+   children: PropTypes.node
+};

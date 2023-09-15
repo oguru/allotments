@@ -10,13 +10,6 @@ const HeroImage = (props) => {
       imageInit
    } = props;
 
-   HeroImage.propTypes = {
-      homeStyle: PropTypes.string,
-      imageTint: PropTypes.number,
-      image: PropTypes.string,
-      imageInit: PropTypes.string
-   };
-
    const [isLoaded, setIsLoaded] = useState(false);
 
    useEffect(() => {
@@ -73,6 +66,13 @@ const HeroImage = (props) => {
          </div>
       </>
    );
+};
+
+HeroImage.propTypes = {
+   homeStyle: PropTypes.string,
+   imageTint: PropTypes.number,
+   image: PropTypes.string,
+   imageInit: PropTypes.string
 };
 
 export default HeroImage;

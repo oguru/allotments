@@ -11,13 +11,6 @@ const NavLink = (props) => {
       path
    } = props;
 
-   NavLink.propTypes = {
-      handleCloseNav: PropTypes.func.isRequired,
-      linkStyle: PropTypes.string,
-      linkText: PropTypes.string.isRequired,
-      path: PropTypes.string.isRequired
-   };
-
    return (
       <div
          className={styles.navbarLink}
@@ -37,6 +30,13 @@ const NavLink = (props) => {
          </Link>
       </div>
    );
+};
+
+NavLink.propTypes = {
+   handleCloseNav: PropTypes.func.isRequired,
+   linkStyle: PropTypes.string,
+   linkText: PropTypes.string.isRequired,
+   path: PropTypes.string.isRequired
 };
 
 export default NavLink;

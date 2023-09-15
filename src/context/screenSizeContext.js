@@ -8,10 +8,6 @@ export const useScreenSize = () => {
 };
 
 export default function ScreenSizeProvider({children}) {
-   ScreenSizeProvider.propTypes = {
-      children: PropTypes.node
-   };
-
    const [screenSize, setScreenSize] = useState();
    const [mobileNav, setMobileNav] = useState(false);
 
@@ -70,3 +66,7 @@ export default function ScreenSizeProvider({children}) {
       </ScreenSizeContext.Provider>
    );
 }
+
+ScreenSizeProvider.propTypes = {
+   children: PropTypes.node
+};

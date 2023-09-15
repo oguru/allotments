@@ -20,19 +20,6 @@ const Hero = (props) => {
       }
    } = props;
 
-   Hero.propTypes = {
-      children: PropTypes.node,
-      content: PropTypes.shape({
-         id: PropTypes.string,
-         heroSubtitle: PropTypes.string,
-         heroTitle: PropTypes.string,
-         imageInit: PropTypes.string,
-         image: PropTypes.string,
-         imageTint: PropTypes.number,
-         smallText: PropTypes.string
-      })
-   };
-
    const [animationClass, setAnimationClass] = useState("");
 
    const {
@@ -121,6 +108,19 @@ const Hero = (props) => {
          </div>
       </>
    );
+};
+
+Hero.propTypes = {
+   children: PropTypes.node,
+   content: PropTypes.shape({
+      id: PropTypes.string,
+      heroSubtitle: PropTypes.string,
+      heroTitle: PropTypes.string,
+      imageInit: PropTypes.string,
+      image: PropTypes.string,
+      imageTint: PropTypes.number,
+      smallText: PropTypes.string
+   })
 };
 
 export default Hero;

@@ -7,15 +7,6 @@ import styles from "./ArticleBox.module.scss";
 const ArticleBox = (props) => {
    const {previewImg, previewImgAlt, handleShowArticle, text = "", title, index} = props;
 
-   ArticleBox.propTypes = {
-      previewImg: PropTypes.string.isRequired,
-      previewImgAlt: PropTypes.string,
-      handleShowArticle: PropTypes.func.isRequired,
-      index: PropTypes.number,
-      text: PropTypes.string,
-      title: PropTypes.string.isRequired
-   };
-
    const [textLineCounts, setLineCounts] = useState(null);
    const [inAnimation, setInAnimation] = useState(false);
    const [preview, setPreviewClass] = useState("");
@@ -125,6 +116,15 @@ const ArticleBox = (props) => {
          </div>
       </article>
    );
+};
+
+ArticleBox.propTypes = {
+   previewImg: PropTypes.string.isRequired,
+   previewImgAlt: PropTypes.string,
+   handleShowArticle: PropTypes.func.isRequired,
+   index: PropTypes.number,
+   text: PropTypes.string,
+   title: PropTypes.string.isRequired
 };
 
 export default ArticleBox;

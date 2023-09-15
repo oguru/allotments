@@ -8,10 +8,6 @@ export const useStaticTxt = () => {
 };
 
 export default function StaticTxtProvider({children}) {
-   StaticTxtProvider.propTypes = {
-      children: PropTypes.arrayOf(PropTypes.node)
-   };
-
    const staticTxt = useRef({
       about: false,
       admin: true,
@@ -34,3 +30,7 @@ export default function StaticTxtProvider({children}) {
       </StaticTxtContext.Provider>
    );
 }
+
+StaticTxtProvider.propTypes = {
+   children: PropTypes.arrayOf(PropTypes.node)
+};

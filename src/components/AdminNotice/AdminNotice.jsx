@@ -13,14 +13,6 @@ const AdminNotice = (props) => {
       newNotice
    } = props;
 
-   AdminNotice.propTypes = {
-      handleCancel: PropTypes.func,
-      handleDelete: PropTypes.func,
-      handleSave: PropTypes.func,
-      item: PropTypes.object,
-      newNotice: PropTypes.bool
-   };
-
    const [delWarning, setDelWarning] = useState(false);
    const [editMode, setEditMode] = useState(false);
 
@@ -75,6 +67,14 @@ const AdminNotice = (props) => {
          )}
       </>
    );
+};
+
+AdminNotice.propTypes = {
+   handleCancel: PropTypes.func,
+   handleDelete: PropTypes.func,
+   handleSave: PropTypes.func,
+   item: PropTypes.object,
+   newNotice: PropTypes.bool
 };
 
 export default AdminNotice;
