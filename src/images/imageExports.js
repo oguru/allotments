@@ -1,6 +1,7 @@
 export {articleImages} from "./article/articleImages";
 
 export {
+   aboutArticleImages,
    aboutImages,
    adminImages,
    articlesImages,

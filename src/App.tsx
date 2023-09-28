@@ -165,7 +165,6 @@ const App = () => {
                                        <div className={styles.pageCont}>
                                           {components[route.name]}
                                        </div>
-
                                     )}
                               </div>
                            </CSSTransition>
