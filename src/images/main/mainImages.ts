@@ -51,7 +51,7 @@ type ImageType = {
    [key: string]: string;
 }
 
-type MainImageTypes = {
+export type MainImageTypes = {
    mainImg: {
       sm: string;
       md: string;

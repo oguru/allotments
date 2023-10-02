@@ -18,10 +18,12 @@ import {getContentJsx} from "./util/articleBuilder.jsx";
 import styles from "./App.module.scss";
 import {useImageSize} from "./context/imageSizeContext";
 import {useScreenSize} from "./context/screenSizeContext";
+import { MainImageTypes } from "./images/main/mainImages";
+import { FirestoreNoticeType, LocalNoticeType, RouteData } from "./types";
 
 const App = () => {
    const [articlesJsx, setArticlesJsx] = useState([]);
-   const [notices, setNotices] = useState([]);
+   const [notices, setNotices] = useState<LocalNoticeType[] | []>([]);
    const [isLoading, setIsLoading] = useState(true);
    const {isMobileNav} = useScreenSize();
    const {getImageSize} = useImageSize();
@@ -30,7 +32,7 @@ const App = () => {
    const articlesRef = useRef(null);
    const homeRef = useRef(null);
 
-   const homeImgSize = getImageSize("home");
+   const homeImgSize: keyof MainImageTypes["mainImg"] = getImageSize("home");
    const homeImage = homeImages.mainImg[homeImgSize];
    const updatedInitImages = [
       ...mainImagesInit,
@@ -52,7 +54,7 @@ const App = () => {
          firestore
             .collection("notices")
             .orderBy("date", "desc").onSnapshot(snapshot => {
-               const items = [];
+               const items = [] as LocalNoticeType[];
 
                snapshot.forEach(item => {
                   const itemDate = formatDate(item
@@ -63,17 +65,17 @@ const App = () => {
                   const id = item.id;
 
                   items.push({
-                     ...item.data(),
+                     ...(item.data() as FirestoreNoticeType),
                      date: itemDate,
                      id
-                  });
+                  } as LocalNoticeType);
                });
                setNotices(items);
             });
       }
    }, [isLoading]);
 
-   const routes = [
+   const routes: RouteData[] = [
       {
          path: "/",
          name: "Home"
@@ -141,7 +143,7 @@ const App = () => {
                   <LoadingSpinner isPrimary={true} />
                </> :
                <StaticTxtProvider>
-                  {routes.map(route => (
+                  {routes.map((route: RouteData) => (
                      <Route
                         key={route.path}
                         exact path={route.path}
