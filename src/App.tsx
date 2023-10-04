@@ -1,5 +1,5 @@
 import "./firebaseui-styling.global.css";
-import React, {useEffect, useState, useRef} from "react";
+import React, {useEffect, useState, useRef, ReactNode, RefObject} from "react";
 import {homeImages, mainImagesInit} from "./images/imageExports.js";
 import About from "./pages/About";
 import Admin from "./pages/Admin";
@@ -10,7 +10,7 @@ import Info from "./pages/Info";
 import LoadingSpinner from "./components/LoadingSpinner";
 import NavBar from "./components/NavBar";
 import {Route} from "react-router-dom";
-import StaticTxtProvider from "./context/staticTxtContext.js";
+import StaticTxtProvider from "./context/staticTxtContext.tsx";
 import {articlesData} from "./data/contentData.js";
 import {firestore} from "./services/firebase.js";
 import {formatDate} from "./util/utils.js";
@@ -21,16 +21,22 @@ import {useScreenSize} from "./context/screenSizeContext";
 import { MainImageTypes } from "./images/main/mainImages";
 import { FirestoreNoticeType, LocalNoticeType, RouteData } from "./types";
 
+type RefElement = RefObject<JSX.Element | null>
+
+type PageRef = {
+   [key: string]: JSX.Element | null;
+}
+
 const App = () => {
    const [articlesJsx, setArticlesJsx] = useState([]);
    const [notices, setNotices] = useState<LocalNoticeType[] | []>([]);
    const [isLoading, setIsLoading] = useState(true);
    const {isMobileNav} = useScreenSize();
    const {getImageSize} = useImageSize();
-   const aboutRef = useRef(null);
-   const infoRef = useRef(null);
-   const articlesRef = useRef(null);
-   const homeRef = useRef(null);
+   const aboutRef = useRef<RefElement>(null);
+   const infoRef = useRef<RefElement>(null);
+   const articlesRef = useRef<RefElement>(null);
+   const homeRef = useRef<RefElement>(null);
 
    const homeImgSize: keyof MainImageTypes["mainImg"] = getImageSize("home");
    const homeImage = homeImages.mainImg[homeImgSize];
@@ -39,7 +45,7 @@ const App = () => {
       {src: homeImage,
          id: "home"}
    ];
-   const pageRefs = {
+   const pageRefs: PageRef = {
       about: aboutRef,
       info: infoRef,
       articles: articlesRef,
@@ -75,7 +81,7 @@ const App = () => {
       }
    }, [isLoading]);
 
-   const routes: RouteData[] = [
+   const routes: RouteData[] | JSX.Element[] = [
       {
          path: "/",
          name: "Home"
@@ -141,9 +147,9 @@ const App = () => {
                      ))}
                   </div>
                   <LoadingSpinner isPrimary={true} />
-               </> :
+               </> : 
                <StaticTxtProvider>
-                  {routes.map((route: RouteData) => (
+                  {routes.map((route: RouteData): JSX.Element => (
                      <Route
                         key={route.path}
                         exact path={route.path}

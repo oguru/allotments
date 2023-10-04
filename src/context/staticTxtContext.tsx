@@ -1,14 +1,32 @@
 import React, {useContext, useRef} from "react";
 import PropTypes from "prop-types";
 
-const StaticTxtContext = React.createContext();
+type StaticTxtProviderProps = {
+   children: JSX.Element[];
+ }
+ 
+ type StaticTxt = {
+   [key: string]: boolean;
+ }
+ 
+ type StaticTxtContextValue = {
+   staticTxt: StaticTxt;
+   updateStaticTxt: (pageName: string) => void;
+ }
+ 
+
+const StaticTxtContext = React.createContext<StaticTxtContextValue>(
+   {} as StaticTxtContextValue
+);
 
 export const useStaticTxt = () => {
    return useContext(StaticTxtContext);
 };
 
-export default function StaticTxtProvider({children}) {
-   const staticTxt = useRef({
+export default function StaticTxtProvider({
+   children
+}: StaticTxtProviderProps) {
+   const staticTxt = useRef<StaticTxt>({
       about: false,
       admin: true,
       article: true,
@@ -17,7 +35,7 @@ export default function StaticTxtProvider({children}) {
       info: false
    });
 
-   const updateStaticTxt = (pageName) => {
+   const updateStaticTxt = (pageName: string) => {
       staticTxt.current[pageName] = true;
    };
 
@@ -30,7 +48,3 @@ export default function StaticTxtProvider({children}) {
       </StaticTxtContext.Provider>
    );
 }
-
-StaticTxtProvider.propTypes = {
-   children: PropTypes.arrayOf(PropTypes.node)
-};
