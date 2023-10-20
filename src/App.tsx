@@ -1,5 +1,5 @@
 import "./firebaseui-styling.global.css";
-import React, {useEffect, useState, useRef, ReactNode, RefObject} from "react";
+import React, {useEffect, useState, useRef, ReactNode, RefObject, MutableRefObject} from "react";
 import {homeImages, mainImagesInit} from "./images/imageExports.js";
 import About from "./pages/About";
 import Admin from "./pages/Admin";
@@ -21,10 +21,10 @@ import {useScreenSize} from "./context/screenSizeContext";
 import { MainImageTypes } from "./images/main/mainImages";
 import { FirestoreNoticeType, LocalNoticeType, RouteData } from "./types";
 
-type RefElement = RefObject<JSX.Element | null>
+type RefElement = RefObject<HTMLDivElement | null>
 
 type PageRef = {
-   [key: string]: JSX.Element | null;
+   [key: string]: RefObject<HTMLDivElement>;
 }
 
 const App = () => {
@@ -33,10 +33,10 @@ const App = () => {
    const [isLoading, setIsLoading] = useState(true);
    const {isMobileNav} = useScreenSize();
    const {getImageSize} = useImageSize();
-   const aboutRef = useRef<RefElement>(null);
-   const infoRef = useRef<RefElement>(null);
-   const articlesRef = useRef<RefElement>(null);
-   const homeRef = useRef<RefElement>(null);
+   const aboutRef = useRef<HTMLDivElement>(null);
+   const infoRef = useRef<HTMLDivElement>(null);
+   const articlesRef = useRef<HTMLDivElement>(null);
+   const homeRef = useRef<HTMLDivElement>(null);
 
    const homeImgSize: keyof MainImageTypes["mainImg"] = getImageSize("home");
    const homeImage = homeImages.mainImg[homeImgSize];
@@ -45,6 +45,7 @@ const App = () => {
       {src: homeImage,
          id: "home"}
    ];
+
    const pageRefs: PageRef = {
       about: aboutRef,
       info: infoRef,

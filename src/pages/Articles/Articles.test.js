@@ -4,7 +4,7 @@ import ImageSizeProvider from "../../context/imageSizeContext";
 import MatchMediaMock from "jest-matchmedia-mock";
 import React from "react";
 import ScreenSizeProvider from "../../context/screenSizeContext";
-import StaticTxtProvider from "../../context/staticTxtContext.js";
+import StaticTxtProvider from "../../context/staticTxtContext.tsx";
 import {act} from "react-dom/test-utils";
 import {articlesData} from "../../data/contentData";
 import {getContentJsx} from "../../util/articleBuilder";
@@ -26,7 +26,7 @@ describe("Articles tests", () => {
       component = mount(<ScreenSizeProvider>
          <ImageSizeProvider>
             <StaticTxtProvider>
-                  [<Articles articlesJsx={articles} />]
+               <Articles articlesJsx={articles} />
             </StaticTxtProvider>
          </ImageSizeProvider>
       </ScreenSizeProvider>);

@@ -16,6 +16,10 @@ firebase.initializeApp(firebaseConfig);
 
 export const firestore = firebase.firestore();
 
+export const userName = () => firebase.auth().currentUser.displayName;
+
+export const signOut = () => firebase.auth().signOut();
+
 export const checkAuth = ({uid, handleSuccess, handleFail}) => {
    firestore
       .collection("users")
