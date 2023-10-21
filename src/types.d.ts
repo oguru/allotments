@@ -12,3 +12,11 @@ export type RouteData = {
     path: string;
     name: string;
 }
+
+export type ComponentObject = {
+    [key: string]: JSX.Element;
+}
+
+export type PageRef = {
+    [key: string]: RefObject<HTMLDivElement>;
+ }

@@ -1,6 +1,6 @@
 import React, {useContext, useRef} from "react";
 import PropTypes from "prop-types";
-import {useScreenSize} from "./screenSizeContext";
+import {useScreenSize} from "./screenSizeContext.tsx";
 
 const ImageSizeContext = React.createContext();
 

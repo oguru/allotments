@@ -6,7 +6,7 @@ import ImageSizeProvider from "./context/imageSizeContext";
 import React from "react";
 import ReactDOM from "react-dom";
 import {BrowserRouter as Router} from "react-router-dom";
-import ScreenSizeProvider from "./context/screenSizeContext";
+import ScreenSizeProvider from "./context/screenSizeContext.tsx";
 
 ReactDOM.render(
    <React.StrictMode>

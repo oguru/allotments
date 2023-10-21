@@ -8,7 +8,7 @@ import NavLink from "../NavLink";
 import PropTypes from "prop-types";
 import styles from "./NavBar.module.scss";
 import {useLocation} from "react-router-dom";
-import {useScreenSize} from "../../context/screenSizeContext";
+import {useScreenSize} from "../../context/screenSizeContext.tsx";
 
 const NavBar = ({routes}) => {
    const [isNavOpen, setIsNavOpen] = useState(false);

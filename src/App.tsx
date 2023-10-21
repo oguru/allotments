@@ -17,15 +17,9 @@ import {formatDate} from "./util/utils.js";
 import {getContentJsx} from "./util/articleBuilder.jsx";
 import styles from "./App.module.scss";
 import {useImageSize} from "./context/imageSizeContext";
-import {useScreenSize} from "./context/screenSizeContext";
+import {useScreenSize} from "./context/screenSizeContext.tsx";
 import { MainImageTypes } from "./images/main/mainImages";
-import { FirestoreNoticeType, LocalNoticeType, RouteData } from "./types";
-
-type RefElement = RefObject<HTMLDivElement | null>
-
-type PageRef = {
-   [key: string]: RefObject<HTMLDivElement>;
-}
+import { ComponentObject as JSXElementsObject, FirestoreNoticeType, LocalNoticeType, RouteData, PageRef as DivRefsObject } from "./types";
 
 const App = () => {
    const [articlesJsx, setArticlesJsx] = useState([]);
@@ -46,7 +40,7 @@ const App = () => {
          id: "home"}
    ];
 
-   const pageRefs: PageRef = {
+   const pageRefs: DivRefsObject = {
       about: aboutRef,
       info: infoRef,
       articles: articlesRef,
@@ -82,6 +76,16 @@ const App = () => {
       }
    }, [isLoading]);
 
+   const counter = useRef(0);
+
+   const imageLoaded = () => {
+      counter.current += 1;
+
+      if (counter.current >= updatedInitImages.length) {
+         setIsLoading(false);
+      }
+   };
+
    const routes: RouteData[] | JSX.Element[] = [
       {
          path: "/",
@@ -105,7 +109,7 @@ const App = () => {
       }
    ];
 
-   const components = {
+   const components: JSXElementsObject = {
       "About":
          <About />,
       "Admin":
@@ -118,21 +122,11 @@ const App = () => {
          <Info notices={notices} />
    };
 
-   const counter = useRef(0);
-
-   const imageLoaded = () => {
-      counter.current += 1;
-
-      if (counter.current >= updatedInitImages.length) {
-         setIsLoading(false);
-      }
-   };
-
    return (
       <div className={styles.app}>
          <NavBar routes={routes} />
          <section className={styles.mainBody}>
-            {isLoading ?
+            {isLoading ? (
                <>
                   <div
                      className={styles.preCacheHidden}
@@ -148,7 +142,8 @@ const App = () => {
                      ))}
                   </div>
                   <LoadingSpinner isPrimary={true} />
-               </> : 
+               </> 
+            ) : (
                <StaticTxtProvider>
                   {routes.map((route: RouteData): JSX.Element => (
                      <Route
@@ -181,7 +176,7 @@ const App = () => {
                      </Route>
                   ))}
                </StaticTxtProvider>
-            }
+            )}
          </section>
          <footer
             className={styles.footerStyles}

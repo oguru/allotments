@@ -1,14 +1,32 @@
 import React, {useContext, useEffect, useState} from "react";
-import PropTypes from "prop-types";
 
-const ScreenSizeContext = React.createContext();
+interface ScreenSizeContextValue {
+   screenSize: string;
+   mobileNav: boolean;
+}
+
+interface MediaQuery {
+   size: string;
+   query: MediaQueryList;
+}
+
+interface ScreenSizeProviderProps {
+   children: React.ReactNode;
+}
+
+type SizeQueries = {
+   size: string,
+   query: MediaQueryList
+}[]
+
+const ScreenSizeContext = React.createContext<ScreenSizeContextValue>({} as ScreenSizeContextValue);
 
 export const useScreenSize = () => {
    return useContext(ScreenSizeContext);
 };
 
-export default function ScreenSizeProvider({children}) {
-   const [screenSize, setScreenSize] = useState();
+const ScreenSizeProvider: React.FC<ScreenSizeProviderProps> = ({children}) => {
+   const [screenSize, setScreenSize] = useState("sm");
    const [mobileNav, setMobileNav] = useState(false);
 
    useEffect(() => {
@@ -16,7 +34,7 @@ export default function ScreenSizeProvider({children}) {
       const mQuerySmall = window.matchMedia("screen and (max-width: 575px)");
       const mQueryLarge = window.matchMedia("screen and (min-width: 992px)");
 
-      const sizeQueries = [
+      const sizeQueries: SizeQueries = [
          {size: "sm",
             query: mQuerySmall},
          {size: "lg",
@@ -31,24 +49,24 @@ export default function ScreenSizeProvider({children}) {
       mQueryLarge.addEventListener("change", () => handleMediaQuery(sizeQueries));
 
       return () => {
-         mobileNavQuery.removeEventListener("change", mobileNavQuery);
-         mQuerySmall.removeEventListener("change", mQuerySmall);
-         mQueryLarge.removeEventListener("change", mQueryLarge);
+         mobileNavQuery.removeEventListener("change", () => handleSetNav(mobileNavQuery));
+         mQuerySmall.removeEventListener("change", () => handleMediaQuery(sizeQueries));
+         mQueryLarge.removeEventListener("change", () => handleMediaQuery(sizeQueries));
       };
    }, []);
 
-   const handleMediaQuery = (mQueries) => {
+   const handleMediaQuery = (mQueries: SizeQueries) => {
       for (let i = 0; i < 2; i++) {
          if (mQueries[i].query.matches) {
             setScreenSize(mQueries[i].size);
-            return;
+            return;  
          }
       }
 
       setScreenSize("md");
    };
 
-   const handleSetNav = (mobileNavQuery) => {
+   const handleSetNav = (mobileNavQuery: MediaQueryList) => {
       if (mobileNavQuery.matches) {
          setMobileNav(true);
       } else {
@@ -67,6 +85,4 @@ export default function ScreenSizeProvider({children}) {
    );
 }
 
-ScreenSizeProvider.propTypes = {
-   children: PropTypes.node
-};
+export default ScreenSizeProvider;

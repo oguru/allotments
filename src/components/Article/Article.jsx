@@ -3,7 +3,7 @@ import Hero from "../Hero";
 import PropTypes from "prop-types";
 import React from "react";
 import styles from "./Article.module.scss";
-import {useScreenSize} from "../../context/screenSizeContext";
+import {useScreenSize} from "../../context/screenSizeContext.tsx";
 
 const Article = (props) => {
    const {handleCloseArticle, content} = props;
