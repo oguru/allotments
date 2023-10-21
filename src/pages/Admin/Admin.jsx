@@ -142,6 +142,7 @@ const Admin = ({notices}) => {
                            onClick={() => setNewNotice(true)}
                         >
                            <button
+                              data-test="addNoticeBtn"
                               className={styles.addButton}></button>
                            <span>Add Notice</span>
                         </div>
@@ -168,6 +169,7 @@ const Admin = ({notices}) => {
                   />
                ) : (
                   <Notice
+                     data-test="readOnlyNotice"
                      item={item}
                      key={item.id}
                   />))}
