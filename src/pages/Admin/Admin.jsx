@@ -10,7 +10,7 @@ import {adminImages} from "../../images/imageExports";
 import {faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
 import firebase from "firebase/app";
 import styles from "./Admin.module.scss";
-import {useImageSize} from "../../context/imageSizeContext.js";
+import {useImageSize} from "../../context/imageSizeContext.tsx";
 import AuthHandler from "../../components/AuthHandler/AuthHandler.tsx";
 
 const Admin = ({notices}) => {
@@ -19,31 +19,31 @@ const Admin = ({notices}) => {
    const [loginError, setLoginError] = useState(null);
 
    const img = adminImages;
-   const {getImageSize} = useImageSize();
-   const imgSize = getImageSize("admin");
+   const {handleImageSize: handleImageSize} = useImageSize();
+   const imgSize = handleImageSize("admin");
 
-   // useEffect(() => {
-   //    return firebase.auth().onAuthStateChanged((user) => {
-   //       if (user) {
-   //          checkAuth({
-   //             uid: user.uid,
-   //             handleSuccess: () => {
-   //                if (!loggedIn) {
-   //                   setLoggedIn(true);
-   //                }
-   //             },
-   //             handleFail: () => {
-   //                if (firebase.auth().currentUser) {
-   //                   setLoginError(true);
-   //                   firebase.auth().signOut();
-   //                } else {
-   //                   setLoggedIn(false);
-   //                }
-   //             }
-   //          });
-   //       }
-   //    });
-   // }, []);
+   useEffect(() => {
+      return firebase.auth().onAuthStateChanged((user) => {
+         if (user) {
+            checkAuth({
+               uid: user.uid,
+               handleSuccess: () => {
+                  if (!loggedIn) {
+                     setLoggedIn(true);
+                  }
+               },
+               handleFail: () => {
+                  if (firebase.auth().currentUser) {
+                     setLoginError(true);
+                     firebase.auth().signOut();
+                  } else {
+                     setLoggedIn(false);
+                  }
+               }
+            });
+         }
+      });
+   }, []);
 
    const subtitle = loggedIn ?
       "Edit and add new notices to the info page here." :

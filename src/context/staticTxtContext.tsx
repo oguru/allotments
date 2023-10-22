@@ -1,5 +1,4 @@
 import React, {useContext, useRef} from "react";
-import PropTypes from "prop-types";
 
 type StaticTxtProviderProps = {
    children: JSX.Element[];

@@ -1,3 +1,5 @@
+import { MainImageTypes } from "./images/main/mainImages";
+
 export type FirestoreNoticeType = {
     title: string;
     desc: string;
@@ -19,4 +21,18 @@ export type ComponentObject = {
 
 export type PageRef = {
     [key: string]: RefObject<HTMLDivElement>;
- }
+}
+ 
+export type ChildrenProps {
+    children: React.ReactNode;
+}
+
+export type StringObject = {
+    [key: string]: string
+};
+
+export type IntObject = {
+    [key: string]: number
+};
+
+export type ImageSizes = "sm" | "md" | "lg";

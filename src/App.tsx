@@ -16,7 +16,7 @@ import {firestore} from "./services/firebase.js";
 import {formatDate} from "./util/utils.js";
 import {getContentJsx} from "./util/articleBuilder.jsx";
 import styles from "./App.module.scss";
-import {useImageSize} from "./context/imageSizeContext";
+import {useImageSize} from "./context/imageSizeContext.tsx";
 import {useScreenSize} from "./context/screenSizeContext.tsx";
 import { MainImageTypes } from "./images/main/mainImages";
 import { ComponentObject as JSXElementsObject, FirestoreNoticeType, LocalNoticeType, RouteData, PageRef as DivRefsObject } from "./types";
@@ -25,14 +25,14 @@ const App = () => {
    const [articlesJsx, setArticlesJsx] = useState([]);
    const [notices, setNotices] = useState<LocalNoticeType[] | []>([]);
    const [isLoading, setIsLoading] = useState(true);
-   const {isMobileNav} = useScreenSize();
-   const {getImageSize} = useImageSize();
+   const {mobileNav} = useScreenSize();
+   const {handleImageSize: handleImageSize} = useImageSize();
    const aboutRef = useRef<HTMLDivElement>(null);
    const infoRef = useRef<HTMLDivElement>(null);
    const articlesRef = useRef<HTMLDivElement>(null);
    const homeRef = useRef<HTMLDivElement>(null);
 
-   const homeImgSize: keyof MainImageTypes["mainImg"] = getImageSize("home");
+   const homeImgSize: keyof MainImageTypes["mainImg"] = handleImageSize("home");
    const homeImage = homeImages.mainImg[homeImgSize];
    const updatedInitImages = [
       ...mainImagesInit,
@@ -155,7 +155,7 @@ const App = () => {
                               classNames={{...styles}}
                               in={match != null}
                               nodeRef={pageRefs[route.name.toLowerCase()]}
-                              timeout={isMobileNav ? 800 : 400}
+                              timeout={mobileNav ? 800 : 400}
                               unmountOnExit
                            >
                               <div

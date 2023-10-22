@@ -6,7 +6,7 @@ import {MemoryRouter} from "react-router-dom";
 import React from "react";
 import {findByTestAttr} from "./util/utils";
 import ScreenSizeProvider from "./context/screenSizeContext.tsx";
-import ImageSizeProvider from "./context/imageSizeContext";
+import ImageSizeProvider from "./context/imageSizeContext.tsx";
 
 const matchMedia = new MatchMediaMock();
 

@@ -3,7 +3,7 @@ import Admin from "./Admin";
 import {mount} from "enzyme";
 import ScreenSizeProvider from "../../context/screenSizeContext.tsx";
 import StaticTxtProvider from "../../context/staticTxtContext";
-import ImageSizeProvider from "../../context/imageSizeContext";
+import ImageSizeProvider from "../../context/imageSizeContext.tsx";
 import MatchMediaMock from "jest-matchmedia-mock";
 import { act } from "react-dom/test-utils";
 

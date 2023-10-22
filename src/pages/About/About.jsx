@@ -4,12 +4,12 @@ import Carousel from "react-gallery-carousel";
 import Hero from "../../components/Hero";
 import React from "react";
 import styles from "./About.module.scss";
-import {useImageSize} from "../../context/imageSizeContext";
+import {useImageSize} from "../../context/imageSizeContext.tsx";
 
 const About = () => {
-   const {getImageSize} = useImageSize();
+   const {handleImageSize: handleImageSize} = useImageSize();
 
-   const imgSize = getImageSize("about");
+   const imgSize = handleImageSize("about");
 
    const heroContent = {
       id: "about",

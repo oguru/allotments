@@ -1,21 +1,13 @@
 import React, {useContext, useEffect, useState} from "react";
+import {ChildrenProps, ImageSizes} from "../types";
 
 interface ScreenSizeContextValue {
-   screenSize: string;
+   screenSize: ImageSizes;
    mobileNav: boolean;
 }
 
-interface MediaQuery {
-   size: string;
-   query: MediaQueryList;
-}
-
-interface ScreenSizeProviderProps {
-   children: React.ReactNode;
-}
-
 type SizeQueries = {
-   size: string,
+   size: ImageSizes,
    query: MediaQueryList
 }[]
 
@@ -25,7 +17,7 @@ export const useScreenSize = () => {
    return useContext(ScreenSizeContext);
 };
 
-const ScreenSizeProvider: React.FC<ScreenSizeProviderProps> = ({children}) => {
+const ScreenSizeProvider: React.FC<ChildrenProps> = ({children}) => {
    const [screenSize, setScreenSize] = useState("sm");
    const [mobileNav, setMobileNav] = useState(false);
 

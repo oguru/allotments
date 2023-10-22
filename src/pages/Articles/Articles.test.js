@@ -1,6 +1,6 @@
 import {checkProps, findByTestAttr} from "../../util/utils";
 import Articles from "./Articles";
-import ImageSizeProvider from "../../context/imageSizeContext";
+import ImageSizeProvider from "../../context/imageSizeContext.tsx";
 import MatchMediaMock from "jest-matchmedia-mock";
 import React from "react";
 import ScreenSizeProvider from "../../context/screenSizeContext.tsx";
