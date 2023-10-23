@@ -1,5 +1,3 @@
-import { MainImageTypes } from "./images/main/mainImages";
-
 export type FirestoreNoticeType = {
     title: string;
     desc: string;
@@ -12,15 +10,11 @@ export type LocalNoticeType = FirestoreNoticeType & {
 
 export type RouteData = {
     path: string;
-    name: string;
+    name: PageCap;
 }
 
-export type ComponentObject = {
-    [key: string]: JSX.Element;
-}
-
-export type PageRef = {
-    [key: string]: RefObject<HTMLDivElement>;
+export type JSXElementsObject = {
+    [key in PageCap]: JSX.Element;
 }
  
 export type ChildrenProps {
@@ -36,3 +30,7 @@ export type IntObject = {
 };
 
 export type ImageSizes = "sm" | "md" | "lg";
+
+export type PageLower = "about" | "info" | "articles" | "home" | "admin";
+
+export type PageCap = "About" | "Info" | "Articles" | "Home" | "Admin";

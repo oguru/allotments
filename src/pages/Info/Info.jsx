@@ -9,7 +9,7 @@ import {useImageSize} from "../../context/imageSizeContext.tsx";
 
 const Info = ({notices}) => {
    const img = infoImages;
-   const {handleImageSize: handleImageSize} = useImageSize();
+   const {handleImageSize} = useImageSize();
    const imgSize = handleImageSize("info");
 
    const heroContent = {

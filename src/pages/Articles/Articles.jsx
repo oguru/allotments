@@ -19,7 +19,7 @@ const Articles = ({articlesJsx}) => {
 
    const img = articlesImages;
 
-   const {handleImageSize: handleImageSize} = useImageSize();
+   const {handleImageSize} = useImageSize();
 
    const imgSize = handleImageSize("articles");
 

@@ -1,16 +1,15 @@
 import React, {useContext, useRef} from "react";
 import {useScreenSize} from "./screenSizeContext";
-import {ChildrenProps, ImageSizes} from "../types.js";
+import {ChildrenProps, ImageSizes, PageLower} from "../types.js";
 
-type Page = "about" | "info" | "articles" | "home";
-
-type HandleImageSize = (entity: Page) => ImageSizes;
+type HandleImageSize = (entity: PageLower) => ImageSizes;
 
 type StoredImageSizes = {
    home: ImageSizes;
    about?: ImageSizes;
    info?: ImageSizes;
    articles?: ImageSizes;
+   admin?: ImageSizes;
 }
 
 type ImageSizeContextValue = {

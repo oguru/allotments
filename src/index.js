@@ -1,4 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css";
+import "./firebaseui-styling.global.css";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import App from "./App.tsx";

@@ -7,7 +7,7 @@ import styles from "./About.module.scss";
 import {useImageSize} from "../../context/imageSizeContext.tsx";
 
 const About = () => {
-   const {handleImageSize: handleImageSize} = useImageSize();
+   const {handleImageSize} = useImageSize();
 
    const imgSize = handleImageSize("about");
 

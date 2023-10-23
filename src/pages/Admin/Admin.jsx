@@ -19,7 +19,7 @@ const Admin = ({notices}) => {
    const [loginError, setLoginError] = useState(null);
 
    const img = adminImages;
-   const {handleImageSize: handleImageSize} = useImageSize();
+   const {handleImageSize} = useImageSize();
    const imgSize = handleImageSize("admin");
 
    useEffect(() => {
