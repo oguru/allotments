@@ -13,9 +13,20 @@ jest.mock("../../components/AuthHandler/AuthHandler")
 
 const userName = "TestUser"
 
+const mockSignOut = () => jest.fn();
+
 jest.mock("../../services/firebase.js", () => ({
    userName: () => userName, 
-   signOut: () => null
+   signOut: () => null,
+   auth: {
+      currentUser: "TestUser",
+      signOut: mockSignOut,
+      onAuthStateChanged: () => ({
+         user: {
+            uid: "TestUser",
+         }
+      })
+   }
 }))
 
 describe("Admin tests (default logged out)", () => {

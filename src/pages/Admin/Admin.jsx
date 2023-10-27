@@ -1,6 +1,6 @@
 import "firebase/auth";
 import React, {useState, useEffect} from "react";
-import {checkAuth, firestore, signOut, userName} from "../../services/firebase.js";
+import {auth, checkAuth, firestore, signOut, userName} from "../../services/firebase.js";
 import AdminNotice from "../../components/AdminNotice";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Hero from "../../components/Hero";
@@ -23,8 +23,9 @@ const Admin = ({notices}) => {
    const imgSize = handleImageSize("admin");
 
    useEffect(() => {
-      return firebase.auth().onAuthStateChanged((user) => {
+      return auth.onAuthStateChanged((user) => {
          if (user) {
+            console.log('auth.currentUser:', auth.currentUser)
             checkAuth({
                uid: user.uid,
                handleSuccess: () => {
@@ -33,9 +34,9 @@ const Admin = ({notices}) => {
                   }
                },
                handleFail: () => {
-                  if (firebase.auth().currentUser) {
+                  if (auth.currentUser) {
                      setLoginError(true);
-                     firebase.auth().signOut();
+                     auth.signOut();
                   } else {
                      setLoggedIn(false);
                   }

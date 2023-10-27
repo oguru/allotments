@@ -3,12 +3,12 @@ import {mount, shallow} from "enzyme";
 import ArticleBox from "./ArticleBox";
 import React from "react";
 import {articlesData} from "../../data/contentData";
-import {getContentJsx} from "../../util/articleBuilder";
+import {getArticleContent} from "../../util/articleBuilder";
 
 describe("ArticleBox tests", () => {
    let component;
    const handleShowArticleMock = jest.fn();
-   const article = getContentJsx([articlesData[0]], true)[0];
+   const article = getArticleContent([articlesData[0]])[0];
    const testProps = {
       handleShowArticle: handleShowArticleMock,
       previewImg: article.mainImg.box,

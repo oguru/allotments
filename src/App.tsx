@@ -15,7 +15,7 @@ import {Route} from "react-router-dom";
 import {articlesData} from "./data/contentData.js";
 import {firestore} from "./services/firebase.js";
 import {formatDate} from "./util/utils.js";
-import {getContentJsx} from "./util/articleBuilder.jsx";
+import {getArticleContent} from "./util/articleBuilder.jsx";
 import {useImageSize} from "./context/imageSizeContext";
 import {useScreenSize} from "./context/screenSizeContext";
 import { MainImageTypes } from "./images/main/mainImages";
@@ -42,7 +42,7 @@ const App = () => {
 
    useEffect(() => {
       if (!isLoading) {
-         const articles = getContentJsx(articlesData, true);
+         const articles = getArticleContent(articlesData);
          setArticlesJsx(articles);
 
          firestore
