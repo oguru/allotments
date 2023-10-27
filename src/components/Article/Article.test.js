@@ -2,11 +2,11 @@ import Article from "./Article";
 import React from "react";
 import {articlesData} from "../../data/contentData";
 import {checkProps} from "../../util/utils";
-import {getContentJsx} from "../../util/articleBuilder";
+import {getArticleContent} from "../../util/articleBuilder";
 import {shallow} from "enzyme";
 
 describe("Article tests", () => {
-   const article = getContentJsx([articlesData[0]], true)[0];
+   const article = getArticleContent([articlesData[0]])[0];
 
    const testProps = {
       closeArticle: jest.fn,

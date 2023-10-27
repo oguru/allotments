@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 // main images
 import aboutImgInit from "./about/about-main-init.jpg";
 import aboutImgLg from "./about/about-main-lg.jpg";
@@ -49,8 +47,27 @@ import Seats from "./about/about-seats.jpg";
 import Sheds from "./about/about-sheds.jpg";
 import Welcome from "./about/about-welcome.jpg";
 
-export const galleryImages = [
-   {src: Welcome},
+type ImageType = {
+   [key: string]: string;
+}
+
+export type MainImageTypes = {
+   mainImg: {
+      sm: string;
+      md: string;
+      lg: string;
+      init?: string;
+   }
+}
+
+type InfoImagesType = MainImageTypes & {
+   textures: {
+      grass: string;
+   };
+}
+
+export const galleryImages: {src: string, alt?: string}[] = [
+   {src: Welcome, alt: "Allotment gate entrance with welcome banner"},
    {src: Before,
       alt: "Before"},
    {src: After,
@@ -63,9 +80,12 @@ export const galleryImages = [
       alt: "Community hub"},
    {src: Communal2,
       alt: "Community hub"},
-   {src: Grass},
-   {src: Path},
-   {src: Path2},
+   {src: Grass,
+      alt: "Grass strip with plants and greenhouse"},
+   {src: Path,
+      alt: "Path with small colourful sheds, plants and flowers"},
+   {src: Path2,
+      alt: "Road path with 2 blue sheds and trees"},
    {src: Path3},
    {src: Plot},
    {src: Plot2},
@@ -76,7 +96,7 @@ export const galleryImages = [
       alt: "Special seats for the little ones!"}
 ];
 
-export const mainImagesInit = [
+export const mainImagesInit: {src: string, id: string}[] = [
    {src: infoImgInit,
       id: "info"},
    {src: articlesImgInit,
@@ -85,22 +105,25 @@ export const mainImagesInit = [
       id: "about"}
 ];
 
-export const aboutImages = {
+export const aboutImages: MainImageTypes = {
    mainImg: {
       sm: aboutImgSm,
       md: aboutImgMd,
       lg: aboutImgLg,
       init: aboutImgInit
-   },
+   }
+};
+
+export const aboutArticleImages: ImageType = {
    Daffodils,
    Flowers,
    People,
    People2,
    Path4,
    Sheds
-};
+}
 
-export const adminImages = {
+export const adminImages: MainImageTypes = {
    mainImg: {
       sm: adminImgSm,
       md: adminImgMd,
@@ -108,7 +131,7 @@ export const adminImages = {
    }
 };
 
-export const homeImages = {
+export const homeImages: MainImageTypes = {
    mainImg: {
       sm: homeImgSm,
       md: homeImgMd,
@@ -116,7 +139,7 @@ export const homeImages = {
    }
 };
 
-export const infoImages = {
+export const infoImages: InfoImagesType = {
    mainImg: {
       sm: infoImgSm,
       md: infoImgMd,
@@ -128,7 +151,7 @@ export const infoImages = {
    }
 };
 
-export const articlesImages = {
+export const articlesImages: MainImageTypes = {
    mainImg: {
       sm: articlesImgSm,
       md: articlesImgMd,

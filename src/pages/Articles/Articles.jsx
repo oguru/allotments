@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import {articlesImages} from "../../images/imageExports";
 import {pageCont} from "../../App.module.scss";
 import styles from "./Articles.module.scss";
-import {useImageSize} from "../../context/imageSizeContext";
+import {useImageSize} from "../../context/imageSizeContext.tsx";
 
 const Articles = ({articlesJsx}) => {
    const pageContRef = React.useRef(null);
@@ -19,9 +19,9 @@ const Articles = ({articlesJsx}) => {
 
    const img = articlesImages;
 
-   const {getImageSize} = useImageSize();
+   const {handleImageSize} = useImageSize();
 
-   const imgSize = getImageSize("articles");
+   const imgSize = handleImageSize("articles");
 
    const heroContent = {
       id: "articles",

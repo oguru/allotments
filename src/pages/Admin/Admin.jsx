@@ -1,17 +1,17 @@
 import "firebase/auth";
 import React, {useState, useEffect} from "react";
-import {checkAuth, firestore} from "../../services/firebase.js";
+import {auth, checkAuth, firestore, signOut, userName} from "../../services/firebase.js";
 import AdminNotice from "../../components/AdminNotice";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Hero from "../../components/Hero";
 import Notice from "../../components/Notice";
 import PropTypes from "prop-types";
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import {adminImages} from "../../images/imageExports";
 import {faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
 import firebase from "firebase/app";
 import styles from "./Admin.module.scss";
-import {useImageSize} from "../../context/imageSizeContext.js";
+import {useImageSize} from "../../context/imageSizeContext.tsx";
+import AuthHandler from "../../components/AuthHandler/AuthHandler.tsx";
 
 const Admin = ({notices}) => {
    const [loggedIn, setLoggedIn] = useState(false);
@@ -19,12 +19,13 @@ const Admin = ({notices}) => {
    const [loginError, setLoginError] = useState(null);
 
    const img = adminImages;
-   const {getImageSize} = useImageSize();
-   const imgSize = getImageSize("admin");
+   const {handleImageSize} = useImageSize();
+   const imgSize = handleImageSize("admin");
 
    useEffect(() => {
-      return firebase.auth().onAuthStateChanged((user) => {
+      return auth.onAuthStateChanged((user) => {
          if (user) {
+            console.log('auth.currentUser:', auth.currentUser)
             checkAuth({
                uid: user.uid,
                handleSuccess: () => {
@@ -33,9 +34,9 @@ const Admin = ({notices}) => {
                   }
                },
                handleFail: () => {
-                  if (firebase.auth().currentUser) {
+                  if (auth.currentUser) {
                      setLoginError(true);
-                     firebase.auth().signOut();
+                     auth.signOut();
                   } else {
                      setLoggedIn(false);
                   }
@@ -92,33 +93,32 @@ const Admin = ({notices}) => {
          .delete();
    };
 
-   const firebaseUiConfig = {
-      signInFlow: "popup",
-      callbacks: {
-         signInSuccessWithAuthResult: () => false
-      },
-      signInOptions: [
-         firebase.auth.GoogleAuthProvider.PROVIDER_ID
-      ]
-   };
-
    return (
       <>
          <Hero content={heroContent}>
             {!loggedIn || loginError ? (
                <div className="login-container">
-                  <StyledFirebaseAuth
-                     uiConfig={firebaseUiConfig}
-                     firebaseAuth={firebase.auth()}
+                  <AuthHandler
+                     data-test="loginHandler"
+                     setLoggedIn={setLoggedIn} 
+                     loggedIn={loggedIn} 
+                     setLoginError={setLoginError} 
                   />
-                  {loginError && <p className={styles.loginErrorText}>There was an error, please contact an Admin to sign in.</p>}
+                  {loginError && (
+                     <p 
+                        className={styles.loginErrorText}
+                        data-test="loginError"
+                     >
+                        There was an error, please contact an Admin to sign in.
+                     </p>
+                  )}
                </div>
             ) : (
                <div>
-                  <p>Welcome {firebase.auth().currentUser.displayName}, you are now signed in.</p>
+                  <p data-test="loginWelcomeText">Welcome {userName()}, you are now signed in.</p>
                   <button
                      onClick={() => {
-                        firebase.auth().signOut();
+                        signOut();
                         setLoggedIn(false);
                      }}
                      className={styles.signOutBtn}
@@ -143,6 +143,7 @@ const Admin = ({notices}) => {
                            onClick={() => setNewNotice(true)}
                         >
                            <button
+                              data-test="addNoticeBtn"
                               className={styles.addButton}></button>
                            <span>Add Notice</span>
                         </div>
@@ -169,6 +170,7 @@ const Admin = ({notices}) => {
                   />
                ) : (
                   <Notice
+                     data-test="readOnlyNotice"
                      item={item}
                      key={item.id}
                   />))}

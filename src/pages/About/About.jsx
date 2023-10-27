@@ -1,17 +1,15 @@
 import "react-gallery-carousel/dist/index.css";
-import {aboutImages, galleryImages} from "../../images/imageExports";
+import {aboutImages as img, aboutArticleImages as articleImg, galleryImages} from "../../images/imageExports";
 import Carousel from "react-gallery-carousel";
 import Hero from "../../components/Hero";
 import React from "react";
 import styles from "./About.module.scss";
-import {useImageSize} from "../../context/imageSizeContext";
+import {useImageSize} from "../../context/imageSizeContext.tsx";
 
 const About = () => {
-   const img = aboutImages;
+   const {handleImageSize} = useImageSize();
 
-   const {getImageSize} = useImageSize();
-
-   const imgSize = getImageSize("about");
+   const imgSize = handleImageSize("about");
 
    const heroContent = {
       id: "about",
@@ -44,12 +42,12 @@ const About = () => {
                <img
                   alt="Daffodils"
                   className="splitImage"
-                  src={img.Daffodils}
+                  src={articleImg.Daffodils}
                />
                <img
                   alt="Mixed colour flowers"
                   className="splitImage"
-                  src={img.Flowers}
+                  src={articleImg.Flowers}
                />
             </div>
             <p className="articleTxt">
@@ -62,22 +60,22 @@ const About = () => {
                <img
                   alt="Soup share community event"
                   className="splitImage"
-                  src={img.People2}
+                  src={articleImg.People2}
                />
                <img
                   alt="Art painted container with people"
                   className="splitImage"
-                  src={img.People}
+                  src={articleImg.People}
                />
                <img
                   alt="Painted sheds"
                   className="splitImage"
-                  src={img.Sheds}
+                  src={articleImg.Sheds}
                />
                <img
                   alt="Thin painted sheds and path"
                   className="splitImage"
-                  src={img.Path4}
+                  src={articleImg.Path4}
                />
             </div>
             <p className="articleTxt">

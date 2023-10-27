@@ -1,5 +1,5 @@
 /* eslint-disable function-paren-newline */
-import * as screenSizeContext from "../../context/screenSizeContext";
+import * as screenSizeContext from "../../context/screenSizeContext.tsx";
 import {checkProps, findByTestAttr} from "../../util/utils";
 import {MemoryRouter} from "react-router-dom";
 import NavBar from "./NavBar";

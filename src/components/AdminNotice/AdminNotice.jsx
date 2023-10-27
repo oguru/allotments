@@ -20,13 +20,18 @@ const AdminNotice = (props) => {
       <>
          {editMode || newNotice ? (
             <NoticeEditor
+               data-test="noticeEditor"
                item={item}
                handleCancel={() => item ? setEditMode(false) : handleCancel()}
                handleSave={handleSave}
             />
          ) : (
-            <Notice item={item}>
+            <Notice
+               data-test="adminEditNotice"
+               item={item}
+            >
                <div className={styles.noticeButtons}>
+                  {/* refactor to change text and function rather than duplicating the buttons */}
                   {delWarning ? (
                      <>
                         <button

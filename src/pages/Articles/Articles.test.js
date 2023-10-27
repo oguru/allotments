@@ -1,19 +1,19 @@
 import {checkProps, findByTestAttr} from "../../util/utils";
 import Articles from "./Articles";
-import ImageSizeProvider from "../../context/imageSizeContext";
+import ImageSizeProvider from "../../context/imageSizeContext.tsx";
 import MatchMediaMock from "jest-matchmedia-mock";
 import React from "react";
-import ScreenSizeProvider from "../../context/screenSizeContext";
-import StaticTxtProvider from "../../context/staticTxtContext.js";
+import ScreenSizeProvider from "../../context/screenSizeContext.tsx";
+import StaticTxtProvider from "../../context/staticTxtContext.tsx";
 import {act} from "react-dom/test-utils";
 import {articlesData} from "../../data/contentData";
-import {getContentJsx} from "../../util/articleBuilder";
+import {getArticleContent} from "../../util/articleBuilder";
 import {mount} from "enzyme";
 
 const matchMedia = new MatchMediaMock();
 
 describe("Articles tests", () => {
-   const articles = getContentJsx([articlesData[0], articlesData[1]], true);
+   const articles = getArticleContent([articlesData[0], articlesData[1]]);
    let component;
 
    const testProps = {
@@ -26,7 +26,7 @@ describe("Articles tests", () => {
       component = mount(<ScreenSizeProvider>
          <ImageSizeProvider>
             <StaticTxtProvider>
-                  [<Articles articlesJsx={articles} />]
+               <Articles articlesJsx={articles} />
             </StaticTxtProvider>
          </ImageSizeProvider>
       </ScreenSizeProvider>);

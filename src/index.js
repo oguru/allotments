@@ -1,12 +1,13 @@
 import "bootstrap/dist/css/bootstrap.css";
+import "./firebaseui-styling.global.css";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
-import App from "./App";
-import ImageSizeProvider from "./context/imageSizeContext";
+import App from "./App.tsx";
+import ImageSizeProvider from "./context/imageSizeContext.tsx";
 import React from "react";
 import ReactDOM from "react-dom";
 import {BrowserRouter as Router} from "react-router-dom";
-import ScreenSizeProvider from "./context/screenSizeContext";
+import ScreenSizeProvider from "./context/screenSizeContext.tsx";
 
 ReactDOM.render(
    <React.StrictMode>

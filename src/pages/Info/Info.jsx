@@ -5,12 +5,12 @@ import PropTypes from "prop-types";
 import {infoImages} from "../../images/imageExports";
 import {plotData} from "../../data/plotData";
 import styles from "./Info.module.scss";
-import {useImageSize} from "../../context/imageSizeContext";
+import {useImageSize} from "../../context/imageSizeContext.tsx";
 
 const Info = ({notices}) => {
    const img = infoImages;
-   const {getImageSize} = useImageSize();
-   const imgSize = getImageSize("info");
+   const {handleImageSize} = useImageSize();
+   const imgSize = handleImageSize("info");
 
    const heroContent = {
       id: "info",

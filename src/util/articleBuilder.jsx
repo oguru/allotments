@@ -103,9 +103,8 @@ const buildEl = (el, article) => {
    );
 };
 
-const getContentJsx = (contentData, articles) => {
-   const jsxContent = articles ?
-      contentData.map(article => {
+const getArticleContent = (contentData) => {
+   const jsxContent = contentData.map(article => {
          return {
             credit: article.credit,
             id: article.id,
@@ -116,10 +115,9 @@ const getContentJsx = (contentData, articles) => {
             initText: article.content[0].text,
             content: article.content.map(el => buildEl(el, article))
          };
-      }) :
-      contentData.map(el => buildEl(el));
+      })
 
    return jsxContent;
 };
 
-export {getContentJsx};
+export {getArticleContent as getArticleContent};

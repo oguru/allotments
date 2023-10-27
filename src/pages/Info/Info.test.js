@@ -6,8 +6,8 @@ import MatchMediaMock from "jest-matchmedia-mock";
 import React from "react";
 import StaticTxtProvider from "../../context/staticTxtContext";
 import {mount} from "enzyme";
-import ImageSizeProvider from "../../context/imageSizeContext";
-import ScreenSizeProvider from "../../context/screenSizeContext";
+import ImageSizeProvider from "../../context/imageSizeContext.tsx";
+import ScreenSizeProvider from "../../context/screenSizeContext.tsx";
 
 const matchMedia = new MatchMediaMock();
 
